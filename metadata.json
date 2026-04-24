@@ -1,0 +1,5 @@
+{
+  "name": "Pagandu Admin",
+  "description": "Painel administrativo moderno para gestão de gateway de pagamentos, clientes, tesouraria e configurações de sistema.",
+  "requestFramePermissions": []
+}
