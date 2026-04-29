@@ -3,8 +3,8 @@ import { Loader2, Search } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { webhooksService } from '../services/webhooks.service'
 
-export const TransaçãoMapper: React.FC = () => {
-  const [transactionId, setTransaçãoId] = useState('')
+export const TransactionMapper: React.FC = () => {
+  const [transactionId, setTransactionId] = useState('')
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<any | null>(null)
   const [activeReference, setActiveReference] = useState('')
@@ -18,17 +18,17 @@ export const TransaçãoMapper: React.FC = () => {
 
     try {
       if (!silent) setLoading(true)
-      const res = await webhooksService.mapTransação(tx)
+      const res = await webhooksService.mapTransaction(tx)
       setResult(res || null)
     } catch (err) {
-      console.error('Erro ao mapear transao', err)
+      console.error('Erro ao mapear transação', err)
       setResult(null)
     } finally {
       if (!silent) setLoading(false)
     }
   }, [])
 
-  const handleMapTransação = async () => {
+  const handleMapTransaction = async () => {
     const tx = transactionId.trim()
     if (!tx) return
 
@@ -65,7 +65,7 @@ export const TransaçãoMapper: React.FC = () => {
     <div className="bg-slate-950 text-slate-50 rounded-2xl p-6 space-y-6 min-h-[400px]">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-xl font-semibold">Mapeador de Transação</h1>
-        <div className="text-xs text-slate-400">Rastreia origem do webhook por referência da transao</div>
+        <div className="text-xs text-slate-400">Rastreia origem do webhook por referência da transação</div>
       </div>
 
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 space-y-3">
@@ -74,13 +74,13 @@ export const TransaçãoMapper: React.FC = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
             <input
               value={transactionId}
-              onChange={(e) => setTransaçãoId(e.target.value)}
+              onChange={(e) => setTransactionId(e.target.value)}
               placeholder="merOrderNo / orderNo / tradeNo / transactionId"
               className="w-full pl-9 pr-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-xs outline-none"
             />
           </div>
           <button
-            onClick={handleMapTransação}
+            onClick={handleMapTransaction}
             disabled={loading || !transactionId.trim()}
             className="px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-xs font-semibold inline-flex items-center gap-2"
           >
@@ -97,11 +97,11 @@ export const TransaçãoMapper: React.FC = () => {
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
                   <div className="rounded-md border border-slate-800 p-2">
-                    <div className="text-slate-400">Referncia</div>
+                    <div className="text-slate-400">Referência</div>
                     <div className="font-mono text-slate-100 truncate">{result?.mapped?.reference || '-'}</div>
                   </div>
                   <div className="rounded-md border border-slate-800 p-2">
-                    <div className="text-slate-400">Usurio origem</div>
+                    <div className="text-slate-400">Usuário origem</div>
                     <div className="text-slate-100 truncate">{result?.mapped?.sourceUser?.name || '-'}</div>
                     <div className="text-slate-400 truncate">ID: {result?.mapped?.sourceUser?.id || '-'}</div>
                   </div>
@@ -123,7 +123,7 @@ export const TransaçãoMapper: React.FC = () => {
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Entregues</span><div className="text-emerald-300 font-semibold">{result?.mapped?.stats?.delivered ?? 0}</div></div>
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Falhas</span><div className="text-rose-300 font-semibold">{result?.mapped?.stats?.failed ?? 0}</div></div>
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Primeiro log</span><div className="text-slate-100">{result?.mapped?.stats?.firstSeen ? new Date(result.mapped.stats.firstSeen).toLocaleString() : '-'}</div></div>
-                  <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">ltimo log</span><div className="text-slate-100">{result?.mapped?.stats?.lastSeen ? new Date(result.mapped.stats.lastSeen).toLocaleString() : '-'}</div></div>
+                  <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Último log</span><div className="text-slate-100">{result?.mapped?.stats?.lastSeen ? new Date(result.mapped.stats.lastSeen).toLocaleString() : '-'}</div></div>
                 </div>
 
                 <div className="rounded-md border border-slate-800 p-2">
@@ -155,6 +155,3 @@ export const TransaçãoMapper: React.FC = () => {
     </div>
   )
 }
-
-export default TransaçãoMapper
-
