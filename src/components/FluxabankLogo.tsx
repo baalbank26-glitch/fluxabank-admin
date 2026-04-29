@@ -21,7 +21,7 @@ export const FluxabankLogo: React.FC<FluxabankLogoProps> = ({ className = '', si
       <img
         src={FluxabankLogoAsset}
         alt="Fluxabank"
-        className={`${sizeMap[size]} object-contain relative z-10 drop-shadow-[0_0_8px_rgba(220,38,38,0.4)] transition-transform duration-500 group-hover:scale-110`}
+        className={`${sizeMap[size]} object-contain relative z-10 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)] transition-transform duration-500 group-hover:scale-110`}
       />
     </div>
   );
