@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import baalLogoAsset from '../assets/baal-logo.png';
 
 interface BAALLogoProps {

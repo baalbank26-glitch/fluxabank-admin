@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react'
+﻿import React, { useCallback, useEffect, useState } from 'react'
 import { Loader2, Search } from 'lucide-react'
+import { toast } from 'react-toastify'
 import { webhooksService } from '../services/webhooks.service'
 
 export const TransactionMapper: React.FC = () => {
@@ -7,6 +8,7 @@ export const TransactionMapper: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<any | null>(null)
   const [activeReference, setActiveReference] = useState('')
+  const [resendingId, setResendingId] = useState<number | null>(null)
 
   const fetchMapping = useCallback(async (reference: string, options?: { silent?: boolean }) => {
     const tx = String(reference || '').trim()
@@ -32,6 +34,21 @@ export const TransactionMapper: React.FC = () => {
 
     setActiveReference(tx)
     await fetchMapping(tx)
+  }
+
+  const handleResendWebhook = async (id: number) => {
+    try {
+      setResendingId(id)
+      await webhooksService.resend([id])
+      toast.success('Webhook reenviado com sucesso.')
+      if (activeReference) {
+        await fetchMapping(activeReference, { silent: true })
+      }
+    } catch (err) {
+      console.error('Erro ao reenviar webhook', err)
+    } finally {
+      setResendingId(null)
+    }
   }
 
   useEffect(() => {
@@ -119,6 +136,13 @@ export const TransactionMapper: React.FC = () => {
                         <span className="text-slate-300">{item.status || '-'}</span>
                         <span className="text-slate-400">HTTP {item.http_status ?? '-'}</span>
                         <span className="text-slate-500">{item.created_at ? new Date(item.created_at).toLocaleString() : '-'}</span>
+                        <button
+                          onClick={() => handleResendWebhook(item.id)}
+                          disabled={resendingId === item.id}
+                          className="px-2 py-1 rounded-md border border-emerald-500/40 text-[10px] hover:bg-emerald-500/10 disabled:opacity-50"
+                        >
+                          {resendingId === item.id ? 'Enviando...' : 'Reenviar'}
+                        </button>
                       </div>
                     ))}
                   </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { AlertCircle, CheckCircle, Copy, QrCode, RefreshCcw, ShieldCheck } from 'lucide-react';
 import { twoFactorService } from '../services/twoFactor.service';
 
@@ -99,7 +99,7 @@ export const Authenticator: React.FC = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-          <ShieldCheck className="w-7 h-7 text-pagandu-600" />
+          <ShieldCheck className="w-7 h-7 text-red-600" />
           Authenticator (2FA)
         </h2>
         <p className="text-slate-500 text-sm mt-1">

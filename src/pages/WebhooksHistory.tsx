@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+﻿import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { CalendarDays, Filter, RefreshCw, Search, Loader2 } from 'lucide-react'
+import { toast } from 'react-toastify'
 import { webhooksService } from '../services/webhooks.service'
 
 type WebhookLog = {
@@ -56,6 +57,7 @@ export const WebhooksHistory: React.FC = () => {
   const [mapperTransactionId, setMapperTransactionId] = useState('')
   const [mapperLoading, setMapperLoading] = useState(false)
   const [mapperResult, setMapperResult] = useState<any | null>(null)
+  const [resendingId, setResendingId] = useState<number | null>(null)
   const debounceTimer = useRef<number | null>(null)
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize))
@@ -120,14 +122,19 @@ export const WebhooksHistory: React.FC = () => {
     )
   }
 
-  const handleResend = async () => {
+  const handleResend = async (ids: number[] = selectedIds) => {
     try {
-      if (!selectedIds.length) return
-      await webhooksService.resend(selectedIds)
-      setSelectedIds([])
+      if (!ids.length) return
+      const singleId = ids.length === 1 ? ids[0] : null
+      setResendingId(singleId)
+      await webhooksService.resend(ids)
+      if (ids === selectedIds) setSelectedIds([])
+      toast.success(ids.length === 1 ? 'Webhook reenviado com sucesso.' : 'Webhooks reenviados com sucesso.')
       fetchData()
     } catch (err) {
       console.error('Erro ao reenviar webhooks', err)
+    } finally {
+      setResendingId(null)
     }
   }
 
@@ -211,7 +218,7 @@ export const WebhooksHistory: React.FC = () => {
           </div>
 
           <button
-            onClick={handleResend}
+            onClick={() => handleResend(selectedIds)}
             disabled={!selectedIds.length || loading}
             className="px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-[11px] sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2"
           >
@@ -371,6 +378,13 @@ export const WebhooksHistory: React.FC = () => {
                         <span className="text-slate-300">{item.status || '-'}</span>
                         <span className="text-slate-400">HTTP {item.http_status ?? '-'}</span>
                         <span className="text-slate-500">{item.created_at ? new Date(item.created_at).toLocaleString() : '-'}</span>
+                        <button
+                          onClick={() => handleResend([item.id])}
+                          disabled={resendingId === item.id}
+                          className="px-2 py-1 rounded-md border border-emerald-500/40 text-[10px] hover:bg-emerald-500/10 disabled:opacity-50"
+                        >
+                          {resendingId === item.id ? 'Enviando...' : 'Reenviar'}
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -500,6 +514,13 @@ export const WebhooksHistory: React.FC = () => {
                       <div className="text-[10px] text-slate-500 truncate" title={log.target_url}>{log.target_url}</div>
                       <div className="flex items-center gap-2 shrink-0">
                         <button
+                          onClick={() => handleResend([log.id])}
+                          disabled={resendingId === log.id}
+                          className="px-2 py-1 rounded-lg border border-emerald-500/40 text-[11px] hover:bg-emerald-500/10 disabled:opacity-50"
+                        >
+                          {resendingId === log.id ? 'Enviando...' : 'Reenviar'}
+                        </button>
+                        <button
                           onClick={() => navigator.clipboard?.writeText(log.target_url || '')}
                           className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-slate-800"
                         >
@@ -550,6 +571,13 @@ export const WebhooksHistory: React.FC = () => {
                       className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-slate-800"
                     >
                       Selecionar
+                    </button>
+                    <button
+                      onClick={() => handleResend([log.id])}
+                      disabled={resendingId === log.id}
+                      className="px-2 py-1 rounded-lg border border-emerald-500/40 text-[11px] hover:bg-emerald-500/10 disabled:opacity-50"
+                    >
+                      {resendingId === log.id ? 'Enviando...' : 'Reenviar'}
                     </button>
                     <button
                       onClick={() => navigator.clipboard?.writeText(log.target_url || '')}

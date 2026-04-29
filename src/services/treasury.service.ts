@@ -1,4 +1,4 @@
-import { TreasuryBalance, LedgerItem, TreasurySummary, PaginatedTreasuryByUserSummary, PaginatedLedgerItems } from '../types/index';
+﻿import { TreasuryBalance, LedgerItem, TreasurySummary, PaginatedTreasuryByUserSummary, PaginatedLedgerItems } from '../types/index';
 import { BASE_URL, getHeaders, handleResponse } from './config';
 
 const toQueryString = (params?: Record<string, unknown>) => {
@@ -66,7 +66,7 @@ export const treasuryService = {
     return Array.isArray(data) ? data : [];
   },
 
-  getByUserSummary: async (params?: { from?: string; to?: string; page?: number; pageSize?: number }): Promise<PaginatedTreasuryByUserSummary> => {
+  getByUserSummary: async (params?: { from?: string; to?: string; page?: number; pageSize?: number; search?: string }): Promise<PaginatedTreasuryByUserSummary> => {
     const query = toQueryString(params as any);
 
     const response = await fetch(`${BASE_URL}/admin/treasury/summary/by-user?${query}`, {
@@ -89,53 +89,47 @@ export const treasuryService = {
   },
 
   getByUserTransactions: async (userId: number, params?: { from?: string; to?: string; page?: number; pageSize?: number; flowType?: 'ALL' | 'PIX_IN' | 'PIX_OUT' }): Promise<PaginatedLedgerItems> => {
-    const baseParams = {
-      from: params?.from,
-      to: params?.to,
-      page: params?.page,
-      pageSize: params?.pageSize,
+    const query = toQueryString(params as any);
+
+    const response = await fetch(`${BASE_URL}/admin/treasury/summary/by-user/${userId}/transactions?${query}`, {
+      headers: getHeaders(),
+    });
+
+    const json = await handleResponse(response);
+    const data = json?.data || [];
+    const meta = json?.meta || {};
+
+    return {
+      items: Array.isArray(data) ? data : [],
+      meta: {
+        page: Number(meta.page || 1),
+        pageSize: Number(meta.pageSize || 20),
+        total: Number(meta.total || 0),
+        totalPages: Number(meta.totalPages || 1),
+      }
     };
+  },
 
-    const parsePaginatedLedger = (json: any): PaginatedLedgerItems => {
-      const data = json?.data || [];
-      const meta = json?.meta || {};
+  getByUserGatewayTransactions: async (userId: number, params?: { from?: string; to?: string; page?: number; pageSize?: number }) => {
+    const query = toQueryString(params as any);
 
-      return {
-        items: Array.isArray(data) ? data : [],
-        meta: {
-          page: Number(meta.page || 1),
-          pageSize: Number(meta.pageSize || 20),
-          total: Number(meta.total || 0),
-          totalPages: Number(meta.totalPages || 1),
-        }
-      };
+    const response = await fetch(`${BASE_URL}/admin/treasury/users/${userId}/gateway-transactions?${query}`, {
+      headers: getHeaders(),
+    });
+
+    const json = await handleResponse(response);
+    const data = json?.data || [];
+    const meta = json?.meta || {};
+
+    return {
+      items: Array.isArray(data) ? data : [],
+      meta: {
+        page: Number(meta.page || 1),
+        pageSize: Number(meta.pageSize || 100),
+        total: Number(meta.total || 0),
+        totalPages: Number(meta.totalPages || 1),
+      }
     };
-
-    const request = async (queryParams: Record<string, unknown>) => {
-      const query = toQueryString(queryParams);
-      const response = await fetch(`${BASE_URL}/admin/treasury/summary/by-user/${userId}/transactions?${query}`, {
-        headers: getHeaders(),
-      });
-
-      // shouldRedirect=false: fail fast so we can try a fallback param strategy.
-      const json = await handleResponse(response, false);
-      return parsePaginatedLedger(json);
-    };
-
-    const flowType = params?.flowType;
-
-    // Avoid sending ALL, because some backends don't accept this token.
-    if (!flowType || flowType === 'ALL') {
-      return request(baseParams);
-    }
-
-    try {
-      // Prefer `type` first because some backends fail when receiving `flowType`.
-      return await request({ ...baseParams, type: flowType });
-    } catch (typeError) {
-      // Fallback for backends that only accept `flowType`.
-      return request({ ...baseParams, flowType });
-    }
   },
 };
 

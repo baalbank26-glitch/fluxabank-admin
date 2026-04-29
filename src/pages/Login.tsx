@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Lock, Mail, ArrowRight, Loader2, AlertCircle, ShieldCheck, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 import { api } from '../services/api';
 import { UserRole } from '../types/index';
-import { BAALLogo } from '../components/BAALLogo';
 
 interface LoginProps {
   onLogin: () => void;
@@ -69,45 +68,48 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen w-full flex bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 font-sans overflow-hidden">
+    <div className="min-h-screen w-full flex font-sans overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-baal-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 -left-32 w-64 h-64 bg-red-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-baal-600/5 rounded-full blur-3xl" />
+        <div className="absolute -top-20 -right-20 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-red-900/30 rounded-full blur-3xl" />
       </div>
 
-      {/* Left side - Branding */}
-      <div className="hidden lg:flex w-1/2 relative flex-col justify-between items-start p-12 z-10">
+      {/* Left side - Branding (RED) */}
+      <div className="hidden lg:flex w-1/2 relative flex-col justify-between items-start p-12 z-10 bg-gradient-to-br from-red-700 via-red-600 to-red-800">
         <div className="flex items-center gap-3">
-          <BAALLogo size="lg" />
-          <span className="text-2xl font-bold tracking-tight text-white uppercase">Baal Admin</span>
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg overflow-hidden bg-white/10 backdrop-blur">
+            <img src="/baal-logo.png" alt="BAAL" className="w-11 h-11 object-contain" />
+          </div>
+          <span className="text-2xl font-bold tracking-tight text-white">BAAL</span>
         </div>
 
         <div className="max-w-md">
           <h1 className="text-5xl font-bold mb-6 leading-tight text-white">
-            Gestão Financeira <span className="text-transparent bg-clip-text bg-gradient-to-r from-baal-300 to-red-300">Inteligente</span>
+            Gestão Financeira <span className="text-red-200">Inteligente</span>
           </h1>
-          <p className="text-slate-300 text-lg leading-relaxed">
+          <p className="text-red-100/80 text-lg leading-relaxed">
             Painel administrativo seguro. Gerencie clientes, transações e operações com total controle e transparência.
           </p>
         </div>
 
-        <div className="text-slate-400 text-sm">
+        <div className="text-red-200/70 text-sm">
           <p>© 2024–2026 BAAL. Todos os direitos reservados.</p>
         </div>
       </div>
 
-      {/* Right side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-8 relative z-10">
+      {/* Right side - Login Form (WHITE) */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-8 relative z-10 bg-white">
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden flex justify-center mb-8">
-            <BAALLogo size="lg" />
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center shadow-lg overflow-hidden bg-red-600">
+              <img src="/baal-logo.png" alt="BAAL" className="w-12 h-12 object-contain" />
+            </div>
           </div>
 
           {/* Form Container */}
-          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 space-y-6 border border-white/20">
+          <div className="bg-white rounded-2xl p-8 space-y-6">
             {/* Header */}
             <div>
               <h2 className="text-3xl font-bold text-slate-900">
@@ -139,7 +141,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-700 ml-0.5">Email</label>
                   <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-baal-600 transition-colors duration-200">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-red-600 transition-colors duration-200">
                       <Mail className="w-5 h-5" />
                     </div>
                     <input
@@ -147,8 +149,8 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       disabled={requires2FA}
-                      placeholder="admin@baalbank.com"
-                      className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-baal-500/30 focus:border-baal-500 focus:bg-white outline-none transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                      placeholder="admin@baal.com"
+                      className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 text-slate-900 rounded-lg focus:ring-2 focus:ring-red-500/30 focus:border-red-500 focus:bg-white outline-none transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
                       required
                     />
                   </div>
@@ -158,7 +160,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-700 ml-0.5">Senha</label>
                   <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-baal-600 transition-colors duration-200">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-red-600 transition-colors duration-200">
                       <Lock className="w-5 h-5" />
                     </div>
                     <input
@@ -167,7 +169,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                       onChange={(e) => setPassword(e.target.value)}
                       disabled={requires2FA}
                       placeholder="••••••••"
-                      className="w-full pl-12 pr-12 py-3.5 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-baal-500/30 focus:border-baal-500 focus:bg-white outline-none transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full pl-12 pr-12 py-3.5 bg-slate-50 border border-slate-200 text-slate-900 rounded-lg focus:ring-2 focus:ring-red-500/30 focus:border-red-500 focus:bg-white outline-none transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
                       required
                     />
                     <button
@@ -202,7 +204,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                         autoFocus
                         placeholder="000000"
                         maxLength="6"
-                        className="w-full pl-12 pr-4 py-3.5 text-center text-2xl font-semibold tracking-widest bg-cyan-50 border border-cyan-200 rounded-lg focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 focus:bg-white outline-none transition-all shadow-sm"
+                        className="w-full pl-12 pr-4 py-3.5 text-center text-2xl font-semibold tracking-widest text-slate-900 bg-cyan-50 border border-cyan-200 rounded-lg focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 focus:bg-white outline-none transition-all shadow-sm"
                       />
                     </div>
                     <p className="text-xs text-slate-500 ml-0.5">Ou use seu recovery code abaixo</p>
@@ -216,7 +218,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                       value={recoveryCode}
                       onChange={(e) => setRecoveryCode(e.target.value)}
                       placeholder="Ex: ABC123-XYZ789"
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 focus:bg-white outline-none transition-all shadow-sm"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 text-slate-900 rounded-lg focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 focus:bg-white outline-none transition-all shadow-sm"
                     />
                   </div>
                 </div>
@@ -226,7 +228,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
               <button
                 type="submit"
                 disabled={loading || (requires2FA && !twoFACode && !recoveryCode)}
-                className="w-full bg-gradient-to-r from-baal-600 to-red-600 hover:from-baal-700 hover:to-red-700 text-white py-3.5 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:scale-95"
+                className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white py-3.5 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:scale-95"
               >
                 {loading ? (
                   <>

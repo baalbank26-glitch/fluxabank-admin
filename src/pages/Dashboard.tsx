@@ -1,4 +1,4 @@
-
+﻿
 import React, { useEffect, useState } from 'react';
 import { AppView, UserStatus, DocStatus } from '../types/index';
 import { api } from '../services/api';
@@ -177,7 +177,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
 
             <button
               onClick={() => onViewChange(AppView.TREASURY)}
-              className="mt-6 inline-flex items-center gap-2 text-baal-500 hover:text-white font-medium text-sm transition-colors group/btn"
+              className="mt-6 inline-flex items-center gap-2 text-red-300 hover:text-white font-medium text-sm transition-colors group/btn"
             >
               Ver detalhes <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
             </button>
@@ -274,8 +274,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                   <defs>
                     <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#ef4444" stopOpacity={0.15} />
-                      <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#0d9488" stopOpacity={0.15} />
+                      <stop offset="95%" stopColor="#0d9488" stopOpacity={0} />
                     </linearGradient>
                   </defs>
 
@@ -303,7 +303,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                   <Area
                     type="monotone"
                     dataKey="value"
-                    stroke="#ef4444"
+                    stroke="#0d9488"
                     strokeWidth={2.5}
                     fillOpacity={1}
                     fill="url(#colorValue)"

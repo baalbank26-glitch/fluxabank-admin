@@ -8,7 +8,7 @@ const getBaseUrl = (): string => {
 
 export const BASE_URL = getBaseUrl();
 export const API_USER_SERVICE = BASE_URL; // Using BASE_URL as API_USER_SERVICE for compatibility
-export const TOKEN_KEY = 'baal_token_admin';
+export const TOKEN_KEY = 'mutual_token_admin';
 
 let isRedirecting = false;
 

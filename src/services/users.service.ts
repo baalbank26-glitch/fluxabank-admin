@@ -1,4 +1,4 @@
-import { User } from '../types/index';
+﻿import { User } from '../types/index';
 import { BASE_URL, getHeaders, handleResponse } from './config';
 
 const extractUserRows = (json: any): User[] => {

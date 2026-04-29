@@ -10,9 +10,6 @@
       "DOM.Iterable"
     ],
     "skipLibCheck": true,
-    "types": [
-      "node"
-    ],
     "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",
@@ -23,6 +20,11 @@
         "./src/*"
       ]
     },
+    "types": [
+      "node",
+      "react",
+      "react-dom"
+    ],
     "allowImportingTsExtensions": true,
     "noEmit": true
   }

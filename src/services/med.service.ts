@@ -1,9 +1,59 @@
-import { MedCase } from '../types/index';
+﻿import { MedCase } from '../types/index';
 import { BASE_URL, getHeaders, handleResponse } from './config';
+
+const isPixE2E = (value: unknown): value is string => {
+  const str = String(value || '').trim();
+  return /^[eE][0-9a-zA-Z]{19,}$/.test(str) && !str.includes('-');
+};
+
+const getE2EValue = (item: any): string => {
+  const providerPayload = item?.provider_payload && typeof item.provider_payload === 'object'
+    ? item.provider_payload
+    : {};
+
+  const rawResponse = item?.raw_response && typeof item.raw_response === 'object'
+    ? item.raw_response
+    : {};
+
+  const rawData = rawResponse?.data && typeof rawResponse.data === 'object'
+    ? rawResponse.data
+    : {};
+
+  const rawNestedData = rawResponse?.raw?.data && typeof rawResponse.raw.data === 'object'
+    ? rawResponse.raw.data
+    : {};
+
+  const e2eCandidates = [
+    rawData?.endToEndId,
+    rawNestedData?.endToEndId,
+    rawResponse?.endToEndId,
+    rawData?.e2e,
+    rawNestedData?.e2e,
+    rawResponse?.e2e,
+    item?.e2e,
+    item?.endToEnd,
+    item?.end_to_end,
+    item?.endToEndId,
+    providerPayload?.e2e,
+    providerPayload?.endToEnd,
+    providerPayload?.end_to_end,
+    providerPayload?.endToEndId,
+    item?.trade_no,
+    item?.tradeNo,
+    providerPayload?.trade_no,
+    providerPayload?.tradeNo,
+    item?.txid,
+    providerPayload?.txid,
+  ];
+
+  const strictE2E = e2eCandidates.find(isPixE2E);
+  return strictE2E || '';
+};
 
 const mapMedCase = (item: any): MedCase => ({
   id: String(item?.id ?? ''),
   transactionId: String(item?.transaction_id ?? item?.transactionId ?? ''),
+  e2e: getE2EValue(item),
   amount: Number(item?.disputed_amount ?? item?.disputedAmount ?? 0),
   reason: String(item?.reason_code ?? item?.reason ?? 'OTHER') as any,
   reporterBank: item?.bank_name || item?.requesterBank || '-',
@@ -56,10 +106,15 @@ export const medService = {
     };
   },
 
-  listTransactions: async (params: { search?: string; userId?: number } = {}) => {
+  listTransactions: async (params: { search?: string; userId?: number; from?: string; to?: string; filter?: string; page?: number; pageSize?: number } = {}) => {
     const q = new URLSearchParams();
     if (params.search) q.set('search', params.search);
     if (params.userId) q.set('userId', String(params.userId));
+    if (params.from) q.set('from', params.from);
+    if (params.to) q.set('to', params.to);
+    if (params.filter) q.set('filter', params.filter);
+    if (params.page) q.set('page', String(params.page));
+    if (params.pageSize) q.set('pageSize', String(params.pageSize));
 
     const response = await fetch(`${BASE_URL}/admin/med/transactions?${q.toString()}`, {
       headers: getHeaders()
@@ -67,7 +122,8 @@ export const medService = {
 
     const json = await handleResponse(response);
     const rows = Array.isArray(json?.data) ? json.data : [];
-    return rows.map((item: any) => ({
+    const items = rows.map((item: any) => ({
+      e2e: getE2EValue(item),
       transaction_id: String(item?.transaction_id ?? ''),
       external_id: item?.external_id ? String(item.external_id) : '',
       direction: String(item?.direction || '').toUpperCase(),
@@ -83,6 +139,22 @@ export const medService = {
       med_status: item?.med_status || null,
       med_code: item?.med_code || null,
     }));
+
+    const meta = json?.meta || {};
+    const page = Number(meta.page || params.page || 1);
+    const pageSize = Number(meta.pageSize || params.pageSize || items.length || 1);
+    const total = Number(meta.total || items.length);
+    const totalPages = Number(meta.totalPages || Math.max(1, Math.ceil(total / Math.max(pageSize, 1))));
+
+    return {
+      items,
+      meta: {
+        page,
+        pageSize,
+        total,
+        totalPages,
+      }
+    };
   },
 
   create: async (payload: {

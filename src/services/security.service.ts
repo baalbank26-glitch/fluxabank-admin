@@ -1,4 +1,4 @@
-import { API_USER_SERVICE, getHeaders, handleResponse } from './config';
+﻿import { API_USER_SERVICE, getHeaders, handleResponse } from './config';
 
 export const securityService = {
     getLogs: async (params: { dateFrom?: string, dateTo?: string, type?: string, ip?: string, limit?: number, offset?: number } = {}) => {

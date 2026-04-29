@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Check, X, FileText, Loader2, RefreshCw, AlertCircle, Image as ImageIcon, Download, ChevronDown, ChevronUp } from 'lucide-react';
@@ -159,7 +159,7 @@ export const Approvals: React.FC = () => {
       <div className="grid grid-cols-1 gap-4">
         {isLoading ? (
           <div className="flex justify-center items-center py-20">
-            <Loader2 className="w-8 h-8 text-pagandu-500 animate-spin" />
+            <Loader2 className="w-8 h-8 text-red-500 animate-spin" />
           </div>
         ) : safePendingUsers.length === 0 ? (
            <div className="text-center py-20 bg-white rounded-2xl border border-slate-200 border-dashed">
@@ -223,7 +223,7 @@ export const Approvals: React.FC = () => {
                 <div className="border-t border-slate-200 bg-slate-50 p-6">
                   {loadingDocs[user.id] ? (
                     <div className="flex justify-center py-8">
-                      <Loader2 className="w-6 h-6 text-pagandu-500 animate-spin" />
+                      <Loader2 className="w-6 h-6 text-red-500 animate-spin" />
                     </div>
                   ) : (userDocuments[user.id] || []).length === 0 ? (
                     <div className="text-center py-8 text-slate-500">
@@ -274,7 +274,7 @@ export const Approvals: React.FC = () => {
                           <div className="flex gap-2">
                             <button
                               onClick={() => openDocumentSafe(doc.document_link, doc.file_name)}
-                              className="flex-1 text-center px-3 py-2 text-pagandu-600 border border-pagandu-300 rounded text-xs font-medium hover:bg-pagandu-50 transition-colors flex items-center justify-center gap-1"
+                              className="flex-1 text-center px-3 py-2 text-red-600 border border-red-300 rounded text-xs font-medium hover:bg-red-50 transition-colors flex items-center justify-center gap-1"
                             >
                               <Download className="w-3 h-3" /> Ver
                             </button>

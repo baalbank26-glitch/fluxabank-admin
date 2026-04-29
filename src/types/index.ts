@@ -1,4 +1,4 @@
-
+﻿
 
 export enum UserStatus {
   ACTIVE = 'ACTIVE',
@@ -89,6 +89,7 @@ export interface Fees {
 export interface MedCase {
   id: string;
   transactionId: string;
+  e2e?: string;
   amount: number;
   reason: string;
   reporterBank: string;

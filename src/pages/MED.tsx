@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../services/api';
 import { MedCase } from '../types/index';
@@ -46,10 +46,42 @@ const isImageAttachment = (att: any) => {
 
 const isDataUrl = (url: string) => String(url || '').startsWith('data:');
 
+const canOpenAttachment = (url: string) => {
+  const safeUrl = String(url || '').trim();
+  if (!safeUrl) return false;
+  return safeUrl.startsWith('http://') || safeUrl.startsWith('https://') || safeUrl.startsWith('data:');
+};
+
+const canOpenAttachmentInNewTab = (url: string) => {
+  const safeUrl = String(url || '').trim();
+  if (!safeUrl) return false;
+  // Browsers block top-frame navigation to data: URLs for security reasons.
+  return safeUrl.startsWith('http://') || safeUrl.startsWith('https://');
+};
+
+const toInputDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+const getLastDaysRange = (days: number) => {
+  const end = new Date();
+  const start = new Date();
+  start.setDate(start.getDate() - days);
+
+  return {
+    from: toInputDate(start),
+    to: toInputDate(end)
+  };
+};
+
 export const MED: React.FC = () => {
   const [cases, setCases] = useState<MedCase[]>([]);
   const [selectedCase, setSelectedCase] = useState<any | null>(null);
   const [transactions, setTransactions] = useState<any[]>([]);
+  const [selectedTxE2E, setSelectedTxE2E] = useState('');
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [creating, setCreating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,7 +89,16 @@ export const MED: React.FC = () => {
   const [processingId, setProcessingId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [txSearch, setTxSearch] = useState('');
+  const [txFrom, setTxFrom] = useState('');
+  const [txTo, setTxTo] = useState('');
+  const [txPage, setTxPage] = useState(1);
+  const [txPageSize, setTxPageSize] = useState(100);
+  const [txTotalPages, setTxTotalPages] = useState(1);
+  const [txTotal, setTxTotal] = useState(0);
+  const [txHasMore, setTxHasMore] = useState(false);
+  const [txPeriodPreset, setTxPeriodPreset] = useState<'ALL' | '7D' | '30D' | '90D' | 'CUSTOM'>('ALL');
   const [txQuickFilter, setTxQuickFilter] = useState<'ALL' | 'PIX_IN' | 'PIX_OUT' | 'API' | 'WITH_MED' | 'WITHOUT_MED'>('ALL');
+  const [lightboxImage, setLightboxImage] = useState<{ url: string; filename?: string } | null>(null);
   const [newMed, setNewMed] = useState({
     transactionId: '',
     userId: '',
@@ -80,14 +121,41 @@ export const MED: React.FC = () => {
     }
   };
 
-  const fetchTransactions = async (silent = false) => {
+  const fetchTransactions = async ({ silent = false, reset = false, append = false, page }: { silent?: boolean; reset?: boolean; append?: boolean; page?: number } = {}) => {
     if (!silent) setTxLoading(true);
+
+    const targetPage = reset ? 1 : (page || txPage);
+
     try {
-      const txRows = await api.med.listTransactions({ search: txSearch });
-      setTransactions(Array.isArray(txRows) ? txRows : []);
+      const result = await api.med.listTransactions({
+        search: txSearch,
+        from: txFrom || undefined,
+        to: txTo || undefined,
+        filter: txQuickFilter,
+        page: targetPage,
+        pageSize: txPageSize,
+      });
+
+      const txRows = Array.isArray(result?.items) ? result.items : [];
+      const meta = result?.meta;
+
+      setTransactions((prev: any[]) => (append ? [...prev, ...txRows] : txRows));
+
+      const currentPage = Number(meta?.page || targetPage || 1);
+      const totalPages = Number(meta?.totalPages || 1);
+      const total = Number(meta?.total || txRows.length);
+
+      setTxPage(currentPage);
+      setTxTotalPages(totalPages);
+      setTxTotal(total);
+      setTxHasMore(currentPage < totalPages);
     } catch (error) {
       console.error('Failed to fetch MED transactions', error);
       if (!silent) setTransactions([]);
+      setTxPage(1);
+      setTxTotalPages(1);
+      setTxTotal(0);
+      setTxHasMore(false);
     } finally {
       if (!silent) setTxLoading(false);
     }
@@ -95,22 +163,48 @@ export const MED: React.FC = () => {
 
   useEffect(() => {
     fetchCases();
-    fetchTransactions();
-
-    const interval = setInterval(() => {
-      fetchTransactions(true);
-    }, 8000);
-
-    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      fetchTransactions();
+      fetchTransactions({ reset: true });
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [txSearch]);
+  }, [txSearch, txFrom, txTo, txPageSize]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchTransactions({ silent: true, reset: true });
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, [txSearch, txFrom, txTo, txPageSize]);
+
+  const handleLoadMoreTransactions = () => {
+    if (txLoading || !txHasMore) return;
+    fetchTransactions({ append: true, page: txPage + 1 });
+  };
+
+  const applyTxPeriodPreset = (preset: 'ALL' | '7D' | '30D' | '90D') => {
+    setTxPeriodPreset(preset);
+
+    if (preset === 'ALL') {
+      setTxFrom('');
+      setTxTo('');
+      return;
+    }
+
+    const daysMap: Record<'7D' | '30D' | '90D', number> = {
+      '7D': 7,
+      '30D': 30,
+      '90D': 90,
+    };
+
+    const range = getLastDaysRange(daysMap[preset]);
+    setTxFrom(range.from);
+    setTxTo(range.to);
+  };
 
   const handleAction = async (id: string, action: 'ACCEPT_REFUND' | 'REJECT_REFUND' | 'MARK_UNDER_REVIEW') => {
       if (!confirm(action === 'ACCEPT_REFUND' ? 'Confirmar devolução do valor?' : 'Rejeitar devolução?')) return;
@@ -129,12 +223,13 @@ export const MED: React.FC = () => {
   };
 
   const handleSelectTransaction = (tx: any) => {
-    setNewMed((prev) => ({
+    setNewMed((prev: typeof newMed) => ({
       ...prev,
       transactionId: String(tx.transaction_id),
       userId: String(tx.user_id),
       amount: Number(tx.amount || 0).toFixed(2)
     }));
+    setSelectedTxE2E(String(tx.e2e || ''));
   };
 
   const handleOpenCase = async (item: MedCase) => {
@@ -184,6 +279,7 @@ export const MED: React.FC = () => {
         reasonLabel: 'Fraude suspeita',
         note: ''
       });
+      setSelectedTxE2E('');
       await fetchCases();
     } catch (err: any) {
       toast.error(err?.message || 'Erro ao criar MED.');
@@ -214,38 +310,47 @@ export const MED: React.FC = () => {
   };
 
   // Filtragem local segura
-  const safeCases = cases.filter(c => !!c);
-  const filteredCases = safeCases.filter(c => {
+  const safeCases = cases.filter((c: MedCase | null | undefined) => !!c);
+  const filteredCases = safeCases.filter((c: MedCase) => {
     const term = searchTerm.toLowerCase();
     const id = (c.id || '').toLowerCase();
     const tx = (c.transactionId || '').toLowerCase();
+    const e2e = (c.e2e || '').toLowerCase();
     const client = (c.clientName || '').toLowerCase();
     const bank = (c.reporterBank || '').toLowerCase();
 
-    return id.includes(term) || tx.includes(term) || client.includes(term) || bank.includes(term);
+    return id.includes(term) || tx.includes(term) || e2e.includes(term) || client.includes(term) || bank.includes(term);
   });
 
   const txRows = useMemo(() => {
     const matchesQuickFilter = (tx: any) => {
       if (txQuickFilter === 'ALL') return true;
 
-      const direction = String(tx.direction || '').toUpperCase();
-      const sourceChannel = String(tx.source_channel || '').toUpperCase();
-      const txType = String(tx.tx_type || '').toUpperCase();
+      const direction = String(tx.direction || '').toUpperCase().trim();
+      const sourceChannel = String(tx.source_channel || '').toUpperCase().trim();
+      const txType = String(tx.tx_type || '').toUpperCase().trim();
       const description = String(tx.description || '').toUpperCase();
 
+      // 🔴 PIX_IN: CREDIT direction + PIX source (precise detection)
       if (txQuickFilter === 'PIX_IN') {
-        return direction === 'CREDIT' && (sourceChannel === 'PIX' || txType.includes('PIX_IN') || description.includes('PIX'));
+        const isPix = sourceChannel.includes('PIX') || txType.includes('PIX') || txType.includes('DEPOSIT') || description.includes('PIX');
+        const isInbound = direction === 'CREDIT' || txType === 'DEPOSIT';
+        return isPix && isInbound;
       }
 
+      // 🔴 PIX_OUT: DEBIT direction + PIX source (precise detection)
       if (txQuickFilter === 'PIX_OUT') {
-        return direction === 'DEBIT' && (sourceChannel === 'PIX' || txType.includes('PIX_OUT') || description.includes('PIX'));
+        const isPix = sourceChannel.includes('PIX') || txType.includes('PIX') || txType.includes('WITHDRAW') || description.includes('PIX');
+        const isOutbound = direction === 'DEBIT' || txType === 'WITHDRAW';
+        return isPix && isOutbound;
       }
 
+      // API channel filter
       if (txQuickFilter === 'API') {
-        return sourceChannel === 'API' || txType.includes('API') || description.includes('API');
+        return sourceChannel.includes('API') || txType.includes('API') || description.includes('API');
       }
 
+      // MED association filters
       if (txQuickFilter === 'WITH_MED') {
         return Boolean(tx.med_id);
       }
@@ -257,28 +362,10 @@ export const MED: React.FC = () => {
       return true;
     };
 
-    return (transactions || []).filter((tx) => {
-      const term = txSearch.trim().toLowerCase();
-      if (!matchesQuickFilter(tx)) return false;
-      if (!term) return true;
-
-      const haystack = [
-        String(tx.transaction_id || ''),
-        String(tx.external_id || ''),
-        String(tx.user_id || ''),
-        String(tx.user_name || ''),
-        String(tx.user_email || ''),
-        String(tx.description || ''),
-        String(tx.direction || ''),
-        String(tx.source_channel || ''),
-        String(tx.tx_type || '')
-      ]
-        .join(' ')
-        .toLowerCase();
-
-      return haystack.includes(term);
-    });
-  }, [transactions, txSearch, txQuickFilter]);
+    // Backend already applies search filtering (E2E variations handled server-side via normalized regexp)
+    // Client-side only applies quick-filter for instant UI feedback (BFS-like breadth, no re-query)
+    return (transactions || []).filter((tx: any) => matchesQuickFilter(tx));
+  }, [transactions, txQuickFilter]);
 
   return (
     <div className="space-y-6">
@@ -291,7 +378,13 @@ export const MED: React.FC = () => {
           <p className="text-slate-500 text-sm">Gerencie disputas, bloqueios cautelares e solicitações de devolução do Banco Central.</p>
         </div>
         <div className="flex gap-2">
-           <button onClick={fetchCases} className="p-2 bg-white border border-slate-200 text-slate-600 rounded-lg hover:bg-slate-50 transition-all">
+           <button
+             onClick={() => {
+               fetchCases();
+               fetchTransactions({ reset: true });
+             }}
+             className="p-2 bg-white border border-slate-200 text-slate-600 rounded-lg hover:bg-slate-50 transition-all"
+           >
              <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
            </button>
            <button
@@ -355,10 +448,91 @@ export const MED: React.FC = () => {
             <input
               type="text"
               value={txSearch}
-              onChange={(e) => setTxSearch(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTxSearch(e.target.value)}
               placeholder="Buscar por TX, externalId, usuário, email, descrição..."
-              className="pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 outline-none w-full"
+              className="pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-red-500 outline-none w-full"
             />
+          </div>
+        </div>
+
+        <div className="px-4 py-3 border-b border-slate-100 bg-white">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+            {/* Presets de período */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-semibold text-slate-700 uppercase tracking-wide">Período:</span>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { key: 'ALL', label: 'Todo período' },
+                  { key: '7D', label: '7 dias' },
+                  { key: '30D', label: '30 dias' },
+                  { key: '90D', label: '90 dias' }
+                ].map((preset) => {
+                  const active = txPeriodPreset === preset.key;
+                  return (
+                    <button
+                      key={preset.key}
+                      type="button"
+                      onClick={() => applyTxPeriodPreset(preset.key as 'ALL' | '7D' | '30D' | '90D')}
+                      className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
+                        active
+                          ? 'bg-red-50 text-red-700 border-red-200'
+                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                      }`}
+                    >
+                      {preset.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Filtro de data customizado */}
+            <div className="flex flex-col sm:flex-row gap-2 sm:items-center w-full lg:w-auto lg:ml-auto">
+              <span className="text-xs font-semibold text-slate-700 uppercase tracking-wide">De:</span>
+              <input
+                type="date"
+                value={txFrom}
+                max={txTo || undefined}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setTxFrom(e.target.value);
+                  setTxPeriodPreset('CUSTOM');
+                }}
+                className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-red-300 outline-none"
+              />
+              <span className="text-xs font-semibold text-slate-700 uppercase tracking-wide">até:</span>
+              <input
+                type="date"
+                value={txTo}
+                min={txFrom || undefined}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setTxTo(e.target.value);
+                  setTxPeriodPreset('CUSTOM');
+                }}
+                className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-red-300 outline-none"
+              />
+              {(txFrom || txTo) && (
+                <button
+                  onClick={() => {
+                    setTxFrom('');
+                    setTxTo('');
+                    setTxPeriodPreset('ALL');
+                  }}
+                  className="px-2 py-2 text-xs font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                  title="Limpar filtro de data"
+                >
+                  ✕ Limpar
+                </button>
+              )}
+              <select
+                value={txPageSize}
+                onChange={(e) => setTxPageSize(Number(e.target.value))}
+                className="px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-300 outline-none"
+              >
+                {[50, 100, 200, 500].map((size) => (
+                  <option key={size} value={size}>Por página: {size}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
@@ -392,32 +566,56 @@ export const MED: React.FC = () => {
 
         <div className="max-h-80 overflow-auto divide-y divide-slate-100">
           {txRows.length === 0 ? (
-            <div className="p-6 text-sm text-slate-500">Nenhuma transação encontrada.</div>
+            <div className="p-6 text-sm text-slate-500 flex items-center justify-center gap-2">
+              {txLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin text-red-500" />
+                  <span>Carregando, Espere!</span>
+                </>
+              ) : (
+                <span>Nenhuma transação encontrada.</span>
+              )}
+            </div>
           ) : (
-            txRows.map((tx) => (
-              <button
-                type="button"
-                key={`${tx.transaction_id}-${tx.user_id}-${tx.external_id || 'no-ext'}`}
-                onClick={() => handleOpenCreateFromTx(tx)}
-                className="w-full text-left p-4 hover:bg-slate-50 transition-colors"
-              >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                  <div className="space-y-1">
-                    <div className="text-xs text-slate-500">
-                      TX {tx.transaction_id} • USER {tx.user_id} • {tx.source_channel || 'WALLET'} • {tx.direction || '-'}
+            <>
+              {txRows.map((tx) => (
+                <button
+                  type="button"
+                  key={`${tx.transaction_id}-${tx.user_id}-${tx.external_id || 'no-ext'}`}
+                  onClick={() => handleOpenCreateFromTx(tx)}
+                  className="w-full text-left p-4 hover:bg-slate-50 transition-colors"
+                >
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                    <div className="space-y-1">
+                      <div className="text-xs text-slate-500">
+                        TX {tx.transaction_id} • USER {tx.user_id} • {tx.source_channel || 'WALLET'} • {tx.direction || '-'}
+                      </div>
+                      <div className="font-medium text-slate-800">
+                        {tx.user_name || '-'} • R$ {Number(tx.amount || 0).toFixed(2)}
+                      </div>
+                      <div className="text-xs text-slate-500 break-all">
+                        {tx.description || '-'}
+                        {tx.med_id ? ` • MED ${tx.med_code || tx.med_id} (${tx.med_status || 'OPEN'})` : ''}
+                      </div>
                     </div>
-                    <div className="font-medium text-slate-800">
-                      {tx.user_name || '-'} • R$ {Number(tx.amount || 0).toFixed(2)}
-                    </div>
-                    <div className="text-xs text-slate-500 break-all">
-                      {tx.description || '-'}
-                      {tx.med_id ? ` • MED ${tx.med_code || tx.med_id} (${tx.med_status || 'OPEN'})` : ''}
-                    </div>
+                    <div className="text-xs text-slate-400 md:text-right">{safeDateTime(tx.created_at)}</div>
                   </div>
-                  <div className="text-xs text-slate-400 md:text-right">{safeDateTime(tx.created_at)}</div>
+                </button>
+              ))}
+              <div className="p-3 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div className="text-xs text-slate-500">
+                  Página {txPage} de {txTotalPages} • {txTotal} transações encontradas
                 </div>
-              </button>
-            ))
+                <button
+                  type="button"
+                  onClick={handleLoadMoreTransactions}
+                  disabled={!txHasMore || txLoading}
+                  className="px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 disabled:opacity-50"
+                >
+                  {txLoading ? 'Carregando...' : txHasMore ? 'Carregar mais antigas' : 'Fim do histórico'}
+                </button>
+              </div>
+            </>
           )}
         </div>
       </div>
@@ -434,15 +632,15 @@ export const MED: React.FC = () => {
                 type="text" 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Buscar ID, Transação ou Cliente..." 
-                className="pl-9 pr-4 py-1.5 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 outline-none w-64 md:w-80" 
+                placeholder="Buscar ID, E2E, transação ou cliente..." 
+                className="pl-9 pr-4 py-1.5 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-red-500 outline-none w-64 md:w-80" 
             />
           </div>
         </div>
         
         {isLoading ? (
             <div className="flex justify-center items-center h-48">
-                <Loader2 className="w-8 h-8 text-pagandu-500 animate-spin" />
+                <Loader2 className="w-8 h-8 text-red-500 animate-spin" />
             </div>
         ) : (
         <div className="divide-y divide-slate-100">
@@ -469,7 +667,7 @@ export const MED: React.FC = () => {
                         <span className="font-medium text-slate-700 flex items-center gap-1">
                              {item.clientName || 'Cliente Desconhecido'}
                         </span>
-
+                      <span className="text-xs font-mono text-slate-500 break-all">E2E: {item.e2e || '-'}</span>
                     </div>
                  </div>
               </div>
@@ -543,6 +741,7 @@ export const MED: React.FC = () => {
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Transação Original</label>
                   <div className="mt-1 sm:mt-2 p-2 sm:p-3 bg-slate-50 rounded-lg border border-slate-100">
                     <p className="font-mono text-xs text-slate-500 break-all">{selectedCase.transactionId}</p>
+                    <p className="font-mono text-xs text-slate-500 break-all mt-1">E2E: {selectedCase.e2e || '-'}</p>
                     <div className="flex justify-between items-center mt-1 sm:mt-2">
                       <span className="font-bold text-slate-700 text-sm sm:text-base">R$ {(Number(selectedCase.amount) || 0).toLocaleString('pt-BR')}</span>
                     </div>
@@ -591,26 +790,85 @@ export const MED: React.FC = () => {
                                 alt={att.filename || 'Anexo da defesa'}
                                 className="max-h-40 sm:max-h-56 w-auto rounded-lg border border-slate-200"
                               />
-                              {!isDataUrl(att.url) && (
+                              <div className="flex flex-wrap items-center gap-2 pt-1">
+                                {canOpenAttachment(att.url) && (
+                                  <button
+                                    type="button"
+                                    onClick={() => setLightboxImage({ url: att.url, filename: att.filename })}
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-indigo-200 bg-indigo-50 text-xs font-medium text-indigo-700 hover:bg-indigo-100"
+                                  >
+                                    Ampliar
+                                  </button>
+                                )}
+                                {canOpenAttachmentInNewTab(att.url) && (
+                                  <a
+                                    href={att.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-blue-200 bg-blue-50 text-xs font-medium text-blue-700 hover:bg-blue-100"
+                                  >
+                                    Abrir imagem
+                                  </a>
+                                )}
+                                {isDataUrl(att.url) && (
+                                  <span className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-amber-200 bg-amber-50 text-xs font-medium text-amber-700">
+                                    Data URL: use Ampliar
+                                  </span>
+                                )}
+                                {canOpenAttachment(att.url) && (
+                                  <a
+                                    href={att.url}
+                                    download={att.filename || 'anexo-med'}
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50"
+                                  >
+                                    Baixar arquivo
+                                  </a>
+                                )}
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="space-y-2">
+                              {canOpenAttachmentInNewTab(att.url) ? (
                                 <a
                                   href={att.url}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="inline-flex text-xs text-blue-600 hover:underline"
+                                  className="inline-flex text-xs text-blue-600 hover:underline break-all"
                                 >
-                                  Abrir arquivo em nova aba
+                                  {att.url}
                                 </a>
+                              ) : (
+                                <span className="inline-flex text-xs text-slate-500 break-all">
+                                  {isDataUrl(att.url) ? 'Arquivo anexado (data URL)' : att.url}
+                                </span>
                               )}
+                              <div className="flex flex-wrap items-center gap-2">
+                                {canOpenAttachmentInNewTab(att.url) && (
+                                  <a
+                                    href={att.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-blue-200 bg-blue-50 text-xs font-medium text-blue-700 hover:bg-blue-100"
+                                  >
+                                    Abrir arquivo
+                                  </a>
+                                )}
+                                {isDataUrl(att.url) && (
+                                  <span className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-amber-200 bg-amber-50 text-xs font-medium text-amber-700">
+                                    Data URL: use Baixar
+                                  </span>
+                                )}
+                                {canOpenAttachment(att.url) && (
+                                  <a
+                                    href={att.url}
+                                    download={att.filename || 'anexo-med'}
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50"
+                                  >
+                                    Baixar arquivo
+                                  </a>
+                                )}
+                              </div>
                             </div>
-                          ) : (
-                            <a
-                              href={att.url}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="inline-flex text-xs text-blue-600 hover:underline break-all"
-                            >
-                              {isDataUrl(att.url) ? 'Arquivo anexado (data URL)' : att.url}
-                            </a>
                           )}
                         </div>
                       ))
@@ -678,7 +936,16 @@ export const MED: React.FC = () => {
                   className="px-3 py-2 border border-slate-200 rounded-lg"
                   placeholder="Transaction ID"
                   value={newMed.transactionId}
-                  onChange={(e) => setNewMed((p) => ({ ...p, transactionId: e.target.value }))}
+                  onChange={(e) => {
+                    setNewMed((p) => ({ ...p, transactionId: e.target.value }));
+                    setSelectedTxE2E('');
+                  }}
+                />
+                <input
+                  className="px-3 py-2 border border-slate-200 rounded-lg bg-slate-50"
+                  placeholder="E2E da transação"
+                  value={selectedTxE2E || '-'}
+                  readOnly
                 />
                 <input
                   className="px-3 py-2 border border-slate-200 rounded-lg"
@@ -725,6 +992,7 @@ export const MED: React.FC = () => {
                       className="w-full text-left p-3 hover:bg-slate-50 transition-colors"
                     >
                       <div className="text-xs text-slate-500">TX {tx.transaction_id} • USER {tx.user_id} • {tx.source_channel || 'WALLET'} • {tx.direction || '-'}</div>
+                      <div className="text-xs font-mono text-slate-500 break-all">E2E: {tx.e2e || '-'}</div>
                       <div className="font-medium text-slate-800">{tx.user_name || '-'} • R$ {Number(tx.amount || 0).toFixed(2)}</div>
                       <div className="text-xs text-slate-500">{tx.description || '-'} {tx.med_id ? `• MED ${tx.med_code || tx.med_id}` : ''}</div>
                     </button>
@@ -749,6 +1017,54 @@ export const MED: React.FC = () => {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {lightboxImage && (
+        <div className="fixed inset-0 z-[70] bg-black/90 flex items-center justify-center p-3 sm:p-6">
+          <div className="absolute top-3 right-3 sm:top-5 sm:right-5 flex items-center gap-2">
+            {canOpenAttachmentInNewTab(lightboxImage.url) ? (
+              <a
+                href={lightboxImage.url}
+                target="_blank"
+                rel="noreferrer"
+                className="px-3 py-1.5 rounded-lg border border-blue-300 bg-blue-50 text-xs sm:text-sm font-medium text-blue-700 hover:bg-blue-100"
+              >
+                Abrir em nova aba
+              </a>
+            ) : (
+              <span className="px-3 py-1.5 rounded-lg border border-amber-300 bg-amber-50 text-xs sm:text-sm font-medium text-amber-700">
+                Data URL: bloqueado em nova aba
+              </span>
+            )}
+            <a
+              href={lightboxImage.url}
+              download={lightboxImage.filename || 'anexo-med'}
+              className="px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs sm:text-sm font-medium text-slate-700 hover:bg-slate-100"
+            >
+              Baixar
+            </a>
+            <button
+              type="button"
+              onClick={() => setLightboxImage(null)}
+              className="px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs sm:text-sm font-medium text-slate-700 hover:bg-slate-100"
+            >
+              Fechar
+            </button>
+          </div>
+
+          <button
+            type="button"
+            aria-label="Fechar visualização ampliada"
+            onClick={() => setLightboxImage(null)}
+            className="absolute inset-0 cursor-zoom-out"
+          />
+
+          <img
+            src={lightboxImage.url}
+            alt={lightboxImage.filename || 'Anexo ampliado'}
+            className="relative z-[71] max-h-[88vh] max-w-[94vw] rounded-xl border border-slate-700 shadow-2xl"
+          />
         </div>
       )}
     </div>

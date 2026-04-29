@@ -1,4 +1,4 @@
-export const ADMIN_PERMISSION_KEYS = {
+﻿export const ADMIN_PERMISSION_KEYS = {
   SUSPEND_ACCOUNTS: 'suspendAccounts',
   ADJUST_BALANCE: 'adjustBalance',
   CONFIGURE_FEES: 'configureFees',

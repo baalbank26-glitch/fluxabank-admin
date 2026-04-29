@@ -1,4 +1,4 @@
-// Main API export - maintains backward compatibility
+﻿// Main API export - maintains backward compatibility
 import { authService } from './auth.service';
 import { usersService } from './users.service';
 import { walletService } from './wallet.service';
@@ -12,7 +12,24 @@ import { securityService } from './security.service';
 import { documentsService } from './documents.service';
 import { adminsService } from './admins.service';
 
-export const api = {
+type ApiType = {
+  auth: typeof authService;
+  admin: {
+    users: typeof usersService;
+    wallet: typeof walletService;
+    treasury: typeof treasuryService;
+    settings: typeof settingsService;
+    providers: typeof providersService;
+    security: typeof securityService;
+    documents: typeof documentsService;
+    admins: typeof adminsService;
+  };
+  med: typeof medService;
+  me: typeof meService;
+  webhooks: typeof webhooksService;
+};
+
+export const api: ApiType = {
   auth: authService,
   admin: {
     users: usersService,

@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Sidebar, BAALLogo } from './components';
+import { Sidebar } from './components';
 import { Dashboard, Clients, Treasury, Approvals, Settings, Login, MED, Providers, WebhooksHistory, WebhookSettings, TransactionMapper, Security, Authenticator, OTC, Admins } from './pages';
 import { AppView } from './types/index';
 import { Menu } from 'lucide-react';
@@ -65,7 +65,7 @@ const App: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div className="flex items-center justify-center h-screen bg-slate-50 text-baal-600">Carregando...</div>;
+    return <div className="flex items-center justify-center h-screen bg-slate-50 text-red-600">Carregando...</div>;
   }
 
   if (!isAuthenticated) {
@@ -95,8 +95,10 @@ const App: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <header className="lg:hidden bg-white border-b border-slate-200 p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <BAALLogo size="sm" />
-            <span className="font-bold text-slate-800 uppercase">Baal Admin</span>
+            <div className="w-8 h-8 rounded flex items-center justify-center overflow-hidden">
+              <img src="/baal-logo.png" alt="BAAL" className="w-8 h-8 object-contain" />
+            </div>
+            <span className="font-bold text-slate-800">BAAL</span>
           </div>
           <button onClick={toggleSidebar} className="p-2 hover:bg-slate-100 rounded-md">
             <Menu className="w-6 h-6 text-slate-600" />

@@ -1,10 +1,9 @@
-
+﻿
 
 import React from 'react';
 import { AppView } from '../types/index';
 import { api } from '../services/api';
 import { ADMIN_PERMISSION_KEYS, hasAdminPermission, isMasterAdmin } from '../constants/adminPermissions';
-import { BAALLogo } from './BAALLogo';
 import {
   LayoutDashboard,
   Users,
@@ -55,11 +54,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
 
   return (
     <div className="flex flex-col h-full bg-slate-900 border-r border-slate-800">
-      <div className="p-6 flex items-center gap-3 border-b border-slate-700">
-        <BAALLogo size="md" />
+      <div className="p-6 flex items-center gap-3 border-b border-red-900/40">
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg">
+          <img src="/baal-logo.png" alt="BAAL" className="w-10 h-10 object-contain" />
+        </div>
         <div>
           <h1 className="text-xl font-bold tracking-tight text-white">BAAL</h1>
-          <p className="text-xs text-slate-400 font-medium tracking-wider uppercase">Baal Admin</p>
+          <p className="text-xs text-red-400 font-medium tracking-wider">BAAL ADMIN</p>
         </div>
       </div>
 
@@ -73,7 +74,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
               className={`
                 w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200
                 ${isActive
-                  ? 'bg-baal-600 text-white shadow-md shadow-baal-900/20 translate-x-1'
+                  ? 'bg-red-600 text-white shadow-md shadow-red-900/30 translate-x-1'
                   : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100 hover:translate-x-1'
                 }
               `}

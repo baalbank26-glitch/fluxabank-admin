@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { 
   Shield, 
@@ -128,7 +128,7 @@ export const Settings: React.FC = () => {
   const parsedAllowedUserIds = parseAllowedUserIds(maintenance.allowedUserIdsText);
 
   if (isLoading) {
-    return <div className="flex justify-center p-20"><Loader2 className="animate-spin w-8 h-8 text-pagandu-600"/></div>;
+    return <div className="flex justify-center p-20"><Loader2 className="animate-spin w-8 h-8 text-red-600"/></div>;
   }
 
   return (
@@ -138,19 +138,19 @@ export const Settings: React.FC = () => {
           <p className="text-slate-500 text-sm">Parâmetros globais e controle de disponibilidade.</p>
         </div>
 
-      <div className={`rounded-2xl border shadow-sm overflow-hidden transition-all duration-300 ${maintenance.isActive ? 'bg-gradient-to-br from-pagandu-50 via-white to-sky-50 border-pagandu-200 shadow-pagandu-200/40' : 'bg-white border-slate-200'}`}>
-        <div className={`p-6 border-b ${maintenance.isActive ? 'border-pagandu-200 bg-gradient-to-r from-pagandu-50 to-sky-50' : 'border-slate-100'}`}>
-          <h3 className={`font-bold text-lg flex items-center gap-2 ${maintenance.isActive ? 'text-pagandu-800' : 'text-slate-800'}`}>
+      <div className={`rounded-2xl border shadow-sm overflow-hidden transition-all duration-300 ${maintenance.isActive ? 'bg-gradient-to-br from-red-50 via-white to-sky-50 border-red-200 shadow-red-200/40' : 'bg-white border-slate-200'}`}>
+        <div className={`p-6 border-b ${maintenance.isActive ? 'border-red-200 bg-gradient-to-r from-red-50 to-sky-50' : 'border-slate-100'}`}>
+          <h3 className={`font-bold text-lg flex items-center gap-2 ${maintenance.isActive ? 'text-red-800' : 'text-slate-800'}`}>
             <Server className="w-5 h-5" /> Sistema & Disponibilidade
           </h3>
         </div>
         <div className="p-6 space-y-6">
           <div className="flex items-center justify-between">
             <div className="pr-4">
-              <p className={`font-medium text-lg ${maintenance.isActive ? 'text-pagandu-900' : 'text-slate-800'}`}>
+              <p className={`font-medium text-lg ${maintenance.isActive ? 'text-red-900' : 'text-slate-800'}`}>
                 Modo Manutenção
               </p>
-              <p className={`text-sm mt-1 ${maintenance.isActive ? 'text-pagandu-700' : 'text-slate-500'}`}>
+              <p className={`text-sm mt-1 ${maintenance.isActive ? 'text-red-700' : 'text-slate-500'}`}>
                 {maintenance.isActive 
                   ? 'ATIVO: O gateway está rejeitando novas conexões.' 
                   : 'INATIVO: O sistema está operando normalmente.'}
@@ -161,8 +161,8 @@ export const Settings: React.FC = () => {
               disabled={isSaving}
               onClick={handleToggleMaintenance}
               className={`
-                relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-pagandu-600 focus-visible:ring-offset-2
-                ${maintenance.isActive ? 'bg-pagandu-600' : 'bg-slate-200'}
+                relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2
+                ${maintenance.isActive ? 'bg-red-600' : 'bg-slate-200'}
                 ${isSaving ? 'opacity-50 cursor-not-allowed' : ''}
               `}
             >
@@ -179,27 +179,27 @@ export const Settings: React.FC = () => {
           </div>
 
           {maintenance.isActive && (
-            <div className="animate-in fade-in slide-in-from-top-2 pt-6 border-t border-pagandu-200/70">
-              <div className="rounded-3xl border border-pagandu-200 bg-gradient-to-br from-pagandu-50 via-white to-sky-50 shadow-[0_20px_60px_-30px_rgba(8,145,178,0.45)] overflow-hidden">
-                <div className="border-b border-pagandu-100 bg-gradient-to-r from-pagandu-600 to-pagandu-700 px-6 py-5 text-white">
+            <div className="animate-in fade-in slide-in-from-top-2 pt-6 border-t border-red-200/70">
+              <div className="rounded-3xl border border-red-200 bg-gradient-to-br from-red-50 via-white to-sky-50 shadow-[0_20px_60px_-30px_rgba(8,145,178,0.45)] overflow-hidden">
+                <div className="border-b border-red-100 bg-gradient-to-r from-red-600 to-red-700 px-6 py-5 text-white">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-pagandu-100">Modo ativo</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-red-100">Modo ativo</p>
                       <h4 className="mt-2 text-xl font-bold">Configuração do aviso e exceções</h4>
-                      <p className="mt-1 max-w-2xl text-sm text-pagandu-100/90">
+                      <p className="mt-1 max-w-2xl text-sm text-red-100/90">
                         Defina a mensagem pública exibida pela API e controle quais IDs continuam autorizados durante a janela de manutenção.
                       </p>
                     </div>
                     <div className="rounded-2xl border border-white/20 bg-white/10 px-3 py-2 text-right backdrop-blur-sm">
-                      <p className="text-[11px] uppercase tracking-[0.24em] text-pagandu-100">Status</p>
+                      <p className="text-[11px] uppercase tracking-[0.24em] text-red-100">Status</p>
                       <p className="mt-1 text-sm font-semibold">Gateway protegido</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="grid gap-5 p-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
-                  <div className="rounded-2xl border border-pagandu-100 bg-white/90 p-5 shadow-sm">
-                    <label className="block text-sm font-bold text-pagandu-800 mb-3">Mensagem de Bloqueio</label>
+                  <div className="rounded-2xl border border-red-100 bg-white/90 p-5 shadow-sm">
+                    <label className="block text-sm font-bold text-red-800 mb-3">Mensagem de Bloqueio</label>
                     <p className="mb-4 text-sm text-slate-500">
                       Este texto aparece para integrações e acessos bloqueados enquanto a manutenção estiver habilitada.
                     </p>
@@ -209,13 +209,13 @@ export const Settings: React.FC = () => {
                         type="text"
                         value={maintenance.message}
                         onChange={(e) => setMaintenance({...maintenance, message: e.target.value})}
-                        className="flex-1 rounded-2xl border border-pagandu-200 bg-pagandu-50/40 px-4 py-3 text-slate-800 outline-none transition-all placeholder:text-slate-400 focus:border-pagandu-500 focus:bg-white focus:ring-4 focus:ring-pagandu-100"
+                        className="flex-1 rounded-2xl border border-red-200 bg-red-50/40 px-4 py-3 text-slate-800 outline-none transition-all placeholder:text-slate-400 focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-100"
                         placeholder="Ex: Sistema em manutenção até as 14h."
                       />
                       <button
                         onClick={handleUpdateMessage}
                         disabled={isSaving}
-                        className="inline-flex items-center justify-center gap-2 rounded-2xl bg-pagandu-600 px-5 py-3 font-medium text-white shadow-lg shadow-pagandu-700/20 transition-all hover:bg-pagandu-700 disabled:cursor-not-allowed disabled:opacity-60 whitespace-nowrap"
+                        className="inline-flex items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 font-medium text-white shadow-lg shadow-red-700/20 transition-all hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60 whitespace-nowrap"
                       >
                         {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                         Salvar mensagem
@@ -237,7 +237,7 @@ export const Settings: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-pagandu-100 bg-slate-950 p-5 text-white shadow-sm">
+                  <div className="rounded-2xl border border-red-100 bg-slate-950 p-5 text-white shadow-sm">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <label className="block text-sm font-bold text-white">IDs liberados durante manutenção</label>
@@ -255,7 +255,7 @@ export const Settings: React.FC = () => {
                       <textarea
                         value={maintenance.allowedUserIdsText}
                         onChange={(e) => setMaintenance({ ...maintenance, allowedUserIdsText: e.target.value })}
-                        className="min-h-[148px] w-full resize-y rounded-xl border border-transparent bg-slate-900 px-4 py-3 font-mono text-sm text-slate-100 outline-none transition-all placeholder:text-slate-500 focus:border-pagandu-500 focus:ring-4 focus:ring-pagandu-500/20"
+                        className="min-h-[148px] w-full resize-y rounded-xl border border-transparent bg-slate-900 px-4 py-3 font-mono text-sm text-slate-100 outline-none transition-all placeholder:text-slate-500 focus:border-red-500 focus:ring-4 focus:ring-red-500/20"
                         placeholder={'251\n300\n450'}
                       />
 
@@ -264,7 +264,7 @@ export const Settings: React.FC = () => {
                           parsedAllowedUserIds.map((id) => (
                             <span
                               key={id}
-                              className="rounded-full border border-pagandu-400/30 bg-pagandu-500/15 px-3 py-1 text-xs font-semibold text-pagandu-100"
+                              className="rounded-full border border-red-400/30 bg-red-500/15 px-3 py-1 text-xs font-semibold text-red-100"
                             >
                               ID {id}
                             </span>
