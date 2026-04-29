@@ -639,68 +639,70 @@ export const MED: React.FC = () => {
         </div>
         
         {isLoading ? (
-            <div className="flex justify-center items-center h-48">
-                <Loader2 className="w-8 h-8 text-orange-500 animate-spin" />
-            </div>
+          <div className="flex justify-center items-center h-48">
+            <Loader2 className="w-8 h-8 text-orange-500 animate-spin" />
+          </div>
         ) : (
-        <div className="divide-y divide-slate-100">
-          {filteredCases.length === 0 ? (
-             <div className="p-8 text-center text-slate-500">
-                 {searchTerm ? 'Nenhuma disputa encontrada para sua busca.' : 'Nenhuma disputa registrada.'}
-             </div>
-          ) : filteredCases.map((item) => (
-            <div key={item.id} className="p-4 hover:bg-slate-50 transition-colors flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-4 flex-1 w-full">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${item.status === 'OPEN' ? 'bg-orange-50 border-orange-100 text-orange-600' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
-                    <AlertTriangle className="w-6 h-6" />
-                 </div>
-                 <div className="flex-1">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-mono text-xs font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">{item.id}</span>
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${getStatusColor(item.status)}`}>
-                        {item.status}
-                      </span>
+          <div className="divide-y divide-slate-100">
+            {filteredCases.length === 0 ? (
+              <div className="p-8 text-center text-slate-500">
+                {searchTerm ? 'Nenhuma disputa encontrada para sua busca.' : 'Nenhuma disputa registrada.'}
+              </div>
+            ) : (
+              filteredCases.map((item) => (
+                <div key={item.id} className="p-4 hover:bg-slate-50 transition-colors flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-4 flex-1 w-full">
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${item.status === 'OPEN' ? 'bg-orange-50 border-orange-100 text-orange-600' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
+                      <AlertTriangle className="w-6 h-6" />
                     </div>
-                    <h4 className="font-bold text-slate-800 mt-1">{getReasonLabel(item.reason)}</h4>
-                    
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-sm text-slate-500 mt-1">
-                        <span className="font-medium text-slate-700 flex items-center gap-1">
-                             {item.clientName || 'Cliente Desconhecido'}
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-mono text-xs font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">{item.id}</span>
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${getStatusColor(item.status)}`}>
+                          {item.status}
                         </span>
-                      <span className="text-xs font-mono text-slate-500 break-all">E2E: {item.e2e || '-'}</span>
+                      </div>
+                      <h4 className="font-bold text-slate-800 mt-1">{getReasonLabel(item.reason)}</h4>
+
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-sm text-slate-500 mt-1">
+                        <span className="font-medium text-slate-700 flex items-center gap-1">
+                          {item.clientName || 'Cliente Desconhecido'}
+                        </span>
+                        <span className="text-xs font-mono text-slate-500 break-all">E2E: {item.e2e || '-'}</span>
+                      </div>
                     </div>
-                 </div>
-              </div>
+                  </div>
 
-              <div className="flex flex-row md:flex-col justify-between md:items-end w-full md:w-auto gap-1 min-w-[150px]">
-                <div className="flex flex-col md:items-end">
-                    <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">Valor Contestspan>
-                    <span className="text-lg font-bold text-slate-800">R$ {(Number(item.amount) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                  <div className="flex flex-row md:flex-col justify-between md:items-end w-full md:w-auto gap-1 min-w-[150px]">
+                    <div className="flex flex-col md:items-end">
+                      <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">Valor Contestado</span>
+                      <span className="text-lg font-bold text-slate-800">R$ {(Number(item.amount) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                    </div>
+                    <span className="text-xs text-orange-500 font-medium flex items-center gap-1 self-end md:self-end">
+                      <Clock className="w-3 h-3" /> {safeDate(item.deadline)}
+                    </span>
+                  </div>
+
+                  <div className="flex gap-2 w-full md:w-auto mt-2 md:mt-0">
+                    <button
+                      onClick={() => handleOpenCase(item)}
+                      className="px-4 py-2 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors flex-1 md:flex-none"
+                    >
+                      Ver Detalhes
+                    </button>
+                    {item.status === 'OPEN' && (
+                      <button
+                        onClick={() => handleOpenCase(item)}
+                        className="px-4 py-2 text-sm font-medium text-white bg-orange-600 rounded-lg hover:bg-orange-700 shadow-sm shadow-orange-200 transition-colors flex-1 md:flex-none"
+                      >
+                        Analisar
+                      </button>
+                    )}
+                  </div>
                 </div>
-                <span className="text-xs text-orange-500 font-medium flex items-center gap-1 self-end md:self-end">
-                  <Clock className="w-3 h-3" /> {safeDate(item.deadline)}
-                </span>
-              </div>
-
-              <div className="flex gap-2 w-full md:w-auto mt-2 md:mt-0">
-                 <button 
-                  onClick={() => handleOpenCase(item)}
-                  className="px-4 py-2 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors flex-1 md:flex-none"
-                 >
-                   Ver Detalhes
-                 </button>
-                 {item.status === 'OPEN' && (
-                   <button 
-                     onClick={() => handleOpenCase(item)}
-                     className="px-4 py-2 text-sm font-medium text-white bg-orange-600 rounded-lg hover:bg-orange-700 shadow-sm shadow-orange-200 transition-colors flex-1 md:flex-none"
-                   >
-                     Analisar
-                   </button>
-                 )}
-              </div>
-            </div>
-          ))}
-        </div>
+              ))
+            )}
+          </div>
         )}
       </div>
 
