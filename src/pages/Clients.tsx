@@ -1199,8 +1199,8 @@ export const Clients: React.FC = () => {
                                                 const documentType = doc.documentType || doc.document_type || 'Documento';
                                                 const createdAt = doc.created_at || doc.createdAt;
                                                 
-                                                const isImage = documentLink.startsWith('data:image') || /\.(jpg|jpeg|png|gif|webp)$/i.testmentLink);
-                                                const isPdf = documentLink.startsWith('data:application/pdf') || /\.pdf$/i.testmentLink);
+                                                const isImage = documentLink.startsWith('data:image') || /\.(jpg|jpeg|png|gif|webp)$/i.test(documentLink);
+                                                const isPdf = documentLink.startsWith('data:application/pdf') || /\.pdf$/i.test(documentLink);
                                                 
                                                 return (
                                                     <div key={idx} className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
