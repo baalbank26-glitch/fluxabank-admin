@@ -573,7 +573,7 @@ export const MED: React.FC = () => {
                   <span>Carregando, Espere!</span>
                 </>
               ) : (
-                <span>Nenhuma transao encontrada.</span>
+                <span>Nenhuma transação encontrada.</span>
               )}
             </div>
           ) : (
@@ -674,7 +674,7 @@ export const MED: React.FC = () => {
 
               <div className="flex flex-row md:flex-col justify-between md:items-end w-full md:w-auto gap-1 min-w-[150px]">
                 <div className="flex flex-col md:items-end">
-                    <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">Valor Contestáspan>
+                    <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">Valor Contestspan>
                     <span className="text-lg font-bold text-slate-800">R$ {(Number(item.amount) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
                 </div>
                 <span className="text-xs text-orange-500 font-medium flex items-center gap-1 self-end md:self-end">

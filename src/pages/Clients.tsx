@@ -512,7 +512,7 @@ export const Clients: React.FC = () => {
                                 <thead className="bg-slate-50 border-b border-slate-200">
                                     <tr>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">ID</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Usurio</th>
+                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Usuário</th>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Tipo Conta</th>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status KYC</th>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status Conta</th>
@@ -521,7 +521,7 @@ export const Clients: React.FC = () => {
                                 </thead>
                                 <tbody className="divide-y divide-slate-100">
                                     {filteredUsers.length === 0 ? (
-                                        <tr><td colSpan={6} className="p-6 text-center text-slate-500">Nenhum usurio encontrado.</td></tr>
+                                        <tr><td colSpan={6} className="p-6 text-center text-slate-500">Nenhum usuário encontrado.</td></tr>
                                     ) : paginatedUsers.map((user) => (
                                         <tr key={user.id} className="hover:bg-slate-50/50 cursor-pointer" onClick={() => openUserModal(user)}>
                   <td className="px-6 py-4 font-mono text-xs text-slate-500">#{user.id}</td>
@@ -591,7 +591,7 @@ export const Clients: React.FC = () => {
                         {filteredUsers.length > 0 && (
                             <div className="px-6 py-4 border-t border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                                 <p className="text-sm text-slate-600">
-                                    Mostrando {pageStart + 1} a {Math.min(pageStart + USERS_PER_PAGE, filteredUsers.length)} de {filteredUsers.length} usurios
+                                    Mostrando {pageStart + 1} a {Math.min(pageStart + USERS_PER_PAGE, filteredUsers.length)} de {filteredUsers.length} usuários
                                 </p>
                                 <div className="flex items-center gap-2">
                                     <button
@@ -1199,8 +1199,8 @@ export const Clients: React.FC = () => {
                                                 const documentType = doc.documentType || doc.document_type || 'Documento';
                                                 const createdAt = doc.created_at || doc.createdAt;
                                                 
-                                                const isImage = documentLink.startsWith('data:image') || /\.(jpg|jpeg|png|gif|webp)$/i.testámentLink);
-                                                const isPdf = documentLink.startsWith('data:application/pdf') || /\.pdf$/i.testámentLink);
+                                                const isImage = documentLink.startsWith('data:image') || /\.(jpg|jpeg|png|gif|webp)$/i.testmentLink);
+                                                const isPdf = documentLink.startsWith('data:application/pdf') || /\.pdf$/i.testmentLink);
                                                 
                                                 return (
                                                     <div key={idx} className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">

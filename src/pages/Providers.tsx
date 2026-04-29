@@ -338,7 +338,7 @@ export const Providers: React.FC = () => {
                     {editingProvider ? 'Editar Provider' : 'Novo Provider'}
                   </h3>
                   <p className="text-sm text-slate-500">
-                    {editingProvider ? 'Atualize as informaes do provider' : 'Preencha os dados do novo provider'}
+                    {editingProvider ? 'Atualize as informações do provider' : 'Preencha os dados do novo provider'}
                   </p>
                 </div>
               </div>
@@ -356,7 +356,7 @@ export const Providers: React.FC = () => {
                 <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
-                      Cdigo *
+                      Código *
                     </label>
                     <input
                       type="text"
@@ -368,7 +368,7 @@ export const Providers: React.FC = () => {
                       disabled={!!editingProvider}
                     />
                     <p className="text-xs text-slate-400 mt-1">
-                      {editingProvider ? 'O código no pode ser alterado' : 'Cdigo nico do provider (ser convertido para maisculas)'}
+                      {editingProvider ? 'O código não pode ser alterado' : 'Código único do provider (será convertido para maiúsculas)'}
                     </p>
                   </div>
 

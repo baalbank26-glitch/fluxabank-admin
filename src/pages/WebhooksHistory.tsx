@@ -311,7 +311,7 @@ export const WebhooksHistory: React.FC = () => {
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-sm font-semibold text-slate-100">Mapeador de Transação (Webhook)</h2>
-          <div className="text-[11px] text-slate-400">Rastreia origem do webhook por referência da transao</div>
+          <div className="text-[11px] text-slate-400">Rastreia origem do webhook por referência da transação</div>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -339,11 +339,11 @@ export const WebhooksHistory: React.FC = () => {
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
                   <div className="rounded-md border border-slate-800 p-2">
-                    <div className="text-slate-400">Referncia</div>
+                    <div className="text-slate-400">Referência</div>
                     <div className="font-mono text-slate-100 truncate">{mapperResult?.mapped?.reference || '-'}</div>
                   </div>
                   <div className="rounded-md border border-slate-800 p-2">
-                    <div className="text-slate-400">Usurio origem</div>
+                    <div className="text-slate-400">Usuário origem</div>
                     <div className="text-slate-100 truncate">{mapperResult?.mapped?.sourceUser?.name || '-'}</div>
                     <div className="text-slate-400 truncate">ID: {mapperResult?.mapped?.sourceUser?.id || '-'}</div>
                   </div>

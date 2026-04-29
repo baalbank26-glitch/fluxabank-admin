@@ -300,7 +300,7 @@ const OTCWithdrawals: React.FC = () => {
                 )}
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Hash da Transação * <span className="text-orange-600">(obrigatrio)</span></label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Hash da Transação * <span className="text-orange-600">(obrigatório)</span></label>
                   <input
                     type="text"
                     value={txHash}
@@ -312,7 +312,7 @@ const OTCWithdrawals: React.FC = () => {
                     }`}
                   />
                   {txHash.trim() === '' && (
-                    <p className="text-xs text-orange-600 mt-1">?? Campo obrigatrio para marcar como completo</p>
+                    <p className="text-xs text-orange-600 mt-1">⚠️ Campo obrigatório para marcar como completo</p>
                   )}
                 </div>
 
@@ -321,7 +321,7 @@ const OTCWithdrawals: React.FC = () => {
                   <textarea
                     value={adminNotes}
                     onChange={(e) => setAdminNotes(e.target.value)}
-                    placeholder="Observaes..."
+                    placeholder="Observações..."
                     className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500"
                     rows={3}
                   />
@@ -356,7 +356,7 @@ const OTCWithdrawals: React.FC = () => {
               </div>
             ) : (
               <div className="border-t pt-4 p-3 bg-slate-50 rounded text-sm text-slate-600">
-                Este saque no pode ser alterado pois j foi {getStatusLabel(selectedWithdrawal.status)}.
+                Este saque não pode ser alterado pois já foi {getStatusLabel(selectedWithdrawal.status)}.
               </div>
             )}
           </div>
@@ -373,7 +373,7 @@ const OTCWithdrawals: React.FC = () => {
                   <Check className="w-6 h-6 text-green-600 flex-shrink-0" />
                 )}
                 <h3 className="text-lg font-bold text-slate-900">
-                  {validationModal.type === 'error' ? 'Ateno' : 'Sucesso'}
+                  {validationModal.type === 'error' ? 'Atenção' : 'Sucesso'}
                 </h3>
               </div>
               <p className="text-slate-700 mb-6">{validationModal.message}</p>

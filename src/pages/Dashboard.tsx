@@ -190,7 +190,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
           onClick={() => onViewChange(AppView.CLIENTS)}
         >
           <div className="flex items-start justify-between mb-4">
-            <p className="text-xs font-bold text-slate-600 uppercase tracking-widestáários Ativos</p>
+            <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Usuários Ativos</p>
             <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
               <Users className="w-5 h-5 text-blue-600" />
             </div>
@@ -212,7 +212,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
           onClick={() => onViewChange(AppView.APPROVALS)}
         >
           <div className="flex items-start justify-between mb-4">
-            <p className="text-xs font-bold text-slate-600 uppercase tracking-widestádentes</p>
+            <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Pendentes</p>
             <div className={`w-10 h-10 rounded-lg flex items-center justify-center group-hover:shadow-md transition-shadow ${stats.pendingApprovals > 0 ? 'bg-amber-100' : 'bg-green-100'}`}>
               <AlertCircle className={`w-5 h-5 ${stats.pendingApprovals > 0 ? 'text-amber-600' : 'text-green-600'}`} />
             </div>
@@ -235,7 +235,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
         {/* Bloqueados */}
         <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all min-w-0 group">
           <div className="flex items-start justify-between mb-4">
-            <p className="text-xs font-bold text-slate-600 uppercase tracking-widestáqueados</p>
+            <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Bloqueados</p>
             <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
               <Users className="w-5 h-5 text-orange-400" />
             </div>
@@ -246,7 +246,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
           ) : (
             <>
               <h3 className="text-3xl font-bold text-orange-600">{stats.blockedClients}</h3>
-              <p className="text-xs text-orange-600 mt-3 font-semibold">Açõesso restá/p>
+              <p className="text-xs text-orange-600 mt-3 font-semibold">Acesso restrito</p>
             </>
           )}
         </div>
