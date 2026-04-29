@@ -65,7 +65,7 @@ const App: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div className="flex items-center justify-center h-screen bg-slate-50 text-fluxabank-600">Carregando...</div>;
+    return <div className="flex items-center justify-center h-screen bg-slate-50 text-fluxabank-500">Carregando...</div>;
   }
 
   if (!isAuthenticated) {

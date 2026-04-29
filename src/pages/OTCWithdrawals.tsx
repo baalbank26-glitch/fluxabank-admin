@@ -110,7 +110,7 @@ const OTCWithdrawals: React.FC = () => {
       case 'completed':
         return 'bg-green-100 text-green-800';
       case 'cancelled':
-        return 'bg-red-100 text-red-800';
+        return 'bg-fluxabank-100 text-fluxabank-700';
       default:
         return 'bg-gray-100 text-gray-800';
     }
@@ -152,7 +152,7 @@ const OTCWithdrawals: React.FC = () => {
             }}
             className={`px-4 py-2 rounded-lg font-medium transition-all ${
               filter === f
-                ? 'bg-orange-600 text-white'
+                ? 'bg-orange-500 text-white'
                 : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
             }`}
           >
@@ -174,7 +174,7 @@ const OTCWithdrawals: React.FC = () => {
         <div className="lg:col-span-2">
           {loading ? (
             <div className="flex justify-center py-12">
-              <Loader2 className="w-8 h-8 animate-spin text-orange-600" />
+              <Loader2 className="w-8 h-8 animate-spin text-orange-500" />
             </div>
           ) : withdrawals.length === 0 ? (
             <div className="p-8 text-center text-slate-500 bg-slate-50 rounded-lg">
@@ -293,14 +293,14 @@ const OTCWithdrawals: React.FC = () => {
             {selectedWithdrawal.status === 'pending' || selectedWithdrawal.status === 'processing' ? (
               <div className="border-t pt-4 space-y-3">
                 {error && (
-                  <div className="p-3 bg-red-50 text-red-700 rounded-lg flex items-center gap-2 text-sm">
+                  <div className="p-3 bg-fluxabank-50 text-fluxabank-600 rounded-lg flex items-center gap-2 text-sm">
                     <AlertCircle className="w-4 h-4" />
                     {error}
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Hash da Transação * <span className="text-red-600">(obrigatório)</span></label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Hash da Transação * <span className="text-fluxabank-500">(obrigatório)</span></label>
                   <input
                     type="text"
                     value={txHash}
@@ -308,11 +308,11 @@ const OTCWithdrawals: React.FC = () => {
                     placeholder="0x..."
                     required
                     className={`w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-orange-500 ${
-                      txHash.trim() === '' ? 'border-red-300 bg-red-50' : 'border-slate-300'
+                      txHash.trim() === '' ? 'border-fluxabank-300 bg-fluxabank-50' : 'border-slate-300'
                     }`}
                   />
                   {txHash.trim() === '' && (
-                    <p className="text-xs text-red-600 mt-1">⚠️ Campo obrigatório para marcar como completo</p>
+                    <p className="text-xs text-fluxabank-500 mt-1">⚠️ Campo obrigatório para marcar como completo</p>
                   )}
                 </div>
 
@@ -347,7 +347,7 @@ const OTCWithdrawals: React.FC = () => {
                   <button
                     onClick={() => handleUpdateStatus('cancelled')}
                     disabled={processing}
-                    className="flex-1 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="flex-1 py-2 bg-fluxabank-500 text-white rounded-lg font-medium hover:bg-fluxabank-600 disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     {processing ? <Loader2 className="w-4 h-4 animate-spin" /> : <X className="w-4 h-4" />}
                     Cancelar
@@ -365,10 +365,10 @@ const OTCWithdrawals: React.FC = () => {
         {/* Validation Modal */}
         {validationModal && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className={`bg-white rounded-2xl p-6 max-w-md w-full shadow-xl ${validationModal.type === 'error' ? 'border-l-4 border-red-500' : 'border-l-4 border-green-500'}`}>
+            <div className={`bg-white rounded-2xl p-6 max-w-md w-full shadow-xl ${validationModal.type === 'error' ? 'border-l-4 border-fluxabank-500' : 'border-l-4 border-green-500'}`}>
               <div className="flex items-center gap-3 mb-4">
                 {validationModal.type === 'error' ? (
-                  <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0" />
+                  <AlertCircle className="w-6 h-6 text-fluxabank-500 flex-shrink-0" />
                 ) : (
                   <Check className="w-6 h-6 text-green-600 flex-shrink-0" />
                 )}
@@ -386,7 +386,7 @@ const OTCWithdrawals: React.FC = () => {
                 }}
                 className={`w-full py-3 rounded-lg font-semibold transition-colors ${
                   validationModal.type === 'error'
-                    ? 'bg-red-600 text-white hover:bg-red-700'
+                    ? 'bg-fluxabank-500 text-white hover:bg-fluxabank-600'
                     : 'bg-green-600 text-white hover:bg-green-700'
                 }`}
               >

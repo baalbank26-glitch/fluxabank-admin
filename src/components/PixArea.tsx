@@ -64,13 +64,13 @@ export const PixArea: React.FC = () => {
                     </div>
                     <p className="text-4xl font-mono font-bold mt-4">{myFees?.pixInPercent ?? '--'}%</p>
                 </div>
-                <div className="bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl p-6 text-white shadow-lg">
+                <div className="bg-gradient-to-br from-fluxabank-500 to-orange-500 rounded-2xl p-6 text-white shadow-lg">
                     <div className="flex justify-between items-start">
                         <div>
-                            <p className="font-medium text-red-100">Suas Taxas</p>
+                            <p className="font-medium text-fluxabank-100">Suas Taxas</p>
                             <h3 className="text-2xl font-bold mt-1">Pix Saída</h3>
                         </div>
-                        <ArrowUpRight className="w-8 h-8 text-red-200" />
+                        <ArrowUpRight className="w-8 h-8 text-fluxabank-200" />
                     </div>
                     <p className="text-4xl font-mono font-bold mt-4">{myFees?.pixOutPercent ?? '--'}%</p>
                 </div>
@@ -96,7 +96,7 @@ export const PixArea: React.FC = () => {
                         className={`p-4 rounded-xl text-left transition-all ${mode === 'WITHDRAW' ? 'bg-white shadow-md ring-1 ring-slate-200' : 'hover:bg-slate-100'}`}
                     >
                         <div className="flex items-center gap-3 mb-2">
-                            <div className={`p-2 rounded-lg ${mode === 'WITHDRAW' ? 'bg-red-100 text-red-600' : 'bg-slate-200 text-slate-500'}`}>
+                            <div className={`p-2 rounded-lg ${mode === 'WITHDRAW' ? 'bg-fluxabank-100 text-fluxabank-500' : 'bg-slate-200 text-slate-500'}`}>
                                 <ArrowUpRight className="w-5 h-5" />
                             </div>
                             <span className={`font-bold ${mode === 'WITHDRAW' ? 'text-slate-800' : 'text-slate-500'}`}>Saque</span>
@@ -162,7 +162,7 @@ export const PixArea: React.FC = () => {
                                         <input 
                                             type="text" required
                                             value={pixKey} onChange={e => setPixKey(e.target.value)}
-                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-red-500"
+                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-fluxabank-500"
                                             placeholder="CPF, Email ou Aleatória"
                                         />
                                     </div>
@@ -171,11 +171,11 @@ export const PixArea: React.FC = () => {
                                         <input 
                                             type="number" step="0.01" required
                                             value={amount} onChange={e => setAmount(e.target.value)}
-                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 text-lg outline-none focus:ring-2 focus:ring-red-500"
+                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 text-lg outline-none focus:ring-2 focus:ring-fluxabank-500"
                                             placeholder="0,00"
                                         />
                                     </div>
-                                    <button disabled={loading} className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-colors flex justify-center gap-2">
+                                    <button disabled={loading} className="w-full py-3 bg-fluxabank-500 hover:bg-fluxabank-600 text-white font-bold rounded-xl transition-colors flex justify-center gap-2">
                                         {loading ? <Loader2 className="animate-spin" /> : 'Confirmar Saque'}
                                     </button>
                                 </form>

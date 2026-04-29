@@ -99,7 +99,7 @@ export const Authenticator: React.FC = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-          <ShieldCheck className="w-7 h-7 text-fluxabank-600" />
+          <ShieldCheck className="w-7 h-7 text-fluxabank-500" />
           Authenticator (2FA)
         </h2>
         <p className="text-slate-500 text-sm mt-1">
@@ -108,7 +108,7 @@ export const Authenticator: React.FC = () => {
       </div>
 
       {error && (
-        <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm flex items-center gap-2">
+        <div className="p-3 bg-fluxabank-50 border border-fluxabank-200 text-fluxabank-600 rounded-lg text-sm flex items-center gap-2">
           <AlertCircle className="w-4 h-4" /> {error}
         </div>
       )}

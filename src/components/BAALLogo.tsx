@@ -17,7 +17,7 @@ export const FluxabankLogo: React.FC<FluxabankLogoProps> = ({ className = '', si
   return (
     <div className={`relative group inline-block ${className}`}>
       {/* Gloss layer */}
-      <div className="absolute inset-x-0 -inset-y-2 bg-orange-600/10 blur-xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute inset-x-0 -inset-y-2 bg-orange-500/10 blur-xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
       <img
         src={FluxabankLogoAsset}
         alt="Fluxabank"

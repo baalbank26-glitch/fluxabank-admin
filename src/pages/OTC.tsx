@@ -85,7 +85,7 @@ export const OTC: React.FC = () => {
       pending: 'bg-yellow-100 text-yellow-700',
       processing: 'bg-blue-100 text-blue-700',
       completed: 'bg-green-100 text-green-700',
-      cancelled: 'bg-red-100 text-red-700'
+      cancelled: 'bg-fluxabank-100 text-fluxabank-600'
     };
     const icons = {
       pending: Clock,
@@ -140,7 +140,7 @@ export const OTC: React.FC = () => {
           </div>
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
             <p className="text-sm text-slate-500 mb-1">Taxa Total (BRL)</p>
-            <p className="text-3xl font-bold text-orange-600">
+            <p className="text-3xl font-bold text-orange-500">
               {stats.completedFeesBrl.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
             </p>
           </div>
@@ -155,7 +155,7 @@ export const OTC: React.FC = () => {
             onClick={() => setFilter(f)}
             className={`px-4 py-2 rounded-lg font-semibold text-sm transition-colors ${
               filter === f
-                ? 'bg-orange-600 text-white'
+                ? 'bg-orange-500 text-white'
                 : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
             }`}
           >
@@ -226,7 +226,7 @@ export const OTC: React.FC = () => {
                           setSelectedWithdrawal(w);
                           setActionData({ status: w.status, txHash: w.txHash || '', adminNotes: w.adminNotes || '' });
                         }}
-                        className="text-orange-600 hover:text-orange-800 font-semibold text-sm"
+                        className="text-orange-500 hover:text-orange-800 font-semibold text-sm"
                       >
                         Gerenciar
                       </button>
@@ -315,7 +315,7 @@ export const OTC: React.FC = () => {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={handleUpdateStatus}
-                className="flex-1 px-6 py-3 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700 transition-colors"
+                className="flex-1 px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl hover:bg-orange-600 transition-colors"
               >
                 Salvar Alterações
               </button>
@@ -374,7 +374,7 @@ export const OTC: React.FC = () => {
                   id="otcEnabled"
                   checked={editSettings.enabled || false}
                   onChange={e => setEditSettings(prev => ({ ...prev, enabled: e.target.checked }))}
-                  className="w-5 h-5 text-orange-600 border-slate-300 rounded focus:ring-orange-500"
+                  className="w-5 h-5 text-orange-500 border-slate-300 rounded focus:ring-orange-500"
                 />
                 <label htmlFor="otcEnabled" className="text-sm font-semibold text-slate-700">
                   OTC Habilitado (usuários podem usar)
@@ -385,7 +385,7 @@ export const OTC: React.FC = () => {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={handleUpdateSettings}
-                className="flex-1 px-6 py-3 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700"
+                className="flex-1 px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl hover:bg-orange-600"
               >
                 Salvar
               </button>
@@ -403,10 +403,10 @@ export const OTC: React.FC = () => {
       {/* Validation Modal */}
       {validationModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className={`bg-white rounded-2xl p-6 max-w-md w-full shadow-xl ${validationModal.type === 'error' ? 'border-l-4 border-red-500' : 'border-l-4 border-green-500'}`}>
+          <div className={`bg-white rounded-2xl p-6 max-w-md w-full shadow-xl ${validationModal.type === 'error' ? 'border-l-4 border-fluxabank-500' : 'border-l-4 border-green-500'}`}>
             <div className="flex items-center gap-3 mb-4">
               {validationModal.type === 'error' ? (
-                <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0" />
+                <AlertCircle className="w-6 h-6 text-fluxabank-500 flex-shrink-0" />
               ) : (
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
               )}
@@ -419,7 +419,7 @@ export const OTC: React.FC = () => {
               onClick={() => setValidationModal(null)}
               className={`w-full py-3 rounded-lg font-semibold transition-colors ${
                 validationModal.type === 'error'
-                  ? 'bg-red-600 text-white hover:bg-red-700'
+                  ? 'bg-fluxabank-500 text-white hover:bg-fluxabank-600'
                   : 'bg-green-600 text-white hover:bg-green-700'
               }`}
             >

@@ -80,13 +80,13 @@ export const Security: React.FC = () => {
             case 'AUTH_FAILURE':
                 return <span className="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-bold ring-1 ring-amber-200">AUTH_FAILURE</span>;
             case 'INVALID_CREDENTIALS':
-                return <span className="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-bold ring-1 ring-red-200">INVALID_CREDENTIALS</span>;
+                return <span className="px-2 py-1 bg-fluxabank-100 text-fluxabank-600 rounded text-xs font-bold ring-1 ring-fluxabank-200">INVALID_CREDENTIALS</span>;
             case 'IP_BLOCKED':
-                return <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-bold ring-1 ring-orange-200">IP_BLOCKED</span>;
+                return <span className="px-2 py-1 bg-orange-100 text-orange-600 rounded text-xs font-bold ring-1 ring-orange-200">IP_BLOCKED</span>;
             case 'MISSING_CREDENTIALS':
                 return <span className="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs font-bold ring-1 ring-slate-200">MISSING_CREDENTIALS</span>;
             case '2FA_FAILURE':
-                return <span className="px-2 py-1 bg-rose-100 text-rose-700 rounded text-xs font-bold ring-1 ring-rose-200">2FA_FAILURE</span>;
+                return <span className="px-2 py-1 bg-orange-100 text-orange-600 rounded text-xs font-bold ring-1 ring-orange-200">2FA_FAILURE</span>;
             case '2FA_MISSING':
                 return <span className="px-2 py-1 bg-violet-100 text-violet-700 rounded text-xs font-bold ring-1 ring-violet-200">2FA_MISSING</span>;
             default:
@@ -99,7 +99,7 @@ export const Security: React.FC = () => {
             <div className="flex justify-between items-center">
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-                        <Shield className="w-8 h-8 text-fluxabank-600" />
+                        <Shield className="w-8 h-8 text-fluxabank-500" />
                         Central de Segurança / IDS
                     </h2>
                     <p className="text-slate-500 text-sm">
@@ -118,8 +118,8 @@ export const Security: React.FC = () => {
             {/* Estatísticas Rápidas */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div className="p-3 bg-red-50 rounded-lg">
-                        <AlertTriangle className="w-6 h-6 text-red-600" />
+                    <div className="p-3 bg-fluxabank-50 rounded-lg">
+                        <AlertTriangle className="w-6 h-6 text-fluxabank-500" />
                     </div>
                     <div>
                         <p className="text-xs font-medium text-slate-500 uppercase">Total de Alertas</p>
@@ -139,7 +139,7 @@ export const Security: React.FC = () => {
                 </div>
                 <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-4">
                     <div className="p-3 bg-orange-50 rounded-lg">
-                        <Globe className="w-6 h-6 text-orange-600" />
+                        <Globe className="w-6 h-6 text-orange-500" />
                     </div>
                     <div>
                         <p className="text-xs font-medium text-slate-500 uppercase">IPs Bloqueados (24h)</p>
@@ -269,7 +269,7 @@ export const Security: React.FC = () => {
                                         <td className="px-6 py-4 text-center">
                                             <button
                                                 onClick={() => setSelectedLog(log)}
-                                                className="p-2 text-slate-400 hover:text-fluxabank-600 hover:bg-fluxabank-50 rounded-lg transition-all"
+                                                className="p-2 text-slate-400 hover:text-fluxabank-500 hover:bg-fluxabank-50 rounded-lg transition-all"
                                                 title="Ver detalhes"
                                             >
                                                 <Eye className="w-5 h-5" />
@@ -289,8 +289,8 @@ export const Security: React.FC = () => {
                     <div className="bg-white rounded-3xl w-full max-w-4xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
                         <div className="p-6 bg-slate-900 text-white flex justify-between items-center">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 bg-red-500/20 rounded-xl">
-                                    <Shield className="w-6 h-6 text-red-400" />
+                                <div className="p-2 bg-fluxabank-500/20 rounded-xl">
+                                    <Shield className="w-6 h-6 text-fluxabank-400" />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold">Detalhes do Alerta #{selectedLog.id}</h3>
@@ -318,7 +318,7 @@ export const Security: React.FC = () => {
                                         </div>
                                         <div className="flex justify-between items-center py-2 border-b border-slate-100">
                                             <span className="text-sm text-slate-500">IP de Origem</span>
-                                            <span className="text-sm font-bold text-fluxabank-600 font-mono">{selectedLog.ip_address}</span>
+                                            <span className="text-sm font-bold text-fluxabank-500 font-mono">{selectedLog.ip_address}</span>
                                         </div>
                                         <div className="flex justify-between items-center py-2 border-b border-slate-100">
                                             <span className="text-sm text-slate-500">Método HTTP</span>
@@ -348,8 +348,8 @@ export const Security: React.FC = () => {
                                     <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
                                         <AlertTriangle className="w-4 h-4 text-amber-500" /> Motivo do Bloqueio
                                     </h4>
-                                    <div className="bg-red-50 border border-red-100 rounded-2xl p-4">
-                                        <p className="text-sm text-red-800 font-medium">
+                                    <div className="bg-fluxabank-50 border border-fluxabank-100 rounded-2xl p-4">
+                                        <p className="text-sm text-fluxabank-700 font-medium">
                                             {selectedLog.reason || 'Nenhuma razão detalhada fornecida pelo sistema.'}
                                         </p>
                                     </div>
@@ -380,7 +380,7 @@ export const Security: React.FC = () => {
                             </button>
                             <button
                                 onClick={() => toast.info('Funcionalidade de bloqueio de IP permanente em desenvolvimento')}
-                                className="px-6 py-2 bg-red-600 text-white rounded-xl font-bold hover:bg-red-700 transition-colors flex items-center gap-2"
+                                className="px-6 py-2 bg-fluxabank-500 text-white rounded-xl font-bold hover:bg-fluxabank-600 transition-colors flex items-center gap-2"
                             >
                                 <XCircle className="w-4 h-4" />
                                 Bloquear IP Persistentemente

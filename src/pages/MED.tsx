@@ -290,7 +290,7 @@ export const MED: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'OPEN': return 'bg-red-100 text-red-700 border-red-200';
+      case 'OPEN': return 'bg-fluxabank-100 text-fluxabank-600 border-fluxabank-200';
       case 'UNDER_REVIEW': return 'bg-amber-100 text-amber-700 border-amber-200';
       case 'DEFENSE_SENT': return 'bg-blue-100 text-blue-700 border-blue-200';
       case 'REFUND_ACCEPTED': return 'bg-green-100 text-green-700 border-green-200';
@@ -373,7 +373,7 @@ export const MED: React.FC = () => {
         <div>
           <div className="flex items-center gap-2 mb-1">
              <h2 className="text-2xl font-bold text-slate-800">Mecanismo Especial de Devolução</h2>
-             <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-red-100 text-red-600 border border-red-200 uppercase tracking-wide">Área Sensível</span>
+             <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-fluxabank-100 text-fluxabank-500 border border-fluxabank-200 uppercase tracking-wide">Área Sensível</span>
           </div>
           <p className="text-slate-500 text-sm">Gerencie disputas, bloqueios cautelares e solicitações de devolução do Banco Central.</p>
         </div>
@@ -389,7 +389,7 @@ export const MED: React.FC = () => {
            </button>
            <button
              onClick={() => setShowCreateModal(true)}
-             className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-medium shadow-sm shadow-red-200 transition-all"
+             className="flex items-center gap-2 px-4 py-2 bg-fluxabank-500 text-white rounded-lg hover:bg-fluxabank-600 text-sm font-medium shadow-sm shadow-fluxabank-200 transition-all"
            >
              <PlusCircle className="w-4 h-4" /> Marcar Transação como MED
            </button>
@@ -397,10 +397,10 @@ export const MED: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-2xl border border-red-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-red-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+        <div className="bg-white p-6 rounded-2xl border border-fluxabank-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+          <div className="absolute right-0 top-0 w-24 h-24 bg-fluxabank-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
           <div className="relative z-10">
-            <div className="flex items-center gap-2 text-red-600 font-medium mb-2">
+            <div className="flex items-center gap-2 text-fluxabank-500 font-medium mb-2">
               <AlertTriangle className="w-4 h-4" /> Em Análise
             </div>
             <h3 className="text-3xl font-bold text-slate-800">
@@ -475,7 +475,7 @@ export const MED: React.FC = () => {
                       onClick={() => applyTxPeriodPreset(preset.key as 'ALL' | '7D' | '30D' | '90D')}
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                         active
-                          ? 'bg-red-50 text-red-700 border-red-200'
+                          ? 'bg-fluxabank-50 text-fluxabank-600 border-fluxabank-200'
                           : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                       }`}
                     >
@@ -497,7 +497,7 @@ export const MED: React.FC = () => {
                   setTxFrom(e.target.value);
                   setTxPeriodPreset('CUSTOM');
                 }}
-                className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-red-300 outline-none"
+                className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-300 outline-none"
               />
               <span className="text-xs font-semibold text-slate-700 uppercase tracking-wide">até:</span>
               <input
@@ -508,7 +508,7 @@ export const MED: React.FC = () => {
                   setTxTo(e.target.value);
                   setTxPeriodPreset('CUSTOM');
                 }}
-                className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-red-300 outline-none"
+                className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-300 outline-none"
               />
               {(txFrom || txTo) && (
                 <button
@@ -517,7 +517,7 @@ export const MED: React.FC = () => {
                     setTxTo('');
                     setTxPeriodPreset('ALL');
                   }}
-                  className="px-2 py-2 text-xs font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                  className="px-2 py-2 text-xs font-medium text-fluxabank-500 hover:text-fluxabank-600 hover:bg-fluxabank-50 rounded-lg transition-colors"
                   title="Limpar filtro de data"
                 >
                   ✕ Limpar
@@ -526,7 +526,7 @@ export const MED: React.FC = () => {
               <select
                 value={txPageSize}
                 onChange={(e) => setTxPageSize(Number(e.target.value))}
-                className="px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-red-300 outline-none"
+                className="px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-fluxabank-300 outline-none"
               >
                 {[50, 100, 200, 500].map((size) => (
                   <option key={size} value={size}>Por página: {size}</option>
@@ -554,7 +554,7 @@ export const MED: React.FC = () => {
                 onClick={() => setTxQuickFilter(filter.key as typeof txQuickFilter)}
                 className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                   active
-                    ? 'bg-red-50 text-red-700 border-red-200'
+                    ? 'bg-fluxabank-50 text-fluxabank-600 border-fluxabank-200'
                     : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                 }`}
               >
@@ -651,7 +651,7 @@ export const MED: React.FC = () => {
           ) : filteredCases.map((item) => (
             <div key={item.id} className="p-4 hover:bg-slate-50 transition-colors flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-4 flex-1 w-full">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${item.status === 'OPEN' ? 'bg-red-50 border-red-100 text-red-600' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${item.status === 'OPEN' ? 'bg-fluxabank-50 border-fluxabank-100 text-fluxabank-500' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
                     <AlertTriangle className="w-6 h-6" />
                  </div>
                  <div className="flex-1">
@@ -677,7 +677,7 @@ export const MED: React.FC = () => {
                     <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">Valor Contestado</span>
                     <span className="text-lg font-bold text-slate-800">R$ {(Number(item.amount) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
                 </div>
-                <span className="text-xs text-red-500 font-medium flex items-center gap-1 self-end md:self-end">
+                <span className="text-xs text-fluxabank-500 font-medium flex items-center gap-1 self-end md:self-end">
                   <Clock className="w-3 h-3" /> {safeDate(item.deadline)}
                 </span>
               </div>
@@ -692,7 +692,7 @@ export const MED: React.FC = () => {
                  {item.status === 'OPEN' && (
                    <button 
                      onClick={() => handleOpenCase(item)}
-                     className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 shadow-sm shadow-red-200 transition-colors flex-1 md:flex-none"
+                     className="px-4 py-2 text-sm font-medium text-white bg-fluxabank-500 rounded-lg hover:bg-fluxabank-600 shadow-sm shadow-fluxabank-200 transition-colors flex-1 md:flex-none"
                    >
                      Analisar
                    </button>
@@ -712,7 +712,7 @@ export const MED: React.FC = () => {
           >
             <div className="bg-slate-50 px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100 flex justify-between items-center">
               <div className="flex items-center gap-2 sm:gap-3">
-                <div className="p-2 bg-red-100 text-red-600 rounded-lg">
+                <div className="p-2 bg-fluxabank-100 text-fluxabank-500 rounded-lg">
                   <Siren className="w-5 h-5" />
                 </div>
                 <div>
@@ -754,7 +754,7 @@ export const MED: React.FC = () => {
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Timeline</label>
                   <div className="mt-1 sm:mt-2 space-y-2 sm:space-y-3 relative before:absolute before:left-[5px] before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
                     <div className="flex gap-2 sm:gap-3 relative">
-                      <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500 shrink-0 mt-1 ring-4 ring-white"></div>
+                      <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-fluxabank-500 shrink-0 mt-1 ring-4 ring-white"></div>
                       <div>
                         <p className="text-xs sm:text-sm font-medium text-slate-800">Notificação de Infração</p>
                         <p className="text-xs text-slate-500">
@@ -795,7 +795,7 @@ export const MED: React.FC = () => {
                                   <button
                                     type="button"
                                     onClick={() => setLightboxImage({ url: att.url, filename: att.filename })}
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-orange-200 bg-orange-50 text-xs font-medium text-orange-700 hover:bg-orange-100"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-orange-200 bg-orange-50 text-xs font-medium text-orange-600 hover:bg-orange-100"
                                   >
                                     Ampliar
                                   </button>
@@ -903,7 +903,7 @@ export const MED: React.FC = () => {
                   !['OPEN', 'DEFENSE_SENT', 'UNDER_REVIEW'].includes(selectedCase.status)
                 }
                 onClick={() => handleAction(selectedCase.id, 'ACCEPT_REFUND')}
-                className="px-3 sm:px-4 py-2 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors shadow-md shadow-red-200 disabled:opacity-50 text-xs sm:text-sm"
+                className="px-3 sm:px-4 py-2 bg-fluxabank-500 text-white font-medium rounded-lg hover:bg-fluxabank-600 transition-colors shadow-md shadow-fluxabank-200 disabled:opacity-50 text-xs sm:text-sm"
               >
                 {processingId === selectedCase.id ? 'Processando devolução...' : 'Acatar e Devolver Valor'}
               </button>
@@ -917,7 +917,7 @@ export const MED: React.FC = () => {
           <div className="bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden">
             <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-red-100 text-red-600 rounded-lg">
+                <div className="p-2 bg-fluxabank-100 text-fluxabank-500 rounded-lg">
                   <ShieldAlert className="w-5 h-5" />
                 </div>
                 <div>
@@ -1011,7 +1011,7 @@ export const MED: React.FC = () => {
               <button
                 onClick={handleCreateMed}
                 disabled={creating}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50"
+                className="px-4 py-2 bg-fluxabank-500 text-white rounded-lg hover:bg-fluxabank-600 disabled:opacity-50"
               >
                 {creating ? 'Criando...' : 'Criar MED e reter valor'}
               </button>

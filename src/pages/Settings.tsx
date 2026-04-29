@@ -128,7 +128,7 @@ export const Settings: React.FC = () => {
   const parsedAllowedUserIds = parseAllowedUserIds(maintenance.allowedUserIdsText);
 
   if (isLoading) {
-    return <div className="flex justify-center p-20"><Loader2 className="animate-spin w-8 h-8 text-fluxabank-600"/></div>;
+    return <div className="flex justify-center p-20"><Loader2 className="animate-spin w-8 h-8 text-fluxabank-500"/></div>;
   }
 
   return (
@@ -150,7 +150,7 @@ export const Settings: React.FC = () => {
               <p className={`font-medium text-lg ${maintenance.isActive ? 'text-fluxabank-900' : 'text-slate-800'}`}>
                 Modo Manutenção
               </p>
-              <p className={`text-sm mt-1 ${maintenance.isActive ? 'text-fluxabank-700' : 'text-slate-500'}`}>
+              <p className={`text-sm mt-1 ${maintenance.isActive ? 'text-fluxabank-600' : 'text-slate-500'}`}>
                 {maintenance.isActive 
                   ? 'ATIVO: O gateway está rejeitando novas conexões.' 
                   : 'INATIVO: O sistema está operando normalmente.'}
@@ -161,8 +161,8 @@ export const Settings: React.FC = () => {
               disabled={isSaving}
               onClick={handleToggleMaintenance}
               className={`
-                relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-fluxabank-600 focus-visible:ring-offset-2
-                ${maintenance.isActive ? 'bg-fluxabank-600' : 'bg-slate-200'}
+                relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-fluxabank-500 focus-visible:ring-offset-2
+                ${maintenance.isActive ? 'bg-fluxabank-500' : 'bg-slate-200'}
                 ${isSaving ? 'opacity-50 cursor-not-allowed' : ''}
               `}
             >
@@ -181,7 +181,7 @@ export const Settings: React.FC = () => {
           {maintenance.isActive && (
             <div className="animate-in fade-in slide-in-from-top-2 pt-6 border-t border-fluxabank-200/70">
               <div className="rounded-3xl border border-fluxabank-200 bg-gradient-to-br from-fluxabank-50 via-white to-orange-50 shadow-[0_20px_60px_-30px_rgba(8,145,178,0.45)] overflow-hidden">
-                <div className="border-b border-fluxabank-100 bg-gradient-to-r from-fluxabank-600 to-fluxabank-700 px-6 py-5 text-white">
+                <div className="border-b border-fluxabank-100 bg-gradient-to-r from-fluxabank-500 to-fluxabank-600 px-6 py-5 text-white">
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-fluxabank-100">Modo ativo</p>
@@ -215,7 +215,7 @@ export const Settings: React.FC = () => {
                       <button
                         onClick={handleUpdateMessage}
                         disabled={isSaving}
-                        className="inline-flex items-center justify-center gap-2 rounded-2xl bg-fluxabank-600 px-5 py-3 font-medium text-white shadow-lg shadow-fluxabank-700/20 transition-all hover:bg-fluxabank-700 disabled:cursor-not-allowed disabled:opacity-60 whitespace-nowrap"
+                        className="inline-flex items-center justify-center gap-2 rounded-2xl bg-fluxabank-500 px-5 py-3 font-medium text-white shadow-lg shadow-fluxabank-600/20 transition-all hover:bg-fluxabank-600 disabled:cursor-not-allowed disabled:opacity-60 whitespace-nowrap"
                       >
                         {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                         Salvar mensagem
@@ -224,7 +224,7 @@ export const Settings: React.FC = () => {
 
                     <div className="mt-4 rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3 text-sm text-orange-900">
                       <div className="flex items-start gap-3">
-                        <div className="mt-0.5 rounded-full bg-orange-100 p-1.5 text-orange-700">
+                        <div className="mt-0.5 rounded-full bg-orange-100 p-1.5 text-orange-600">
                           <AlertTriangle className="w-4 h-4 shrink-0" />
                         </div>
                         <div>

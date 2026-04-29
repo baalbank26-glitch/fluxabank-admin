@@ -189,11 +189,11 @@ export const Approvals: React.FC = () => {
                             Doc: {user.doc_status || 'PENDING'}
                         </span>
                         {Number((user as any).id) === Number((user as any).owner_user_id || (user as any).ownerUserId || (user as any).id) ? (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-orange-700 border border-orange-200 uppercase">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-orange-600 border border-orange-200 uppercase">
                             Conta Principal
                           </span>
                         ) : (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-orange-700 border border-orange-200 uppercase">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-orange-600 border border-orange-200 uppercase">
                             Conta Vinculada • Titular #{Number((user as any).owner_user_id || (user as any).ownerUserId || user.id)}
                           </span>
                         )}
@@ -209,7 +209,7 @@ export const Approvals: React.FC = () => {
                     {expandedUser === user.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     Documentos
                   </button>
-                  <button onClick={() => handleReject(user.id)} className="px-4 py-2 bg-red-50 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100 flex items-center justify-center gap-2 transition-colors">
+                  <button onClick={() => handleReject(user.id)} className="px-4 py-2 bg-fluxabank-50 text-fluxabank-500 rounded-lg text-sm font-medium hover:bg-fluxabank-100 flex items-center justify-center gap-2 transition-colors">
                     <X className="w-4 h-4" /> Rejeitar
                   </button>
                   <button onClick={() => handleApprove(user.id)} className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 flex items-center justify-center gap-2 shadow-sm transition-colors">
@@ -241,7 +241,7 @@ export const Approvals: React.FC = () => {
                             </div>
                             <span className={`text-xs font-bold px-2 py-1 rounded ${
                               doc.status === 'APPROVED' ? 'bg-green-100 text-green-700' :
-                              doc.status === 'REJECTED' ? 'bg-red-100 text-red-700' :
+                              doc.status === 'REJECTED' ? 'bg-fluxabank-100 text-fluxabank-600' :
                               'bg-amber-100 text-amber-700'
                             }`}>
                               {doc.status}
@@ -274,7 +274,7 @@ export const Approvals: React.FC = () => {
                           <div className="flex gap-2">
                             <button
                               onClick={() => openDocumentSafe(doc.document_link, doc.file_name)}
-                              className="flex-1 text-center px-3 py-2 text-fluxabank-600 border border-fluxabank-300 rounded text-xs font-medium hover:bg-fluxabank-50 transition-colors flex items-center justify-center gap-1"
+                              className="flex-1 text-center px-3 py-2 text-fluxabank-500 border border-fluxabank-300 rounded text-xs font-medium hover:bg-fluxabank-50 transition-colors flex items-center justify-center gap-1"
                             >
                               <Download className="w-3 h-3" /> Ver
                             </button>

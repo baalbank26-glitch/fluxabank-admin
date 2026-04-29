@@ -40,7 +40,7 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({
         <div className="px-5 pb-5">
           <button
             onClick={onClose}
-            className="w-full py-2.5 bg-fluxabank-600 text-white rounded-lg font-medium hover:bg-fluxabank-700 transition-colors"
+            className="w-full py-2.5 bg-fluxabank-500 text-white rounded-lg font-medium hover:bg-fluxabank-600 transition-colors"
           >
             Entendi
           </button>

@@ -468,7 +468,7 @@ export const Clients: React.FC = () => {
   const getTypeStyle = (type: string) => {
       const t = type?.toUpperCase() || '';
       if (t === 'CREDIT' || t === 'PIX_IN') return 'bg-green-100 text-green-700';
-      if (t === 'DEBIT' || t === 'PIX_OUT') return 'bg-red-100 text-red-700';
+      if (t === 'DEBIT' || t === 'PIX_OUT') return 'bg-fluxabank-100 text-fluxabank-600';
       return 'bg-slate-100 text-slate-700';
   };
 
@@ -504,7 +504,7 @@ export const Clients: React.FC = () => {
 
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         {isLoading ? (
-            <div className="flex justify-center p-12"><Loader2 className="w-8 h-8 animate-spin text-fluxabank-600" /></div>
+            <div className="flex justify-center p-12"><Loader2 className="w-8 h-8 animate-spin text-fluxabank-500" /></div>
         ) : (
                     <>
                         <div className="overflow-x-auto">
@@ -534,7 +534,7 @@ export const Clients: React.FC = () => {
                                     <td className="px-6 py-4">
                                         {isPrimaryAccount(user) ? (
                                             <div className="flex flex-col gap-1">
-                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-orange-100 text-orange-700">
+                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-orange-100 text-orange-600">
                                                     Principal
                                                 </span>
                                                 {!!Number((user as any).linked_accounts_count || 0) && (
@@ -545,7 +545,7 @@ export const Clients: React.FC = () => {
                                             </div>
                                         ) : (
                                             <div className="flex flex-col gap-1">
-                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-orange-100 text-orange-700">
+                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-orange-100 text-orange-600">
                                                     Vinculada
                                                 </span>
                                                 <span className="text-[11px] text-slate-500">
@@ -557,7 +557,7 @@ export const Clients: React.FC = () => {
                   <td className="px-6 py-4">
                      <span className={`px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 ${
                         user.doc_status === DocStatus.APPROVED ? 'bg-green-100 text-green-700' : 
-                        user.doc_status === DocStatus.REJECTED ? 'bg-red-100 text-red-700' :
+                        user.doc_status === DocStatus.REJECTED ? 'bg-fluxabank-100 text-fluxabank-600' :
                         'bg-amber-100 text-amber-700'
                     }`}>
                         {user.doc_status === DocStatus.APPROVED && <CheckCircle className="w-3 h-3"/>}
@@ -569,7 +569,7 @@ export const Clients: React.FC = () => {
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 ${
                         user.status === UserStatus.ACTIVE ? 'bg-green-100 text-green-700' : 
-                        user.status === UserStatus.BLOCKED ? 'bg-red-100 text-red-700' :
+                        user.status === UserStatus.BLOCKED ? 'bg-fluxabank-100 text-fluxabank-600' :
                         user.status === UserStatus.PENDING ? 'bg-amber-100 text-amber-700' :
                         'bg-slate-100 text-slate-600'
                     }`}>
@@ -580,7 +580,7 @@ export const Clients: React.FC = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 text-end">
-                    <button className="text-fluxabank-600 font-medium text-sm hover:underline">Gerenciar</button>
+                    <button className="text-fluxabank-500 font-medium text-sm hover:underline">Gerenciar</button>
                   </td>
                                         </tr>
                                     ))}
@@ -640,43 +640,43 @@ export const Clients: React.FC = () => {
                       <div className="grid grid-cols-2 md:flex md:flex-wrap gap-0">
                           <button onClick={() => setActiveTab('PROFILE')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'PROFILE' 
-                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
                           }`}>
                               <UserIcon className="w-4 h-4 flex-shrink-0" /> <span>Perfil</span>
                           </button>
                           <button onClick={() => setActiveTab('WALLET')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'WALLET' 
-                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
                           }`}>
                               <WalletIcon className="w-4 h-4 flex-shrink-0" /> <span>Carteira</span>
                           </button>
                           <button onClick={() => setActiveTab('FEES')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'FEES' 
-                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
                           }`}>
                               <Settings2 className="w-4 h-4 flex-shrink-0" /> <span>Taxas</span>
                           </button>
                           <button onClick={() => setActiveTab('PROVIDER')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'PROVIDER' 
-                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
                           }`}>
                               <Building2 className="w-4 h-4 flex-shrink-0" /> <span>Provider</span>
                           </button>
                           <button onClick={() => setActiveTab('CONFIG')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'CONFIG' 
-                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
                           }`}>
                               <Settings2 className="w-4 h-4 flex-shrink-0" /> <span>Config</span>
                           </button>
                           <button onClick={() => setActiveTab('DOCUMENTS')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'DOCUMENTS' 
-                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
                           }`}>
                               <FileText className="w-4 h-4 flex-shrink-0" /> <span>Docs</span>
                           </button>
@@ -685,7 +685,7 @@ export const Clients: React.FC = () => {
 
                   <div className="flex-1 overflow-y-auto p-6 bg-slate-50/30">
                       {loadingDetails ? (
-                          <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-fluxabank-600" /></div>
+                          <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-fluxabank-500" /></div>
                       ) : (
                           <>
                             {activeTab === 'PROFILE' && (
@@ -699,7 +699,7 @@ export const Clients: React.FC = () => {
                                                 <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Status Atual</label>
                                                 <span className={`px-3 py-1 rounded-lg text-sm font-bold ${
                                                     selectedUser.doc_status === DocStatus.APPROVED ? 'bg-green-100 text-green-700' : 
-                                                    selectedUser.doc_status === DocStatus.REJECTED ? 'bg-red-100 text-red-700' :
+                                                    selectedUser.doc_status === DocStatus.REJECTED ? 'bg-fluxabank-100 text-fluxabank-600' :
                                                     'bg-amber-100 text-amber-700'
                                                 }`}>
                                                     {selectedUser.doc_status === 'APPROVED' ? 'APROVADO / ATIVO' : selectedUser.doc_status || 'PENDENTE'}
@@ -718,7 +718,7 @@ export const Clients: React.FC = () => {
                                                         <button 
                                                             disabled={actionLoading}
                                                             onClick={handleSuspendAccount}
-                                                            className="w-full py-3 bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-300 rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+                                                            className="w-full py-3 bg-white hover:bg-fluxabank-50 text-fluxabank-500 border border-fluxabank-200 hover:border-fluxabank-300 rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
                                                         >
                                                             {actionLoading ? <Loader2 className="animate-spin w-4 h-4" /> : <Ban className="w-4 h-4" />}
                                                             Suspender Conta (Bloquear)
@@ -749,7 +749,7 @@ export const Clients: React.FC = () => {
                                                         <button 
                                                             disabled={actionLoading}
                                                             onClick={() => handleUpdateDocStatus(DocStatus.REJECTED)}
-                                                            className="flex-1 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
+                                                            className="flex-1 py-2 bg-fluxabank-500 hover:bg-fluxabank-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
                                                         >
                                                             Rejeitar
                                                         </button>
@@ -809,7 +809,7 @@ export const Clients: React.FC = () => {
                                                                 <label className="text-xs text-slate-500 font-bold uppercase block mb-1">App ID</label>
                                                                 <code className="text-sm font-mono text-slate-800 break-all block">{selectedUser.app_id || selectedUser.appId || '-'}</code>
                                                             </div>
-                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-fluxabank-600 transition-colors ml-3 flex-shrink-0" />
+                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-fluxabank-500 transition-colors ml-3 flex-shrink-0" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -830,7 +830,7 @@ export const Clients: React.FC = () => {
                                                                 <label className="text-xs text-slate-500 font-bold uppercase block mb-1">Client Secret</label>
                                                                 <code className="text-sm font-mono text-slate-800 break-all block">{selectedUser.client_secret || selectedUser.appSecret || '-'}</code>
                                                             </div>
-                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-fluxabank-600 transition-colors ml-3 flex-shrink-0" />
+                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-fluxabank-500 transition-colors ml-3 flex-shrink-0" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -891,7 +891,7 @@ export const Clients: React.FC = () => {
                                                                 <p className="font-medium text-slate-800">{account.name}</p>
                                                                 <p className="text-xs text-slate-500">ID #{account.id} • {account.email || 'sem email'} • {account.doc_status || 'PENDING'}</p>
                                                             </div>
-                                                            <span className={`px-2 py-1 rounded-full text-xs font-bold ${account.is_owner ? 'bg-orange-100 text-orange-700' : 'bg-orange-100 text-orange-700'}`}>
+                                                            <span className={`px-2 py-1 rounded-full text-xs font-bold ${account.is_owner ? 'bg-orange-100 text-orange-600' : 'bg-orange-100 text-orange-600'}`}>
                                                                 {account.is_owner ? 'Principal' : 'Vinculada'}
                                                             </span>
                                                         </div>
@@ -1013,7 +1013,7 @@ export const Clients: React.FC = () => {
                                     {/* PIX SAÍDA */}
                                     <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-800 flex items-center gap-2">
-                                            <ArrowUpRight className="w-5 h-5 text-red-500" />
+                                            <ArrowUpRight className="w-5 h-5 text-fluxabank-500" />
                                             Pix Saída (Cash-out)
                                         </h5>
                                         
@@ -1115,7 +1115,7 @@ export const Clients: React.FC = () => {
                                         
                                         {loadingDetails ? (
                                             <div className="flex justify-center py-8">
-                                                <Loader2 className="w-6 h-6 animate-spin text-fluxabank-600" />
+                                                <Loader2 className="w-6 h-6 animate-spin text-fluxabank-500" />
                                             </div>
                                         ) : providers.length === 0 ? (
                                             <div className="text-center py-8 text-slate-500">
@@ -1128,7 +1128,7 @@ export const Clients: React.FC = () => {
                                                         key={provider.id}
                                                         className={`flex items-start gap-4 p-4 border-2 rounded-lg cursor-pointer transition-all ${
                                                             selectedProvider === provider.code
-                                                                ? 'border-fluxabank-600 bg-fluxabank-50'
+                                                                ? 'border-fluxabank-500 bg-fluxabank-50'
                                                                 : 'border-slate-200 hover:border-slate-300'
                                                         } ${!provider.active ? 'opacity-60' : ''}`}
                                                     >
@@ -1139,7 +1139,7 @@ export const Clients: React.FC = () => {
                                                             checked={selectedProvider === provider.code}
                                                             onChange={(e) => setSelectedProvider(e.target.value)}
                                                             disabled={!provider.active}
-                                                            className="mt-1 w-4 h-4 text-fluxabank-600 focus:ring-fluxabank-500"
+                                                            className="mt-1 w-4 h-4 text-fluxabank-500 focus:ring-fluxabank-500"
                                                         />
                                                         <div className="flex-1">
                                                             <div className="flex items-center gap-2 mb-1">
@@ -1152,7 +1152,7 @@ export const Clients: React.FC = () => {
                                                             <div className="text-xs text-slate-500 mt-1">{provider.base_url}</div>
                                                         </div>
                                                         {selectedProvider === provider.code && (
-                                                            <CheckCircle className="w-5 h-5 text-fluxabank-600" />
+                                                            <CheckCircle className="w-5 h-5 text-fluxabank-500" />
                                                         )}
                                                     </label>
                                                 ))}
@@ -1209,7 +1209,7 @@ export const Clients: React.FC = () => {
                                                                 <h5 className="font-bold text-slate-800 text-sm">{documentType}</h5>
                                                                 <span className={`text-xs px-2 py-1 rounded-full font-bold ${
                                                                     isImage ? 'bg-blue-100 text-blue-700' :
-                                                                    isPdf ? 'bg-red-100 text-red-700' :
+                                                                    isPdf ? 'bg-fluxabank-100 text-fluxabank-600' :
                                                                     'bg-slate-100 text-slate-700'
                                                                 }`}>
                                                                     {isImage ? 'Imagem' : isPdf ? 'PDF' : 'Arquivo'}
@@ -1235,7 +1235,7 @@ export const Clients: React.FC = () => {
                                                             
                                                             <button
                                                                 onClick={() => openDocumentSafe(documentLink)}
-                                                                className="w-full py-2 px-3 bg-fluxabank-600 hover:bg-fluxabank-700 text-white rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2"
+                                                                className="w-full py-2 px-3 bg-fluxabank-500 hover:bg-fluxabank-600 text-white rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2"
                                                             >
                                                                 <Eye className="w-4 h-4" />
                                                                 Visualizar

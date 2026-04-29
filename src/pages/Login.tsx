@@ -73,7 +73,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-fluxabank-500/10 rounded-full blur-3xl" />
         <div className="absolute top-1/2 -left-32 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-fluxabank-600/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-fluxabank-500/5 rounded-full blur-3xl" />
       </div>
 
       {/* Left side - Branding */}
@@ -127,8 +127,8 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
             {error && (
               <div className={`p-4 rounded-lg flex items-center gap-3 border ${
                 requires2FA 
-                  ? 'bg-red-50 border-red-200 text-red-700' 
-                  : 'bg-red-50 border-red-200 text-red-700'
+                  ? 'bg-fluxabank-50 border-fluxabank-200 text-fluxabank-600' 
+                  : 'bg-fluxabank-50 border-fluxabank-200 text-fluxabank-600'
               }`}>
                 <AlertCircle className="w-5 h-5 shrink-0" />
                 <span className="text-sm font-medium">{error}</span>
@@ -142,7 +142,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-700 ml-0.5">Email</label>
                   <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-fluxabank-600 transition-colors duration-200">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-fluxabank-500 transition-colors duration-200">
                       <Mail className="w-5 h-5" />
                     </div>
                     <input
@@ -161,7 +161,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-700 ml-0.5">Senha</label>
                   <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-fluxabank-600 transition-colors duration-200">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-fluxabank-500 transition-colors duration-200">
                       <Lock className="w-5 h-5" />
                     </div>
                     <input
@@ -192,7 +192,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-slate-700 ml-0.5">Código TOTP</label>
                     <div className="relative group">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-orange-600 transition-colors duration-200">
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-orange-500 transition-colors duration-200">
                         <ShieldCheck className="w-5 h-5" />
                       </div>
                       <input
@@ -229,7 +229,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
               <button
                 type="submit"
                 disabled={loading || (requires2FA && !twoFACode && !recoveryCode)}
-                className="w-full bg-gradient-to-r from-fluxabank-600 to-orange-600 hover:from-fluxabank-700 hover:to-orange-700 text-white py-3.5 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:scale-95"
+                className="w-full bg-gradient-to-r from-fluxabank-500 to-orange-500 hover:from-fluxabank-600 hover:to-orange-600 text-white py-3.5 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:scale-95"
               >
                 {loading ? (
                   <>

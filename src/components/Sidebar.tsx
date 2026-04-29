@@ -74,7 +74,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
               className={`
                 w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200
                 ${isActive
-                  ? 'bg-fluxabank-600 text-white shadow-md shadow-fluxabank-900/20 translate-x-1'
+                  ? 'bg-fluxabank-500 text-white shadow-md shadow-fluxabank-900/20 translate-x-1'
                   : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100 hover:translate-x-1'
                 }
               `}
@@ -82,7 +82,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
               <item.icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-500 group-hover:text-slate-300'}`} />
               {item.label}
               {item.id === AppView.MED && (
-                <span className="ml-auto w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span className="ml-auto w-2 h-2 rounded-full bg-fluxabank-500 animate-pulse"></span>
               )}
             </button>
           );
@@ -92,7 +92,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
       <div className="p-4 border-t border-slate-800">
         <button
           onClick={onLogout}
-          className="flex items-center gap-3 px-3 py-3 w-full rounded-lg text-sm font-medium text-slate-400 hover:text-red-400 hover:bg-slate-800 transition-colors"
+          className="flex items-center gap-3 px-3 py-3 w-full rounded-lg text-sm font-medium text-slate-400 hover:text-fluxabank-400 hover:bg-slate-800 transition-colors"
         >
           <LogOut className="w-5 h-5" />
           Sair do Sistema

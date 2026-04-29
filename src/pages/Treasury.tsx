@@ -723,7 +723,7 @@ export const Treasury: React.FC = () => {
               <button
                 onClick={() => setViewMode('DAILY')}
                 className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${viewMode === 'DAILY'
-                    ? 'bg-fluxabank-100 text-fluxabank-700'
+                    ? 'bg-fluxabank-100 text-fluxabank-600'
                     : 'text-slate-500 hover:bg-slate-50'
                   }`}
               >
@@ -733,7 +733,7 @@ export const Treasury: React.FC = () => {
               <button
                 onClick={() => setViewMode('MONTHLY')}
                 className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${viewMode === 'MONTHLY'
-                    ? 'bg-fluxabank-100 text-fluxabank-700'
+                    ? 'bg-fluxabank-100 text-fluxabank-600'
                     : 'text-slate-500 hover:bg-slate-50'
                   }`}
               >
@@ -750,7 +750,7 @@ export const Treasury: React.FC = () => {
             </button>
             <button
               onClick={() => handleExportXLS()}
-              className="flex items-center gap-2 px-4 py-2 bg-fluxabank-600 text-white rounded-lg hover:bg-fluxabank-700 text-sm font-medium shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-fluxabank-500 text-white rounded-lg hover:bg-fluxabank-600 text-sm font-medium shadow-sm"
             >
               <Download className="w-4 h-4" />
               Exportar XLS
@@ -894,7 +894,7 @@ export const Treasury: React.FC = () => {
             </button>
             <button
               onClick={() => setShowFilters(false)}
-              className="ml-auto px-4 py-2 bg-fluxabank-600 text-white rounded-lg hover:bg-fluxabank-700 text-sm font-medium"
+              className="ml-auto px-4 py-2 bg-fluxabank-500 text-white rounded-lg hover:bg-fluxabank-600 text-sm font-medium"
             >
               Aplicar
             </button>
@@ -1000,7 +1000,7 @@ export const Treasury: React.FC = () => {
                     <td className="px-6 py-4 text-right font-mono font-medium text-emerald-700">
                       R$ {formatMoney(item.totalCollected || 0)}
                     </td>
-                    <td className="px-6 py-4 text-right font-mono font-medium text-rose-700">
+                    <td className="px-6 py-4 text-right font-mono font-medium text-orange-600">
                       R$ {formatMoney(item.totalReversed || 0)}
                     </td>
                     <td className="px-6 py-4 text-right font-mono font-semibold text-slate-900">
@@ -1128,7 +1128,7 @@ export const Treasury: React.FC = () => {
                         <span
                           className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${(item.type || '').includes('CREDIT')
                               ? 'bg-green-100 text-green-700'
-                              : 'bg-red-100 text-red-700'
+                              : 'bg-fluxabank-100 text-fluxabank-600'
                             }`}
                         >
                           {item.type}
@@ -1233,7 +1233,7 @@ export const Treasury: React.FC = () => {
                         <td className="px-4 py-3">
                           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${(tx.type || '').includes('CREDIT')
                             ? 'bg-green-100 text-green-700'
-                            : 'bg-red-100 text-red-700'
+                            : 'bg-fluxabank-100 text-fluxabank-600'
                             }`}>
                             {tx.type}
                           </span>

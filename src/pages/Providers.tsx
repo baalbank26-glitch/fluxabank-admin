@@ -201,7 +201,7 @@ export const Providers: React.FC = () => {
           </button>
           <button 
             onClick={openCreateModal}
-            className="px-4 py-2 bg-fluxabank-600 hover:bg-fluxabank-700 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
+            className="px-4 py-2 bg-fluxabank-500 hover:bg-fluxabank-600 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
           >
             <Plus className="w-5 h-5" />
             Novo Provider
@@ -225,7 +225,7 @@ export const Providers: React.FC = () => {
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         {isLoading ? (
           <div className="flex justify-center p-12">
-            <Loader2 className="w-8 h-8 animate-spin text-fluxabank-600" />
+            <Loader2 className="w-8 h-8 animate-spin text-fluxabank-500" />
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -309,7 +309,7 @@ export const Providers: React.FC = () => {
                         <button
                           onClick={() => handleDelete(provider)}
                           disabled={actionLoading}
-                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-2 text-fluxabank-500 hover:bg-fluxabank-50 rounded-lg transition-colors"
                           title="Excluir"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -413,7 +413,7 @@ export const Providers: React.FC = () => {
                         id="active"
                         checked={formData.active}
                         onChange={(e) => setFormData({ ...formData, active: e.target.checked })}
-                        className="w-4 h-4 text-fluxabank-600 border-slate-300 rounded focus:ring-fluxabank-500"
+                        className="w-4 h-4 text-fluxabank-500 border-slate-300 rounded focus:ring-fluxabank-500"
                       />
                       <label htmlFor="active" className="text-sm font-medium text-slate-700">
                         Provider ativo (pode ser usado para processar transações)

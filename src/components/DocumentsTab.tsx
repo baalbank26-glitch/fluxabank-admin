@@ -134,7 +134,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
             {/* Status Badge */}
             <div className={`px-4 py-2 text-xs font-bold flex items-center justify-between ${
               doc.status === 'APPROVED' ? 'bg-green-100 text-green-700' :
-              doc.status === 'REJECTED' ? 'bg-red-100 text-red-700' :
+              doc.status === 'REJECTED' ? 'bg-fluxabank-100 text-fluxabank-600' :
               'bg-amber-100 text-amber-700'
             }`}>
               <span className="flex items-center gap-1">
@@ -193,7 +193,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
                   href={doc.document_link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 px-3 py-2 text-fluxabank-600 border border-fluxabank-300 rounded text-xs font-medium hover:bg-fluxabank-50 transition-colors flex items-center justify-center gap-1"
+                  className="flex-1 px-3 py-2 text-fluxabank-500 border border-fluxabank-300 rounded text-xs font-medium hover:bg-fluxabank-50 transition-colors flex items-center justify-center gap-1"
                 >
                   <Download className="w-3 h-3" /> Download
                 </a>
@@ -209,7 +209,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
 
                 <button
                   onClick={() => handleDeleteDocument(doc.id)}
-                  className="px-3 py-2 bg-red-50 text-red-600 rounded text-xs font-medium hover:bg-red-100 transition-colors"
+                  className="px-3 py-2 bg-fluxabank-50 text-fluxabank-500 rounded text-xs font-medium hover:bg-fluxabank-100 transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -239,7 +239,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
                   </button>
                   <button
                     onClick={() => handleRejectDocument(doc.id)}
-                    className="flex-1 px-3 py-2 bg-red-600 text-white rounded text-xs font-medium hover:bg-red-700 transition-colors flex items-center justify-center gap-1"
+                    className="flex-1 px-3 py-2 bg-fluxabank-500 text-white rounded text-xs font-medium hover:bg-fluxabank-600 transition-colors flex items-center justify-center gap-1"
                   >
                     <AlertCircle className="w-3 h-3" /> Rejeitar
                   </button>

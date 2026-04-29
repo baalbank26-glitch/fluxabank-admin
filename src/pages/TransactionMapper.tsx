@@ -82,7 +82,7 @@ export const TransactionMapper: React.FC = () => {
           <button
             onClick={handleMapTransaction}
             disabled={loading || !transactionId.trim()}
-            className="px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 disabled:opacity-50 text-xs font-semibold inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-xs font-semibold inline-flex items-center gap-2"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
             Mapear
@@ -121,7 +121,7 @@ export const TransactionMapper: React.FC = () => {
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Logs</span><div className="text-slate-100 font-semibold">{result?.mapped?.stats?.totalLogs ?? 0}</div></div>
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Entregues</span><div className="text-emerald-300 font-semibold">{result?.mapped?.stats?.delivered ?? 0}</div></div>
-                  <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Falhas</span><div className="text-rose-300 font-semibold">{result?.mapped?.stats?.failed ?? 0}</div></div>
+                  <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Falhas</span><div className="text-orange-300 font-semibold">{result?.mapped?.stats?.failed ?? 0}</div></div>
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Primeiro log</span><div className="text-slate-100">{result?.mapped?.stats?.firstSeen ? new Date(result.mapped.stats.firstSeen).toLocaleString() : '-'}</div></div>
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Último log</span><div className="text-slate-100">{result?.mapped?.stats?.lastSeen ? new Date(result.mapped.stats.lastSeen).toLocaleString() : '-'}</div></div>
                 </div>

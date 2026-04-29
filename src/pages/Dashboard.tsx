@@ -236,8 +236,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
         <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all min-w-0 group">
           <div className="flex items-start justify-between mb-4">
             <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Bloqueados</p>
-            <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
-              <Users className="w-5 h-5 text-red-400" />
+            <div className="w-10 h-10 rounded-lg bg-fluxabank-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
+              <Users className="w-5 h-5 text-fluxabank-400" />
             </div>
           </div>
 
@@ -245,8 +245,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
             <Loader2 className="w-6 h-6 animate-spin text-slate-300" />
           ) : (
             <>
-              <h3 className="text-3xl font-bold text-red-600">{stats.blockedClients}</h3>
-              <p className="text-xs text-red-600 mt-3 font-semibold">Acesso restrito</p>
+              <h3 className="text-3xl font-bold text-fluxabank-500">{stats.blockedClients}</h3>
+              <p className="text-xs text-fluxabank-500 mt-3 font-semibold">Acesso restrito</p>
             </>
           )}
         </div>
