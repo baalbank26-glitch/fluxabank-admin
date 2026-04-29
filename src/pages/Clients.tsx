@@ -1,4 +1,4 @@
-Ôªø
+
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { User, UserStatus, DocStatus, Wallet, LedgerItem, Provider } from '../types/index';
@@ -121,7 +121,7 @@ export const Clients: React.FC = () => {
 
   const openDocumentSafe = (documentLink: string) => {
     if (!documentLink) {
-      toast.error('Documento n√£o dispon√≠vel');
+      toast.error('Documento n„o disponÌvel');
       return;
     }
 
@@ -178,7 +178,7 @@ export const Clients: React.FC = () => {
             pix_out_enabled: user.pix_out_enabled ?? true,
     });
     
-    // Carregar documentos do usu√°rio
+    // Carregar documentos do usu·rio
     try {
       const docs = await api.admin.documents.getUserDocuments(user.id);
       setUserDocuments(Array.isArray(docs) ? docs : []);
@@ -204,7 +204,7 @@ export const Clients: React.FC = () => {
       setProviders([]);
     }
     
-    // Carregar taxas do usu√°rio
+    // Carregar taxas do usu·rio
     try {
         const feesData = await api.admin.users.getFees(user.id);
         setFeesForm({ 
@@ -277,11 +277,11 @@ export const Clients: React.FC = () => {
           }
           
           if (status === DocStatus.APPROVED) {
-                openSuccessModal('Conta aprovada', 'A conta do usu√°rio foi aprovada com sucesso.');
+                openSuccessModal('Conta aprovada', 'A conta do usu·rio foi aprovada com sucesso.');
           } else if (status === DocStatus.REJECTED) {
-                 openSuccessModal('Conta suspensa/rejeitada', 'A conta do usu√°rio foi atualizada com sucesso.');
+                 openSuccessModal('Conta suspensa/rejeitada', 'A conta do usu·rio foi atualizada com sucesso.');
           } else {
-                 openSuccessModal('Status atualizado', `O status do usu√°rio foi atualizado para ${status}.`);
+                 openSuccessModal('Status atualizado', `O status do usu·rio foi atualizado para ${status}.`);
           }
           
           const updatedUser = { ...selectedUser, doc_status: status as DocStatus, doc_status_notes: notesToSend };
@@ -300,7 +300,7 @@ export const Clients: React.FC = () => {
       if (!selectedUser) return;
       setActionLoading(true);
       try {
-          // Converter strings para n√∫meros
+          // Converter strings para n˙meros
           const pixInFeeValue = parseFloat((feesForm.pixInFeeValue || '0').toString().replace(',', '.')) || 0;
           const pixInPercent = parseFloat((feesForm.pixInPercent || '0').toString().replace(',', '.')) || 0;
           const pixOutFeeValue = parseFloat((feesForm.pixOutFeeValue || '0').toString().replace(',', '.')) || 0;
@@ -308,8 +308,8 @@ export const Clients: React.FC = () => {
           const otcFeePercentage = parseFloat((feesForm.otcFeePercentage || '0').toString().replace(',', '.')) || 0;
           
           // Determinar o tipo de taxa baseado no que foi configurado
-          // Se houver taxa fixa, usar FIXED, caso contr√°rio PERCENT
-          // Mas sempre enviar ambos os valores (fixa e percentual) para permitir combina√ß√£o
+          // Se houver taxa fixa, usar FIXED, caso contr·rio PERCENT
+          // Mas sempre enviar ambos os valores (fixa e percentual) para permitir combinaÁ„o
           const pixInFeeType = pixInFeeValue > 0 ? 'FIXED' : (pixInPercent > 0 ? 'PERCENT' : 'PERCENT');
           const pixOutFeeType = pixOutFeeValue > 0 ? 'FIXED' : (pixOutPercent > 0 ? 'PERCENT' : 'PERCENT');
           
@@ -325,7 +325,7 @@ export const Clients: React.FC = () => {
           );
           
           
-          // Atualiza o usu√°rio selecionado e a lista local com as novas taxas
+          // Atualiza o usu·rio selecionado e a lista local com as novas taxas
           const updatedUser = { 
               ...selectedUser, 
               pixInPercent: pixInPercent, 
@@ -339,7 +339,7 @@ export const Clients: React.FC = () => {
           setSelectedUser(updatedUser);
           setUsers(prev => prev.map(u => u.id === selectedUser.id ? updatedUser : u));
           
-          openSuccessModal('Taxas atualizadas', 'As taxas do usu√°rio foram salvas com sucesso.');
+          openSuccessModal('Taxas atualizadas', 'As taxas do usu·rio foram salvas com sucesso.');
       } catch (e) {
           toast.error('Erro ao salvar taxas');
       } finally {
@@ -357,13 +357,13 @@ export const Clients: React.FC = () => {
           const result = await api.admin.users.updateProvider(selectedUser.id, selectedProvider);
           if (result.ok == true) {
               setUserProvider(selectedProvider);
-              // Atualiza o provider no objeto do usu√°rio
+              // Atualiza o provider no objeto do usu·rio
               const updatedUser = { ...selectedUser, provider: selectedProvider };
               setSelectedUser(updatedUser);
-              // Atualiza tamb√©m na lista de usu√°rios
+              // Atualiza tambÈm na lista de usu·rios
               setUsers(prev => prev.map(u => u.id === selectedUser.id ? updatedUser : u));
               const providerName = providers.find(p => p.code === selectedProvider)?.name || selectedProvider;
-              openSuccessModal('Provider atualizado', `O provider do usu√°rio foi alterado para ${providerName}.`);
+              openSuccessModal('Provider atualizado', `O provider do usu·rio foi alterado para ${providerName}.`);
           } else {
               toast.error('Erro ao salvar provider');
           }
@@ -403,13 +403,13 @@ export const Clients: React.FC = () => {
               };
               setSelectedUser(updatedUser);
               setUsers(prev => prev.map(u => u.id === selectedUser.id ? updatedUser : u));
-              openSuccessModal('Configura√ß√µes atualizadas', 'As configura√ß√µes do usu√°rio foram salvas com sucesso.');
+              openSuccessModal('ConfiguraÁıes atualizadas', 'As configuraÁıes do usu·rio foram salvas com sucesso.');
           } else {
-              toast.error('Erro ao salvar configura√ß√µes');
+              toast.error('Erro ao salvar configuraÁıes');
           }
       } catch (e) {
           console.error(e);
-          toast.error('Erro ao salvar configura√ß√µes');
+          toast.error('Erro ao salvar configuraÁıes');
       } finally {
           setActionLoading(false);
       }
@@ -417,13 +417,13 @@ export const Clients: React.FC = () => {
 
   useEffect(() => {
       if (activeTab === 'PROVIDER' && selectedUser) {
-          // O provider j√° vem nos dados do usu√°rio
+          // O provider j· vem nos dados do usu·rio
           const providerCode = selectedUser.provider || null;
           setUserProvider(providerCode);
           setSelectedProvider(providerCode || '');
       }
       if (activeTab === 'CONFIG' && selectedUser) {
-          // Carregar configura√ß√µes do usu√°rio
+          // Carregar configuraÁıes do usu·rio
           setConfigForm({
               webhook_url: selectedUser.webhook_url || '',
               webhook_url_pix_in: selectedUser.webhook_url_pix_in || '',
@@ -438,7 +438,7 @@ export const Clients: React.FC = () => {
   }, [activeTab, selectedUser]);
 
   const handleSuspendAccount = () => {
-    const reason = prompt('Motivo da suspens√£o (ser√° salvo nas notas):', 'Infra√ß√£o dos termos de uso');
+    const reason = prompt('Motivo da suspens„o (ser· salvo nas notas):', 'InfraÁ„o dos termos de uso');
     if (reason) {
         handleUpdateDocStatus(DocStatus.REJECTED, `CONTA SUSPENSA: ${reason}`);
     }
@@ -468,7 +468,7 @@ export const Clients: React.FC = () => {
   const getTypeStyle = (type: string) => {
       const t = type?.toUpperCase() || '';
       if (t === 'CREDIT' || t === 'PIX_IN') return 'bg-green-100 text-green-700';
-      if (t === 'DEBIT' || t === 'PIX_OUT') return 'bg-red-100 text-red-700';
+      if (t === 'DEBIT' || t === 'PIX_OUT') return 'bg-orange-100 text-orange-700';
       return 'bg-slate-100 text-slate-700';
   };
 
@@ -477,7 +477,7 @@ export const Clients: React.FC = () => {
       <div className="flex justify-between items-center">
         <div>
                     <div className="flex items-center gap-2">
-                        <h2 className="text-2xl font-bold text-slate-800">Gest√£o de Usu√°rios</h2>
+                        <h2 className="text-2xl font-bold text-slate-800">Gest„o de Usu·rios</h2>
                         <span className="px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold">
                             Ativos: {activeUsersCount}
                         </span>
@@ -495,7 +495,7 @@ export const Clients: React.FC = () => {
           <input 
             type="text" 
             placeholder="Buscar por nome ou email..." 
-            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50"
+            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -504,7 +504,7 @@ export const Clients: React.FC = () => {
 
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         {isLoading ? (
-            <div className="flex justify-center p-12"><Loader2 className="w-8 h-8 animate-spin text-red-600" /></div>
+            <div className="flex justify-center p-12"><Loader2 className="w-8 h-8 animate-spin text-orange-600" /></div>
         ) : (
                     <>
                         <div className="overflow-x-auto">
@@ -512,16 +512,16 @@ export const Clients: React.FC = () => {
                                 <thead className="bg-slate-50 border-b border-slate-200">
                                     <tr>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">ID</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Usu√°rio</th>
+                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Usu·rio</th>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Tipo Conta</th>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status KYC</th>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status Conta</th>
-                                        <th className="px-6 py-4 text-end text-xs font-bold text-slate-500 uppercase">A√ß√µes</th>
+                                        <th className="px-6 py-4 text-end text-xs font-bold text-slate-500 uppercase">AÁıes</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-slate-100">
                                     {filteredUsers.length === 0 ? (
-                                        <tr><td colSpan={6} className="p-6 text-center text-slate-500">Nenhum usu√°rio encontrado.</td></tr>
+                                        <tr><td colSpan={6} className="p-6 text-center text-slate-500">Nenhum usu·rio encontrado.</td></tr>
                                     ) : paginatedUsers.map((user) => (
                                         <tr key={user.id} className="hover:bg-slate-50/50 cursor-pointer" onClick={() => openUserModal(user)}>
                   <td className="px-6 py-4 font-mono text-xs text-slate-500">#{user.id}</td>
@@ -557,7 +557,7 @@ export const Clients: React.FC = () => {
                   <td className="px-6 py-4">
                      <span className={`px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 ${
                         user.doc_status === DocStatus.APPROVED ? 'bg-green-100 text-green-700' : 
-                        user.doc_status === DocStatus.REJECTED ? 'bg-red-100 text-red-700' :
+                        user.doc_status === DocStatus.REJECTED ? 'bg-orange-100 text-orange-700' :
                         'bg-amber-100 text-amber-700'
                     }`}>
                         {user.doc_status === DocStatus.APPROVED && <CheckCircle className="w-3 h-3"/>}
@@ -569,7 +569,7 @@ export const Clients: React.FC = () => {
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 ${
                         user.status === UserStatus.ACTIVE ? 'bg-green-100 text-green-700' : 
-                        user.status === UserStatus.BLOCKED ? 'bg-red-100 text-red-700' :
+                        user.status === UserStatus.BLOCKED ? 'bg-orange-100 text-orange-700' :
                         user.status === UserStatus.PENDING ? 'bg-amber-100 text-amber-700' :
                         'bg-slate-100 text-slate-600'
                     }`}>
@@ -580,7 +580,7 @@ export const Clients: React.FC = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 text-end">
-                    <button className="text-red-600 font-medium text-sm hover:underline">Gerenciar</button>
+                    <button className="text-orange-600 font-medium text-sm hover:underline">Gerenciar</button>
                   </td>
                                         </tr>
                                     ))}
@@ -591,7 +591,7 @@ export const Clients: React.FC = () => {
                         {filteredUsers.length > 0 && (
                             <div className="px-6 py-4 border-t border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                                 <p className="text-sm text-slate-600">
-                                    Mostrando {pageStart + 1} a {Math.min(pageStart + USERS_PER_PAGE, filteredUsers.length)} de {filteredUsers.length} usu√°rios
+                                    Mostrando {pageStart + 1} a {Math.min(pageStart + USERS_PER_PAGE, filteredUsers.length)} de {filteredUsers.length} usu·rios
                                 </p>
                                 <div className="flex items-center gap-2">
                                     <button
@@ -611,7 +611,7 @@ export const Clients: React.FC = () => {
                                         disabled={safeCurrentPage >= totalPages}
                                         className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 bg-white hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        Pr√≥xima
+                                        PrÛxima
                                     </button>
                                 </div>
                             </div>
@@ -625,7 +625,7 @@ export const Clients: React.FC = () => {
               <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
                   <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
                       <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-cyan-500 text-white flex items-center justify-center font-bold text-xl">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-cyan-500 text-white flex items-center justify-center font-bold text-xl">
                               {(selectedUser.name || '?').charAt(0).toUpperCase()}
                           </div>
                           <div>
@@ -640,43 +640,43 @@ export const Clients: React.FC = () => {
                       <div className="grid grid-cols-2 md:flex md:flex-wrap gap-0">
                           <button onClick={() => setActiveTab('PROFILE')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'PROFILE' 
-                                ? 'border-red-600 text-red-600 bg-red-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-red-600 hover:bg-slate-50'
+                                ? 'border-orange-600 text-orange-600 bg-orange-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-orange-600 hover:bg-slate-50'
                           }`}>
                               <UserIcon className="w-4 h-4 flex-shrink-0" /> <span>Perfil</span>
                           </button>
                           <button onClick={() => setActiveTab('WALLET')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'WALLET' 
-                                ? 'border-red-600 text-red-600 bg-red-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-red-600 hover:bg-slate-50'
+                                ? 'border-orange-600 text-orange-600 bg-orange-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-orange-600 hover:bg-slate-50'
                           }`}>
                               <WalletIcon className="w-4 h-4 flex-shrink-0" /> <span>Carteira</span>
                           </button>
                           <button onClick={() => setActiveTab('FEES')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'FEES' 
-                                ? 'border-red-600 text-red-600 bg-red-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-red-600 hover:bg-slate-50'
+                                ? 'border-orange-600 text-orange-600 bg-orange-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-orange-600 hover:bg-slate-50'
                           }`}>
                               <Settings2 className="w-4 h-4 flex-shrink-0" /> <span>Taxas</span>
                           </button>
                           <button onClick={() => setActiveTab('PROVIDER')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'PROVIDER' 
-                                ? 'border-red-600 text-red-600 bg-red-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-red-600 hover:bg-slate-50'
+                                ? 'border-orange-600 text-orange-600 bg-orange-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-orange-600 hover:bg-slate-50'
                           }`}>
                               <Building2 className="w-4 h-4 flex-shrink-0" /> <span>Provider</span>
                           </button>
                           <button onClick={() => setActiveTab('CONFIG')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'CONFIG' 
-                                ? 'border-red-600 text-red-600 bg-red-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-red-600 hover:bg-slate-50'
+                                ? 'border-orange-600 text-orange-600 bg-orange-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-orange-600 hover:bg-slate-50'
                           }`}>
                               <Settings2 className="w-4 h-4 flex-shrink-0" /> <span>Config</span>
                           </button>
                           <button onClick={() => setActiveTab('DOCUMENTS')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'DOCUMENTS' 
-                                ? 'border-red-600 text-red-600 bg-red-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-red-600 hover:bg-slate-50'
+                                ? 'border-orange-600 text-orange-600 bg-orange-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-orange-600 hover:bg-slate-50'
                           }`}>
                               <FileText className="w-4 h-4 flex-shrink-0" /> <span>Docs</span>
                           </button>
@@ -685,7 +685,7 @@ export const Clients: React.FC = () => {
 
                   <div className="flex-1 overflow-y-auto p-6 bg-slate-50/30">
                       {loadingDetails ? (
-                          <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-red-600" /></div>
+                          <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-orange-600" /></div>
                       ) : (
                           <>
                             {activeTab === 'PROFILE' && (
@@ -699,7 +699,7 @@ export const Clients: React.FC = () => {
                                                 <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Status Atual</label>
                                                 <span className={`px-3 py-1 rounded-lg text-sm font-bold ${
                                                     selectedUser.doc_status === DocStatus.APPROVED ? 'bg-green-100 text-green-700' : 
-                                                    selectedUser.doc_status === DocStatus.REJECTED ? 'bg-red-100 text-red-700' :
+                                                    selectedUser.doc_status === DocStatus.REJECTED ? 'bg-orange-100 text-orange-700' :
                                                     'bg-amber-100 text-amber-700'
                                                 }`}>
                                                     {selectedUser.doc_status === 'APPROVED' ? 'APROVADO / ATIVO' : selectedUser.doc_status || 'PENDENTE'}
@@ -710,31 +710,31 @@ export const Clients: React.FC = () => {
                                                 <div className="pt-4 mt-2 border-t border-slate-100">
                                                     <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 flex items-center gap-3">
                                                         <CheckCircle className="w-5 h-5 text-green-600" />
-                                                        <p className="text-sm text-green-800">Este usu√°rio j√° est√° aprovado e operando. Para gest√£o de documentos, utilize o painel de conformidade.</p>
+                                                        <p className="text-sm text-green-800">Este usu·rio j· est· aprovado e operando. Para gest„o de documentos, utilize o painel de conformidade.</p>
                                                     </div>
                                                     
                                                     <div className="space-y-2">
-                                                        <label className="block text-xs font-bold text-slate-500 uppercase">A√ß√µes de Risco</label>
+                                                        <label className="block text-xs font-bold text-slate-500 uppercase">AÁıes de Risco</label>
                                                         <button 
                                                             disabled={actionLoading}
                                                             onClick={handleSuspendAccount}
-                                                            className="w-full py-3 bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-300 rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+                                                            className="w-full py-3 bg-white hover:bg-orange-50 text-orange-600 border border-orange-200 hover:border-red-300 rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
                                                         >
                                                             {actionLoading ? <Loader2 className="animate-spin w-4 h-4" /> : <Ban className="w-4 h-4" />}
                                                             Suspender Conta (Bloquear)
                                                         </button>
-                                                        <p className="text-xs text-slate-400 text-center">Isso revogar√° o acesso e rejeitar√° a documenta√ß√£o atual.</p>
+                                                        <p className="text-xs text-slate-400 text-center">Isso revogar· o acesso e rejeitar· a documentaÁ„o atual.</p>
                                                     </div>
                                                 </div>
                                             ) : (
                                                 <>
                                                     <div>
-                                                        <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Notas de An√°lise</label>
+                                                        <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Notas de An·lise</label>
                                                         <textarea 
                                                             value={docNotes}
                                                             onChange={(e) => setDocNotes(e.target.value)}
-                                                            className="w-full border border-slate-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-red-500 outline-none"
-                                                            placeholder="Motivo da aprova√ß√£o ou rejei√ß√£o..."
+                                                            className="w-full border border-slate-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-orange-500 outline-none"
+                                                            placeholder="Motivo da aprovaÁ„o ou rejeiÁ„o..."
                                                             rows={3}
                                                         />
                                                     </div>
@@ -749,7 +749,7 @@ export const Clients: React.FC = () => {
                                                         <button 
                                                             disabled={actionLoading}
                                                             onClick={() => handleUpdateDocStatus(DocStatus.REJECTED)}
-                                                            className="flex-1 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
+                                                            className="flex-1 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
                                                         >
                                                             Rejeitar
                                                         </button>
@@ -758,7 +758,7 @@ export const Clients: React.FC = () => {
                                                             onClick={() => handleUpdateDocStatus(DocStatus.UNDER_REVIEW)}
                                                             className="flex-1 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
                                                         >
-                                                            Em Revis√£o
+                                                            Em Revis„o
                                                         </button>
                                                     </div>
                                                 </>
@@ -771,7 +771,7 @@ export const Clients: React.FC = () => {
                                             <h4 className="font-bold text-green-800 mb-2 flex items-center gap-2">
                                                 <CheckCircle className="w-5 h-5" /> Credenciais Geradas
                                             </h4>
-                                            <p className="text-sm text-green-700 mb-3">Copie agora. O App Secret n√£o ser√° exibido novamente.</p>
+                                            <p className="text-sm text-green-700 mb-3">Copie agora. O App Secret n„o ser· exibido novamente.</p>
                                             <div className="space-y-2">
                                                 <div className="bg-white p-2 rounded border border-green-200">
                                                     <span className="text-xs text-slate-400 block">App ID</span>
@@ -809,7 +809,7 @@ export const Clients: React.FC = () => {
                                                                 <label className="text-xs text-slate-500 font-bold uppercase block mb-1">App ID</label>
                                                                 <code className="text-sm font-mono text-slate-800 break-all block">{selectedUser.app_id || selectedUser.appId || '-'}</code>
                                                             </div>
-                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-red-600 transition-colors ml-3 flex-shrink-0" />
+                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-orange-600 transition-colors ml-3 flex-shrink-0" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -830,7 +830,7 @@ export const Clients: React.FC = () => {
                                                                 <label className="text-xs text-slate-500 font-bold uppercase block mb-1">Client Secret</label>
                                                                 <code className="text-sm font-mono text-slate-800 break-all block">{selectedUser.client_secret || selectedUser.appSecret || '-'}</code>
                                                             </div>
-                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-red-600 transition-colors ml-3 flex-shrink-0" />
+                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-orange-600 transition-colors ml-3 flex-shrink-0" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -876,7 +876,7 @@ export const Clients: React.FC = () => {
                                         <h4 className="font-bold text-slate-800 mb-4">Contas vinculadas ao titular</h4>
 
                                         {!linkedAccountsData ? (
-                                            <p className="text-sm text-slate-500">Carregando v√≠nculos...</p>
+                                            <p className="text-sm text-slate-500">Carregando vÌnculos...</p>
                                         ) : (
                                             <div className="space-y-3">
                                                 <div className="text-sm text-slate-600">
@@ -889,7 +889,7 @@ export const Clients: React.FC = () => {
                                                         <div key={account.id} className="p-3 border border-slate-200 rounded-lg flex items-center justify-between gap-3">
                                                             <div>
                                                                 <p className="font-medium text-slate-800">{account.name}</p>
-                                                                <p className="text-xs text-slate-500">ID #{account.id} ‚Ä¢ {account.email || 'sem email'} ‚Ä¢ {account.doc_status || 'PENDING'}</p>
+                                                                <p className="text-xs text-slate-500">ID #{account.id} ï {account.email || 'sem email'} ï {account.doc_status || 'PENDING'}</p>
                                                             </div>
                                                             <span className={`px-2 py-1 rounded-full text-xs font-bold ${account.is_owner ? 'bg-indigo-100 text-indigo-700' : 'bg-cyan-100 text-cyan-700'}`}>
                                                                 {account.is_owner ? 'Principal' : 'Vinculada'}
@@ -919,7 +919,7 @@ export const Clients: React.FC = () => {
                                                 <thead className="bg-slate-50 border-b border-slate-200">
                                                     <tr>
                                                         <th className="px-4 py-3 font-medium text-slate-500">Data</th>
-                                                        <th className="px-4 py-3 font-medium text-slate-500">Descri√ß√£o</th>
+                                                        <th className="px-4 py-3 font-medium text-slate-500">DescriÁ„o</th>
                                                         <th className="px-4 py-3 font-medium text-slate-500">Tipo</th>
                                                         <th className="px-4 py-3 font-medium text-slate-500 text-right">Valor</th>
                                                     </tr>
@@ -945,7 +945,7 @@ export const Clients: React.FC = () => {
                                                         </tr>
                                                     ))}
                                                     {(userLedger || []).length === 0 && (
-                                                        <tr><td colSpan={4} className="p-4 text-center text-slate-400">Nenhuma movimenta√ß√£o</td></tr>
+                                                        <tr><td colSpan={4} className="p-4 text-center text-slate-400">Nenhuma movimentaÁ„o</td></tr>
                                                     )}
                                                 </tbody>
                                             </table>
@@ -959,8 +959,8 @@ export const Clients: React.FC = () => {
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
                                         <Settings2 className="w-5 h-5 text-blue-600 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Configura√ß√£o de Tarifas</h4>
-                                            <p className="text-sm text-blue-700">Defina as taxas retidas pelo gateway. Voc√™ pode configurar taxa fixa, percentual ou ambas simultaneamente. Se ambas estiverem configuradas, ser√£o somadas.</p>
+                                            <h4 className="font-bold text-blue-900">ConfiguraÁ„o de Tarifas</h4>
+                                            <p className="text-sm text-blue-700">Defina as taxas retidas pelo gateway. VocÍ pode configurar taxa fixa, percentual ou ambas simultaneamente. Se ambas estiverem configuradas, ser„o somadas.</p>
                                         </div>
                                     </div>
 
@@ -982,12 +982,12 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixInFeeValue}
                                                         onChange={(e) => setFeesForm({...feesForm, pixInFeeValue: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-red-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Valor fixo cobrado por transa√ß√£o (opcional)</p>
+                                                <p className="mt-1 text-xs text-slate-500">Valor fixo cobrado por transaÁ„o (opcional)</p>
                                             </div>
                                             
                                             <div>
@@ -1000,21 +1000,21 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixInPercent}
                                                         onChange={(e) => setFeesForm({...feesForm, pixInPercent: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-red-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transa√ß√£o (opcional). Se ambas estiverem configuradas, ser√£o somadas.</p>
+                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transaÁ„o (opcional). Se ambas estiverem configuradas, ser„o somadas.</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* PIX SA√çDA */}
+                                    {/* PIX SAÕDA */}
                                     <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-800 flex items-center gap-2">
-                                            <ArrowUpRight className="w-5 h-5 text-red-500" />
-                                            Pix Sa√≠da (Cash-out)
+                                            <ArrowUpRight className="w-5 h-5 text-orange-500" />
+                                            Pix SaÌda (Cash-out)
                                         </h5>
                                         
                                         <div className="space-y-4">
@@ -1028,12 +1028,12 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixOutFeeValue}
                                                         onChange={(e) => setFeesForm({...feesForm, pixOutFeeValue: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-red-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Valor fixo cobrado por transa√ß√£o (opcional)</p>
+                                                <p className="mt-1 text-xs text-slate-500">Valor fixo cobrado por transaÁ„o (opcional)</p>
                                             </div>
                                             
                                             <div>
@@ -1046,12 +1046,12 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixOutPercent}
                                                         onChange={(e) => setFeesForm({...feesForm, pixOutPercent: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-red-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transa√ß√£o (opcional). Se ambas estiverem configuradas, ser√£o somadas.</p>
+                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transaÁ„o (opcional). Se ambas estiverem configuradas, ser„o somadas.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1073,12 +1073,12 @@ export const Clients: React.FC = () => {
                                                     step="0.00001"
                                                     value={feesForm.otcFeePercentage}
                                                     onChange={(e) => setFeesForm({...feesForm, otcFeePercentage: e.target.value})}
-                                                    className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-red-500 outline-none font-mono" 
+                                                    className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none font-mono" 
                                                     placeholder="0.00"
                                                 />
                                                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                             </div>
-                                            <p className="mt-1 text-xs text-slate-500">Taxa de convers√£o BRL ‚Üí Criptomoedas (BTC, ETH, USDT). Exemplo: 5 = 5% de taxa</p>
+                                            <p className="mt-1 text-xs text-slate-500">Taxa de convers„o BRL ? Criptomoedas (BTC, ETH, USDT). Exemplo: 5 = 5% de taxa</p>
                                         </div>
                                     </div>
 
@@ -1093,8 +1093,8 @@ export const Clients: React.FC = () => {
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
                                         <Building2 className="w-5 h-5 text-blue-600 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Sele√ß√£o de Provider</h4>
-                                            <p className="text-sm text-blue-700">Escolha um provider de pagamento para este usu√°rio. O provider ser√° usado para processar as transa√ß√µes.</p>
+                                            <h4 className="font-bold text-blue-900">SeleÁ„o de Provider</h4>
+                                            <p className="text-sm text-blue-700">Escolha um provider de pagamento para este usu·rio. O provider ser· usado para processar as transaÁıes.</p>
                                         </div>
                                     </div>
 
@@ -1111,15 +1111,15 @@ export const Clients: React.FC = () => {
                                     )}
 
                                     <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                                        <h5 className="font-bold text-slate-800 mb-4">Lista de Providers Dispon√≠veis</h5>
+                                        <h5 className="font-bold text-slate-800 mb-4">Lista de Providers DisponÌveis</h5>
                                         
                                         {loadingDetails ? (
                                             <div className="flex justify-center py-8">
-                                                <Loader2 className="w-6 h-6 animate-spin text-red-600" />
+                                                <Loader2 className="w-6 h-6 animate-spin text-orange-600" />
                                             </div>
                                         ) : providers.length === 0 ? (
                                             <div className="text-center py-8 text-slate-500">
-                                                Nenhum provider dispon√≠vel.
+                                                Nenhum provider disponÌvel.
                                             </div>
                                         ) : (
                                             <div className="space-y-3">
@@ -1128,7 +1128,7 @@ export const Clients: React.FC = () => {
                                                         key={provider.id}
                                                         className={`flex items-start gap-4 p-4 border-2 rounded-lg cursor-pointer transition-all ${
                                                             selectedProvider === provider.code
-                                                                ? 'border-red-600 bg-red-50'
+                                                                ? 'border-orange-600 bg-orange-50'
                                                                 : 'border-slate-200 hover:border-slate-300'
                                                         } ${!provider.active ? 'opacity-60' : ''}`}
                                                     >
@@ -1139,7 +1139,7 @@ export const Clients: React.FC = () => {
                                                             checked={selectedProvider === provider.code}
                                                             onChange={(e) => setSelectedProvider(e.target.value)}
                                                             disabled={!provider.active}
-                                                            className="mt-1 w-4 h-4 text-red-600 focus:ring-red-500"
+                                                            className="mt-1 w-4 h-4 text-orange-600 focus:ring-orange-500"
                                                         />
                                                         <div className="flex-1">
                                                             <div className="flex items-center gap-2 mb-1">
@@ -1152,7 +1152,7 @@ export const Clients: React.FC = () => {
                                                             <div className="text-xs text-slate-500 mt-1">{provider.base_url}</div>
                                                         </div>
                                                         {selectedProvider === provider.code && (
-                                                            <CheckCircle className="w-5 h-5 text-red-600" />
+                                                            <CheckCircle className="w-5 h-5 text-orange-600" />
                                                         )}
                                                     </label>
                                                 ))}
@@ -1182,14 +1182,14 @@ export const Clients: React.FC = () => {
                                         <FileText className="w-5 h-5 text-blue-600 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Documentos KYC</h4>
-                                            <p className="text-sm text-blue-700">Documenta√ß√£o enviada pelo usu√°rio para valida√ß√£o de identidade e conformidade.</p>
+                                            <p className="text-sm text-blue-700">DocumentaÁ„o enviada pelo usu·rio para validaÁ„o de identidade e conformidade.</p>
                                         </div>
                                     </div>
 
                                     {userDocuments.length === 0 ? (
                                         <div className="bg-white border border-slate-200 rounded-xl p-8 text-center">
                                             <File className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-                                            <p className="text-slate-500">Nenhum documento enviado por este usu√°rio.</p>
+                                            <p className="text-slate-500">Nenhum documento enviado por este usu·rio.</p>
                                         </div>
                                     ) : (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1209,7 +1209,7 @@ export const Clients: React.FC = () => {
                                                                 <h5 className="font-bold text-slate-800 text-sm">{documentType}</h5>
                                                                 <span className={`text-xs px-2 py-1 rounded-full font-bold ${
                                                                     isImage ? 'bg-blue-100 text-blue-700' :
-                                                                    isPdf ? 'bg-red-100 text-red-700' :
+                                                                    isPdf ? 'bg-orange-100 text-orange-700' :
                                                                     'bg-slate-100 text-slate-700'
                                                                 }`}>
                                                                     {isImage ? 'Imagem' : isPdf ? 'PDF' : 'Arquivo'}
@@ -1235,7 +1235,7 @@ export const Clients: React.FC = () => {
                                                             
                                                             <button
                                                                 onClick={() => openDocumentSafe(documentLink)}
-                                                                className="w-full py-2 px-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2"
+                                                                className="w-full py-2 px-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2"
                                                             >
                                                                 <Eye className="w-4 h-4" />
                                                                 Visualizar
@@ -1254,8 +1254,8 @@ export const Clients: React.FC = () => {
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
                                         <Settings2 className="w-5 h-5 text-blue-600 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Configura√ß√µes do Sistema</h4>
-                                            <p className="text-sm text-blue-700">Configure a URL de webhook e os IPs permitidos para este usu√°rio.</p>
+                                            <h4 className="font-bold text-blue-900">ConfiguraÁıes do Sistema</h4>
+                                            <p className="text-sm text-blue-700">Configure a URL de webhook e os IPs permitidos para este usu·rio.</p>
                                         </div>
                                     </div>
 
@@ -1270,27 +1270,27 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.webhook_url}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-red-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                URL gen√©rica para todos os eventos. Ser√° usada como fallback se as URLs espec√≠ficas n√£o estiverem configuradas.
+                                                URL genÈrica para todos os eventos. Ser· usada como fallback se as URLs especÌficas n„o estiverem configuradas.
                                             </p>
                                         </div>
 
                                         <div>
                                             <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
-                                                URL de Webhook PIX IN (Dep√≥sitos)
+                                                URL de Webhook PIX IN (DepÛsitos)
                                             </label>
                                             <input
                                                 type="url"
                                                 value={configForm.webhook_url_pix_in}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url_pix_in: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-red-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook/pix-in"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                URL espec√≠fica para receber notifica√ß√µes de dep√≥sitos PIX. Se n√£o configurada, ser√° usada a URL geral.
+                                                URL especÌfica para receber notificaÁıes de depÛsitos PIX. Se n„o configurada, ser· usada a URL geral.
                                             </p>
                                         </div>
 
@@ -1302,11 +1302,11 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.webhook_url_pix_out}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url_pix_out: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-red-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook/pix-out"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                URL espec√≠fica para receber notifica√ß√µes de saques PIX. Se n√£o configurada, ser√° usada a URL geral.
+                                                URL especÌfica para receber notificaÁıes de saques PIX. Se n„o configurada, ser· usada a URL geral.
                                             </p>
                                         </div>
 
@@ -1318,11 +1318,11 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.refund_api_route}
                                                 onChange={(e) => setConfigForm({...configForm, refund_api_route: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-red-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook/refound"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                URL de callback de refund do cliente. Se preenchida, ser√° usada automaticamente no processamento de refund.
+                                                URL de callback de refund do cliente. Se preenchida, ser· usada automaticamente no processamento de refund.
                                             </p>
                                         </div>
                                     </div>
@@ -1337,14 +1337,14 @@ export const Clients: React.FC = () => {
                                             <textarea
                                                 value={configForm.ip_whitelist}
                                                 onChange={(e) => setConfigForm({...configForm, ip_whitelist: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-red-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none"
                                                 placeholder="192.168.1.1
 10.0.0.1
 200.123.45.67"
                                                 rows={5}
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                Digite um IP por linha. Apenas requisi√ß√µes vindas destes IPs ser√£o aceitas.
+                                                Digite um IP por linha. Apenas requisiÁıes vindas destes IPs ser„o aceitas.
                                             </p>
                                         </div>
                                     </div>
@@ -1359,14 +1359,14 @@ export const Clients: React.FC = () => {
                                             <textarea
                                                 value={configForm.cnpj_whitelist}
                                                 onChange={(e) => setConfigForm({...configForm, cnpj_whitelist: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-red-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none"
                                                 placeholder="12.345.678/0001-90
 98.765.432/0001-10
 11.222.333/0001-44"
                                                 rows={5}
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                Digite um CNPJ por linha. Apenas transa√ß√µes com estes CNPJs ser√£o aceitas.
+                                                Digite um CNPJ por linha. Apenas transaÁıes com estes CNPJs ser„o aceitas.
                                             </p>
                                         </div>
                                     </div>
@@ -1376,8 +1376,8 @@ export const Clients: React.FC = () => {
                                         <div className="space-y-4">
                                             <div className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 p-4">
                                                 <div>
-                                                    <p className="font-medium text-slate-800">PIX IN (Dep√≥sitos)</p>
-                                                    <p className="text-xs text-slate-500 mt-1">Desative para bloquear novas entradas PIX deste usu√°rio.</p>
+                                                    <p className="font-medium text-slate-800">PIX IN (DepÛsitos)</p>
+                                                    <p className="text-xs text-slate-500 mt-1">Desative para bloquear novas entradas PIX deste usu·rio.</p>
                                                 </div>
                                                 <button
                                                     type="button"
@@ -1393,7 +1393,7 @@ export const Clients: React.FC = () => {
                                             <div className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 p-4">
                                                 <div>
                                                     <p className="font-medium text-slate-800">PIX OUT (Saques)</p>
-                                                    <p className="text-xs text-slate-500 mt-1">Desative para bloquear novos saques PIX deste usu√°rio.</p>
+                                                    <p className="text-xs text-slate-500 mt-1">Desative para bloquear novos saques PIX deste usu·rio.</p>
                                                 </div>
                                                 <button
                                                     type="button"
@@ -1417,7 +1417,7 @@ export const Clients: React.FC = () => {
                                             <Loader2 className="w-5 h-5 animate-spin" />
                                         ) : (
                                             <>
-                                                <Save className="w-4 h-4" /> Salvar Configura√ß√µes
+                                                <Save className="w-4 h-4" /> Salvar ConfiguraÁıes
                                             </>
                                         )}
                                     </button>
@@ -1439,4 +1439,5 @@ export const Clients: React.FC = () => {
     </div>
   );
 };
+
 

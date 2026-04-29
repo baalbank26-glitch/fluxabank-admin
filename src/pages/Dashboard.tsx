@@ -1,4 +1,4 @@
-ï»¿
+
 import React, { useEffect, useState } from 'react';
 import { AppView, UserStatus, DocStatus } from '../types/index';
 import { api } from '../services/api';
@@ -49,7 +49,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
       try {
         const [users, treasuryBal, dailySummary] = await Promise.all([
           api.admin.users.list().catch((err) => {
-            console.error('[Dashboard] Erro ao buscar usuÃ¡rios:', err);
+            console.error('[Dashboard] Erro ao buscar usuários:', err);
             return [];
           }),
           api.admin.treasury.getBalance().catch((err) => {
@@ -57,7 +57,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
             return { amount: 0 };
           }),
           api.admin.treasury.getDailySummary().catch((err) => {
-            console.error('[Dashboard] Erro ao buscar summary diÃ¡rio:', err);
+            console.error('[Dashboard] Erro ao buscar summary diário:', err);
             return [];
           })
         ]);
@@ -91,7 +91,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 value: Number(item.total_in ?? 0)
               };
             })
-            .slice(0, 7) // Ãšltimos 7 dias
+            .slice(0, 7) // Últimos 7 dias
             .reverse(); // Ordenar do mais antigo para o mais recente
 
           const arr = Array.isArray(dailySummary) ? dailySummary : [];
@@ -101,7 +101,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
           }, 0);
         }
 
-        // Se nÃ£o houver dados, criar dados vazios para os Ãºltimos 7 dias
+        // Se não houver dados, criar dados vazios para os últimos 7 dias
         if (processedChartData.length === 0) {
           for (let i = 6; i >= 0; i--) {
             const d = new Date();
@@ -137,8 +137,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
     <div className="space-y-8 w-full overflow-x-hidden">
       {/* Header */}
       <div className="pt-2">
-        <h1 className="text-4xl font-bold text-slate-900">VisÃ£o Geral</h1>
-        <p className="text-slate-600 mt-2">Resumo da operaÃ§Ã£o em tempo real do seu sistema</p>
+        <h1 className="text-4xl font-bold text-slate-900">Visão Geral</h1>
+        <p className="text-slate-600 mt-2">Resumo da operação em tempo real do seu sistema</p>
       </div>
 
       {/* Main Stats Grid */}
@@ -168,7 +168,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
 
             {!stats.loading && (
               <div className="pt-4 border-t border-white/10">
-                <p className="text-sm text-slate-400 mb-1">Total bruto (transaÃ§Ãµes)</p>
+                <p className="text-sm text-slate-400 mb-1">Total bruto (transações)</p>
                 <p className="text-xl font-semibold text-white break-words leading-tight">
                   R$ {Number(stats.grossTransactionsTotal).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                 </p>
@@ -190,7 +190,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
           onClick={() => onViewChange(AppView.CLIENTS)}
         >
           <div className="flex items-start justify-between mb-4">
-            <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">UsuÃ¡rios Ativos</p>
+            <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Usuários Ativos</p>
             <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
               <Users className="w-5 h-5 text-blue-600" />
             </div>
@@ -226,7 +226,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 {stats.pendingApprovals}
               </h3>
               <p className={`text-xs mt-3 font-semibold ${stats.pendingApprovals > 0 ? 'text-amber-600' : 'text-green-600'}`}>
-                {stats.pendingApprovals > 0 ? 'Requer atenÃ§Ã£o' : 'âœ“ Tudo em dia'}
+                {stats.pendingApprovals > 0 ? 'Requer atenção' : '? Tudo em dia'}
               </p>
             </>
           )}
@@ -236,8 +236,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
         <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all min-w-0 group">
           <div className="flex items-start justify-between mb-4">
             <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Bloqueados</p>
-            <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
-              <Users className="w-5 h-5 text-red-400" />
+            <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
+              <Users className="w-5 h-5 text-orange-400" />
             </div>
           </div>
 
@@ -245,8 +245,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
             <Loader2 className="w-6 h-6 animate-spin text-slate-300" />
           ) : (
             <>
-              <h3 className="text-3xl font-bold text-red-600">{stats.blockedClients}</h3>
-              <p className="text-xs text-red-600 mt-3 font-semibold">Acesso restrito</p>
+              <h3 className="text-3xl font-bold text-orange-600">{stats.blockedClients}</h3>
+              <p className="text-xs text-orange-600 mt-3 font-semibold">Acesso restrito</p>
             </>
           )}
         </div>
@@ -259,8 +259,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
         <div className="lg:col-span-2 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow min-w-0 overflow-hidden">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-bold text-slate-900">Faturamento DiÃ¡rio</h2>
-              <p className="text-sm text-slate-500 mt-1">Receita de entradas (Ãºltimos 7 dias)</p>
+              <h2 className="text-xl font-bold text-slate-900">Faturamento Diário</h2>
+              <p className="text-sm text-slate-500 mt-1">Receita de entradas (últimos 7 dias)</p>
             </div>
             <div className="flex items-center gap-2 px-3 py-2 bg-slate-50 rounded-lg">
               <Calendar className="w-4 h-4 text-slate-500" />
@@ -317,7 +317,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 ) : (
                   <>
                     <p className="font-medium">Sem dados de faturamento</p>
-                    <p className="text-xs mt-2">Novas transaÃ§Ãµes aparecerÃ£o aqui</p>
+                    <p className="text-xs mt-2">Novas transações aparecerão aqui</p>
                   </>
                 )}
               </div>
@@ -349,7 +349,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 <span className="text-xs font-semibold text-green-400">Online</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-slate-300">ServiÃ§os de Pagamento</span>
+                <span className="text-sm text-slate-300">Serviços de Pagamento</span>
                 <span className="text-xs font-semibold text-green-400">Online</span>
               </div>
               <div className="flex items-center justify-between">
@@ -359,14 +359,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
             </div>
 
             <p className="mt-6 text-sm text-slate-300 leading-relaxed">
-              Todos os serviÃ§os estÃ£o respondendo normalmente. Nenhum incidente reportado.
+              Todos os serviços estão respondendo normalmente. Nenhum incidente reportado.
             </p>
 
             <button
               onClick={() => onViewChange(AppView.SETTINGS)}
               className="mt-6 w-full py-2.5 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-all border border-white/20"
             >
-              ConfiguraÃ§Ãµes <ArrowRight className="w-4 h-4" />
+              Configurações <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -374,4 +374,5 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
     </div>
   );
 };
+
 

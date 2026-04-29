@@ -1,4 +1,4 @@
-ï»¿import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { CalendarDays, Filter, RefreshCw, Search, Loader2 } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { webhooksService } from '../services/webhooks.service'
@@ -98,7 +98,7 @@ export const WebhooksHistory: React.FC = () => {
       setLogs(res?.data || [])
       setTotal(res?.pagination?.total || 0)
     } catch (err) {
-      console.error('Erro ao carregar histÃ³rico de webhooks', err)
+      console.error('Erro ao carregar histórico de webhooks', err)
     } finally {
       setLoading(false)
     }
@@ -161,7 +161,7 @@ export const WebhooksHistory: React.FC = () => {
       const res = await webhooksService.mapTransaction(tx)
       setMapperResult(res || null)
     } catch (err) {
-      console.error('Erro ao mapear transaÃ§Ã£o', err)
+      console.error('Erro ao mapear transação', err)
       setMapperResult(null)
     } finally {
       setMapperLoading(false)
@@ -197,7 +197,7 @@ export const WebhooksHistory: React.FC = () => {
   return (
     <div className="bg-slate-950 text-slate-50 rounded-2xl p-6 space-y-6 min-h-[400px]">
       <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-4">
-        <h1 className="text-xl font-semibold">HistÃ³rico de Webhooks</h1>
+        <h1 className="text-xl font-semibold">Histórico de Webhooks</h1>
 
         <div className="flex items-center gap-2 sm:gap-3">
           <div className="inline-flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-2 rounded-lg sm:rounded-xl bg-slate-900 border border-slate-700">
@@ -240,9 +240,9 @@ export const WebhooksHistory: React.FC = () => {
             className="appearance-none bg-slate-900 text-slate-50 text-xs outline-none px-2 py-1 rounded-md border border-slate-700 focus:border-slate-600"
           >
             <option className="bg-slate-900 text-slate-50" value="today">Hoje</option>
-            <option className="bg-slate-900 text-slate-50" value="7d">Ãšltimos 7 dias</option>
-            <option className="bg-slate-900 text-slate-50" value="30d">Ãšltimos 30 dias</option>
-            <option className="bg-slate-900 text-slate-50" value="all">Todo perÃ­odo</option>
+            <option className="bg-slate-900 text-slate-50" value="7d">Últimos 7 dias</option>
+            <option className="bg-slate-900 text-slate-50" value="30d">Últimos 30 dias</option>
+            <option className="bg-slate-900 text-slate-50" value="all">Todo período</option>
           </select>
         </div>
 
@@ -294,7 +294,7 @@ export const WebhooksHistory: React.FC = () => {
           <input
             defaultValue={filters.transactionId}
             onChange={(e) => updateFilterDebounced('transactionId', e.target.value)}
-            placeholder="ID da transaÃ§Ã£o"
+            placeholder="ID da transação"
             className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs outline-none"
           />
         </div>
@@ -307,11 +307,11 @@ export const WebhooksHistory: React.FC = () => {
         </button>
       </div>
 
-      {/* MAPEADOR DE TRANSAÃ‡ÃƒO */}
+      {/* MAPEADOR DE TRANSAÇÃO */}
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-sm font-semibold text-slate-100">Mapeador de TransaÃ§Ã£o (Webhook)</h2>
-          <div className="text-[11px] text-slate-400">Rastreia origem do webhook por referÃªncia da transaÃ§Ã£o</div>
+          <h2 className="text-sm font-semibold text-slate-100">Mapeador de Transação (Webhook)</h2>
+          <div className="text-[11px] text-slate-400">Rastreia origem do webhook por referência da transação</div>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -334,16 +334,16 @@ export const WebhooksHistory: React.FC = () => {
         {mapperResult && (
           <div className="rounded-lg border border-slate-700 bg-slate-950/60 p-3 space-y-2 text-xs">
             {!mapperResult?.mapped ? (
-              <div className="text-amber-300">Nenhum log encontrado para a referÃªncia consultada.</div>
+              <div className="text-amber-300">Nenhum log encontrado para a referência consultada.</div>
             ) : (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
                   <div className="rounded-md border border-slate-800 p-2">
-                    <div className="text-slate-400">ReferÃªncia</div>
+                    <div className="text-slate-400">Referência</div>
                     <div className="font-mono text-slate-100 truncate">{mapperResult?.mapped?.reference || '-'}</div>
                   </div>
                   <div className="rounded-md border border-slate-800 p-2">
-                    <div className="text-slate-400">UsuÃ¡rio origem</div>
+                    <div className="text-slate-400">Usuário origem</div>
                     <div className="text-slate-100 truncate">{mapperResult?.mapped?.sourceUser?.name || '-'}</div>
                     <div className="text-slate-400 truncate">ID: {mapperResult?.mapped?.sourceUser?.id || '-'}</div>
                   </div>
@@ -365,7 +365,7 @@ export const WebhooksHistory: React.FC = () => {
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Entregues</span><div className="text-emerald-300 font-semibold">{mapperResult?.mapped?.stats?.delivered ?? 0}</div></div>
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Falhas</span><div className="text-rose-300 font-semibold">{mapperResult?.mapped?.stats?.failed ?? 0}</div></div>
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Primeiro log</span><div className="text-slate-100">{mapperResult?.mapped?.stats?.firstSeen ? new Date(mapperResult.mapped.stats.firstSeen).toLocaleString() : '-'}</div></div>
-                  <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Ãšltimo log</span><div className="text-slate-100">{mapperResult?.mapped?.stats?.lastSeen ? new Date(mapperResult.mapped.stats.lastSeen).toLocaleString() : '-'}</div></div>
+                  <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Último log</span><div className="text-slate-100">{mapperResult?.mapped?.stats?.lastSeen ? new Date(mapperResult.mapped.stats.lastSeen).toLocaleString() : '-'}</div></div>
                 </div>
 
                 <div className="rounded-md border border-slate-800 p-2">
@@ -400,25 +400,25 @@ export const WebhooksHistory: React.FC = () => {
         {filters.type && (
           <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700">
             Tipo: {filters.type}
-            <button onClick={() => clearFilter('type')} className="text-slate-400 hover:text-slate-200">Ã—</button>
+            <button onClick={() => clearFilter('type')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
         {filters.status && (
           <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700">
             Status: {filters.status}
-            <button onClick={() => clearFilter('status')} className="text-slate-400 hover:text-slate-200">Ã—</button>
+            <button onClick={() => clearFilter('status')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
         {filters.url && (
           <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700 max-w-[50%] truncate">
             URL: <span className="truncate">{filters.url}</span>
-            <button onClick={() => clearFilter('url')} className="text-slate-400 hover:text-slate-200">Ã—</button>
+            <button onClick={() => clearFilter('url')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
         {filters.transactionId && (
           <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700">
             Tx: {filters.transactionId}
-            <button onClick={() => clearFilter('transactionId')} className="text-slate-400 hover:text-slate-200">Ã—</button>
+            <button onClick={() => clearFilter('transactionId')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
       </div>
@@ -431,7 +431,7 @@ export const WebhooksHistory: React.FC = () => {
               onClick={toggleSelectAll}
               className="w-4 h-4 border border-slate-600 rounded-sm flex items-center justify-center text-[10px]"
             >
-              {selectedIds.length === logs.length && logs.length > 0 ? 'âœ“' : ''}
+              {selectedIds.length === logs.length && logs.length > 0 ? '?' : ''}
             </button>
             <span className="flex-1 text-center">Data</span>
           </div>
@@ -444,11 +444,11 @@ export const WebhooksHistory: React.FC = () => {
           <span className="hidden sm:block w-28 text-center">Tipo</span>
           <span className="w-28 text-center">Valor</span>
           <span className="hidden md:block w-28 text-center">Taxa</span>
-          <span className="hidden xl:block w-28 text-center">LÃ­quido</span>
+          <span className="hidden xl:block w-28 text-center">Líquido</span>
           <span className="hidden xl:block w-28 text-center">Total</span>
           <span className="hidden xl:block w-28 text-center">User</span>
           <span className="hidden xl:block w-48 text-center">ExternalId</span>
-          <span className="w-32 text-center">AÃ§Ãµes</span>
+          <span className="w-32 text-center">Ações</span>
         </div>
 
         {loading ? (
@@ -472,7 +472,7 @@ export const WebhooksHistory: React.FC = () => {
                     onClick={() => toggleSelect(log.id)}
                     className="mt-1 w-4 h-4 border border-slate-600 rounded-sm flex items-center justify-center text-[10px] shrink-0"
                   >
-                    {selectedIds.includes(log.id) ? 'âœ“' : ''}
+                    {selectedIds.includes(log.id) ? '?' : ''}
                   </button>
                   <div className="flex-1">
                     <div className="flex items-center justify-between gap-2">
@@ -544,7 +544,7 @@ export const WebhooksHistory: React.FC = () => {
                       onClick={() => toggleSelect(log.id)}
                       className="w-4 h-4 border border-slate-600 rounded-sm flex items-center justify-center text-[10px]"
                     >
-                      {selectedIds.includes(log.id) ? 'âœ“' : ''}
+                      {selectedIds.includes(log.id) ? '?' : ''}
                     </button>
                     <div className="flex flex-col">
                       <span>{new Date(log.created_at).toLocaleDateString()}</span>
@@ -594,10 +594,10 @@ export const WebhooksHistory: React.FC = () => {
         )}
       </div>
 
-      {/* PAGINAÃ‡ÃƒO */}
+      {/* PAGINAÇÃO */}
       <div className="flex items-center justify-between text-xs text-slate-400 mt-2">
         <span>
-          PÃ¡gina {page} de {totalPages}
+          Página {page} de {totalPages}
         </span>
         <div className="flex items-center gap-2">
           <button
@@ -612,7 +612,7 @@ export const WebhooksHistory: React.FC = () => {
             disabled={page === totalPages}
             className="px-3 py-1 rounded-lg border border-slate-700 disabled:opacity-40"
           >
-            PrÃ³ximo
+            Próximo
           </button>
         </div>
       </div>
@@ -621,4 +621,5 @@ export const WebhooksHistory: React.FC = () => {
 }
 
 export default WebhooksHistory
+
 

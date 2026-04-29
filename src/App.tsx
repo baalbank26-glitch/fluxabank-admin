@@ -1,6 +1,4 @@
-
-
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Sidebar } from './components';
 import { Dashboard, Clients, Treasury, Approvals, Settings, Login, MED, Providers, WebhooksHistory, WebhookSettings, TransactionMapper, Security, Authenticator, OTC, Admins } from './pages';
 import { AppView } from './types/index';
@@ -65,7 +63,9 @@ const App: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div className="flex items-center justify-center h-screen bg-slate-50 text-red-600">Carregando...</div>;
+    return <div className="flex items-center justify-center h-screen bg-white text-orange-600">
+      <div className="w-12 h-12 border-4 border-orange-100 border-t-orange-500 rounded-full animate-spin"></div>
+    </div>;
   }
 
   if (!isAuthenticated) {
@@ -76,13 +76,13 @@ const App: React.FC = () => {
     <div className="flex h-screen bg-slate-50 overflow-hidden">
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-20 lg:hidden"
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-20 lg:hidden"
           onClick={closeSidebar}
         />
       )}
 
       <div className={`
-        fixed inset-y-0 left-0 z-30 w-64 bg-slate-900 text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto
+        fixed inset-y-0 left-0 z-30 w-64 bg-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <Sidebar
@@ -93,14 +93,14 @@ const App: React.FC = () => {
       </div>
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <header className="lg:hidden bg-white border-b border-slate-200 p-4 flex items-center justify-between">
+        <header className="lg:hidden bg-white border-b border-slate-100 p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded flex items-center justify-center overflow-hidden">
-              <img src="/baal-logo.png" alt="BAAL" className="w-8 h-8 object-contain" />
+              <img src="/fluxabank-logo.png" alt="Fluxabank" className="w-6 h-6 object-contain" />
             </div>
-            <span className="font-bold text-slate-800">BAAL</span>
+            <span className="font-bold text-slate-900">Fluxabank</span>
           </div>
-          <button onClick={toggleSidebar} className="p-2 hover:bg-slate-100 rounded-md">
+          <button onClick={toggleSidebar} className="p-2 hover:bg-slate-50 rounded-md transition-colors">
             <Menu className="w-6 h-6 text-slate-600" />
           </button>
         </header>

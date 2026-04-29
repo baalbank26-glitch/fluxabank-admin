@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AlertCircle, CheckCircle, Copy, QrCode, RefreshCcw, ShieldCheck } from 'lucide-react';
 import { twoFactorService } from '../services/twoFactor.service';
 
@@ -40,9 +40,9 @@ export const Authenticator: React.FC = () => {
       const res = await twoFactorService.setup();
       setQrCode(res.qrCode);
       setSecret(res.secret);
-      setSuccess('Configuração iniciada. Escaneie o QR e confirme com o código de 6 dígitos.');
+      setSuccess('Configura��o iniciada. Escaneie o QR e confirme com o c�digo de 6 d�gitos.');
     } catch (e: any) {
-      setError(e?.message || 'Falha ao iniciar configuração do authenticator.');
+      setError(e?.message || 'Falha ao iniciar configura��o do authenticator.');
     } finally {
       setIsSubmitting(false);
     }
@@ -51,7 +51,7 @@ export const Authenticator: React.FC = () => {
   const enable2FA = async () => {
     const cleanCode = code.replace(/\D/g, '').slice(0, 6);
     if (cleanCode.length !== 6) {
-      setError('Informe um código TOTP válido de 6 dígitos.');
+      setError('Informe um c�digo TOTP v�lido de 6 d�gitos.');
       return;
     }
     setError(null);
@@ -83,9 +83,9 @@ export const Authenticator: React.FC = () => {
         recoveryCode: recoveryCode.trim() || undefined,
       });
       setRecoveryCodes(res.recoveryCodes || []);
-      setSuccess('Novos códigos de recuperação gerados com sucesso.');
+      setSuccess('Novos c�digos de recupera��o gerados com sucesso.');
     } catch (e: any) {
-      setError(e?.message || 'Falha ao gerar novos códigos de recuperação.');
+      setError(e?.message || 'Falha ao gerar novos c�digos de recupera��o.');
     } finally {
       setIsSubmitting(false);
     }
@@ -99,16 +99,16 @@ export const Authenticator: React.FC = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-          <ShieldCheck className="w-7 h-7 text-red-600" />
+          <ShieldCheck className="w-7 h-7 text-orange-600" />
           Authenticator (2FA)
         </h2>
         <p className="text-slate-500 text-sm mt-1">
-          Proteja o acesso do admin e de subcontas level2 com código TOTP e códigos de recuperação.
+          Proteja o acesso do admin e de subcontas level2 com c�digo TOTP e c�digos de recupera��o.
         </p>
       </div>
 
       {error && (
-        <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm flex items-center gap-2">
+        <div className="p-3 bg-orange-50 border border-orange-200 text-orange-700 rounded-lg text-sm flex items-center gap-2">
           <AlertCircle className="w-4 h-4" /> {error}
         </div>
       )}
@@ -141,7 +141,7 @@ export const Authenticator: React.FC = () => {
             disabled={isSubmitting}
             className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold flex items-center gap-2"
           >
-            <QrCode className="w-4 h-4" /> Iniciar configuração
+            <QrCode className="w-4 h-4" /> Iniciar configura��o
           </button>
 
           {qrCode && (
@@ -158,7 +158,7 @@ export const Authenticator: React.FC = () => {
                 <input
                   value={code}
                   onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                  placeholder="Código TOTP (6 dígitos)"
+                  placeholder="C�digo TOTP (6 d�gitos)"
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg"
                 />
                 <button
@@ -176,12 +176,12 @@ export const Authenticator: React.FC = () => {
 
       {enabled && (
         <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-4">
-          <p className="text-sm text-slate-600">Use código TOTP ou recovery code para gerar novos códigos de recuperação.</p>
+          <p className="text-sm text-slate-600">Use c�digo TOTP ou recovery code para gerar novos c�digos de recupera��o.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <input
               value={code}
               onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-              placeholder="Código TOTP (6 dígitos)"
+              placeholder="C�digo TOTP (6 d�gitos)"
               className="px-3 py-2 border border-slate-300 rounded-lg"
             />
             <input
@@ -224,3 +224,4 @@ export const Authenticator: React.FC = () => {
     </div>
   );
 };
+

@@ -1,4 +1,4 @@
-Ôªø
+
 import React, { useEffect, useState } from 'react';
 import {
     Shield,
@@ -55,11 +55,11 @@ export const Security: React.FC = () => {
                 setLogs(response.data || []);
                 setTotal(response.total || 0);
             } else {
-                toast.error('Erro ao carregar logs de seguran√ßa.');
+                toast.error('Erro ao carregar logs de seguranÁa.');
             }
         } catch (error) {
             console.error('[Security] Error fetching logs:', error);
-            toast.error('Erro de conex√£o ao buscar logs.');
+            toast.error('Erro de conex„o ao buscar logs.');
         } finally {
             setLoading(false);
         }
@@ -80,7 +80,7 @@ export const Security: React.FC = () => {
             case 'AUTH_FAILURE':
                 return <span className="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-bold ring-1 ring-amber-200">AUTH_FAILURE</span>;
             case 'INVALID_CREDENTIALS':
-                return <span className="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-bold ring-1 ring-red-200">INVALID_CREDENTIALS</span>;
+                return <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-bold ring-1 ring-orange-200">INVALID_CREDENTIALS</span>;
             case 'IP_BLOCKED':
                 return <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-bold ring-1 ring-orange-200">IP_BLOCKED</span>;
             case 'MISSING_CREDENTIALS':
@@ -99,11 +99,11 @@ export const Security: React.FC = () => {
             <div className="flex justify-between items-center">
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-                        <Shield className="w-8 h-8 text-red-600" />
-                        Central de Seguran√ßa / IDS
+                        <Shield className="w-8 h-8 text-orange-600" />
+                        Central de SeguranÁa / IDS
                     </h2>
                     <p className="text-slate-500 text-sm">
-                        Monitoramento de tentativas de acesso, transa√ß√µes n√£o autorizadas e bloqueios de IP.
+                        Monitoramento de tentativas de acesso, transaÁıes n„o autorizadas e bloqueios de IP.
                     </p>
                 </div>
                 <button
@@ -115,11 +115,11 @@ export const Security: React.FC = () => {
                 </button>
             </div>
 
-            {/* Estat√≠sticas R√°pidas */}
+            {/* EstatÌsticas R·pidas */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div className="p-3 bg-red-50 rounded-lg">
-                        <AlertTriangle className="w-6 h-6 text-red-600" />
+                    <div className="p-3 bg-orange-50 rounded-lg">
+                        <AlertTriangle className="w-6 h-6 text-orange-600" />
                     </div>
                     <div>
                         <p className="text-xs font-medium text-slate-500 uppercase">Total de Alertas</p>
@@ -155,34 +155,34 @@ export const Security: React.FC = () => {
                 <div className="relative">
                     <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Tipo de Evento</label>
                     <select
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                         value={filters.type}
                         onChange={(e) => setFilters({ ...filters, type: e.target.value })}
                     >
                         <option value="">Todos</option>
                         <option value="AUTH_FAILURE">Falha de Auth</option>
-                        <option value="INVALID_CREDENTIALS">Credenciais Inv√°lidas</option>
+                        <option value="INVALID_CREDENTIALS">Credenciais Inv·lidas</option>
                         <option value="IP_BLOCKED">IP Bloqueado</option>
                         <option value="MISSING_CREDENTIALS">Sem Credenciais</option>
                         <option value="2FA_FAILURE">Falha no 2FA</option>
-                        <option value="2FA_MISSING">C√≥digo 2FA Ausente</option>
+                        <option value="2FA_MISSING">CÛdigo 2FA Ausente</option>
                     </select>
                 </div>
                 <div className="relative">
-                    <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Endere√ßo IP</label>
+                    <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">EndereÁo IP</label>
                     <input
                         type="text"
                         placeholder="Ex: 127.0.0.1"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                         value={filters.ip}
                         onChange={(e) => setFilters({ ...filters, ip: e.target.value })}
                     />
                 </div>
                 <div className="relative">
-                    <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Data In√≠cio</label>
+                    <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Data InÌcio</label>
                     <input
                         type="date"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                         value={filters.dateFrom}
                         onChange={(e) => setFilters({ ...filters, dateFrom: e.target.value })}
                     />
@@ -191,7 +191,7 @@ export const Security: React.FC = () => {
                     <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Data Fim</label>
                     <input
                         type="date"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                         value={filters.dateTo}
                         onChange={(e) => setFilters({ ...filters, dateTo: e.target.value })}
                     />
@@ -215,7 +215,7 @@ export const Security: React.FC = () => {
                                 <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">IP Origem</th>
                                 <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Caminho</th>
                                 <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Motivo</th>
-                                <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase text-center">A√ß√£o</th>
+                                <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase text-center">AÁ„o</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-50">
@@ -228,7 +228,7 @@ export const Security: React.FC = () => {
                             ) : logs.length === 0 ? (
                                 <tr>
                                     <td colSpan={6} className="px-6 py-12 text-center text-slate-400">
-                                        Nenhum alerta de seguran√ßa registrado.
+                                        Nenhum alerta de seguranÁa registrado.
                                     </td>
                                 </tr>
                             ) : (
@@ -269,7 +269,7 @@ export const Security: React.FC = () => {
                                         <td className="px-6 py-4 text-center">
                                             <button
                                                 onClick={() => setSelectedLog(log)}
-                                                className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                                                className="p-2 text-slate-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-all"
                                                 title="Ver detalhes"
                                             >
                                                 <Eye className="w-5 h-5" />
@@ -289,8 +289,8 @@ export const Security: React.FC = () => {
                     <div className="bg-white rounded-3xl w-full max-w-4xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
                         <div className="p-6 bg-slate-900 text-white flex justify-between items-center">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 bg-red-500/20 rounded-xl">
-                                    <Shield className="w-6 h-6 text-red-400" />
+                                <div className="p-2 bg-orange-500/20 rounded-xl">
+                                    <Shield className="w-6 h-6 text-orange-400" />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold">Detalhes do Alerta #{selectedLog.id}</h3>
@@ -309,7 +309,7 @@ export const Security: React.FC = () => {
                             <div className="space-y-6">
                                 <div>
                                     <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
-                                        <Info className="w-4 h-4" /> Informa√ß√µes B√°sicas
+                                        <Info className="w-4 h-4" /> InformaÁıes B·sicas
                                     </h4>
                                     <div className="bg-slate-50 rounded-2xl p-4 space-y-3">
                                         <div className="flex justify-between items-center py-2 border-b border-slate-100">
@@ -318,10 +318,10 @@ export const Security: React.FC = () => {
                                         </div>
                                         <div className="flex justify-between items-center py-2 border-b border-slate-100">
                                             <span className="text-sm text-slate-500">IP de Origem</span>
-                                            <span className="text-sm font-bold text-red-600 font-mono">{selectedLog.ip_address}</span>
+                                            <span className="text-sm font-bold text-orange-600 font-mono">{selectedLog.ip_address}</span>
                                         </div>
                                         <div className="flex justify-between items-center py-2 border-b border-slate-100">
-                                            <span className="text-sm text-slate-500">M√©todo HTTP</span>
+                                            <span className="text-sm text-slate-500">MÈtodo HTTP</span>
                                             <span className="text-sm font-bold text-slate-800 bg-slate-200 px-2 py-0.5 rounded uppercase">{selectedLog.method}</span>
                                         </div>
                                         <div className="flex flex-col py-2">
@@ -348,16 +348,16 @@ export const Security: React.FC = () => {
                                     <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
                                         <AlertTriangle className="w-4 h-4 text-amber-500" /> Motivo do Bloqueio
                                     </h4>
-                                    <div className="bg-red-50 border border-red-100 rounded-2xl p-4">
-                                        <p className="text-sm text-red-800 font-medium">
-                                            {selectedLog.reason || 'Nenhuma raz√£o detalhada fornecida pelo sistema.'}
+                                    <div className="bg-orange-50 border border-orange-100 rounded-2xl p-4">
+                                        <p className="text-sm text-orange-800 font-medium">
+                                            {selectedLog.reason || 'Nenhuma raz„o detalhada fornecida pelo sistema.'}
                                         </p>
                                     </div>
                                 </div>
 
                                 <div>
                                     <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
-                                        <Clock className="w-4 h-4" /> Payload / Headers da Requisi√ß√£o
+                                        <Clock className="w-4 h-4" /> Payload / Headers da RequisiÁ„o
                                     </h4>
                                     <div className="bg-slate-900 rounded-2xl p-4 h-[300px] overflow-y-auto custom-scrollbar">
                                         <pre className="text-[10px] text-green-400 font-mono whitespace-pre-wrap">
@@ -380,7 +380,7 @@ export const Security: React.FC = () => {
                             </button>
                             <button
                                 onClick={() => toast.info('Funcionalidade de bloqueio de IP permanente em desenvolvimento')}
-                                className="px-6 py-2 bg-red-600 text-white rounded-xl font-bold hover:bg-red-700 transition-colors flex items-center gap-2"
+                                className="px-6 py-2 bg-orange-600 text-white rounded-xl font-bold hover:bg-orange-700 transition-colors flex items-center gap-2"
                             >
                                 <XCircle className="w-4 h-4" />
                                 Bloquear IP Persistentemente
@@ -392,3 +392,4 @@ export const Security: React.FC = () => {
         </div>
     );
 };
+

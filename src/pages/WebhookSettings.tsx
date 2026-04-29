@@ -45,7 +45,7 @@ export const WebhookSettings: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center p-20">
-        <Loader2 className="animate-spin w-8 h-8 text-red-600" />
+        <Loader2 className="animate-spin w-8 h-8 text-orange-600" />
       </div>
     );
   }
@@ -54,7 +54,7 @@ export const WebhookSettings: React.FC = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-800">Webhook Settings</h2>
-        <p className="text-slate-500 text-sm">Controle global de entrega de webhooks da BAAL.</p>
+        <p className="text-slate-500 text-sm">Controle global de entrega de webhooks da Fluxabank.</p>
       </div>
 
       <div className={`rounded-2xl border shadow-sm overflow-hidden ${webhooksDisabled ? 'border-rose-200 bg-rose-50/40' : 'border-slate-200 bg-white'}`}>
@@ -103,3 +103,4 @@ export const WebhookSettings: React.FC = () => {
     </div>
   );
 };
+

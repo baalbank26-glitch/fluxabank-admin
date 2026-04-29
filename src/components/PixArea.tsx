@@ -1,4 +1,4 @@
-ï»¿
+
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../services/api';
@@ -30,7 +30,7 @@ export const PixArea: React.FC = () => {
             // For now, let's assume it returns a 'payload' string
             setDepositCode(res.payload || '00020126580014BR.GOV.BCB.PIX0136123e4567-e89b-12d3-a456-426614174000520400005303986540510.005802BR5913Cicero Fulano6008BRASILIA62070503***6304E2CA');
         } catch (e) {
-            toast.error('Erro ao gerar cobranÃ§a Pix');
+            toast.error('Erro ao gerar cobrança Pix');
         } finally {
             setLoading(false);
         }
@@ -41,7 +41,7 @@ export const PixArea: React.FC = () => {
         setLoading(true);
         try {
             await api.me.wallet.withdrawPix(Number(amount), pixKey);
-            setWithdrawStatus('SolicitaÃ§Ã£o enviada com sucesso!');
+            setWithdrawStatus('Solicitação enviada com sucesso!');
             setAmount('');
             setPixKey('');
         } catch (e) {
@@ -64,13 +64,13 @@ export const PixArea: React.FC = () => {
                     </div>
                     <p className="text-4xl font-mono font-bold mt-4">{myFees?.pixInPercent ?? '--'}%</p>
                 </div>
-                <div className="bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl p-6 text-white shadow-lg">
+                <div className="bg-gradient-to-br from-orange-500 to-rose-600 rounded-2xl p-6 text-white shadow-lg">
                     <div className="flex justify-between items-start">
                         <div>
-                            <p className="font-medium text-red-100">Suas Taxas</p>
-                            <h3 className="text-2xl font-bold mt-1">Pix SaÃ­da</h3>
+                            <p className="font-medium text-orange-100">Suas Taxas</p>
+                            <h3 className="text-2xl font-bold mt-1">Pix Saída</h3>
                         </div>
-                        <ArrowUpRight className="w-8 h-8 text-red-200" />
+                        <ArrowUpRight className="w-8 h-8 text-orange-200" />
                     </div>
                     <p className="text-4xl font-mono font-bold mt-4">{myFees?.pixOutPercent ?? '--'}%</p>
                 </div>
@@ -86,7 +86,7 @@ export const PixArea: React.FC = () => {
                             <div className={`p-2 rounded-lg ${mode === 'DEPOSIT' ? 'bg-green-100 text-green-600' : 'bg-slate-200 text-slate-500'}`}>
                                 <ArrowDownLeft className="w-5 h-5" />
                             </div>
-                            <span className={`font-bold ${mode === 'DEPOSIT' ? 'text-slate-800' : 'text-slate-500'}`}>DepÃ³sito</span>
+                            <span className={`font-bold ${mode === 'DEPOSIT' ? 'text-slate-800' : 'text-slate-500'}`}>Depósito</span>
                         </div>
                         <p className="text-xs text-slate-400">Gerar QR Code para adicionar saldo.</p>
                     </button>
@@ -96,7 +96,7 @@ export const PixArea: React.FC = () => {
                         className={`p-4 rounded-xl text-left transition-all ${mode === 'WITHDRAW' ? 'bg-white shadow-md ring-1 ring-slate-200' : 'hover:bg-slate-100'}`}
                     >
                         <div className="flex items-center gap-3 mb-2">
-                            <div className={`p-2 rounded-lg ${mode === 'WITHDRAW' ? 'bg-red-100 text-red-600' : 'bg-slate-200 text-slate-500'}`}>
+                            <div className={`p-2 rounded-lg ${mode === 'WITHDRAW' ? 'bg-orange-100 text-orange-600' : 'bg-slate-200 text-slate-500'}`}>
                                 <ArrowUpRight className="w-5 h-5" />
                             </div>
                             <span className={`font-bold ${mode === 'WITHDRAW' ? 'text-slate-800' : 'text-slate-500'}`}>Saque</span>
@@ -108,11 +108,11 @@ export const PixArea: React.FC = () => {
                 <div className="flex-1 p-8 flex items-center justify-center">
                     {mode === 'DEPOSIT' ? (
                         <div className="w-full max-w-md space-y-6">
-                            <h3 className="text-xl font-bold text-slate-800">Novo DepÃ³sito Pix</h3>
+                            <h3 className="text-xl font-bold text-slate-800">Novo Depósito Pix</h3>
                             {!depositCode ? (
                                 <form onSubmit={handleDeposit} className="space-y-4">
                                     <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-2">Valor do DepÃ³sito (R$)</label>
+                                        <label className="block text-sm font-bold text-slate-700 mb-2">Valor do Depósito (R$)</label>
                                         <input 
                                             type="number" step="0.01" required
                                             value={amount} onChange={e => setAmount(e.target.value)}
@@ -139,7 +139,7 @@ export const PixArea: React.FC = () => {
                                         </div>
                                     </div>
                                     <button onClick={() => { setDepositCode(''); setAmount(''); }} className="text-sm text-green-600 hover:underline">
-                                        Gerar novo depÃ³sito
+                                        Gerar novo depósito
                                     </button>
                                 </div>
                             )}
@@ -162,8 +162,8 @@ export const PixArea: React.FC = () => {
                                         <input 
                                             type="text" required
                                             value={pixKey} onChange={e => setPixKey(e.target.value)}
-                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-red-500"
-                                            placeholder="CPF, Email ou AleatÃ³ria"
+                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500"
+                                            placeholder="CPF, Email ou Aleatória"
                                         />
                                     </div>
                                     <div>
@@ -171,11 +171,11 @@ export const PixArea: React.FC = () => {
                                         <input 
                                             type="number" step="0.01" required
                                             value={amount} onChange={e => setAmount(e.target.value)}
-                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 text-lg outline-none focus:ring-2 focus:ring-red-500"
+                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 text-lg outline-none focus:ring-2 focus:ring-orange-500"
                                             placeholder="0,00"
                                         />
                                     </div>
-                                    <button disabled={loading} className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-colors flex justify-center gap-2">
+                                    <button disabled={loading} className="w-full py-3 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-xl transition-colors flex justify-center gap-2">
                                         {loading ? <Loader2 className="animate-spin" /> : 'Confirmar Saque'}
                                     </button>
                                 </form>
@@ -187,4 +187,5 @@ export const PixArea: React.FC = () => {
         </div>
     );
 };
+
 

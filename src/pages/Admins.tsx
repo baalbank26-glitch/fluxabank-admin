@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { ShieldCheck, UserPlus, Loader2, PencilLine, X } from 'lucide-react';
 import { api } from '../services/api';
@@ -140,7 +140,7 @@ export const Admins: React.FC = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-          <ShieldCheck className="w-7 h-7 text-red-600" />
+          <ShieldCheck className="w-7 h-7 text-orange-600" />
           Admins e Permissoes Level2
         </h2>
         <p className="text-slate-500 text-sm mt-1">Crie novos admins e selecione permissoes operacionais.</p>
@@ -311,3 +311,4 @@ export const Admins: React.FC = () => {
     </div>
   );
 };
+
