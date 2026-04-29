@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Loader2, Send, Check, X, Copy, AlertCircle, TrendingDown } from 'lucide-react';
 import { otcAdminService } from '../services/otc.service';
 
@@ -234,7 +234,7 @@ const OTCWithdrawals: React.FC = () => {
             {/* Informaes */}
             <div className="space-y-3 text-sm">
               <div>
-                <p className="text-slate-500 font-medium">Usurio</p>
+                <p className="text-slate-500 font-medium">Usuário</p>
                 <p className="text-slate-900 font-mono">{selectedWithdrawal.userName}</p>
                 <p className="text-xs text-slate-500">{selectedWithdrawal.userEmail}</p>
               </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { AlertCircle, CheckCircle, Copy, QrCode, RefreshCcw, ShieldCheck } from 'lucide-react';
 import { twoFactorService } from '../services/twoFactor.service';
 
@@ -40,7 +40,7 @@ export const Authenticator: React.FC = () => {
       const res = await twoFactorService.setup();
       setQrCode(res.qrCode);
       setSecret(res.secret);
-      setSuccess('Configurao iniciada. Escaneie o QR e confirme com o código de 6 dgitos.');
+      setSuccess('Configuração iniciada. Escaneie o QR e confirme com o código de 6 dgitos.');
     } catch (e: any) {
       setError(e?.message || 'Falha ao iniciar configuração authenticator.');
     } finally {

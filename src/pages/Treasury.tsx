@@ -1,4 +1,4 @@
-
+﻿
 import React, { useEffect, useState } from 'react';
 import {
   BarChart,
@@ -103,7 +103,7 @@ export const Treasury: React.FC = () => {
           pageSize: 20,
           search: byUserSearch || undefined,
         }).catch((err) => {
-          console.error('[Treasury] Erro ao buscar summary por usurio:', err);
+          console.error('[Treasury] Erro ao buscar summary por usuário:', err);
           return { items: [], meta: { page: 1, pageSize: 20, total: 0, totalPages: 1 } };
         })
       ]);
@@ -125,16 +125,16 @@ export const Treasury: React.FC = () => {
       
       // Funo para padronizar descries antigas
       const normalizeDescription = (description: string): string => {
-        // OTC Withdrawal Fee from user X - R$ Y (Z USDT) ? Taxa de Transação - Saque OTC - Usurio X - R$ Y (Z USDT)
+        // OTC Withdrawal Fee from user X - R$ Y (Z USDT) ? Taxa de Transação - Saque OTC - Usuário X - R$ Y (Z USDT)
         const otcWithdrawalMatch = description.match(/OTC Withdrawal Fee from user (\d+)(.+)/i);
         if (otcWithdrawalMatch) {
-          return `Taxa de Transação - Saque OTC - Usurio ${otcWithdrawalMatch[1]}${otcWithdrawalMatch[2]}`;
+          return `Taxa de Transação - Saque OTC - Usuário ${otcWithdrawalMatch[1]}${otcWithdrawalMatch[2]}`;
         }
         
-        // OTC Conversion Fee from user X ? Taxa de Converso OTC - Usurio X
+        // OTC Conversion Fee from user X ? Taxa de Converso OTC - Usuário X
         const otcConversionMatch = description.match(/OTC Conversion Fee from user (\d+)/i);
         if (otcConversionMatch) {
-          return `Taxa de Converso OTC - Usurio ${otcConversionMatch[1]}`;
+          return `Taxa de Converso OTC - Usuário ${otcConversionMatch[1]}`;
         }
         
         return description;
@@ -152,7 +152,7 @@ export const Treasury: React.FC = () => {
         };
       });
       
-      // Buscar informaes de usurios que no tm userName/userEmail
+      // Buscar informaes de usuários que no tm userName/userEmail
       const userIdsToFetch = ledgerWithUserIds
         .filter(item => item.userId && (!item.userName || !item.userEmail))
         .map(item => Number(item.userId)) // Garantir que  number
@@ -160,7 +160,7 @@ export const Treasury: React.FC = () => {
 
       console.log('[Treasury] User IDs to fetch:', userIdsToFetch);
 
-      // Buscar informaes dos usurios em paralelo
+      // Buscar informaes dos usuários em paralelo
       const newUserCache = { ...userCache };
       await Promise.all(
         userIdsToFetch.map(async (userId) => {
@@ -171,12 +171,12 @@ export const Treasury: React.FC = () => {
               console.log(`[Treasury] User ${userId} data:`, user);
               if (user) {
                 newUserCache[userId] = {
-                  name: user.name || `Usurio #${userId}`,
+                  name: user.name || `Usuário #${userId}`,
                   email: user.email || ''
                 };
               }
             } catch (err) {
-              console.error(`Erro ao buscar usurio ${userId}:`, err);
+              console.error(`Erro ao buscar usuário ${userId}:`, err);
             }
           }
         })
@@ -184,7 +184,7 @@ export const Treasury: React.FC = () => {
       setUserCache(newUserCache);
       console.log('[Treasury] User cache:', newUserCache);
 
-      // Enriquecer ledger com informaes de usurios do cache
+      // Enriquecer ledger com informaes de usuários do cache
       const enrichedLedger = ledgerWithUserIds.map(item => {
         if (item.userId) {
           const userIdNum = Number(item.userId);
@@ -338,7 +338,7 @@ export const Treasury: React.FC = () => {
         setUserTransactionsFilteredSubtotal(filteredSubtotal);
       }
     } catch (err) {
-      console.error('[Treasury] Erro ao buscar transações do usurio:', err);
+      console.error('[Treasury] Erro ao buscar transações do usuário:', err);
       setUserTransactions([]);
       setUserTransactionsMeta({ page: 1, pageSize: 20, total: 0, totalPages: 1 });
       setUserTransactionsFilteredSubtotal(0);
@@ -458,7 +458,7 @@ export const Treasury: React.FC = () => {
     if (ledgerViewMode === 'BY_USER') {
       const searchTerm = String(byUserSearch || '').trim();
       if (!searchTerm) {
-        alert('Digite o nome, email ou ID do usurio para exportar as transações.');
+        alert('Digite o nome, email ou ID do usuário para exportar as transações.');
         return;
       }
 
@@ -474,19 +474,19 @@ export const Treasury: React.FC = () => {
         });
 
         if (matches.length === 0) {
-          alert('Usurio no encontrado para o termo informado.');
+          alert('Usuário no encontrado para o termo informado.');
           return;
         }
 
         if (matches.length > 1) {
-          alert(`Sua busca retornou ${matches.length} usurios. Refine por nome completo, email ou ID exato para exportar apenas 1 usurio.`);
+          alert(`Sua busca retornou ${matches.length} usuários. Refine por nome completo, email ou ID exato para exportar apenas 1 usuário.`);
           return;
         }
 
         selectedUser = matches[0];
       } catch (err) {
-        console.error('[Treasury] Erro ao buscar usurio para exportao:', err);
-        alert('Falha ao localizar o usurio para exportao.');
+        console.error('[Treasury] Erro ao buscar usuário para exportao:', err);
+        alert('Falha ao localizar o usuário para exportao.');
         return;
       }
 
@@ -517,13 +517,13 @@ export const Treasury: React.FC = () => {
           allTransactions.push(...(Array.isArray(nextPage?.items) ? nextPage.items : []));
         }
       } catch (err) {
-        console.error(`[Treasury] Erro ao buscar transações reais do usurio ${selectedUser.id}:`, err);
-        alert('Falha ao buscar transações reais do usurio para exportao.');
+        console.error(`[Treasury] Erro ao buscar transações reais do usuário ${selectedUser.id}:`, err);
+        alert('Falha ao buscar transações reais do usuário para exportao.');
         return;
       }
 
       if (allTransactions.length === 0) {
-        alert('Nenhuma transao encontrada para o usurio informado no perodo.');
+        alert('Nenhuma transao encontrada para o usuário informado no período.');
         return;
       }
 
@@ -592,7 +592,7 @@ export const Treasury: React.FC = () => {
         'E2E',
         'Data',
         'Hora',
-        'Descrio',
+        'Descrição',
         'Tipo',
         'Valor',
         'Taxa',
@@ -612,9 +612,9 @@ export const Treasury: React.FC = () => {
     const headersHtml = [
       'ID',
       'Data',
-      'Descrio',
-      'Usurio',
-      'Email do Usurio',
+      'Descrição',
+      'Usuário',
+      'Email do Usuário',
       'Tipo',
       'Valor',
     ].map((h) => `<th>${excelEscape(h)}</th>`).join('');
@@ -630,7 +630,7 @@ export const Treasury: React.FC = () => {
               : '--/--'
           )}</td>
           <td>${excelEscape(item.description)}</td>
-          <td>${excelEscape(item.userName || `Usurio #${item.userId || 'N/A'}`)}</td>
+          <td>${excelEscape(item.userName || `Usuário #${item.userId || 'N/A'}`)}</td>
           <td>${excelEscape(item.userEmail || 'N/A')}</td>
           <td>${excelEscape(item.type)}</td>
           <td class="text-right" style="mso-number-format:'\\@';">${excelEscape(`${sign}${formatExcelMoney(Number(item.amount || 0))}`)}</td>
@@ -777,7 +777,7 @@ export const Treasury: React.FC = () => {
 
           {!loading && (
             <p className="mt-2 text-sm text-slate-300">
-              Total lquido (por usurio):
+              Total lquido (por usuário):
               <span className="ml-1 font-semibold text-white">
                 {`R$ ${formatMoney(byUserNetTotal)}`}
               </span>
@@ -835,7 +835,7 @@ export const Treasury: React.FC = () => {
                 <p className="text-xs text-slate-300">
                   {ledger.length === 0
                     ? 'Nenhuma transao de taxa registrada ainda'
-                    : 'Nenhuma movimentao no perodo selecionado'}
+                    : 'Nenhuma movimentao no período selecionado'}
                 </p>
               </div>
             )}
@@ -904,8 +904,8 @@ export const Treasury: React.FC = () => {
 
       <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div>
-          <h3 className="font-bold text-slate-800">Visualizao de Tesouraria</h3>
-          <p className="text-xs text-slate-500 mt-1">Escolha entre ledger geral ou consolidao por usurio.</p>
+          <h3 className="font-bold text-slate-800">Visualização de Tesouraria</h3>
+          <p className="text-xs text-slate-500 mt-1">Escolha entre ledger geral ou consolidação por usuário.</p>
         </div>
         <div className="flex bg-slate-100 rounded-lg p-1 w-full md:w-auto">
           <button
@@ -924,7 +924,7 @@ export const Treasury: React.FC = () => {
               : 'text-slate-500 hover:text-slate-700'
               }`}
           >
-            Por Usurio
+            Por Usuário
           </button>
         </div>
       </div>
@@ -933,22 +933,22 @@ export const Treasury: React.FC = () => {
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           <div>
-            <h3 className="font-bold text-slate-800">Arrecadao por Usurio</h3>
+            <h3 className="font-bold text-slate-800">Arrecadao por Usuário</h3>
             <p className="text-xs text-slate-500 mt-1">
-              Consolidado de taxas creditadas na tesouraria por usurio no perodo selecionado.
+              Consolidado de taxas creditadas na tesouraria por usuário no período selecionado.
             </p>
             <div className="mt-3">
               <input
                 type="text"
                 value={byUserSearch}
                 onChange={(e) => setByUserSearch(e.target.value)}
-                placeholder="Filtrar por nome, email ou ID do usurio"
+                placeholder="Filtrar por nome, email ou ID do usuário"
                 className="w-full md:w-80 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               />
             </div>
           </div>
           <div className="text-sm text-slate-700 font-medium">
-            Total lquido no perodo:{' '}
+            Total lquido no período:{' '}
             <span className="font-bold text-slate-900">
               R$ {formatMoney(byUserNetTotal)}
             </span>
@@ -959,7 +959,7 @@ export const Treasury: React.FC = () => {
           <table className="w-full text-sm text-left">
             <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="px-6 py-3">Usurio</th>
+                <th className="px-6 py-3">Usuário</th>
                 <th className="px-6 py-3 text-right">Arrecadado</th>
                 <th className="px-6 py-3 text-right">Estornos</th>
                 <th className="px-6 py-3 text-right">Líquido</th>
@@ -976,7 +976,7 @@ export const Treasury: React.FC = () => {
               ) : byUserSummary.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="p-8 text-center text-slate-500">
-                    Nenhuma arrecadao por usurio encontrada para estáodo.
+                    Nenhuma arrecadao por usuário encontrada para estáodo.
                   </td>
                 </tr>
               ) : (
@@ -989,7 +989,7 @@ export const Treasury: React.FC = () => {
                   >
                     <td className="px-6 py-4">
                       <div className="flex flex-col">
-                        <span className="text-sm font-medium text-slate-800">{item.userName || `Usurio #${item.userId}`}</span>
+                        <span className="text-sm font-medium text-slate-800">{item.userName || `Usuário #${item.userId}`}</span>
                         {item.userEmail ? (
                           <span className="text-xs text-slate-500">{item.userEmail}</span>
                         ) : (
@@ -1017,7 +1017,7 @@ export const Treasury: React.FC = () => {
         {!loading && byUserMeta.totalPages > 1 && (
           <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between gap-3">
             <p className="text-xs text-slate-500">
-              Página {byUserMeta.page} de {byUserMeta.totalPages}  {byUserMeta.total} usurios
+              Página {byUserMeta.page} de {byUserMeta.totalPages}  {byUserMeta.total} usuários
             </p>
             <div className="flex items-center gap-2">
               <button
@@ -1032,7 +1032,7 @@ export const Treasury: React.FC = () => {
                 disabled={byUserMeta.page >= byUserMeta.totalPages}
                 className="px-3 py-1.5 text-xs font-semibold rounded-md border border-slate-200 text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Prxima
+                Próxima
               </button>
             </div>
           </div>
@@ -1043,12 +1043,12 @@ export const Treasury: React.FC = () => {
       {ledgerViewMode === 'LEDGER' && (
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-          <h3 className="font-bold text-slate-800">últimos Lanamentos (Ledger)</h3>
+          <h3 className="font-bold text-slate-800">últimos Lançamentos (Ledger)</h3>
           <input
             type="text"
             value={ledgerSearch}
             onChange={(e) => setLedgerSearch(e.target.value)}
-            placeholder="Filtrar no ledger por usurio, email, descrio ou ID"
+            placeholder="Filtrar no ledger por usuário, email, descrio ou ID"
             className="w-full md:w-96 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
           />
         </div>
@@ -1059,8 +1059,8 @@ export const Treasury: React.FC = () => {
               <tr>
                 <th className="px-6 py-3">ID</th>
                 <th className="px-6 py-3">Data</th>
-                <th className="px-6 py-3">Descrio</th>
-                <th className="px-6 py-3">Usurio</th>
+                <th className="px-6 py-3">Descrição</th>
+                <th className="px-6 py-3">Usuário</th>
                 <th className="px-6 py-3">Tipo</th>
                 <th className="px-6 py-3 text-right">Valor</th>
               </tr>
@@ -1106,7 +1106,7 @@ export const Treasury: React.FC = () => {
                         {item.userId ? (
                           <div className="flex flex-col">
                             <span className="text-sm font-medium text-slate-800">
-                              {item.userName || `Usurio #${item.userId}`}
+                              {item.userName || `Usuário #${item.userId}`}
                             </span>
                             {item.userEmail && (
                               <span className="text-xs text-slate-500">
@@ -1154,9 +1154,9 @@ export const Treasury: React.FC = () => {
           <div className="w-full max-w-5xl max-h-[90vh] overflow-hidden bg-white rounded-2xl border border-slate-200 shadow-2xl">
             <div className="px-6 py-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h3 className="text-lg font-bold text-slate-900">Transaes do Usurio</h3>
+                <h3 className="text-lg font-bold text-slate-900">Transações do Usuário</h3>
                 <p className="text-sm text-slate-500 mt-0.5">
-                  {selectedUser.userName || `Usurio #${selectedUser.userId}`}  ID {selectedUser.userId}
+                  {selectedUser.userName || `Usuário #${selectedUser.userId}`}  ID {selectedUser.userId}
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3">
@@ -1203,7 +1203,7 @@ export const Treasury: React.FC = () => {
                 <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
                     <th className="px-4 py-3">Data</th>
-                    <th className="px-4 py-3">Descrio</th>
+                    <th className="px-4 py-3">Descrição</th>
                     <th className="px-4 py-3">Tipo</th>
                     <th className="px-4 py-3 text-right">Valor</th>
                   </tr>
@@ -1218,7 +1218,7 @@ export const Treasury: React.FC = () => {
                   ) : userTransactions.length === 0 ? (
                     <tr>
                       <td colSpan={4} className="p-8 text-center text-slate-500">
-                        Nenhuma transao encontrada para esse usurio no perodo.
+                        Nenhuma transao encontrada para esse usuário no período.
                       </td>
                     </tr>
                   ) : (
@@ -1280,7 +1280,7 @@ export const Treasury: React.FC = () => {
                   disabled={loadingUserTransactions || userTransactionsMeta.page >= userTransactionsMeta.totalPages}
                   className="px-3 py-1.5 text-xs font-semibold rounded-md border border-slate-200 text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Prxima
+                  Próxima
                 </button>
               </div>
             </div>

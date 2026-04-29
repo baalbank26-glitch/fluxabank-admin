@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+﻿import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { CalendarDays, Filter, RefreshCw, Search, Loader2 } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { webhooksService } from '../services/webhooks.service'
@@ -242,7 +242,7 @@ export const WebhooksHistory: React.FC = () => {
             <option className="bg-slate-900 text-slate-50" value="today">Hoje</option>
             <option className="bg-slate-900 text-slate-50" value="7d">últimos 7 dias</option>
             <option className="bg-slate-900 text-slate-50" value="30d">últimos 30 dias</option>
-            <option className="bg-slate-900 text-slate-50" value="all">Todo perodo</option>
+            <option className="bg-slate-900 text-slate-50" value="all">Todo período</option>
           </select>
         </div>
 

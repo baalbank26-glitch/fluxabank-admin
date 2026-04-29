@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { 
   Shield, 
@@ -185,7 +185,7 @@ export const Settings: React.FC = () => {
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-100">Modo ativo</p>
-                      <h4 className="mt-2 text-xl font-bold">Configurao do aviso e excees</h4>
+                      <h4 className="mt-2 text-xl font-bold">Configuração do aviso e excees</h4>
                       <p className="mt-1 max-w-2xl text-sm text-orange-100/90">
                         Defina a mensagem pblica exibida pela API e controle quais IDs continuam autorizados durante a janela de manuteno.
                       </p>

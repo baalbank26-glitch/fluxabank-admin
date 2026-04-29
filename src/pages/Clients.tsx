@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { User, UserStatus, DocStatus, Wallet, LedgerItem, Provider } from '../types/index';
@@ -178,7 +178,7 @@ export const Clients: React.FC = () => {
             pix_out_enabled: user.pix_out_enabled ?? true,
     });
     
-    // Carregar documentos do usurio
+    // Carregar documentos do usuário
     try {
       const docs = await api.admin.documents.getUserDocuments(user.id);
       setUserDocuments(Array.isArray(docs) ? docs : []);
@@ -204,7 +204,7 @@ export const Clients: React.FC = () => {
       setProviders([]);
     }
     
-    // Carregar taxas do usurio
+    // Carregar taxas do usuário
     try {
         const feesData = await api.admin.users.getFees(user.id);
         setFeesForm({ 
@@ -277,11 +277,11 @@ export const Clients: React.FC = () => {
           }
           
           if (status === DocStatus.APPROVED) {
-                openSuccessModal('Conta aprovada', 'A conta do usurio foi aprovada com sucesso.');
+                openSuccessModal('Conta aprovada', 'A conta do usuário foi aprovada com sucesso.');
           } else if (status === DocStatus.REJECTED) {
-                 openSuccessModal('Conta suspensa/rejeitada', 'A conta do usurio foi atualizada com sucesso.');
+                 openSuccessModal('Conta suspensa/rejeitada', 'A conta do usuário foi atualizada com sucesso.');
           } else {
-                 openSuccessModal('Status atualizado', `O status do usurio foi atualizado para ${status}.`);
+                 openSuccessModal('Status atualizado', `O status do usuário foi atualizado para ${status}.`);
           }
           
           const updatedUser = { ...selectedUser, doc_status: status as DocStatus, doc_status_notes: notesToSend };
@@ -325,7 +325,7 @@ export const Clients: React.FC = () => {
           );
           
           
-          // Atualiza o usurio selecionado e a lista local com as novas taxas
+          // Atualiza o usuário selecionado e a lista local com as novas taxas
           const updatedUser = { 
               ...selectedUser, 
               pixInPercent: pixInPercent, 
@@ -339,7 +339,7 @@ export const Clients: React.FC = () => {
           setSelectedUser(updatedUser);
           setUsers(prev => prev.map(u => u.id === selectedUser.id ? updatedUser : u));
           
-          openSuccessModal('Taxas atualizadas', 'As taxas do usurio foram salvas com sucesso.');
+          openSuccessModal('Taxas atualizadas', 'As taxas do usuário foram salvas com sucesso.');
       } catch (e) {
           toast.error('Erro ao salvar taxas');
       } finally {
@@ -357,13 +357,13 @@ export const Clients: React.FC = () => {
           const result = await api.admin.users.updateProvider(selectedUser.id, selectedProvider);
           if (result.ok == true) {
               setUserProvider(selectedProvider);
-              // Atualiza o provider no objeto do usurio
+              // Atualiza o provider no objeto do usuário
               const updatedUser = { ...selectedUser, provider: selectedProvider };
               setSelectedUser(updatedUser);
-              // Atualiza tambm na lista de usurios
+              // Atualiza tambm na lista de usuários
               setUsers(prev => prev.map(u => u.id === selectedUser.id ? updatedUser : u));
               const providerName = providers.find(p => p.code === selectedProvider)?.name || selectedProvider;
-              openSuccessModal('Provider atualizado', `O provider do usurio foi alterado para ${providerName}.`);
+              openSuccessModal('Provider atualizado', `O provider do usuário foi alterado para ${providerName}.`);
           } else {
               toast.error('Erro ao salvar provider');
           }
@@ -403,7 +403,7 @@ export const Clients: React.FC = () => {
               };
               setSelectedUser(updatedUser);
               setUsers(prev => prev.map(u => u.id === selectedUser.id ? updatedUser : u));
-              openSuccessModal('Configurações atualizadas', 'As configuraes do usurio foram salvas com sucesso.');
+              openSuccessModal('Configurações atualizadas', 'As configuraes do usuário foram salvas com sucesso.');
           } else {
               toast.error('Erro ao salvar configuraes');
           }
@@ -417,13 +417,13 @@ export const Clients: React.FC = () => {
 
   useEffect(() => {
       if (activeTab === 'PROVIDER' && selectedUser) {
-          // O provider j vem nos dados do usurio
+          // O provider j vem nos dados do usuário
           const providerCode = selectedUser.provider || null;
           setUserProvider(providerCode);
           setSelectedProvider(providerCode || '');
       }
       if (activeTab === 'CONFIG' && selectedUser) {
-          // Carregar configuraes do usurio
+          // Carregar configuraes do usuário
           setConfigForm({
               webhook_url: selectedUser.webhook_url || '',
               webhook_url_pix_in: selectedUser.webhook_url_pix_in || '',
@@ -438,7 +438,7 @@ export const Clients: React.FC = () => {
   }, [activeTab, selectedUser]);
 
   const handleSuspendAccount = () => {
-    const reason = prompt('Motivo da suspenso (ser salvo nas notas):', 'Infrao dos termos de uso');
+    const reason = prompt('Motivo da suspenso (ser salvo nas notas):', 'Infração dos termos de uso');
     if (reason) {
         handleUpdateDocStatus(DocStatus.REJECTED, `CONTA SUSPENSA: ${reason}`);
     }
@@ -477,7 +477,7 @@ export const Clients: React.FC = () => {
       <div className="flex justify-between items-center">
         <div>
                     <div className="flex items-center gap-2">
-                        <h2 className="text-2xl font-bold text-slate-800">Gestá Usuários</h2>
+                        <h2 className="text-2xl font-bold text-slate-800">Gestão Usuários</h2>
                         <span className="px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold">
                             Ativos: {activeUsersCount}
                         </span>
@@ -611,7 +611,7 @@ export const Clients: React.FC = () => {
                                         disabled={safeCurrentPage >= totalPages}
                                         className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 bg-white hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        Prxima
+                                        Próxima
                                     </button>
                                 </div>
                             </div>
@@ -710,7 +710,7 @@ export const Clients: React.FC = () => {
                                                 <div className="pt-4 mt-2 border-t border-slate-100">
                                                     <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 flex items-center gap-3">
                                                         <CheckCircle className="w-5 h-5 text-green-600" />
-                                                        <p className="text-sm text-green-800">Este usurio j estáovado e operação. Para gestá documentos, utilize o painel de conformidade.</p>
+                                                        <p className="text-sm text-green-800">Este usuário j estáovado e operação. Para gestá documentos, utilize o painel de conformidade.</p>
                                                     </div>
                                                     
                                                     <div className="space-y-2">
@@ -723,13 +723,13 @@ export const Clients: React.FC = () => {
                                                             {actionLoading ? <Loader2 className="animate-spin w-4 h-4" /> : <Ban className="w-4 h-4" />}
                                                             Suspender Conta (Bloquear)
                                                         </button>
-                                                        <p className="text-xs text-slate-400 text-center">Isso revogar o acesso e rejeitar a documentao atual.</p>
+                                                        <p className="text-xs text-slate-400 text-center">Isso revogar o acesso e rejeitar a documentação atual.</p>
                                                     </div>
                                                 </div>
                                             ) : (
                                                 <>
                                                     <div>
-                                                        <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Notas de Anlise</label>
+                                                        <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Notas de Análise</label>
                                                         <textarea 
                                                             value={docNotes}
                                                             onChange={(e) => setDocNotes(e.target.value)}
@@ -919,7 +919,7 @@ export const Clients: React.FC = () => {
                                                 <thead className="bg-slate-50 border-b border-slate-200">
                                                     <tr>
                                                         <th className="px-4 py-3 font-medium text-slate-500">Data</th>
-                                                        <th className="px-4 py-3 font-medium text-slate-500">Descrio</th>
+                                                        <th className="px-4 py-3 font-medium text-slate-500">Descrição</th>
                                                         <th className="px-4 py-3 font-medium text-slate-500">Tipo</th>
                                                         <th className="px-4 py-3 font-medium text-slate-500 text-right">Valor</th>
                                                     </tr>
@@ -959,8 +959,8 @@ export const Clients: React.FC = () => {
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
                                         <Settings2 className="w-5 h-5 text-blue-600 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Configurao de Tarifas</h4>
-                                            <p className="text-sm text-blue-700">Defina as taxas retidas pelo gateway. Voc pode configurar taxa fixa, percentual ou ambas simultaneamente. Se ambas estám configuradas, sero somadas.</p>
+                                            <h4 className="font-bold text-blue-900">Configuração de Tarifas</h4>
+                                            <p className="text-sm text-blue-700">Defina as taxas retidas pelo gateway. Você pode configurar taxa fixa, percentual ou ambas simultaneamente. Se ambas estám configuradas, serão somadas.</p>
                                         </div>
                                     </div>
 
@@ -1005,7 +1005,7 @@ export const Clients: React.FC = () => {
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transao (opcional). Se ambas estám configuradas, sero somadas.</p>
+                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transao (opcional). Se ambas estám configuradas, serão somadas.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1014,7 +1014,7 @@ export const Clients: React.FC = () => {
                                     <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-800 flex items-center gap-2">
                                             <ArrowUpRight className="w-5 h-5 text-orange-500" />
-                                            Pix Sada (Cash-out)
+                                            Pix Saída (Cash-out)
                                         </h5>
                                         
                                         <div className="space-y-4">
@@ -1051,7 +1051,7 @@ export const Clients: React.FC = () => {
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transao (opcional). Se ambas estám configuradas, sero somadas.</p>
+                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transao (opcional). Se ambas estám configuradas, serão somadas.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1182,7 +1182,7 @@ export const Clients: React.FC = () => {
                                         <FileText className="w-5 h-5 text-blue-600 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Documentos KYC</h4>
-                                            <p className="text-sm text-blue-700">Documentao enviada pelo usurio para validao de identidade e conformidade.</p>
+                                            <p className="text-sm text-blue-700">Documentao enviada pelo usuário para validao de identidade e conformidade.</p>
                                         </div>
                                     </div>
 

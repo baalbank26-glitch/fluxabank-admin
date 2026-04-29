@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../services/api';
@@ -68,7 +68,7 @@ export const PixArea: React.FC = () => {
                     <div className="flex justify-between items-start">
                         <div>
                             <p className="font-medium text-orange-100">Suas Taxas</p>
-                            <h3 className="text-2xl font-bold mt-1">Pix Sada</h3>
+                            <h3 className="text-2xl font-bold mt-1">Pix Saída</h3>
                         </div>
                         <ArrowUpRight className="w-8 h-8 text-orange-200" />
                     </div>

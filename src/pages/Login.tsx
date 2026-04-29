@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Lock, Mail, ArrowRight, Loader2, AlertCircle, ShieldCheck, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 import { api } from '../services/api';
 import { UserRole } from '../types/index';
@@ -86,7 +86,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
         <div className="max-w-md">
           <h1 className="text-5xl font-bold mb-6 leading-tight text-white">
-            Gestáanceira <span className="text-orange-200">Inteligente</span>
+            Gestãoanceira <span className="text-orange-200">Inteligente</span>
           </h1>
           <p className="text-orange-100/80 text-lg leading-relaxed">
             Painel administrativo seguro. Gerencie clientes, transações e operações com total controle e transparência.

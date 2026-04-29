@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../services/api';
 import { MedCase } from '../types/index';
@@ -248,7 +248,7 @@ export const MED: React.FC = () => {
 
   const handleCreateMed = async () => {
     if (!newMed.transactionId || !newMed.userId || !newMed.amount || !newMed.reasonCode) {
-      toast.error('Preencha transao, usurio, valor e motivo.');
+      toast.error('Preencha transao, usuário, valor e motivo.');
       return;
     }
 
@@ -372,7 +372,7 @@ export const MED: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-             <h2 className="text-2xl font-bold text-slate-800">Mecanismo Especial de Devoluo</h2>
+             <h2 className="text-2xl font-bold text-slate-800">Mecanismo Especial de Devolução</h2>
              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-orange-600 border border-orange-200 uppercase tracking-wide">rea Sensvel</span>
           </div>
           <p className="text-slate-500 text-sm">Gerencie disputas, bloqueios cautelares e solicitaes de devoluo do Banco Central.</p>
@@ -401,7 +401,7 @@ export const MED: React.FC = () => {
           <div className="absolute right-0 top-0 w-24 h-24 bg-orange-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-2 text-orange-600 font-medium mb-2">
-              <AlertTriangle className="w-4 h-4" /> Em Anlise
+              <AlertTriangle className="w-4 h-4" /> Em Análise
             </div>
             <h3 className="text-3xl font-bold text-slate-800">
                 {safeCases.filter(c => c.status === 'OPEN' || c.status === 'UNDER_REVIEW' || c.status === 'DEFENSE_SENT').length}
@@ -414,7 +414,7 @@ export const MED: React.FC = () => {
           <div className="absolute right-0 top-0 w-24 h-24 bg-slate-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
           <div className="relative z-10">
              <div className="flex items-center gap-2 text-slate-600 font-medium mb-2">
-              <CheckCircle className="w-4 h-4" /> Devolues Realizadas
+              <CheckCircle className="w-4 h-4" /> Devoluções Realizadas
             </div>
             <h3 className="text-3xl font-bold text-slate-800">
                 {safeCases.filter(c => c.status === 'REFUND_ACCEPTED').length}
@@ -441,7 +441,7 @@ export const MED: React.FC = () => {
         <div className="p-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-slate-50/50">
           <h3 className="font-bold text-slate-800 flex items-center gap-2">
             <RefreshCw className={`w-4 h-4 ${txLoading ? 'animate-spin' : ''}`} />
-            Transaes em tempo real (PIX IN/OUT, API, etc.)
+            Transações em tempo real (PIX IN/OUT, API, etc.)
           </h3>
           <div className="relative w-full md:w-96">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -449,7 +449,7 @@ export const MED: React.FC = () => {
               type="text"
               value={txSearch}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTxSearch(e.target.value)}
-              placeholder="Buscar por TX, externalId, usurio, email, descrio..."
+              placeholder="Buscar por TX, externalId, usuário, email, descrio..."
               className="pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none w-full"
             />
           </div>
@@ -457,12 +457,12 @@ export const MED: React.FC = () => {
 
         <div className="px-4 py-3 border-b border-slate-100 bg-white">
           <div className="flex flex-col lg:flex-row lg:items-center gap-4">
-            {/* Presets de perodo */}
+            {/* Presets de período */}
             <div className="flex items-center gap-2">
               <span className="text-xs font-semibold text-slate-700 uppercase tracking-wide">Perodo:</span>
               <div className="flex flex-wrap gap-2">
                 {[
-                  { key: 'ALL', label: 'Todo perodo' },
+                  { key: 'ALL', label: 'Todo período' },
                   { key: '7D', label: '7 dias' },
                   { key: '30D', label: '30 dias' },
                   { key: '90D', label: '90 dias' }
@@ -624,7 +624,7 @@ export const MED: React.FC = () => {
         <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
           <h3 className="font-bold text-slate-800 flex items-center gap-2">
             <FileWarning className="w-5 h-5 text-slate-400" />
-            Solicitaes Recentes
+            Solicitações Recentes
           </h3>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -758,7 +758,7 @@ export const MED: React.FC = () => {
                     <div className="flex gap-2 sm:gap-3 relative">
                       <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-orange-500 shrink-0 mt-1 ring-4 ring-white"></div>
                       <div>
-                        <p className="text-xs sm:text-sm font-medium text-slate-800">Notificao de Infrao</p>
+                        <p className="text-xs sm:text-sm font-medium text-slate-800">Notificao de Infração</p>
                         <p className="text-xs text-slate-500">
                           {safeDateTime(selectedCase.reportedAt)}  {selectedCase.reporterBank || 'Banco'}
                         </p>
@@ -768,7 +768,7 @@ export const MED: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Defesa do Usurio</label>
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Defesa do Usuário</label>
                   <div className="mt-1 sm:mt-2 p-2 sm:p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs sm:text-sm text-slate-700 whitespace-pre-wrap">
                     {selectedCase.defenseText || 'Sem defesa enviada at o momento.'}
                   </div>
@@ -890,14 +890,14 @@ export const MED: React.FC = () => {
                 onClick={() => handleAction(selectedCase.id, 'REJECT_REFUND')}
                 className="px-3 sm:px-4 py-2 bg-white border border-slate-200 text-slate-700 font-medium rounded-lg hover:bg-slate-100 transition-colors shadow-sm disabled:opacity-50 text-xs sm:text-sm"
               >
-                {processingId === selectedCase.id ? 'Processando...' : 'Rejeitar Devoluo'}
+                {processingId === selectedCase.id ? 'Processando...' : 'Rejeitar Devolução'}
               </button>
               <button
                 disabled={processingId === selectedCase.id}
                 onClick={() => handleAction(selectedCase.id, 'MARK_UNDER_REVIEW')}
                 className="px-3 sm:px-4 py-2 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-700 transition-colors shadow-md shadow-amber-200 disabled:opacity-50 text-xs sm:text-sm"
               >
-                {processingId === selectedCase.id ? 'Processando...' : 'Marcar em Anlise'}
+                {processingId === selectedCase.id ? 'Processando...' : 'Marcar em Análise'}
               </button>
               <button
                 disabled={

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Bitcoin, RefreshCw, CheckCircle, XCircle, Clock, AlertCircle, Settings } from 'lucide-react';
 import { otcAdminService, type OtcWithdrawal, type OtcStats, type OtcSettings } from '../services/otc.service';
 
@@ -110,7 +110,7 @@ export const OTC: React.FC = () => {
         <div>
           <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-2">
             <Bitcoin className="w-8 h-8 text-amber-500" />
-            GestáC
+            GestãoC
           </h1>
           <p className="text-slate-500 mt-1">Gerenciar solicitaes de saque de criptomoedas</p>
         </div>
@@ -171,7 +171,7 @@ export const OTC: React.FC = () => {
             <thead className="bg-slate-50 border-b border-slate-100">
               <tr>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">ID</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Usurio</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Usuário</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Cripto</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Valor (BRL)</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Taxa</th>
@@ -377,7 +377,7 @@ export const OTC: React.FC = () => {
                   className="w-5 h-5 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500"
                 />
                 <label htmlFor="otcEnabled" className="text-sm font-semibold text-slate-700">
-                  OTC Habilitado (usurios podem usar)
+                  OTC Habilitado (usuários podem usar)
                 </label>
               </div>
             </div>
@@ -411,7 +411,7 @@ export const OTC: React.FC = () => {
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
               )}
               <h3 className="text-lg font-bold text-slate-900">
-                {validationModal.type === 'error' ? 'Ateno' : 'Sucesso'}
+                {validationModal.type === 'error' ? 'Atenção' : 'Sucesso'}
               </h3>
             </div>
             <p className="text-slate-700 mb-6">{validationModal.message}</p>

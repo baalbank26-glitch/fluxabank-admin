@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Check, X, FileText, Loader2, RefreshCw, AlertCircle, Image as ImageIcon, Download, ChevronDown, ChevronUp } from 'lucide-react';
@@ -75,20 +75,20 @@ export const Approvals: React.FC = () => {
   const handleApprove = async (id: string | number) => {
     try {
       await api.admin.users.updateDocStatus(id, DocStatus.APPROVED, 'Aprovado via painel de aprovaes');
-      toast.success('Usurio aprovado com sucesso!');
+      toast.success('Usuário aprovado com sucesso!');
       setPendingUsers(prev => prev.filter(u => String(u.id) !== String(id)));
     } catch (e) {
-      toast.error('Erro ao aprovar usurio');
+      toast.error('Erro ao aprovar usuário');
     }
   };
 
   const handleReject = async (id: string | number) => {
-    if(confirm('Tem certeza que deseja rejeitar? O usurio precisar reenviar documentos.')) {
+    if(confirm('Tem certeza que deseja rejeitar? O usuário precisar reenviar documentos.')) {
       try {
         await api.admin.users.updateDocStatus(id, DocStatus.REJECTED, 'Rejeitado via painel de aprovaes');
         setPendingUsers(prev => prev.filter(u => String(u.id) !== String(id)));
       } catch (e) {
-        toast.error('Erro ao rejeitar usurio');
+        toast.error('Erro ao rejeitar usuário');
       }
     }
   };
@@ -148,8 +148,8 @@ export const Approvals: React.FC = () => {
     <div className="space-y-6">
        <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-2xl font-bold text-slate-800">Fila de Aprovao (KYC)</h2>
-            <p className="text-slate-500 text-sm">Analise e aprove a documentao de novos clientes.</p>
+            <h2 className="text-2xl font-bold text-slate-800">Fila de Aprovação (KYC)</h2>
+            <p className="text-slate-500 text-sm">Analise e aprove a documentação de novos clientes.</p>
           </div>
           <button onClick={fetchPending} className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors">
             <RefreshCw className={`w-5 h-5 ${isLoading ? 'animate-spin' : ''}`} />

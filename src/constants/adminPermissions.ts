@@ -17,7 +17,7 @@ export const ADMIN_PERMISSION_LIST = [
   { key: ADMIN_PERMISSION_KEYS.SELECT_PROVIDER, label: 'Selecionar provider' },
   { key: ADMIN_PERMISSION_KEYS.MANAGE_WEBHOOKS_WHITELIST, label: 'Setar hooks, IPs e whitelist' },
   { key: ADMIN_PERMISSION_KEYS.APPROVE_KYC, label: 'Aprovar KYC' },
-  { key: ADMIN_PERMISSION_KEYS.MANAGE_OTC, label: 'GestáC' },
+  { key: ADMIN_PERMISSION_KEYS.MANAGE_OTC, label: 'GestãoC' },
   { key: ADMIN_PERMISSION_KEYS.EDIT_PROVIDERS, label: 'Editar providers' },
   { key: ADMIN_PERMISSION_KEYS.TOGGLE_MAINTENANCE, label: 'Ativar manutencao' },
 ];

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { AppView } from '../types/index';
 import { api } from '../services/api';
 import { ADMIN_PERMISSION_KEYS, hasAdminPermission, isMasterAdmin } from '../constants/adminPermissions';
@@ -35,7 +35,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
 
   const menuItems = [
     { id: AppView.DASHBOARD, label: 'Dashboard', icon: LayoutDashboard },
-    { id: AppView.CLIENTS, label: 'Gestá Usuários', icon: Users },
+    { id: AppView.CLIENTS, label: 'Gestão Usuários', icon: Users },
     { id: AppView.TREASURY, label: 'Tesouraria', icon: Wallet },
     { id: AppView.APPROVALS, label: 'Aprovações', icon: UserCheck },
     { id: AppView.MED, label: 'MED / Disputas', icon: Siren },

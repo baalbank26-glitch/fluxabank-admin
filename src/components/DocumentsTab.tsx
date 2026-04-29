@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { FileText, Loader2, Download, X, CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import { BASE_URL, getHeaders, handleResponse } from '../services/config';
 import { toast } from 'react-toastify';
@@ -109,7 +109,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
       <div className="text-center py-20 bg-slate-50 rounded-lg border border-slate-200 border-dashed">
         <FileText className="w-12 h-12 text-slate-400 mx-auto mb-4" />
         <h3 className="text-lg font-medium text-slate-700">Nenhum documento enviado</h3>
-        <p className="text-slate-500 text-sm mt-2">O usurio ainda no enviou documentos para verificao.</p>
+        <p className="text-slate-500 text-sm mt-2">O usuário ainda no enviou documentos para verificao.</p>
       </div>
     );
   }

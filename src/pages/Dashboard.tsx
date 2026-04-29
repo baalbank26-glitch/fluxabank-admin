@@ -1,4 +1,4 @@
-
+﻿
 import React, { useEffect, useState } from 'react';
 import { AppView, UserStatus, DocStatus } from '../types/index';
 import { api } from '../services/api';
@@ -49,7 +49,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
       try {
         const [users, treasuryBal, dailySummary] = await Promise.all([
           api.admin.users.list().catch((err) => {
-            console.error('[Dashboard] Erro ao buscar usurios:', err);
+            console.error('[Dashboard] Erro ao buscar usuários:', err);
             return [];
           }),
           api.admin.treasury.getBalance().catch((err) => {

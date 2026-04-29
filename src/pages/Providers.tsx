@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Provider } from '../types/index';
@@ -188,7 +188,7 @@ export const Providers: React.FC = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-slate-800">Gestáoviders</h2>
+          <h2 className="text-2xl font-bold text-slate-800">Gestãooviders</h2>
           <p className="text-slate-500 text-sm">Gerencie os providers de pagamento do sistema.</p>
         </div>
         <div className="flex gap-2">
