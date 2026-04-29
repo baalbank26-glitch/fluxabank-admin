@@ -32,11 +32,11 @@ export const WebhookSettings: React.FC = () => {
       if (updated) {
         toast.success('Configuracao de webhook atualizada com sucesso.');
       } else {
-        toast.error('Nao foi possivel salvar a configuração de webhook.');
+        toast.error('Nao foi possivel salvar a configuracao de webhook.');
       }
     } catch (err) {
       console.error('[WebhookSettings] erro ao salvar:', err);
-      toast.error('Erro de comunicacao ao salvar configuração de webhook.');
+      toast.error('Erro de comunicacao ao salvar configuracao de webhook.');
     } finally {
       setIsSaving(false);
     }
@@ -45,7 +45,7 @@ export const WebhookSettings: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center p-20">
-        <Loader2 className="animate-spin w-8 h-8 text-orange-600" />
+        <Loader2 className="animate-spin w-8 h-8 text-pagandu-600" />
       </div>
     );
   }
@@ -54,7 +54,7 @@ export const WebhookSettings: React.FC = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-800">Webhook Settings</h2>
-        <p className="text-slate-500 text-sm">Controle global de entrega de webhooks da Fluxabank.</p>
+        <p className="text-slate-500 text-sm">Controle global de entrega de webhooks da Pagandu.</p>
       </div>
 
       <div className={`rounded-2xl border shadow-sm overflow-hidden ${webhooksDisabled ? 'border-rose-200 bg-rose-50/40' : 'border-slate-200 bg-white'}`}>
@@ -84,7 +84,7 @@ export const WebhookSettings: React.FC = () => {
           {webhooksDisabled && (
             <div className="rounded-xl border border-rose-200 bg-rose-100/70 p-4 text-rose-900 text-sm flex items-start gap-2">
               <AlertTriangle className="w-4 h-4 mt-0.5" />
-              Todos os envios de webhook estáusados globalmente. Eventos continuarao sendo processados internamente.
+              Todos os envios de webhook estao pausados globalmente. Eventos continuarao sendo processados internamente.
             </div>
           )}
 
@@ -103,4 +103,3 @@ export const WebhookSettings: React.FC = () => {
     </div>
   );
 };
-

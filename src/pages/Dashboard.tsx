@@ -1,4 +1,4 @@
-﻿
+
 import React, { useEffect, useState } from 'react';
 import { AppView, UserStatus, DocStatus } from '../types/index';
 import { api } from '../services/api';
@@ -31,7 +31,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
     pendingApprovals: 0,
     blockedClients: 0,
     treasuryBalance: 0,
-    grossTransaçãosTotal: 0,
+    grossTransactionsTotal: 0,
     loading: true
   });
 
@@ -57,7 +57,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
             return { amount: 0 };
           }),
           api.admin.treasury.getDailySummary().catch((err) => {
-            console.error('[Dashboard] Erro ao buscar summary dirio:', err);
+            console.error('[Dashboard] Erro ao buscar summary diário:', err);
             return [];
           })
         ]);
@@ -91,7 +91,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 value: Number(item.total_in ?? 0)
               };
             })
-            .slice(0, 7) // últimos 7 dias
+            .slice(0, 7) // Últimos 7 dias
             .reverse(); // Ordenar do mais antigo para o mais recente
 
           const arr = Array.isArray(dailySummary) ? dailySummary : [];
@@ -101,7 +101,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
           }, 0);
         }
 
-        // Se no houver dados, criar dados vazios para os últimos 7 dias
+        // Se não houver dados, criar dados vazios para os últimos 7 dias
         if (processedChartData.length === 0) {
           for (let i = 6; i >= 0; i--) {
             const d = new Date();
@@ -120,7 +120,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
           pendingApprovals: pendingCount,
           blockedClients: blockedCount,
           treasuryBalance: Number(treasuryBal?.amount ?? 0),
-          grossTransaçãosTotal: Number(grossTotal ?? 0),
+          grossTransactionsTotal: Number(grossTotal ?? 0),
           loading: false
         });
 
@@ -170,21 +170,21 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
               <div className="pt-4 border-t border-white/10">
                 <p className="text-sm text-slate-400 mb-1">Total bruto (transações)</p>
                 <p className="text-xl font-semibold text-white break-words leading-tight">
-                  R$ {Number(stats.grossTransaçãosTotal).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                  R$ {Number(stats.grossTransactionsTotal).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                 </p>
               </div>
             )}
 
             <button
               onClick={() => onViewChange(AppView.TREASURY)}
-              className="mt-6 inline-flex items-center gap-2 text-red-300 hover:text-white font-medium text-sm transition-colors group/btn"
+              className="mt-6 inline-flex items-center gap-2 text-pagandu-300 hover:text-white font-medium text-sm transition-colors group/btn"
             >
               Ver detalhes <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>
 
-        {/* Usuários Ativos */}
+        {/* Usuarios Ativos */}
         <div
           className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all cursor-pointer min-w-0 group"
           onClick={() => onViewChange(AppView.CLIENTS)}
@@ -226,7 +226,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 {stats.pendingApprovals}
               </h3>
               <p className={`text-xs mt-3 font-semibold ${stats.pendingApprovals > 0 ? 'text-amber-600' : 'text-green-600'}`}>
-                {stats.pendingApprovals > 0 ? 'Requer atenção' : '? Tudo em dia'}
+                {stats.pendingApprovals > 0 ? 'Requer atenção' : '✓ Tudo em dia'}
               </p>
             </>
           )}
@@ -236,8 +236,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
         <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all min-w-0 group">
           <div className="flex items-start justify-between mb-4">
             <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Bloqueados</p>
-            <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
-              <Users className="w-5 h-5 text-orange-400" />
+            <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
+              <Users className="w-5 h-5 text-red-400" />
             </div>
           </div>
 
@@ -245,8 +245,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
             <Loader2 className="w-6 h-6 animate-spin text-slate-300" />
           ) : (
             <>
-              <h3 className="text-3xl font-bold text-orange-600">{stats.blockedClients}</h3>
-              <p className="text-xs text-orange-600 mt-3 font-semibold">Acesso restrito</p>
+              <h3 className="text-3xl font-bold text-red-600">{stats.blockedClients}</h3>
+              <p className="text-xs text-red-600 mt-3 font-semibold">Acesso restrito</p>
             </>
           )}
         </div>
@@ -317,7 +317,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 ) : (
                   <>
                     <p className="font-medium">Sem dados de faturamento</p>
-                    <p className="text-xs mt-2">Novas transações aparecero aqui</p>
+                    <p className="text-xs mt-2">Novas transações aparecerão aqui</p>
                   </>
                 )}
               </div>
@@ -359,7 +359,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
             </div>
 
             <p className="mt-6 text-sm text-slate-300 leading-relaxed">
-              Todos os servios estáspondendo normalmente. Nenhum incidente reportado.
+              Todos os serviços estão respondendo normalmente. Nenhum incidente reportado.
             </p>
 
             <button
@@ -374,5 +374,4 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
     </div>
   );
 };
-
 

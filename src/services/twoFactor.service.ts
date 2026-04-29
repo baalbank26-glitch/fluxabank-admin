@@ -1,4 +1,4 @@
-﻿import { BASE_URL, getHeaders, handleResponse } from './config';
+import { BASE_URL, getHeaders, handleResponse } from './config';
 
 const API_BASE = `${BASE_URL}/admin/2fa`;
 

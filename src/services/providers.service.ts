@@ -1,4 +1,4 @@
-﻿import { Provider } from '../types/index';
+import { Provider } from '../types/index';
 import { BASE_URL, getHeaders, handleResponse } from './config';
 
 export const providersService = {

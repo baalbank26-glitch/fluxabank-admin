@@ -1,4 +1,4 @@
-﻿import { BASE_URL, TOKEN_KEY, handleResponse } from './config';
+import { BASE_URL, TOKEN_KEY, handleResponse } from './config';
 
 export const authService = {
   login: async (email: string, password: string, challenge?: { code?: string; recoveryCode?: string }) => {

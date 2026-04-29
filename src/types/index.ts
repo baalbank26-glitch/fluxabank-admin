@@ -1,4 +1,4 @@
-﻿
+
 
 export enum UserStatus {
   ACTIVE = 'ACTIVE',
@@ -118,24 +118,24 @@ export interface TreasuryByUserSummary {
   totalCollected: number;
   totalReversed: number;
   netCollected: number;
-  operaçãos: number;
+  operations: number;
 }
 
-export interface PáginationMeta {
+export interface PaginationMeta {
   page: number;
   pageSize: number;
   total: number;
   totalPages: number;
 }
 
-export interface PáginatedTreasuryByUserSummary {
+export interface PaginatedTreasuryByUserSummary {
   items: TreasuryByUserSummary[];
-  meta: PáginationMeta;
+  meta: PaginationMeta;
 }
 
-export interface PáginatedLedgerItems {
+export interface PaginatedLedgerItems {
   items: LedgerItem[];
-  meta: PáginationMeta;
+  meta: PaginationMeta;
 }
 
 export interface Provider {

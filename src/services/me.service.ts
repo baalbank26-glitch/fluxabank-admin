@@ -1,4 +1,4 @@
-﻿import { Fees } from '../types/index';
+import { Fees } from '../types/index';
 import { BASE_URL, getHeaders, handleResponse } from './config';
 
 export const meService = {

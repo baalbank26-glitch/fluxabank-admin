@@ -1,4 +1,4 @@
-﻿import { TreasuryBalance, LedgerItem, TreasurySummary, PáginatedTreasuryByUserSummary, PáginatedLedgerItems } from '../types/index';
+import { TreasuryBalance, LedgerItem, TreasurySummary, PaginatedTreasuryByUserSummary, PaginatedLedgerItems } from '../types/index';
 import { BASE_URL, getHeaders, handleResponse } from './config';
 
 const toQueryString = (params?: Record<string, unknown>) => {
@@ -66,7 +66,7 @@ export const treasuryService = {
     return Array.isArray(data) ? data : [];
   },
 
-  getByUserSummary: async (params?: { from?: string; to?: string; page?: number; pageSize?: number; search?: string }): Promise<PáginatedTreasuryByUserSummary> => {
+  getByUserSummary: async (params?: { from?: string; to?: string; page?: number; pageSize?: number; search?: string }): Promise<PaginatedTreasuryByUserSummary> => {
     const query = toQueryString(params as any);
 
     const response = await fetch(`${BASE_URL}/admin/treasury/summary/by-user?${query}`, {
@@ -88,7 +88,7 @@ export const treasuryService = {
     };
   },
 
-  getByUserTransactions: async (userId: number, params?: { from?: string; to?: string; page?: number; pageSize?: number; flowType?: 'ALL' | 'PIX_IN' | 'PIX_OUT' }): Promise<PáginatedLedgerItems> => {
+  getByUserTransactions: async (userId: number, params?: { from?: string; to?: string; page?: number; pageSize?: number; flowType?: 'ALL' | 'PIX_IN' | 'PIX_OUT' }): Promise<PaginatedLedgerItems> => {
     const query = toQueryString(params as any);
 
     const response = await fetch(`${BASE_URL}/admin/treasury/summary/by-user/${userId}/transactions?${query}`, {

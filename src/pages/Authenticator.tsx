@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AlertCircle, CheckCircle, Copy, QrCode, RefreshCcw, ShieldCheck } from 'lucide-react';
 import { twoFactorService } from '../services/twoFactor.service';
 
@@ -40,9 +40,9 @@ export const Authenticator: React.FC = () => {
       const res = await twoFactorService.setup();
       setQrCode(res.qrCode);
       setSecret(res.secret);
-      setSuccess('Configuração iniciada. Escaneie o QR e confirme com o código de 6 dgitos.');
+      setSuccess('Configuração iniciada. Escaneie o QR e confirme com o código de 6 dígitos.');
     } catch (e: any) {
-      setError(e?.message || 'Falha ao iniciar configuração authenticator.');
+      setError(e?.message || 'Falha ao iniciar configuração do authenticator.');
     } finally {
       setIsSubmitting(false);
     }
@@ -51,7 +51,7 @@ export const Authenticator: React.FC = () => {
   const enable2FA = async () => {
     const cleanCode = code.replace(/\D/g, '').slice(0, 6);
     if (cleanCode.length !== 6) {
-      setError('Informe um código TOTP vlido de 6 dgitos.');
+      setError('Informe um código TOTP válido de 6 dígitos.');
       return;
     }
     setError(null);
@@ -99,16 +99,16 @@ export const Authenticator: React.FC = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-          <ShieldCheck className="w-7 h-7 text-orange-600" />
+          <ShieldCheck className="w-7 h-7 text-pagandu-600" />
           Authenticator (2FA)
         </h2>
         <p className="text-slate-500 text-sm mt-1">
-          Proteja o acesso do admin e de subcontas level2 código TOTP e códigos de recuperação.
+          Proteja o acesso do admin e de subcontas level2 com código TOTP e códigos de recuperação.
         </p>
       </div>
 
       {error && (
-        <div className="p-3 bg-orange-50 border border-orange-200 text-orange-700 rounded-lg text-sm flex items-center gap-2">
+        <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm flex items-center gap-2">
           <AlertCircle className="w-4 h-4" /> {error}
         </div>
       )}
@@ -158,7 +158,7 @@ export const Authenticator: React.FC = () => {
                 <input
                   value={code}
                   onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                  placeholder="Cdigo TOTP (6 dgitos)"
+                  placeholder="Código TOTP (6 dígitos)"
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg"
                 />
                 <button
@@ -181,7 +181,7 @@ export const Authenticator: React.FC = () => {
             <input
               value={code}
               onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-              placeholder="Cdigo TOTP (6 dgitos)"
+              placeholder="Código TOTP (6 dígitos)"
               className="px-3 py-2 border border-slate-300 rounded-lg"
             />
             <input
@@ -224,4 +224,3 @@ export const Authenticator: React.FC = () => {
     </div>
   );
 };
-

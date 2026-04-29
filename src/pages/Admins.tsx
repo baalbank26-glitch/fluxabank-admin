@@ -140,10 +140,10 @@ export const Admins: React.FC = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-          <ShieldCheck className="w-7 h-7 text-orange-600" />
+          <ShieldCheck className="w-7 h-7 text-pagandu-600" />
           Admins e Permissoes Level2
         </h2>
-        <p className="text-slate-500 text-sm mt-1">Crie novos admins e selecione permissoes operaçãoais.</p>
+        <p className="text-slate-500 text-sm mt-1">Crie novos admins e selecione permissoes operacionais.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
@@ -213,7 +213,7 @@ export const Admins: React.FC = () => {
                 <th className="px-4 py-3">E-mail</th>
                 <th className="px-4 py-3">Tipo</th>
                 <th className="px-4 py-3">Permissoes</th>
-                <th className="px-4 py-3 text-right">Ações</th>
+                <th className="px-4 py-3 text-right">Acoes</th>
               </tr>
             </thead>
             <tbody>
@@ -311,4 +311,3 @@ export const Admins: React.FC = () => {
     </div>
   );
 };
-

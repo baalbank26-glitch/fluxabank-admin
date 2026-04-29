@@ -32,7 +32,7 @@ const ensureLeadingSlash = (s: string) => s ? (s.startsWith('/') ? s : `/${s}`) 
 const resolveBase = () => {
   const ls = (typeof window !== 'undefined') ? (localStorage.getItem('webhooks_api_base') || '') : '';
   // Default to the Vercel USER-SERVICE which exposes webhooks history
-  const def = 'https://api.baabank.com';
+  const def = 'https://api.pagandu.com';
   return trimSlash(ls || BASE_URL || def);
 };
 

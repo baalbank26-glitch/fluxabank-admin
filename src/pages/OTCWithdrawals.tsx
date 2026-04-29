@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Loader2, Send, Check, X, Copy, AlertCircle, TrendingDown } from 'lucide-react';
 import { otcAdminService } from '../services/otc.service';
 
@@ -65,13 +65,13 @@ const OTCWithdrawals: React.FC = () => {
   const handleUpdateStatus = async (status: 'processing' | 'completed' | 'cancelled') => {
     if (!selectedWithdrawal) return;
 
-    // Validao rigorosa do hash para status "completed"
+    // Validação rigorosa do hash para status "completed"
     const cleanHash = (txHash || '').trim();
     console.log('[OTC] Status:', status, 'Hash:', JSON.stringify(txHash), 'Clean Hash:', JSON.stringify(cleanHash));
     
     if (status === 'completed') {
       if (!cleanHash || cleanHash.length === 0) {
-        setValidationModal({ type: 'error', message: 'Hash da transao  obrigatrio para marcar como completo.' });
+        setValidationModal({ type: 'error', message: 'Hash da transação é obrigatório para marcar como completo.' });
         return;
       }
     }
@@ -110,7 +110,7 @@ const OTCWithdrawals: React.FC = () => {
       case 'completed':
         return 'bg-green-100 text-green-800';
       case 'cancelled':
-        return 'bg-orange-100 text-orange-800';
+        return 'bg-red-100 text-red-800';
       default:
         return 'bg-gray-100 text-gray-800';
     }
@@ -138,7 +138,7 @@ const OTCWithdrawals: React.FC = () => {
           <TrendingDown className="w-8 h-8 text-amber-500" />
           Saques OTC
         </h2>
-        <p className="text-slate-600 mt-1">Gerenciar solicitaes de saque de criptomoedas</p>
+        <p className="text-slate-600 mt-1">Gerenciar solicitações de saque de criptomoedas</p>
       </div>
 
       {/* Filtros */}
@@ -178,7 +178,7 @@ const OTCWithdrawals: React.FC = () => {
             </div>
           ) : withdrawals.length === 0 ? (
             <div className="p-8 text-center text-slate-500 bg-slate-50 rounded-lg">
-              Nenhum saque encontrado nestátro.
+              Nenhum saque encontrado neste filtro.
             </div>
           ) : (
             <div className="space-y-3">
@@ -218,7 +218,7 @@ const OTCWithdrawals: React.FC = () => {
           )}
         </div>
 
-        {/* Painel de Detalhes e Ao */}
+        {/* Painel de Detalhes e Ação */}
         {selectedWithdrawal && (
           <div className="p-6 bg-white border border-slate-200 rounded-lg shadow-md space-y-4">
             <div className="flex justify-between items-center mb-4">
@@ -231,7 +231,7 @@ const OTCWithdrawals: React.FC = () => {
               </button>
             </div>
 
-            {/* Informaes */}
+            {/* Informações */}
             <div className="space-y-3 text-sm">
               <div>
                 <p className="text-slate-500 font-medium">Usuário</p>
@@ -257,7 +257,7 @@ const OTCWithdrawals: React.FC = () => {
               </div>
 
               <div>
-                <p className="text-slate-500 font-medium">Endereo</p>
+                <p className="text-slate-500 font-medium">Endereço</p>
                 <div className="flex items-center gap-2 mt-1">
                   <p className="text-xs font-mono text-slate-600 break-all">
                     {selectedWithdrawal.walletAddress.slice(0, 20)}...{selectedWithdrawal.walletAddress.slice(-10)}
@@ -289,18 +289,18 @@ const OTCWithdrawals: React.FC = () => {
               )}
             </div>
 
-            {/* Formulrio de Atualizao */}
+            {/* Formulário de Atualização */}
             {selectedWithdrawal.status === 'pending' || selectedWithdrawal.status === 'processing' ? (
               <div className="border-t pt-4 space-y-3">
                 {error && (
-                  <div className="p-3 bg-orange-50 text-orange-700 rounded-lg flex items-center gap-2 text-sm">
+                  <div className="p-3 bg-red-50 text-red-700 rounded-lg flex items-center gap-2 text-sm">
                     <AlertCircle className="w-4 h-4" />
                     {error}
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Hash da Transação * <span className="text-orange-600">(obrigatório)</span></label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Hash da Transação * <span className="text-red-600">(obrigatório)</span></label>
                   <input
                     type="text"
                     value={txHash}
@@ -308,11 +308,11 @@ const OTCWithdrawals: React.FC = () => {
                     placeholder="0x..."
                     required
                     className={`w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 ${
-                      txHash.trim() === '' ? 'border-red-300 bg-orange-50' : 'border-slate-300'
+                      txHash.trim() === '' ? 'border-red-300 bg-red-50' : 'border-slate-300'
                     }`}
                   />
                   {txHash.trim() === '' && (
-                    <p className="text-xs text-orange-600 mt-1">⚠️ Campo obrigatório para marcar como completo</p>
+                    <p className="text-xs text-red-600 mt-1">⚠️ Campo obrigatório para marcar como completo</p>
                   )}
                 </div>
 
@@ -347,7 +347,7 @@ const OTCWithdrawals: React.FC = () => {
                   <button
                     onClick={() => handleUpdateStatus('cancelled')}
                     disabled={processing}
-                    className="flex-1 py-2 bg-orange-600 text-white rounded-lg font-medium hover:bg-orange-700 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="flex-1 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     {processing ? <Loader2 className="w-4 h-4 animate-spin" /> : <X className="w-4 h-4" />}
                     Cancelar
@@ -365,10 +365,10 @@ const OTCWithdrawals: React.FC = () => {
         {/* Validation Modal */}
         {validationModal && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className={`bg-white rounded-2xl p-6 max-w-md w-full shadow-xl ${validationModal.type === 'error' ? 'border-l-4 border-orange-500' : 'border-l-4 border-green-500'}`}>
+            <div className={`bg-white rounded-2xl p-6 max-w-md w-full shadow-xl ${validationModal.type === 'error' ? 'border-l-4 border-red-500' : 'border-l-4 border-green-500'}`}>
               <div className="flex items-center gap-3 mb-4">
                 {validationModal.type === 'error' ? (
-                  <AlertCircle className="w-6 h-6 text-orange-600 flex-shrink-0" />
+                  <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0" />
                 ) : (
                   <Check className="w-6 h-6 text-green-600 flex-shrink-0" />
                 )}
@@ -386,7 +386,7 @@ const OTCWithdrawals: React.FC = () => {
                 }}
                 className={`w-full py-3 rounded-lg font-semibold transition-colors ${
                   validationModal.type === 'error'
-                    ? 'bg-orange-600 text-white hover:bg-orange-700'
+                    ? 'bg-red-600 text-white hover:bg-red-700'
                     : 'bg-green-600 text-white hover:bg-green-700'
                 }`}
               >
@@ -401,4 +401,3 @@ const OTCWithdrawals: React.FC = () => {
 };
 
 export default OTCWithdrawals;
-

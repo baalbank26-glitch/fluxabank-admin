@@ -1,4 +1,4 @@
-﻿// Main API export - maintains backward compatibility
+// Main API export - maintains backward compatibility
 import { authService } from './auth.service';
 import { usersService } from './users.service';
 import { walletService } from './wallet.service';

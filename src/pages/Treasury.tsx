@@ -1,4 +1,4 @@
-﻿
+
 import React, { useEffect, useState } from 'react';
 import {
   BarChart,
@@ -11,7 +11,7 @@ import {
 } from 'recharts';
 import { Download, Loader2, ArrowUpRight, Calendar, Filter, X } from 'lucide-react';
 import { api } from '../services/api';
-import { TreasuryBalance, LedgerItem, TreasurySummary, TreasuryByUserSummary, PáginationMeta } from '../types/index';
+import { TreasuryBalance, LedgerItem, TreasurySummary, TreasuryByUserSummary, PaginationMeta } from '../types/index';
 
 export const Treasury: React.FC = () => {
   const [balance, setBalance] = useState<TreasuryBalance>({
@@ -23,7 +23,7 @@ export const Treasury: React.FC = () => {
   const [dailySummary, setDailySummary] = useState<TreasurySummary[]>([]);
   const [monthlySummary, setMonthlySummary] = useState<TreasurySummary[]>([]);
   const [byUserSummary, setByUserSummary] = useState<TreasuryByUserSummary[]>([]);
-  const [byUserMeta, setByUserMeta] = useState<PáginationMeta>({ page: 1, pageSize: 20, total: 0, totalPages: 1 });
+  const [byUserMeta, setByUserMeta] = useState<PaginationMeta>({ page: 1, pageSize: 20, total: 0, totalPages: 1 });
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'DAILY' | 'MONTHLY'>('DAILY');
   const [ledgerViewMode, setLedgerViewMode] = useState<'LEDGER' | 'BY_USER'>('LEDGER');
@@ -37,7 +37,7 @@ export const Treasury: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<TreasuryByUserSummary | null>(null);
   const [showUserModal, setShowUserModal] = useState(false);
   const [userTransactions, setUserTransactions] = useState<LedgerItem[]>([]);
-  const [userTransactionsMeta, setUserTransactionsMeta] = useState<PáginationMeta>({ page: 1, pageSize: 20, total: 0, totalPages: 1 });
+  const [userTransactionsMeta, setUserTransactionsMeta] = useState<PaginationMeta>({ page: 1, pageSize: 20, total: 0, totalPages: 1 });
   const [userTransactionsFilteredSubtotal, setUserTransactionsFilteredSubtotal] = useState(0);
   const [userTransactionsPage, setUserTransactionsPage] = useState(1);
   const [userTransactionsFlowType, setUserTransactionsFlowType] = useState<'ALL' | 'PIX_IN' | 'PIX_OUT' | 'ESTORNO'>('ALL');
@@ -89,7 +89,7 @@ export const Treasury: React.FC = () => {
           return [];
         }),
         api.admin.treasury.getDailySummary(summaryParams.from, summaryParams.to).catch((err) => {
-          console.error('[Treasury] Erro ao buscar summary dirio:', err);
+          console.error('[Treasury] Erro ao buscar summary diário:', err);
           return [];
         }),
         api.admin.treasury.getMonthlySummary(summaryParams.from, summaryParams.to).catch((err) => {
@@ -117,30 +117,30 @@ export const Treasury: React.FC = () => {
 
       const ledgerArray = Array.isArray(led) ? led : [];
       
-      // Funo para extrair userId da descrio quando no vier do backend
+      // Função para extrair userId da descrição quando não vier do backend
       const extractUserIdFromDescription = (description: string): number | null => {
         const match = description.match(/user (\d+)/i);
         return match ? parseInt(match[1], 10) : null;
       };
       
-      // Funo para padronizar descries antigas
+      // Função para padronizar descrições antigas
       const normalizeDescription = (description: string): string => {
-        // OTC Withdrawal Fee from user X - R$ Y (Z USDT) ? Taxa de Transação - Saque OTC - Usuário X - R$ Y (Z USDT)
+        // OTC Withdrawal Fee from user X - R$ Y (Z USDT) → Taxa de Transação - Saque OTC - Usuário X - R$ Y (Z USDT)
         const otcWithdrawalMatch = description.match(/OTC Withdrawal Fee from user (\d+)(.+)/i);
         if (otcWithdrawalMatch) {
           return `Taxa de Transação - Saque OTC - Usuário ${otcWithdrawalMatch[1]}${otcWithdrawalMatch[2]}`;
         }
         
-        // OTC Conversion Fee from user X ? Taxa de Converso OTC - Usuário X
+        // OTC Conversion Fee from user X → Taxa de Conversão OTC - Usuário X
         const otcConversionMatch = description.match(/OTC Conversion Fee from user (\d+)/i);
         if (otcConversionMatch) {
-          return `Taxa de Converso OTC - Usuário ${otcConversionMatch[1]}`;
+          return `Taxa de Conversão OTC - Usuário ${otcConversionMatch[1]}`;
         }
         
         return description;
       };
       
-      // Enriquecer ledger com userId extrado da descrio quando necessrio
+      // Enriquecer ledger com userId extraído da descrição quando necessário
       const ledgerWithUserIds = ledgerArray.map(item => {
         const normalizedDescription = normalizeDescription(item.description);
         const userId = item.userId || extractUserIdFromDescription(item.description);
@@ -152,15 +152,15 @@ export const Treasury: React.FC = () => {
         };
       });
       
-      // Buscar informaes de usuários que no tm userName/userEmail
+      // Buscar informações de usuários que não têm userName/userEmail
       const userIdsToFetch = ledgerWithUserIds
         .filter(item => item.userId && (!item.userName || !item.userEmail))
-        .map(item => Number(item.userId)) // Garantir que  number
-        .filter((id, index, self) => !isNaN(id) && self.indexOf(id) === index); // unique e vlidos
+        .map(item => Number(item.userId)) // Garantir que é number
+        .filter((id, index, self) => !isNaN(id) && self.indexOf(id) === index); // unique e válidos
 
       console.log('[Treasury] User IDs to fetch:', userIdsToFetch);
 
-      // Buscar informaes dos usuários em paralelo
+      // Buscar informações dos usuários em paralelo
       const newUserCache = { ...userCache };
       await Promise.all(
         userIdsToFetch.map(async (userId) => {
@@ -184,7 +184,7 @@ export const Treasury: React.FC = () => {
       setUserCache(newUserCache);
       console.log('[Treasury] User cache:', newUserCache);
 
-      // Enriquecer ledger com informaes de usuários do cache
+      // Enriquecer ledger com informações de usuários do cache
       const enrichedLedger = ledgerWithUserIds.map(item => {
         if (item.userId) {
           const userIdNum = Number(item.userId);
@@ -256,8 +256,8 @@ export const Treasury: React.FC = () => {
       
       setLoadingUserTransactions(true);
 
-      // Fallback robusto: para PIX_IN/PIX_OUT, traz todas as pginas e filtra no frontend por transactionType.
-      // Isso evita inconsistncia quando o backend ignora flowType.
+      // Fallback robusto: para PIX_IN/PIX_OUT, traz todas as páginas e filtra no frontend por transactionType.
+      // Isso evita inconsistência quando o backend ignora flowType.
       if (userTransactionsFlowType === 'ALL') {
         const pageSize = 100;
         const firstPage = await api.admin.treasury.getByUserTransactions(user.userId, {
@@ -474,7 +474,7 @@ export const Treasury: React.FC = () => {
         });
 
         if (matches.length === 0) {
-          alert('Usuário no encontrado para o termo informado.');
+          alert('Usuário não encontrado para o termo informado.');
           return;
         }
 
@@ -485,8 +485,8 @@ export const Treasury: React.FC = () => {
 
         selectedUser = matches[0];
       } catch (err) {
-        console.error('[Treasury] Erro ao buscar usuário para exportao:', err);
-        alert('Falha ao localizar o usuário para exportao.');
+        console.error('[Treasury] Erro ao buscar usuário para exportação:', err);
+        alert('Falha ao localizar o usuário para exportação.');
         return;
       }
 
@@ -518,12 +518,12 @@ export const Treasury: React.FC = () => {
         }
       } catch (err) {
         console.error(`[Treasury] Erro ao buscar transações reais do usuário ${selectedUser.id}:`, err);
-        alert('Falha ao buscar transações reais do usuário para exportao.');
+        alert('Falha ao buscar transações reais do usuário para exportação.');
         return;
       }
 
       if (allTransactions.length === 0) {
-        alert('Nenhuma transao encontrada para o usuário informado no período.');
+        alert('Nenhuma transação encontrada para o usuário informado no período.');
         return;
       }
 
@@ -554,7 +554,7 @@ export const Treasury: React.FC = () => {
       const exportableTransactions = allTransactions.filter((tx) => isApprovedOrPaid((tx as any)?.status));
 
       if (exportableTransactions.length === 0) {
-        alert('Nenhuma transao com status Aprovado/Pago encontrada para exportar.');
+        alert('Nenhuma transação com status Aprovado/Pago encontrada para exportar.');
         return;
       }
 
@@ -583,7 +583,7 @@ export const Treasury: React.FC = () => {
       });
 
       if (detailedRows.length === 0) {
-        alert('Nenhuma transao principal encontrada para exportar.');
+        alert('Nenhuma transação principal encontrada para exportar.');
         return;
       }
 
@@ -714,7 +714,7 @@ export const Treasury: React.FC = () => {
         <div>
           <h2 className="text-2xl font-bold text-slate-800">Tesouraria</h2>
           <p className="text-slate-500 text-sm">
-            Controle de caixa, lucros e movimentaes do Gateway.
+            Controle de caixa, lucros e movimentações do Gateway.
           </p>
         </div>
 
@@ -723,7 +723,7 @@ export const Treasury: React.FC = () => {
               <button
                 onClick={() => setViewMode('DAILY')}
                 className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${viewMode === 'DAILY'
-                    ? 'bg-orange-100 text-orange-700'
+                    ? 'bg-pagandu-100 text-pagandu-700'
                     : 'text-slate-500 hover:bg-slate-50'
                   }`}
               >
@@ -733,7 +733,7 @@ export const Treasury: React.FC = () => {
               <button
                 onClick={() => setViewMode('MONTHLY')}
                 className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${viewMode === 'MONTHLY'
-                    ? 'bg-orange-100 text-orange-700'
+                    ? 'bg-pagandu-100 text-pagandu-700'
                     : 'text-slate-500 hover:bg-slate-50'
                   }`}
               >
@@ -750,7 +750,7 @@ export const Treasury: React.FC = () => {
             </button>
             <button
               onClick={() => handleExportXLS()}
-              className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 text-sm font-medium shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-pagandu-600 text-white rounded-lg hover:bg-pagandu-700 text-sm font-medium shadow-sm"
             >
               <Download className="w-4 h-4" />
               Exportar XLS
@@ -777,7 +777,7 @@ export const Treasury: React.FC = () => {
 
           {!loading && (
             <p className="mt-2 text-sm text-slate-300">
-              Total lquido (por usuário):
+              Total líquido (por usuário):
               <span className="ml-1 font-semibold text-white">
                 {`R$ ${formatMoney(byUserNetTotal)}`}
               </span>
@@ -789,12 +789,12 @@ export const Treasury: React.FC = () => {
             Atualizado agora
           </p>
 
-          <div className="absolute right-[-20px] top-[-20px] w-48 h-48 bg-orange-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute right-[-20px] top-[-20px] w-48 h-48 bg-pagandu-500/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
           <h3 className="text-lg font-bold text-slate-800 mb-6">
-            Faturamento ({viewMode === 'DAILY' ? 'Hoje' : 'Ms atual'})
+            Faturamento ({viewMode === 'DAILY' ? 'Hoje' : 'Mês atual'})
           </h3>
 
           <div className="h-[200px]">
@@ -834,8 +834,8 @@ export const Treasury: React.FC = () => {
                 <p>Sem dados de faturamento</p>
                 <p className="text-xs text-slate-300">
                   {ledger.length === 0
-                    ? 'Nenhuma transao de taxa registrada ainda'
-                    : 'Nenhuma movimentao no período selecionado'}
+                    ? 'Nenhuma transação de taxa registrada ainda'
+                    : 'Nenhuma movimentação no período selecionado'}
                 </p>
               </div>
             )}
@@ -867,7 +867,7 @@ export const Treasury: React.FC = () => {
                 type="date"
                 value={dateFrom}
                 onChange={(e) => setDateFrom(e.target.value)}
-                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 focus:border-transparent"
               />
             </div>
             <div>
@@ -878,7 +878,7 @@ export const Treasury: React.FC = () => {
                 type="date"
                 value={dateTo}
                 onChange={(e) => setDateTo(e.target.value)}
-                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -894,7 +894,7 @@ export const Treasury: React.FC = () => {
             </button>
             <button
               onClick={() => setShowFilters(false)}
-              className="ml-auto px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 text-sm font-medium"
+              className="ml-auto px-4 py-2 bg-pagandu-600 text-white rounded-lg hover:bg-pagandu-700 text-sm font-medium"
             >
               Aplicar
             </button>
@@ -933,7 +933,7 @@ export const Treasury: React.FC = () => {
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           <div>
-            <h3 className="font-bold text-slate-800">Arrecadao por Usuário</h3>
+            <h3 className="font-bold text-slate-800">Arrecadação por Usuário</h3>
             <p className="text-xs text-slate-500 mt-1">
               Consolidado de taxas creditadas na tesouraria por usuário no período selecionado.
             </p>
@@ -943,12 +943,12 @@ export const Treasury: React.FC = () => {
                 value={byUserSearch}
                 onChange={(e) => setByUserSearch(e.target.value)}
                 placeholder="Filtrar por nome, email ou ID do usuário"
-                className="w-full md:w-80 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                className="w-full md:w-80 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 focus:border-transparent"
               />
             </div>
           </div>
           <div className="text-sm text-slate-700 font-medium">
-            Total lquido no período:{' '}
+            Total líquido no período:{' '}
             <span className="font-bold text-slate-900">
               R$ {formatMoney(byUserNetTotal)}
             </span>
@@ -963,7 +963,7 @@ export const Treasury: React.FC = () => {
                 <th className="px-6 py-3 text-right">Arrecadado</th>
                 <th className="px-6 py-3 text-right">Estornos</th>
                 <th className="px-6 py-3 text-right">Líquido</th>
-                <th className="px-6 py-3 text-right">Operaes</th>
+                <th className="px-6 py-3 text-right">Operações</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -976,7 +976,7 @@ export const Treasury: React.FC = () => {
               ) : byUserSummary.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="p-8 text-center text-slate-500">
-                    Nenhuma arrecadao por usuário encontrada para estáodo.
+                    Nenhuma arrecadação por usuário encontrada para este período.
                   </td>
                 </tr>
               ) : (
@@ -985,7 +985,7 @@ export const Treasury: React.FC = () => {
                     key={item.userId}
                     className="hover:bg-slate-50/50 cursor-pointer"
                     onClick={() => openUserTransactionsModal(item)}
-                    title="Clique para ver as transações destário"
+                    title="Clique para ver as transações deste usuário"
                   >
                     <td className="px-6 py-4">
                       <div className="flex flex-col">
@@ -1006,7 +1006,7 @@ export const Treasury: React.FC = () => {
                     <td className="px-6 py-4 text-right font-mono font-semibold text-slate-900">
                       R$ {formatMoney(item.netCollected || 0)}
                     </td>
-                    <td className="px-6 py-4 text-right text-slate-600">{item.operaçãos}</td>
+                    <td className="px-6 py-4 text-right text-slate-600">{item.operations}</td>
                   </tr>
                 ))
               )}
@@ -1017,7 +1017,7 @@ export const Treasury: React.FC = () => {
         {!loading && byUserMeta.totalPages > 1 && (
           <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between gap-3">
             <p className="text-xs text-slate-500">
-              Página {byUserMeta.page} de {byUserMeta.totalPages}  {byUserMeta.total} usuários
+              Página {byUserMeta.page} de {byUserMeta.totalPages} • {byUserMeta.total} usuários
             </p>
             <div className="flex items-center gap-2">
               <button
@@ -1043,13 +1043,13 @@ export const Treasury: React.FC = () => {
       {ledgerViewMode === 'LEDGER' && (
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-          <h3 className="font-bold text-slate-800">últimos Lançamentos (Ledger)</h3>
+          <h3 className="font-bold text-slate-800">Últimos Lançamentos (Ledger)</h3>
           <input
             type="text"
             value={ledgerSearch}
             onChange={(e) => setLedgerSearch(e.target.value)}
-            placeholder="Filtrar no ledger por usuário, email, descrio ou ID"
-            className="w-full md:w-96 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+            placeholder="Filtrar no ledger por usuário, email, descrição ou ID"
+            className="w-full md:w-96 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 focus:border-transparent"
           />
         </div>
 
@@ -1076,7 +1076,7 @@ export const Treasury: React.FC = () => {
               ) : filteredLedger.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="p-8 text-center text-slate-500">
-                    Nenhum lanamento encontrado.
+                    Nenhum lançamento encontrado.
                   </td>
                 </tr>
               ) : (
@@ -1128,7 +1128,7 @@ export const Treasury: React.FC = () => {
                         <span
                           className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${(item.type || '').includes('CREDIT')
                               ? 'bg-green-100 text-green-700'
-                              : 'bg-orange-100 text-orange-700'
+                              : 'bg-red-100 text-red-700'
                             }`}
                         >
                           {item.type}
@@ -1156,7 +1156,7 @@ export const Treasury: React.FC = () => {
               <div>
                 <h3 className="text-lg font-bold text-slate-900">Transações do Usuário</h3>
                 <p className="text-sm text-slate-500 mt-0.5">
-                  {selectedUser.userName || `Usuário #${selectedUser.userId}`}  ID {selectedUser.userId}
+                  {selectedUser.userName || `Usuário #${selectedUser.userId}`} • ID {selectedUser.userId}
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3">
@@ -1165,22 +1165,22 @@ export const Treasury: React.FC = () => {
                   value={userTxFrom}
                   max={userTxTo || undefined}
                   onChange={(e) => setUserTxFrom(e.target.value)}
-                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none"
+                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-pagandu-500 outline-none"
                   title="Data inicial (deixe vazio para remover filtro)"
                 />
-                <span className="text-xs text-slate-400">at</span>
+                <span className="text-xs text-slate-400">até</span>
                 <input
                   type="date"
                   value={userTxTo}
                   min={userTxFrom || undefined}
                   onChange={(e) => setUserTxTo(e.target.value)}
-                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none"
+                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-pagandu-500 outline-none"
                   title="Data final (deixe vazio para remover filtro)"
                 />
                 <select
                   value={userTransactionsFlowType}
                   onChange={(e) => setUserTransactionsFlowType(e.target.value as 'ALL' | 'PIX_IN' | 'PIX_OUT' | 'ESTORNO')}
-                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none"
+                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-pagandu-500 outline-none"
                 >
                   <option value="ALL">Todos os fluxos</option>
                   <option value="PIX_IN">Somente PIX IN</option>
@@ -1218,7 +1218,7 @@ export const Treasury: React.FC = () => {
                   ) : userTransactions.length === 0 ? (
                     <tr>
                       <td colSpan={4} className="p-8 text-center text-slate-500">
-                        Nenhuma transao encontrada para esse usuário no período.
+                        Nenhuma transação encontrada para esse usuário no período.
                       </td>
                     </tr>
                   ) : (
@@ -1233,7 +1233,7 @@ export const Treasury: React.FC = () => {
                         <td className="px-4 py-3">
                           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${(tx.type || '').includes('CREDIT')
                             ? 'bg-green-100 text-green-700'
-                            : 'bg-orange-100 text-orange-700'
+                            : 'bg-red-100 text-red-700'
                             }`}>
                             {tx.type}
                           </span>
@@ -1251,7 +1251,7 @@ export const Treasury: React.FC = () => {
             <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between">
               <div>
                 <p className="text-xs text-slate-500">
-                  Página {userTransactionsMeta.page} de {userTransactionsMeta.totalPages}  {userTransactionsMeta.total} transações
+                  Página {userTransactionsMeta.page} de {userTransactionsMeta.totalPages} • {userTransactionsMeta.total} transações
                 </p>
                 <p className="text-xs font-semibold text-slate-700 mt-1">
                   Subtotal do filtro: {userTransactionsFilteredSubtotal < 0 ? '-R$ ' : 'R$ '}{formatMoney(Math.abs(userTransactionsFilteredSubtotal))}
@@ -1290,5 +1290,4 @@ export const Treasury: React.FC = () => {
     </div>
   );
 };
-
 

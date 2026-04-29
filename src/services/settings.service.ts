@@ -1,4 +1,4 @@
-﻿import { BASE_URL, getHeaders, handleResponse } from './config';
+import { BASE_URL, getHeaders, handleResponse } from './config';
 
 export const settingsService = {
   getMaintenance: async () => {
@@ -7,7 +7,7 @@ export const settingsService = {
     });
     const json = await handleResponse(response);
     // Default safe values
-    return json?.data || { isActive: false, message: 'O sistema estámanutenção.', allowedUserIds: [] };
+    return json?.data || { isActive: false, message: 'O sistema está em manutenção.', allowedUserIds: [] };
   },
 
   updateMaintenance: async (isActive: boolean, message: string, allowedUserIds: number[] = []) => {

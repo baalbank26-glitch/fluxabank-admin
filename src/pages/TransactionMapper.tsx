@@ -155,3 +155,5 @@ export const TransactionMapper: React.FC = () => {
     </div>
   )
 }
+
+export default TransactionMapper

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { CalendarDays, Filter, RefreshCw, Search, Loader2 } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { webhooksService } from '../services/webhooks.service'
@@ -25,7 +25,7 @@ type WebhookLog = {
     userId?: number
     type?: string
     externalId?: string
-    timestá string
+    timestamp?: string
   }
 }
 
@@ -54,7 +54,7 @@ export const WebhooksHistory: React.FC = () => {
   const [selectedIds, setSelectedIds] = useState<number[]>([])
   const [ledgerId, setLedgerId] = useState<string>('')
   const [triggering, setTriggering] = useState(false)
-  const [mapperTransaçãoId, setMapperTransaçãoId] = useState('')
+  const [mapperTransactionId, setMapperTransactionId] = useState('')
   const [mapperLoading, setMapperLoading] = useState(false)
   const [mapperResult, setMapperResult] = useState<any | null>(null)
   const [resendingId, setResendingId] = useState<number | null>(null)
@@ -153,15 +153,15 @@ export const WebhooksHistory: React.FC = () => {
     }
   }
 
-  const handleMapTransação = async () => {
+  const handleMapTransaction = async () => {
     try {
-      const tx = mapperTransaçãoId.trim()
+      const tx = mapperTransactionId.trim()
       if (!tx) return
       setMapperLoading(true)
-      const res = await webhooksService.mapTransação(tx)
+      const res = await webhooksService.mapTransaction(tx)
       setMapperResult(res || null)
     } catch (err) {
-      console.error('Erro ao mapear transao', err)
+      console.error('Erro ao mapear transação', err)
       setMapperResult(null)
     } finally {
       setMapperLoading(false)
@@ -240,8 +240,8 @@ export const WebhooksHistory: React.FC = () => {
             className="appearance-none bg-slate-900 text-slate-50 text-xs outline-none px-2 py-1 rounded-md border border-slate-700 focus:border-slate-600"
           >
             <option className="bg-slate-900 text-slate-50" value="today">Hoje</option>
-            <option className="bg-slate-900 text-slate-50" value="7d">últimos 7 dias</option>
-            <option className="bg-slate-900 text-slate-50" value="30d">últimos 30 dias</option>
+            <option className="bg-slate-900 text-slate-50" value="7d">Últimos 7 dias</option>
+            <option className="bg-slate-900 text-slate-50" value="30d">Últimos 30 dias</option>
             <option className="bg-slate-900 text-slate-50" value="all">Todo período</option>
           </select>
         </div>
@@ -294,7 +294,7 @@ export const WebhooksHistory: React.FC = () => {
           <input
             defaultValue={filters.transactionId}
             onChange={(e) => updateFilterDebounced('transactionId', e.target.value)}
-            placeholder="ID da transao"
+            placeholder="ID da transação"
             className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs outline-none"
           />
         </div>
@@ -307,7 +307,7 @@ export const WebhooksHistory: React.FC = () => {
         </button>
       </div>
 
-      {/* MAPEADOR DE TRANSAO */}
+      {/* MAPEADOR DE TRANSAÇÃO */}
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-sm font-semibold text-slate-100">Mapeador de Transação (Webhook)</h2>
@@ -316,14 +316,14 @@ export const WebhooksHistory: React.FC = () => {
 
         <div className="flex flex-wrap items-center gap-2">
           <input
-            value={mapperTransaçãoId}
-            onChange={(e) => setMapperTransaçãoId(e.target.value)}
+            value={mapperTransactionId}
+            onChange={(e) => setMapperTransactionId(e.target.value)}
             placeholder="merOrderNo / orderNo / tradeNo / transactionId"
             className="flex-1 min-w-[260px] px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-xs outline-none"
           />
           <button
-            onClick={handleMapTransação}
-            disabled={mapperLoading || !mapperTransaçãoId.trim()}
+            onClick={handleMapTransaction}
+            disabled={mapperLoading || !mapperTransactionId.trim()}
             className="px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-xs font-semibold inline-flex items-center gap-2"
           >
             {mapperLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
@@ -365,7 +365,7 @@ export const WebhooksHistory: React.FC = () => {
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Entregues</span><div className="text-emerald-300 font-semibold">{mapperResult?.mapped?.stats?.delivered ?? 0}</div></div>
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Falhas</span><div className="text-rose-300 font-semibold">{mapperResult?.mapped?.stats?.failed ?? 0}</div></div>
                   <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Primeiro log</span><div className="text-slate-100">{mapperResult?.mapped?.stats?.firstSeen ? new Date(mapperResult.mapped.stats.firstSeen).toLocaleString() : '-'}</div></div>
-                  <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">ltimo log</span><div className="text-slate-100">{mapperResult?.mapped?.stats?.lastSeen ? new Date(mapperResult.mapped.stats.lastSeen).toLocaleString() : '-'}</div></div>
+                  <div className="rounded-md border border-slate-800 p-2"><span className="text-slate-400">Último log</span><div className="text-slate-100">{mapperResult?.mapped?.stats?.lastSeen ? new Date(mapperResult.mapped.stats.lastSeen).toLocaleString() : '-'}</div></div>
                 </div>
 
                 <div className="rounded-md border border-slate-800 p-2">
@@ -400,25 +400,25 @@ export const WebhooksHistory: React.FC = () => {
         {filters.type && (
           <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700">
             Tipo: {filters.type}
-            <button onClick={() => clearFilter('type')} className="text-slate-400 hover:text-slate-200"></button>
+            <button onClick={() => clearFilter('type')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
         {filters.status && (
           <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700">
             Status: {filters.status}
-            <button onClick={() => clearFilter('status')} className="text-slate-400 hover:text-slate-200"></button>
+            <button onClick={() => clearFilter('status')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
         {filters.url && (
           <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700 max-w-[50%] truncate">
             URL: <span className="truncate">{filters.url}</span>
-            <button onClick={() => clearFilter('url')} className="text-slate-400 hover:text-slate-200"></button>
+            <button onClick={() => clearFilter('url')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
         {filters.transactionId && (
           <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700">
             Tx: {filters.transactionId}
-            <button onClick={() => clearFilter('transactionId')} className="text-slate-400 hover:text-slate-200"></button>
+            <button onClick={() => clearFilter('transactionId')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
       </div>
@@ -431,7 +431,7 @@ export const WebhooksHistory: React.FC = () => {
               onClick={toggleSelectAll}
               className="w-4 h-4 border border-slate-600 rounded-sm flex items-center justify-center text-[10px]"
             >
-              {selectedIds.length === logs.length && logs.length > 0 ? '?' : ''}
+              {selectedIds.length === logs.length && logs.length > 0 ? '✓' : ''}
             </button>
             <span className="flex-1 text-center">Data</span>
           </div>
@@ -472,7 +472,7 @@ export const WebhooksHistory: React.FC = () => {
                     onClick={() => toggleSelect(log.id)}
                     className="mt-1 w-4 h-4 border border-slate-600 rounded-sm flex items-center justify-center text-[10px] shrink-0"
                   >
-                    {selectedIds.includes(log.id) ? '?' : ''}
+                    {selectedIds.includes(log.id) ? '✓' : ''}
                   </button>
                   <div className="flex-1">
                     <div className="flex items-center justify-between gap-2">
@@ -544,7 +544,7 @@ export const WebhooksHistory: React.FC = () => {
                       onClick={() => toggleSelect(log.id)}
                       className="w-4 h-4 border border-slate-600 rounded-sm flex items-center justify-center text-[10px]"
                     >
-                      {selectedIds.includes(log.id) ? '?' : ''}
+                      {selectedIds.includes(log.id) ? '✓' : ''}
                     </button>
                     <div className="flex flex-col">
                       <span>{new Date(log.created_at).toLocaleDateString()}</span>
@@ -594,7 +594,7 @@ export const WebhooksHistory: React.FC = () => {
         )}
       </div>
 
-      {/* PAGINAO */}
+      {/* PAGINAÇÃO */}
       <div className="flex items-center justify-between text-xs text-slate-400 mt-2">
         <span>
           Página {page} de {totalPages}
@@ -612,7 +612,7 @@ export const WebhooksHistory: React.FC = () => {
             disabled={page === totalPages}
             className="px-3 py-1 rounded-lg border border-slate-700 disabled:opacity-40"
           >
-            Prximo
+            Próximo
           </button>
         </div>
       </div>
@@ -621,5 +621,4 @@ export const WebhooksHistory: React.FC = () => {
 }
 
 export default WebhooksHistory
-
 

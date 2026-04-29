@@ -1,4 +1,4 @@
-﻿
+
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Provider } from '../types/index';
@@ -137,7 +137,7 @@ export const Providers: React.FC = () => {
   };
 
   const handleDelete = async (provider: Provider) => {
-    if (!confirm(`Tem certeza que deseja excluir o provider "${provider.name}"? Esta ao no pode ser desfeita.`)) {
+    if (!confirm(`Tem certeza que deseja excluir o provider "${provider.name}"? Esta ação não pode ser desfeita.`)) {
       return;
     }
 
@@ -145,7 +145,7 @@ export const Providers: React.FC = () => {
     try {
       const success = await api.admin.providers.delete(provider.id);
       if (success) {
-        toast.success('Provider excludo com sucesso!');
+        toast.success('Provider excluído com sucesso!');
         fetchProviders();
       } else {
         toast.error('Erro ao excluir provider');
@@ -188,7 +188,7 @@ export const Providers: React.FC = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-slate-800">Gestãooviders</h2>
+          <h2 className="text-2xl font-bold text-slate-800">Gestão de Providers</h2>
           <p className="text-slate-500 text-sm">Gerencie os providers de pagamento do sistema.</p>
         </div>
         <div className="flex gap-2">
@@ -201,7 +201,7 @@ export const Providers: React.FC = () => {
           </button>
           <button 
             onClick={openCreateModal}
-            className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
+            className="px-4 py-2 bg-pagandu-600 hover:bg-pagandu-700 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
           >
             <Plus className="w-5 h-5" />
             Novo Provider
@@ -215,7 +215,7 @@ export const Providers: React.FC = () => {
           <input 
             type="text" 
             placeholder="Buscar por nome, código ou URL..." 
-            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50"
+            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pagandu-500/50"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -225,7 +225,7 @@ export const Providers: React.FC = () => {
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         {isLoading ? (
           <div className="flex justify-center p-12">
-            <Loader2 className="w-8 h-8 animate-spin text-orange-600" />
+            <Loader2 className="w-8 h-8 animate-spin text-pagandu-600" />
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -233,7 +233,7 @@ export const Providers: React.FC = () => {
               <thead className="bg-slate-50 border-b border-slate-200">
                 <tr>
                   <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">ID</th>
-                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Cdigo</th>
+                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Código</th>
                   <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Nome</th>
                   <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Base URL</th>
                   <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status</th>
@@ -309,7 +309,7 @@ export const Providers: React.FC = () => {
                         <button
                           onClick={() => handleDelete(provider)}
                           disabled={actionLoading}
-                          className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                           title="Excluir"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -330,7 +330,7 @@ export const Providers: React.FC = () => {
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
             <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-cyan-500 text-white flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-pagandu-500 to-cyan-500 text-white flex items-center justify-center">
                   <Building2 className="w-5 h-5" />
                 </div>
                 <div>
@@ -363,7 +363,7 @@ export const Providers: React.FC = () => {
                       required
                       value={formData.code}
                       onChange={(e) => setFormData({ ...formData, code: e.target.value.toUpperCase().replace(/\s+/g, '_') })}
-                      className="w-full border border-slate-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none font-mono"
+                      className="w-full border border-slate-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none font-mono"
                       placeholder="PROVIDER_CODE"
                       disabled={!!editingProvider}
                     />
@@ -381,7 +381,7 @@ export const Providers: React.FC = () => {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full border border-slate-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none"
+                      className="w-full border border-slate-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none"
                       placeholder="Nome do Provider"
                     />
                   </div>
@@ -397,7 +397,7 @@ export const Providers: React.FC = () => {
                         required
                         value={formData.base_url}
                         onChange={(e) => setFormData({ ...formData, base_url: e.target.value })}
-                        className="w-full border border-slate-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-orange-500 outline-none font-mono text-sm"
+                        className="w-full border border-slate-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none font-mono text-sm"
                         placeholder="https://api.provider.com"
                       />
                     </div>
@@ -413,7 +413,7 @@ export const Providers: React.FC = () => {
                         id="active"
                         checked={formData.active}
                         onChange={(e) => setFormData({ ...formData, active: e.target.checked })}
-                        className="w-4 h-4 text-orange-600 border-slate-300 rounded focus:ring-orange-500"
+                        className="w-4 h-4 text-pagandu-600 border-slate-300 rounded focus:ring-pagandu-500"
                       />
                       <label htmlFor="active" className="text-sm font-medium text-slate-700">
                         Provider ativo (pode ser usado para processar transações)
@@ -454,6 +454,5 @@ export const Providers: React.FC = () => {
     </div>
   );
 };
-
 
 

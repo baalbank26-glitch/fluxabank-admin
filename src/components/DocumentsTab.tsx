@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FileText, Loader2, Download, X, CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import { BASE_URL, getHeaders, handleResponse } from '../services/config';
 import { toast } from 'react-toastify';
@@ -81,7 +81,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
   };
 
   const handleDeleteDocument = async (docId: number) => {
-    if (!confirm('Tem certeza que deseja deletar estáumento?')) return;
+    if (!confirm('Tem certeza que deseja deletar este documento?')) return;
 
     try {
       const response = await fetch(`${BASE_URL}/documents/admin/${docId}`, {
@@ -99,7 +99,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-20">
-        <Loader2 className="w-8 h-8 text-orange-500 animate-spin" />
+        <Loader2 className="w-8 h-8 text-pagandu-500 animate-spin" />
       </div>
     );
   }
@@ -109,7 +109,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
       <div className="text-center py-20 bg-slate-50 rounded-lg border border-slate-200 border-dashed">
         <FileText className="w-12 h-12 text-slate-400 mx-auto mb-4" />
         <h3 className="text-lg font-medium text-slate-700">Nenhum documento enviado</h3>
-        <p className="text-slate-500 text-sm mt-2">O usuário ainda no enviou documentos para verificao.</p>
+        <p className="text-slate-500 text-sm mt-2">O usuário ainda não enviou documentos para verificação.</p>
       </div>
     );
   }
@@ -134,7 +134,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
             {/* Status Badge */}
             <div className={`px-4 py-2 text-xs font-bold flex items-center justify-between ${
               doc.status === 'APPROVED' ? 'bg-green-100 text-green-700' :
-              doc.status === 'REJECTED' ? 'bg-orange-100 text-orange-700' :
+              doc.status === 'REJECTED' ? 'bg-red-100 text-red-700' :
               'bg-amber-100 text-amber-700'
             }`}>
               <span className="flex items-center gap-1">
@@ -193,7 +193,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
                   href={doc.document_link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 px-3 py-2 text-orange-600 border border-red-300 rounded text-xs font-medium hover:bg-orange-50 transition-colors flex items-center justify-center gap-1"
+                  className="flex-1 px-3 py-2 text-pagandu-600 border border-pagandu-300 rounded text-xs font-medium hover:bg-pagandu-50 transition-colors flex items-center justify-center gap-1"
                 >
                   <Download className="w-3 h-3" /> Download
                 </a>
@@ -209,7 +209,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
 
                 <button
                   onClick={() => handleDeleteDocument(doc.id)}
-                  className="px-3 py-2 bg-orange-50 text-orange-600 rounded text-xs font-medium hover:bg-orange-100 transition-colors"
+                  className="px-3 py-2 bg-red-50 text-red-600 rounded text-xs font-medium hover:bg-red-100 transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -220,12 +220,12 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
             {reviewingDoc === doc.id && (
               <div className="border-t border-slate-200 bg-slate-50 p-4 space-y-3">
                 <div>
-                  <label className="text-xs font-medium text-slate-700">Notas de reviso</label>
+                  <label className="text-xs font-medium text-slate-700">Notas de revisão</label>
                   <textarea
                     value={reviewNotes}
                     onChange={(e) => setReviewNotes(e.target.value)}
-                    placeholder="Adicione observaes sobre a aprovao ou rejeio..."
-                    className="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-orange-500"
+                    placeholder="Adicione observações sobre a aprovação ou rejeição..."
+                    className="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-pagandu-500"
                     rows={3}
                   />
                 </div>
@@ -239,7 +239,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
                   </button>
                   <button
                     onClick={() => handleRejectDocument(doc.id)}
-                    className="flex-1 px-3 py-2 bg-orange-600 text-white rounded text-xs font-medium hover:bg-orange-700 transition-colors flex items-center justify-center gap-1"
+                    className="flex-1 px-3 py-2 bg-red-600 text-white rounded text-xs font-medium hover:bg-red-700 transition-colors flex items-center justify-center gap-1"
                   >
                     <AlertCircle className="w-3 h-3" /> Rejeitar
                   </button>
@@ -286,4 +286,3 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
     </div>
   );
 };
-
