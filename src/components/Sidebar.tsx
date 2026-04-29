@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { AppView } from '../types/index';
 import { api } from '../services/api';
 import { ADMIN_PERMISSION_KEYS, hasAdminPermission, isMasterAdmin } from '../constants/adminPermissions';
@@ -35,18 +35,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
 
   const menuItems = [
     { id: AppView.DASHBOARD, label: 'Dashboard', icon: LayoutDashboard },
-    { id: AppView.CLIENTS, label: 'Gestao de Usuarios', icon: Users },
+    { id: AppView.CLIENTS, label: 'Gestá Usuários', icon: Users },
     { id: AppView.TREASURY, label: 'Tesouraria', icon: Wallet },
-    { id: AppView.APPROVALS, label: 'Aprovacoes', icon: UserCheck },
+    { id: AppView.APPROVALS, label: 'Aprovações', icon: UserCheck },
     { id: AppView.MED, label: 'MED / Disputas', icon: Siren },
     { id: AppView.OTC, label: 'OTC / Cripto', icon: Bitcoin, visible: canManageOtc },
     { id: AppView.PROVIDERS, label: 'Providers', icon: Building2, visible: canEditProviders },
-    { id: AppView.SECURITY, label: 'Seguranca / IDS', icon: Shield, visible: canViewSecurity },
+    { id: AppView.SECURITY, label: 'Segurança / IDS', icon: Shield, visible: canViewSecurity },
     { id: AppView.AUTHENTICATOR, label: 'Authenticator 2FA', icon: KeyRound },
     { id: AppView.WEBHOOKS, label: 'Webhooks', icon: History },
     { id: AppView.WEBHOOK_SETTINGS, label: 'Webhook Settings', icon: Settings, visible: canViewSecurity },
-    { id: AppView.WEBHOOK_MAPPER, label: 'Mapeador Transacao', icon: Compass },
-    { id: AppView.SETTINGS, label: 'Configuracoes', icon: Settings, visible: canManageMaintenance },
+    { id: AppView.WEBHOOK_MAPPER, label: 'Mapeador Transação', icon: Compass },
+    { id: AppView.SETTINGS, label: 'Configurações', icon: Settings, visible: canManageMaintenance },
     { id: AppView.ADMINS, label: 'Admins', icon: Infinity, visible: canManageAdmins },
   ].filter((item) => item.visible !== false);
 

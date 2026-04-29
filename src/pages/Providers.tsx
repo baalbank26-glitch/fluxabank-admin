@@ -137,7 +137,7 @@ export const Providers: React.FC = () => {
   };
 
   const handleDelete = async (provider: Provider) => {
-    if (!confirm(`Tem certeza que deseja excluir o provider "${provider.name}"? Esta ação não pode ser desfeita.`)) {
+    if (!confirm(`Tem certeza que deseja excluir o provider "${provider.name}"? Esta ao no pode ser desfeita.`)) {
       return;
     }
 
@@ -145,7 +145,7 @@ export const Providers: React.FC = () => {
     try {
       const success = await api.admin.providers.delete(provider.id);
       if (success) {
-        toast.success('Provider excluído com sucesso!');
+        toast.success('Provider excludo com sucesso!');
         fetchProviders();
       } else {
         toast.error('Erro ao excluir provider');
@@ -188,7 +188,7 @@ export const Providers: React.FC = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-slate-800">Gestão de Providers</h2>
+          <h2 className="text-2xl font-bold text-slate-800">GestÃ¡oviders</h2>
           <p className="text-slate-500 text-sm">Gerencie os providers de pagamento do sistema.</p>
         </div>
         <div className="flex gap-2">
@@ -214,7 +214,7 @@ export const Providers: React.FC = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
           <input 
             type="text" 
-            placeholder="Buscar por nome, código ou URL..." 
+            placeholder="Buscar por nome, cÃ³digo ou URL..." 
             className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/50"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -233,12 +233,12 @@ export const Providers: React.FC = () => {
               <thead className="bg-slate-50 border-b border-slate-200">
                 <tr>
                   <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">ID</th>
-                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Código</th>
+                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Cdigo</th>
                   <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Nome</th>
                   <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Base URL</th>
                   <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status</th>
                   <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Criado em</th>
-                  <th className="px-6 py-4 text-end text-xs font-bold text-slate-500 uppercase">Ações</th>
+                  <th className="px-6 py-4 text-end text-xs font-bold text-slate-500 uppercase">AÃ§Ãµes</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -338,7 +338,7 @@ export const Providers: React.FC = () => {
                     {editingProvider ? 'Editar Provider' : 'Novo Provider'}
                   </h3>
                   <p className="text-sm text-slate-500">
-                    {editingProvider ? 'Atualize as informações do provider' : 'Preencha os dados do novo provider'}
+                    {editingProvider ? 'Atualize as informaes do provider' : 'Preencha os dados do novo provider'}
                   </p>
                 </div>
               </div>
@@ -356,7 +356,7 @@ export const Providers: React.FC = () => {
                 <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
                   <div>
                     <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
-                      Código *
+                      Cdigo *
                     </label>
                     <input
                       type="text"
@@ -368,7 +368,7 @@ export const Providers: React.FC = () => {
                       disabled={!!editingProvider}
                     />
                     <p className="text-xs text-slate-400 mt-1">
-                      {editingProvider ? 'O código não pode ser alterado' : 'Código único do provider (será convertido para maiúsculas)'}
+                      {editingProvider ? 'O cÃ³digo no pode ser alterado' : 'Cdigo nico do provider (ser convertido para maisculas)'}
                     </p>
                   </div>
 
@@ -416,7 +416,7 @@ export const Providers: React.FC = () => {
                         className="w-4 h-4 text-orange-600 border-slate-300 rounded focus:ring-orange-500"
                       />
                       <label htmlFor="active" className="text-sm font-medium text-slate-700">
-                        Provider ativo (pode ser usado para processar transações)
+                        Provider ativo (pode ser usado para processar transaÃ§Ãµes)
                       </label>
                     </div>
                   )}

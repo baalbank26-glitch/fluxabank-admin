@@ -15,7 +15,7 @@ const extractUserRows = (json: any): User[] => {
   return Array.isArray(rows) ? rows : [];
 };
 
-const extractPagination = (json: any) => {
+const extractPágination = (json: any) => {
   const meta =
     json?.pagination ||
     json?.meta ||
@@ -66,16 +66,16 @@ export const usersService = {
     const firstRows = extractUserRows(firstJson);
     if (!firstRows.length) return [];
 
-    const firstMeta = extractPagination(firstJson);
+    const firstMeta = extractPágination(firstJson);
     const collected = [...firstRows];
     const seen = new Set(collected.map(userKey));
 
-    const shouldPaginate =
+    const shouldPáginate =
       firstMeta.hasNext === true ||
       firstMeta.totalPages > 1 ||
       (firstMeta.total > 0 && firstMeta.total > firstRows.length);
 
-    if (!shouldPaginate) return collected;
+    if (!shouldPáginate) return collected;
 
     let page = Math.max(2, firstMeta.page + 1);
     const maxPages = 200;
@@ -100,7 +100,7 @@ export const usersService = {
       // If backend ignores page parameter and returns the same first page, stop.
       if (newItems === 0) break;
 
-      const meta = extractPagination(json);
+      const meta = extractPágination(json);
       if (meta.total > 0 && collected.length >= meta.total) break;
       if (meta.totalPages > 0 && page >= meta.totalPages) break;
       if (meta.hasNext === false) break;

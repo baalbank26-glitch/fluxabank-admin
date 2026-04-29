@@ -65,13 +65,13 @@ const OTCWithdrawals: React.FC = () => {
   const handleUpdateStatus = async (status: 'processing' | 'completed' | 'cancelled') => {
     if (!selectedWithdrawal) return;
 
-    // Validação rigorosa do hash para status "completed"
+    // Validao rigorosa do hash para status "completed"
     const cleanHash = (txHash || '').trim();
     console.log('[OTC] Status:', status, 'Hash:', JSON.stringify(txHash), 'Clean Hash:', JSON.stringify(cleanHash));
     
     if (status === 'completed') {
       if (!cleanHash || cleanHash.length === 0) {
-        setValidationModal({ type: 'error', message: 'Hash da transação é obrigatório para marcar como completo.' });
+        setValidationModal({ type: 'error', message: 'Hash da transao  obrigatrio para marcar como completo.' });
         return;
       }
     }
@@ -138,7 +138,7 @@ const OTCWithdrawals: React.FC = () => {
           <TrendingDown className="w-8 h-8 text-amber-500" />
           Saques OTC
         </h2>
-        <p className="text-slate-600 mt-1">Gerenciar solicitações de saque de criptomoedas</p>
+        <p className="text-slate-600 mt-1">Gerenciar solicitaes de saque de criptomoedas</p>
       </div>
 
       {/* Filtros */}
@@ -178,7 +178,7 @@ const OTCWithdrawals: React.FC = () => {
             </div>
           ) : withdrawals.length === 0 ? (
             <div className="p-8 text-center text-slate-500 bg-slate-50 rounded-lg">
-              Nenhum saque encontrado neste filtro.
+              Nenhum saque encontrado nestÃ¡tro.
             </div>
           ) : (
             <div className="space-y-3">
@@ -218,7 +218,7 @@ const OTCWithdrawals: React.FC = () => {
           )}
         </div>
 
-        {/* Painel de Detalhes e Ação */}
+        {/* Painel de Detalhes e Ao */}
         {selectedWithdrawal && (
           <div className="p-6 bg-white border border-slate-200 rounded-lg shadow-md space-y-4">
             <div className="flex justify-between items-center mb-4">
@@ -231,10 +231,10 @@ const OTCWithdrawals: React.FC = () => {
               </button>
             </div>
 
-            {/* Informações */}
+            {/* Informaes */}
             <div className="space-y-3 text-sm">
               <div>
-                <p className="text-slate-500 font-medium">Usuário</p>
+                <p className="text-slate-500 font-medium">Usurio</p>
                 <p className="text-slate-900 font-mono">{selectedWithdrawal.userName}</p>
                 <p className="text-xs text-slate-500">{selectedWithdrawal.userEmail}</p>
               </div>
@@ -257,7 +257,7 @@ const OTCWithdrawals: React.FC = () => {
               </div>
 
               <div>
-                <p className="text-slate-500 font-medium">Endereço</p>
+                <p className="text-slate-500 font-medium">Endereo</p>
                 <div className="flex items-center gap-2 mt-1">
                   <p className="text-xs font-mono text-slate-600 break-all">
                     {selectedWithdrawal.walletAddress.slice(0, 20)}...{selectedWithdrawal.walletAddress.slice(-10)}
@@ -289,7 +289,7 @@ const OTCWithdrawals: React.FC = () => {
               )}
             </div>
 
-            {/* Formulário de Atualização */}
+            {/* Formulrio de Atualizao */}
             {selectedWithdrawal.status === 'pending' || selectedWithdrawal.status === 'processing' ? (
               <div className="border-t pt-4 space-y-3">
                 {error && (
@@ -300,7 +300,7 @@ const OTCWithdrawals: React.FC = () => {
                 )}
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Hash da Transação * <span className="text-orange-600">(obrigatório)</span></label>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Hash da TransaÃ§Ã£o * <span className="text-orange-600">(obrigatrio)</span></label>
                   <input
                     type="text"
                     value={txHash}
@@ -312,7 +312,7 @@ const OTCWithdrawals: React.FC = () => {
                     }`}
                   />
                   {txHash.trim() === '' && (
-                    <p className="text-xs text-orange-600 mt-1">?? Campo obrigatório para marcar como completo</p>
+                    <p className="text-xs text-orange-600 mt-1">?? Campo obrigatrio para marcar como completo</p>
                   )}
                 </div>
 
@@ -321,7 +321,7 @@ const OTCWithdrawals: React.FC = () => {
                   <textarea
                     value={adminNotes}
                     onChange={(e) => setAdminNotes(e.target.value)}
-                    placeholder="Observações..."
+                    placeholder="Observaes..."
                     className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500"
                     rows={3}
                   />
@@ -356,7 +356,7 @@ const OTCWithdrawals: React.FC = () => {
               </div>
             ) : (
               <div className="border-t pt-4 p-3 bg-slate-50 rounded text-sm text-slate-600">
-                Este saque não pode ser alterado pois já foi {getStatusLabel(selectedWithdrawal.status)}.
+                Este saque no pode ser alterado pois j foi {getStatusLabel(selectedWithdrawal.status)}.
               </div>
             )}
           </div>
@@ -373,7 +373,7 @@ const OTCWithdrawals: React.FC = () => {
                   <Check className="w-6 h-6 text-green-600 flex-shrink-0" />
                 )}
                 <h3 className="text-lg font-bold text-slate-900">
-                  {validationModal.type === 'error' ? 'Atenção' : 'Sucesso'}
+                  {validationModal.type === 'error' ? 'Ateno' : 'Sucesso'}
                 </h3>
               </div>
               <p className="text-slate-700 mb-6">{validationModal.message}</p>

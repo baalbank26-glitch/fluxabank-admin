@@ -74,21 +74,21 @@ export const Approvals: React.FC = () => {
 
   const handleApprove = async (id: string | number) => {
     try {
-      await api.admin.users.updateDocStatus(id, DocStatus.APPROVED, 'Aprovado via painel de aprovações');
-      toast.success('Usuário aprovado com sucesso!');
+      await api.admin.users.updateDocStatus(id, DocStatus.APPROVED, 'Aprovado via painel de aprovaes');
+      toast.success('Usurio aprovado com sucesso!');
       setPendingUsers(prev => prev.filter(u => String(u.id) !== String(id)));
     } catch (e) {
-      toast.error('Erro ao aprovar usuário');
+      toast.error('Erro ao aprovar usurio');
     }
   };
 
   const handleReject = async (id: string | number) => {
-    if(confirm('Tem certeza que deseja rejeitar? O usuário precisará reenviar documentos.')) {
+    if(confirm('Tem certeza que deseja rejeitar? O usurio precisar reenviar documentos.')) {
       try {
-        await api.admin.users.updateDocStatus(id, DocStatus.REJECTED, 'Rejeitado via painel de aprovações');
+        await api.admin.users.updateDocStatus(id, DocStatus.REJECTED, 'Rejeitado via painel de aprovaes');
         setPendingUsers(prev => prev.filter(u => String(u.id) !== String(id)));
       } catch (e) {
-        toast.error('Erro ao rejeitar usuário');
+        toast.error('Erro ao rejeitar usurio');
       }
     }
   };
@@ -148,8 +148,8 @@ export const Approvals: React.FC = () => {
     <div className="space-y-6">
        <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-2xl font-bold text-slate-800">Fila de Aprovação (KYC)</h2>
-            <p className="text-slate-500 text-sm">Analise e aprove a documentação de novos clientes.</p>
+            <h2 className="text-2xl font-bold text-slate-800">Fila de Aprovao (KYC)</h2>
+            <p className="text-slate-500 text-sm">Analise e aprove a documentao de novos clientes.</p>
           </div>
           <button onClick={fetchPending} className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors">
             <RefreshCw className={`w-5 h-5 ${isLoading ? 'animate-spin' : ''}`} />
@@ -167,7 +167,7 @@ export const Approvals: React.FC = () => {
                <Check className="w-8 h-8 text-green-500" />
              </div>
              <h3 className="text-lg font-medium text-slate-800">Tudo limpo!</h3>
-             <p className="text-slate-500">Nenhuma solicitação de KYC pendente no momento.</p>
+             <p className="text-slate-500">Nenhuma solicitao de KYC pendente no momento.</p>
            </div>
         ) : (
           safePendingUsers.map((user) => (
@@ -181,7 +181,7 @@ export const Approvals: React.FC = () => {
                     <h3 className="font-bold text-slate-800">{user.name || 'Sem Nome'}</h3>
                     <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-sm text-slate-500">
                       <span className="flex items-center gap-1"><FileText className="w-3 h-3" /> ID: {user.id}</span>
-                      <span>•</span>
+                      <span></span>
                       <span>{user.email}</span>
                     </div>
                     <div className="mt-2 flex gap-2">
@@ -194,7 +194,7 @@ export const Approvals: React.FC = () => {
                           </span>
                         ) : (
                           <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-100 text-cyan-700 border border-cyan-200 uppercase">
-                            Conta Vinculada • Titular #{Number((user as any).owner_user_id || (user as any).ownerUserId || user.id)}
+                            Conta Vinculada  Titular #{Number((user as any).owner_user_id || (user as any).ownerUserId || user.id)}
                           </span>
                         )}
                     </div>
@@ -218,7 +218,7 @@ export const Approvals: React.FC = () => {
                 </div>
               </div>
 
-              {/* Documents Section GABRIEL É VIADINHO*/}
+              {/* Documents Section GABRIEL  VIADINHO*/}
               {expandedUser === user.id && (
                 <div className="border-t border-slate-200 bg-slate-50 p-6">
                   {loadingDocs[user.id] ? (

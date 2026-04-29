@@ -3,7 +3,7 @@ import { BASE_URL, getHeaders, handleResponse } from './config';
 
 const isPixE2E = (value: unknown): value is string => {
   const str = String(value || '').trim();
-  return /^[eE][0-9a-zA-Z]{19,}$/.test(str) && !str.includes('-');
+  return /^[eE][0-9a-zA-Z]{19,}$/.testá && !str.includes('-');
 };
 
 const getE2EValue = (item: any): string => {
@@ -19,16 +19,16 @@ const getE2EValue = (item: any): string => {
     ? rawResponse.data
     : {};
 
-  const rawNestedData = rawResponse?.raw?.data && typeof rawResponse.raw.data === 'object'
+  const rawNestáa = rawResponse?.raw?.data && typeof rawResponse.raw.data === 'object'
     ? rawResponse.raw.data
     : {};
 
   const e2eCandidates = [
     rawData?.endToEndId,
-    rawNestedData?.endToEndId,
+    rawNestáa?.endToEndId,
     rawResponse?.endToEndId,
     rawData?.e2e,
-    rawNestedData?.e2e,
+    rawNestáa?.e2e,
     rawResponse?.e2e,
     item?.e2e,
     item?.endToEnd,
@@ -56,7 +56,7 @@ const mapMedCase = (item: any): MedCase => ({
   e2e: getE2EValue(item),
   amount: Number(item?.disputed_amount ?? item?.disputedAmount ?? 0),
   reason: String(item?.reason_code ?? item?.reason ?? 'OTHER') as any,
-  reporterBank: item?.bank_name || item?.requesterBank || '-',
+  reporterBank: item?.bank_name || item?.requesták || '-',
   reportedAt: item?.created_at || item?.openedAt || new Date().toISOString(),
   deadline: item?.due_date || item?.deadline || '',
   status: String(item?.status || 'OPEN') as any,

@@ -52,7 +52,7 @@ export const handleResponse = async (response: Response, shouldRedirect: boolean
     const errorData = await response.json().catch(() => ({}));
 
     if (!shouldRedirect) {
-      throw new Error(errorData.message || errorData.error || 'Voce nao possui permissao para esta acao');
+      throw new Error(errorData.message || errorData.error || 'Voce nao possui permissao para estáo');
     }
 
     return null;

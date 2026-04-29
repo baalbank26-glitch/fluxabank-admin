@@ -47,9 +47,9 @@ export const OTC: React.FC = () => {
   const handleUpdateStatus = async () => {
     if (!selectedWithdrawal) return;
     
-    // Validação obrigatória do hash para status "completed"
+    // Validao obrigatria do hash para status "completed"
     if (actionData.status === 'completed' && (!actionData.txHash || actionData.txHash.trim().length === 0)) {
-      setValidationModal({ type: 'error', message: 'Hash da transação é obrigatório para marcar como completo.' });
+      setValidationModal({ type: 'error', message: 'Hash da transao  obrigatrio para marcar como completo.' });
       return;
     }
     
@@ -74,9 +74,9 @@ export const OTC: React.FC = () => {
       await otcAdminService.updateSettings(editSettings);
       setShowSettings(false);
       loadData();
-      alert('Configurações atualizadas!');
+      alert('ConfiguraÃ§Ãµes atualizadas!');
     } catch (error: any) {
-      alert('Erro: ' + (error.message || 'Falha ao atualizar configurações'));
+      alert('Erro: ' + (error.message || 'Falha ao atualizar configuraes'));
     }
   };
 
@@ -110,16 +110,16 @@ export const OTC: React.FC = () => {
         <div>
           <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-2">
             <Bitcoin className="w-8 h-8 text-amber-500" />
-            Gestão OTC
+            GestÃ¡C
           </h1>
-          <p className="text-slate-500 mt-1">Gerenciar solicitações de saque de criptomoedas</p>
+          <p className="text-slate-500 mt-1">Gerenciar solicitaes de saque de criptomoedas</p>
         </div>
         <button
           onClick={() => setShowSettings(true)}
           className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors"
         >
           <Settings className="w-4 h-4" />
-          Configurações
+          ConfiguraÃ§Ãµes
         </button>
       </div>
 
@@ -135,7 +135,7 @@ export const OTC: React.FC = () => {
             <p className="text-3xl font-bold text-blue-600">{stats.processing}</p>
           </div>
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-            <p className="text-sm text-slate-500 mb-1">Concluídas</p>
+            <p className="text-sm text-slate-500 mb-1">Concludas</p>
             <p className="text-3xl font-bold text-green-600">{stats.completed}</p>
           </div>
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
@@ -171,14 +171,14 @@ export const OTC: React.FC = () => {
             <thead className="bg-slate-50 border-b border-slate-100">
               <tr>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">ID</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Usuário</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Usurio</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Cripto</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Valor (BRL)</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Taxa</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Rede</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Status</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Data</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Ações</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">AÃ§Ãµes</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -192,7 +192,7 @@ export const OTC: React.FC = () => {
               ) : withdrawals.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="px-6 py-8 text-center text-slate-500">
-                    Nenhuma solicitação encontrada
+                    Nenhuma solicitao encontrada
                   </td>
                 </tr>
               ) : (
@@ -243,7 +243,7 @@ export const OTC: React.FC = () => {
       {selectedWithdrawal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
-            <h2 className="text-2xl font-bold mb-4">Gerenciar Solicitação #{selectedWithdrawal.id}</h2>
+            <h2 className="text-2xl font-bold mb-4">Gerenciar Solicitao #{selectedWithdrawal.id}</h2>
             
             <div className="space-y-4 mb-6">
               <div className="bg-slate-50 p-4 rounded-xl">
@@ -263,7 +263,7 @@ export const OTC: React.FC = () => {
               </div>
               
               <div className="bg-slate-50 p-4 rounded-xl">
-                <p className="text-sm text-slate-500 mb-1">Endereço da Carteira</p>
+                <p className="text-sm text-slate-500 mb-1">Endereo da Carteira</p>
                 <p className="font-mono text-sm break-all">{selectedWithdrawal.walletAddress}</p>
                 {selectedWithdrawal.walletMemo && (
                   <>
@@ -284,13 +284,13 @@ export const OTC: React.FC = () => {
                 >
                   <option value="pending">Pendente</option>
                   <option value="processing">Em Processamento</option>
-                  <option value="completed">Concluído</option>
+                  <option value="completed">Concludo</option>
                   <option value="cancelled">Cancelado</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Hash da Transação (Blockchain)</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Hash da TransaÃ§Ã£o (Blockchain)</label>
                 <input
                   type="text"
                   value={actionData.txHash}
@@ -307,7 +307,7 @@ export const OTC: React.FC = () => {
                   onChange={e => setActionData(prev => ({ ...prev, adminNotes: e.target.value }))}
                   rows={3}
                   className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="Observações internas..."
+                  placeholder="Observaes internas..."
                 />
               </div>
             </div>
@@ -317,7 +317,7 @@ export const OTC: React.FC = () => {
                 onClick={handleUpdateStatus}
                 className="flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
               >
-                Salvar Alterações
+                Salvar Alteraes
               </button>
               <button
                 onClick={() => setSelectedWithdrawal(null)}
@@ -334,7 +334,7 @@ export const OTC: React.FC = () => {
       {showSettings && settings && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl max-w-lg w-full p-6">
-            <h2 className="text-2xl font-bold mb-4">Configurações OTC</h2>
+            <h2 className="text-2xl font-bold mb-4">ConfiguraÃ§Ãµes OTC</h2>
             
             <div className="space-y-4">
               <div>
@@ -349,7 +349,7 @@ export const OTC: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Saque Mínimo (BRL)</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Saque Mnimo (BRL)</label>
                 <input
                   type="number"
                   value={editSettings.minWithdrawalBrl || 0}
@@ -359,7 +359,7 @@ export const OTC: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Saque Máximo (BRL)</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Saque Mximo (BRL)</label>
                 <input
                   type="number"
                   value={editSettings.maxWithdrawalBrl || 0}
@@ -377,7 +377,7 @@ export const OTC: React.FC = () => {
                   className="w-5 h-5 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500"
                 />
                 <label htmlFor="otcEnabled" className="text-sm font-semibold text-slate-700">
-                  OTC Habilitado (usuários podem usar)
+                  OTC Habilitado (usurios podem usar)
                 </label>
               </div>
             </div>
@@ -411,7 +411,7 @@ export const OTC: React.FC = () => {
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
               )}
               <h3 className="text-lg font-bold text-slate-900">
-                {validationModal.type === 'error' ? 'Atenção' : 'Sucesso'}
+                {validationModal.type === 'error' ? 'Ateno' : 'Sucesso'}
               </h3>
             </div>
             <p className="text-slate-700 mb-6">{validationModal.message}</p>

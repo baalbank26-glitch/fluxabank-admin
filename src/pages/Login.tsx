@@ -48,7 +48,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
       const errMsg = err.message || 'Falha ao realizar login.';
       setError(errMsg);
       
-      // Se foi erro de 2FA mas o usuário não estava na tela de 2FA ainda
+      // Se foi erro de 2FA mas o usuário não estáa tela de 2FA ainda
       if (errMsg.includes('2FA') && !requires2FA) {
         // Retornar para a tela de credenciais
         setTwoFAStep('credentials');
@@ -86,7 +86,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
         <div className="max-w-md">
           <h1 className="text-5xl font-bold mb-6 leading-tight text-white">
-            Gestão Financeira <span className="text-orange-200">Inteligente</span>
+            Gestáanceira <span className="text-orange-200">Inteligente</span>
           </h1>
           <p className="text-orange-100/80 text-lg leading-relaxed">
             Painel administrativo seguro. Gerencie clientes, transações e operações com total controle e transparência.
@@ -118,7 +118,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
               <p className="mt-2 text-slate-600">
                 {requires2FA 
                   ? 'Insira o código do seu authenticador' 
-                  : 'Acesso restrito a administradores'}
+                  : 'Acesso restáa administradores'}
               </p>
             </div>
 
@@ -204,7 +204,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                         autoFocus
                         placeholder="000000"
                         maxLength="6"
-                        className="w-full pl-12 pr-4 py-3.5 text-center text-2xl font-semibold tracking-widest text-slate-900 bg-cyan-50 border border-cyan-200 rounded-lg focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 focus:bg-white outline-none transition-all shadow-sm"
+                        className="w-full pl-12 pr-4 py-3.5 text-center text-2xl font-semibold tracking-widestá-slate-900 bg-cyan-50 border border-cyan-200 rounded-lg focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 focus:bg-white outline-none transition-all shadow-sm"
                       />
                     </div>
                     <p className="text-xs text-slate-500 ml-0.5">Ou use seu recovery code abaixo</p>
@@ -238,7 +238,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 ) : requires2FA ? (
                   <>
                     <CheckCircle2 className="w-5 h-5" />
-                    <span>Verificar Código</span>
+                    <span>Verificódigo</span>
                   </>
                 ) : (
                   <>

@@ -11,7 +11,7 @@ import {
 } from 'recharts';
 import { Download, Loader2, ArrowUpRight, Calendar, Filter, X } from 'lucide-react';
 import { api } from '../services/api';
-import { TreasuryBalance, LedgerItem, TreasurySummary, TreasuryByUserSummary, PaginationMeta } from '../types/index';
+import { TreasuryBalance, LedgerItem, TreasurySummary, TreasuryByUserSummary, PÃ¡ginationMeta } from '../types/index';
 
 export const Treasury: React.FC = () => {
   const [balance, setBalance] = useState<TreasuryBalance>({
@@ -23,7 +23,7 @@ export const Treasury: React.FC = () => {
   const [dailySummary, setDailySummary] = useState<TreasurySummary[]>([]);
   const [monthlySummary, setMonthlySummary] = useState<TreasurySummary[]>([]);
   const [byUserSummary, setByUserSummary] = useState<TreasuryByUserSummary[]>([]);
-  const [byUserMeta, setByUserMeta] = useState<PaginationMeta>({ page: 1, pageSize: 20, total: 0, totalPages: 1 });
+  const [byUserMeta, setByUserMeta] = useState<PÃ¡ginationMeta>({ page: 1, pageSize: 20, total: 0, totalPages: 1 });
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'DAILY' | 'MONTHLY'>('DAILY');
   const [ledgerViewMode, setLedgerViewMode] = useState<'LEDGER' | 'BY_USER'>('LEDGER');
@@ -37,7 +37,7 @@ export const Treasury: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<TreasuryByUserSummary | null>(null);
   const [showUserModal, setShowUserModal] = useState(false);
   const [userTransactions, setUserTransactions] = useState<LedgerItem[]>([]);
-  const [userTransactionsMeta, setUserTransactionsMeta] = useState<PaginationMeta>({ page: 1, pageSize: 20, total: 0, totalPages: 1 });
+  const [userTransactionsMeta, setUserTransactionsMeta] = useState<PÃ¡ginationMeta>({ page: 1, pageSize: 20, total: 0, totalPages: 1 });
   const [userTransactionsFilteredSubtotal, setUserTransactionsFilteredSubtotal] = useState(0);
   const [userTransactionsPage, setUserTransactionsPage] = useState(1);
   const [userTransactionsFlowType, setUserTransactionsFlowType] = useState<'ALL' | 'PIX_IN' | 'PIX_OUT' | 'ESTORNO'>('ALL');
@@ -89,7 +89,7 @@ export const Treasury: React.FC = () => {
           return [];
         }),
         api.admin.treasury.getDailySummary(summaryParams.from, summaryParams.to).catch((err) => {
-          console.error('[Treasury] Erro ao buscar summary diário:', err);
+          console.error('[Treasury] Erro ao buscar summary dirio:', err);
           return [];
         }),
         api.admin.treasury.getMonthlySummary(summaryParams.from, summaryParams.to).catch((err) => {
@@ -103,7 +103,7 @@ export const Treasury: React.FC = () => {
           pageSize: 20,
           search: byUserSearch || undefined,
         }).catch((err) => {
-          console.error('[Treasury] Erro ao buscar summary por usuário:', err);
+          console.error('[Treasury] Erro ao buscar summary por usurio:', err);
           return { items: [], meta: { page: 1, pageSize: 20, total: 0, totalPages: 1 } };
         })
       ]);
@@ -117,30 +117,30 @@ export const Treasury: React.FC = () => {
 
       const ledgerArray = Array.isArray(led) ? led : [];
       
-      // Função para extrair userId da descrição quando não vier do backend
+      // Funo para extrair userId da descrio quando no vier do backend
       const extractUserIdFromDescription = (description: string): number | null => {
         const match = description.match(/user (\d+)/i);
         return match ? parseInt(match[1], 10) : null;
       };
       
-      // Função para padronizar descrições antigas
+      // Funo para padronizar descries antigas
       const normalizeDescription = (description: string): string => {
-        // OTC Withdrawal Fee from user X - R$ Y (Z USDT) ? Taxa de Transação - Saque OTC - Usuário X - R$ Y (Z USDT)
+        // OTC Withdrawal Fee from user X - R$ Y (Z USDT) ? Taxa de TransaÃ§Ã£o - Saque OTC - Usurio X - R$ Y (Z USDT)
         const otcWithdrawalMatch = description.match(/OTC Withdrawal Fee from user (\d+)(.+)/i);
         if (otcWithdrawalMatch) {
-          return `Taxa de Transação - Saque OTC - Usuário ${otcWithdrawalMatch[1]}${otcWithdrawalMatch[2]}`;
+          return `Taxa de TransaÃ§Ã£o - Saque OTC - Usurio ${otcWithdrawalMatch[1]}${otcWithdrawalMatch[2]}`;
         }
         
-        // OTC Conversion Fee from user X ? Taxa de Conversão OTC - Usuário X
+        // OTC Conversion Fee from user X ? Taxa de Converso OTC - Usurio X
         const otcConversionMatch = description.match(/OTC Conversion Fee from user (\d+)/i);
         if (otcConversionMatch) {
-          return `Taxa de Conversão OTC - Usuário ${otcConversionMatch[1]}`;
+          return `Taxa de Converso OTC - Usurio ${otcConversionMatch[1]}`;
         }
         
         return description;
       };
       
-      // Enriquecer ledger com userId extraído da descrição quando necessário
+      // Enriquecer ledger com userId extrado da descrio quando necessrio
       const ledgerWithUserIds = ledgerArray.map(item => {
         const normalizedDescription = normalizeDescription(item.description);
         const userId = item.userId || extractUserIdFromDescription(item.description);
@@ -152,15 +152,15 @@ export const Treasury: React.FC = () => {
         };
       });
       
-      // Buscar informações de usuários que não têm userName/userEmail
+      // Buscar informaes de usurios que no tm userName/userEmail
       const userIdsToFetch = ledgerWithUserIds
         .filter(item => item.userId && (!item.userName || !item.userEmail))
-        .map(item => Number(item.userId)) // Garantir que é number
-        .filter((id, index, self) => !isNaN(id) && self.indexOf(id) === index); // unique e válidos
+        .map(item => Number(item.userId)) // Garantir que  number
+        .filter((id, index, self) => !isNaN(id) && self.indexOf(id) === index); // unique e vlidos
 
       console.log('[Treasury] User IDs to fetch:', userIdsToFetch);
 
-      // Buscar informações dos usuários em paralelo
+      // Buscar informaes dos usurios em paralelo
       const newUserCache = { ...userCache };
       await Promise.all(
         userIdsToFetch.map(async (userId) => {
@@ -171,12 +171,12 @@ export const Treasury: React.FC = () => {
               console.log(`[Treasury] User ${userId} data:`, user);
               if (user) {
                 newUserCache[userId] = {
-                  name: user.name || `Usuário #${userId}`,
+                  name: user.name || `Usurio #${userId}`,
                   email: user.email || ''
                 };
               }
             } catch (err) {
-              console.error(`Erro ao buscar usuário ${userId}:`, err);
+              console.error(`Erro ao buscar usurio ${userId}:`, err);
             }
           }
         })
@@ -184,7 +184,7 @@ export const Treasury: React.FC = () => {
       setUserCache(newUserCache);
       console.log('[Treasury] User cache:', newUserCache);
 
-      // Enriquecer ledger com informações de usuários do cache
+      // Enriquecer ledger com informaes de usurios do cache
       const enrichedLedger = ledgerWithUserIds.map(item => {
         if (item.userId) {
           const userIdNum = Number(item.userId);
@@ -256,8 +256,8 @@ export const Treasury: React.FC = () => {
       
       setLoadingUserTransactions(true);
 
-      // Fallback robusto: para PIX_IN/PIX_OUT, traz todas as páginas e filtra no frontend por transactionType.
-      // Isso evita inconsistência quando o backend ignora flowType.
+      // Fallback robusto: para PIX_IN/PIX_OUT, traz todas as pginas e filtra no frontend por transactionType.
+      // Isso evita inconsistncia quando o backend ignora flowType.
       if (userTransactionsFlowType === 'ALL') {
         const pageSize = 100;
         const firstPage = await api.admin.treasury.getByUserTransactions(user.userId, {
@@ -338,7 +338,7 @@ export const Treasury: React.FC = () => {
         setUserTransactionsFilteredSubtotal(filteredSubtotal);
       }
     } catch (err) {
-      console.error('[Treasury] Erro ao buscar transações do usuário:', err);
+      console.error('[Treasury] Erro ao buscar transaÃ§Ãµes do usurio:', err);
       setUserTransactions([]);
       setUserTransactionsMeta({ page: 1, pageSize: 20, total: 0, totalPages: 1 });
       setUserTransactionsFilteredSubtotal(0);
@@ -458,7 +458,7 @@ export const Treasury: React.FC = () => {
     if (ledgerViewMode === 'BY_USER') {
       const searchTerm = String(byUserSearch || '').trim();
       if (!searchTerm) {
-        alert('Digite o nome, email ou ID do usuário para exportar as transações.');
+        alert('Digite o nome, email ou ID do usurio para exportar as transaÃ§Ãµes.');
         return;
       }
 
@@ -474,19 +474,19 @@ export const Treasury: React.FC = () => {
         });
 
         if (matches.length === 0) {
-          alert('Usuário não encontrado para o termo informado.');
+          alert('Usurio no encontrado para o termo informado.');
           return;
         }
 
         if (matches.length > 1) {
-          alert(`Sua busca retornou ${matches.length} usuários. Refine por nome completo, email ou ID exato para exportar apenas 1 usuário.`);
+          alert(`Sua busca retornou ${matches.length} usurios. Refine por nome completo, email ou ID exato para exportar apenas 1 usurio.`);
           return;
         }
 
         selectedUser = matches[0];
       } catch (err) {
-        console.error('[Treasury] Erro ao buscar usuário para exportação:', err);
-        alert('Falha ao localizar o usuário para exportação.');
+        console.error('[Treasury] Erro ao buscar usurio para exportao:', err);
+        alert('Falha ao localizar o usurio para exportao.');
         return;
       }
 
@@ -517,13 +517,13 @@ export const Treasury: React.FC = () => {
           allTransactions.push(...(Array.isArray(nextPage?.items) ? nextPage.items : []));
         }
       } catch (err) {
-        console.error(`[Treasury] Erro ao buscar transações reais do usuário ${selectedUser.id}:`, err);
-        alert('Falha ao buscar transações reais do usuário para exportação.');
+        console.error(`[Treasury] Erro ao buscar transaÃ§Ãµes reais do usurio ${selectedUser.id}:`, err);
+        alert('Falha ao buscar transaÃ§Ãµes reais do usurio para exportao.');
         return;
       }
 
       if (allTransactions.length === 0) {
-        alert('Nenhuma transação encontrada para o usuário informado no período.');
+        alert('Nenhuma transao encontrada para o usurio informado no perodo.');
         return;
       }
 
@@ -554,7 +554,7 @@ export const Treasury: React.FC = () => {
       const exportableTransactions = allTransactions.filter((tx) => isApprovedOrPaid((tx as any)?.status));
 
       if (exportableTransactions.length === 0) {
-        alert('Nenhuma transação com status Aprovado/Pago encontrada para exportar.');
+        alert('Nenhuma transao com status Aprovado/Pago encontrada para exportar.');
         return;
       }
 
@@ -583,7 +583,7 @@ export const Treasury: React.FC = () => {
       });
 
       if (detailedRows.length === 0) {
-        alert('Nenhuma transação principal encontrada para exportar.');
+        alert('Nenhuma transao principal encontrada para exportar.');
         return;
       }
 
@@ -592,7 +592,7 @@ export const Treasury: React.FC = () => {
         'E2E',
         'Data',
         'Hora',
-        'Descrição',
+        'Descrio',
         'Tipo',
         'Valor',
         'Taxa',
@@ -612,9 +612,9 @@ export const Treasury: React.FC = () => {
     const headersHtml = [
       'ID',
       'Data',
-      'Descrição',
-      'Usuário',
-      'Email do Usuário',
+      'Descrio',
+      'Usurio',
+      'Email do Usurio',
       'Tipo',
       'Valor',
     ].map((h) => `<th>${excelEscape(h)}</th>`).join('');
@@ -630,7 +630,7 @@ export const Treasury: React.FC = () => {
               : '--/--'
           )}</td>
           <td>${excelEscape(item.description)}</td>
-          <td>${excelEscape(item.userName || `Usuário #${item.userId || 'N/A'}`)}</td>
+          <td>${excelEscape(item.userName || `Usurio #${item.userId || 'N/A'}`)}</td>
           <td>${excelEscape(item.userEmail || 'N/A')}</td>
           <td>${excelEscape(item.type)}</td>
           <td class="text-right" style="mso-number-format:'\\@';">${excelEscape(`${sign}${formatExcelMoney(Number(item.amount || 0))}`)}</td>
@@ -714,7 +714,7 @@ export const Treasury: React.FC = () => {
         <div>
           <h2 className="text-2xl font-bold text-slate-800">Tesouraria</h2>
           <p className="text-slate-500 text-sm">
-            Controle de caixa, lucros e movimentações do Gateway.
+            Controle de caixa, lucros e movimentaes do Gateway.
           </p>
         </div>
 
@@ -727,7 +727,7 @@ export const Treasury: React.FC = () => {
                     : 'text-slate-500 hover:bg-slate-50'
                   }`}
               >
-                Diário
+                DiÃ¡rio
               </button>
 
               <button
@@ -777,7 +777,7 @@ export const Treasury: React.FC = () => {
 
           {!loading && (
             <p className="mt-2 text-sm text-slate-300">
-              Total líquido (por usuário):
+              Total lquido (por usurio):
               <span className="ml-1 font-semibold text-white">
                 {`R$ ${formatMoney(byUserNetTotal)}`}
               </span>
@@ -794,7 +794,7 @@ export const Treasury: React.FC = () => {
 
         <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
           <h3 className="text-lg font-bold text-slate-800 mb-6">
-            Faturamento ({viewMode === 'DAILY' ? 'Hoje' : 'Mês atual'})
+            Faturamento ({viewMode === 'DAILY' ? 'Hoje' : 'Ms atual'})
           </h3>
 
           <div className="h-[200px]">
@@ -834,8 +834,8 @@ export const Treasury: React.FC = () => {
                 <p>Sem dados de faturamento</p>
                 <p className="text-xs text-slate-300">
                   {ledger.length === 0
-                    ? 'Nenhuma transação de taxa registrada ainda'
-                    : 'Nenhuma movimentação no período selecionado'}
+                    ? 'Nenhuma transao de taxa registrada ainda'
+                    : 'Nenhuma movimentao no perodo selecionado'}
                 </p>
               </div>
             )}
@@ -904,8 +904,8 @@ export const Treasury: React.FC = () => {
 
       <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div>
-          <h3 className="font-bold text-slate-800">Visualização de Tesouraria</h3>
-          <p className="text-xs text-slate-500 mt-1">Escolha entre ledger geral ou consolidação por usuário.</p>
+          <h3 className="font-bold text-slate-800">Visualizao de Tesouraria</h3>
+          <p className="text-xs text-slate-500 mt-1">Escolha entre ledger geral ou consolidao por usurio.</p>
         </div>
         <div className="flex bg-slate-100 rounded-lg p-1 w-full md:w-auto">
           <button
@@ -924,7 +924,7 @@ export const Treasury: React.FC = () => {
               : 'text-slate-500 hover:text-slate-700'
               }`}
           >
-            Por Usuário
+            Por Usurio
           </button>
         </div>
       </div>
@@ -933,22 +933,22 @@ export const Treasury: React.FC = () => {
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           <div>
-            <h3 className="font-bold text-slate-800">Arrecadação por Usuário</h3>
+            <h3 className="font-bold text-slate-800">Arrecadao por Usurio</h3>
             <p className="text-xs text-slate-500 mt-1">
-              Consolidado de taxas creditadas na tesouraria por usuário no período selecionado.
+              Consolidado de taxas creditadas na tesouraria por usurio no perodo selecionado.
             </p>
             <div className="mt-3">
               <input
                 type="text"
                 value={byUserSearch}
                 onChange={(e) => setByUserSearch(e.target.value)}
-                placeholder="Filtrar por nome, email ou ID do usuário"
+                placeholder="Filtrar por nome, email ou ID do usurio"
                 className="w-full md:w-80 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               />
             </div>
           </div>
           <div className="text-sm text-slate-700 font-medium">
-            Total líquido no período:{' '}
+            Total lquido no perodo:{' '}
             <span className="font-bold text-slate-900">
               R$ {formatMoney(byUserNetTotal)}
             </span>
@@ -959,11 +959,11 @@ export const Treasury: React.FC = () => {
           <table className="w-full text-sm text-left">
             <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="px-6 py-3">Usuário</th>
+                <th className="px-6 py-3">Usurio</th>
                 <th className="px-6 py-3 text-right">Arrecadado</th>
                 <th className="px-6 py-3 text-right">Estornos</th>
-                <th className="px-6 py-3 text-right">Líquido</th>
-                <th className="px-6 py-3 text-right">Operações</th>
+                <th className="px-6 py-3 text-right">LÃ­quido</th>
+                <th className="px-6 py-3 text-right">Operaes</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -976,7 +976,7 @@ export const Treasury: React.FC = () => {
               ) : byUserSummary.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="p-8 text-center text-slate-500">
-                    Nenhuma arrecadação por usuário encontrada para este período.
+                    Nenhuma arrecadao por usurio encontrada para estÃ¡odo.
                   </td>
                 </tr>
               ) : (
@@ -985,11 +985,11 @@ export const Treasury: React.FC = () => {
                     key={item.userId}
                     className="hover:bg-slate-50/50 cursor-pointer"
                     onClick={() => openUserTransactionsModal(item)}
-                    title="Clique para ver as transações deste usuário"
+                    title="Clique para ver as transaÃ§Ãµes destÃ¡rio"
                   >
                     <td className="px-6 py-4">
                       <div className="flex flex-col">
-                        <span className="text-sm font-medium text-slate-800">{item.userName || `Usuário #${item.userId}`}</span>
+                        <span className="text-sm font-medium text-slate-800">{item.userName || `Usurio #${item.userId}`}</span>
                         {item.userEmail ? (
                           <span className="text-xs text-slate-500">{item.userEmail}</span>
                         ) : (
@@ -1006,7 +1006,7 @@ export const Treasury: React.FC = () => {
                     <td className="px-6 py-4 text-right font-mono font-semibold text-slate-900">
                       R$ {formatMoney(item.netCollected || 0)}
                     </td>
-                    <td className="px-6 py-4 text-right text-slate-600">{item.operations}</td>
+                    <td className="px-6 py-4 text-right text-slate-600">{item.operaÃ§Ã£os}</td>
                   </tr>
                 ))
               )}
@@ -1017,7 +1017,7 @@ export const Treasury: React.FC = () => {
         {!loading && byUserMeta.totalPages > 1 && (
           <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between gap-3">
             <p className="text-xs text-slate-500">
-              Página {byUserMeta.page} de {byUserMeta.totalPages} • {byUserMeta.total} usuários
+              PÃ¡gina {byUserMeta.page} de {byUserMeta.totalPages}  {byUserMeta.total} usurios
             </p>
             <div className="flex items-center gap-2">
               <button
@@ -1032,7 +1032,7 @@ export const Treasury: React.FC = () => {
                 disabled={byUserMeta.page >= byUserMeta.totalPages}
                 className="px-3 py-1.5 text-xs font-semibold rounded-md border border-slate-200 text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Próxima
+                Prxima
               </button>
             </div>
           </div>
@@ -1043,12 +1043,12 @@ export const Treasury: React.FC = () => {
       {ledgerViewMode === 'LEDGER' && (
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-          <h3 className="font-bold text-slate-800">Últimos Lançamentos (Ledger)</h3>
+          <h3 className="font-bold text-slate-800">Ãºltimos Lanamentos (Ledger)</h3>
           <input
             type="text"
             value={ledgerSearch}
             onChange={(e) => setLedgerSearch(e.target.value)}
-            placeholder="Filtrar no ledger por usuário, email, descrição ou ID"
+            placeholder="Filtrar no ledger por usurio, email, descrio ou ID"
             className="w-full md:w-96 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
           />
         </div>
@@ -1059,8 +1059,8 @@ export const Treasury: React.FC = () => {
               <tr>
                 <th className="px-6 py-3">ID</th>
                 <th className="px-6 py-3">Data</th>
-                <th className="px-6 py-3">Descrição</th>
-                <th className="px-6 py-3">Usuário</th>
+                <th className="px-6 py-3">Descrio</th>
+                <th className="px-6 py-3">Usurio</th>
                 <th className="px-6 py-3">Tipo</th>
                 <th className="px-6 py-3 text-right">Valor</th>
               </tr>
@@ -1076,7 +1076,7 @@ export const Treasury: React.FC = () => {
               ) : filteredLedger.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="p-8 text-center text-slate-500">
-                    Nenhum lançamento encontrado.
+                    Nenhum lanamento encontrado.
                   </td>
                 </tr>
               ) : (
@@ -1106,7 +1106,7 @@ export const Treasury: React.FC = () => {
                         {item.userId ? (
                           <div className="flex flex-col">
                             <span className="text-sm font-medium text-slate-800">
-                              {item.userName || `Usuário #${item.userId}`}
+                              {item.userName || `Usurio #${item.userId}`}
                             </span>
                             {item.userEmail && (
                               <span className="text-xs text-slate-500">
@@ -1154,9 +1154,9 @@ export const Treasury: React.FC = () => {
           <div className="w-full max-w-5xl max-h-[90vh] overflow-hidden bg-white rounded-2xl border border-slate-200 shadow-2xl">
             <div className="px-6 py-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h3 className="text-lg font-bold text-slate-900">Transações do Usuário</h3>
+                <h3 className="text-lg font-bold text-slate-900">Transaes do Usurio</h3>
                 <p className="text-sm text-slate-500 mt-0.5">
-                  {selectedUser.userName || `Usuário #${selectedUser.userId}`} • ID {selectedUser.userId}
+                  {selectedUser.userName || `Usurio #${selectedUser.userId}`}  ID {selectedUser.userId}
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3">
@@ -1168,7 +1168,7 @@ export const Treasury: React.FC = () => {
                   className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none"
                   title="Data inicial (deixe vazio para remover filtro)"
                 />
-                <span className="text-xs text-slate-400">até</span>
+                <span className="text-xs text-slate-400">at</span>
                 <input
                   type="date"
                   value={userTxTo}
@@ -1203,7 +1203,7 @@ export const Treasury: React.FC = () => {
                 <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
                     <th className="px-4 py-3">Data</th>
-                    <th className="px-4 py-3">Descrição</th>
+                    <th className="px-4 py-3">Descrio</th>
                     <th className="px-4 py-3">Tipo</th>
                     <th className="px-4 py-3 text-right">Valor</th>
                   </tr>
@@ -1218,7 +1218,7 @@ export const Treasury: React.FC = () => {
                   ) : userTransactions.length === 0 ? (
                     <tr>
                       <td colSpan={4} className="p-8 text-center text-slate-500">
-                        Nenhuma transação encontrada para esse usuário no período.
+                        Nenhuma transao encontrada para esse usurio no perodo.
                       </td>
                     </tr>
                   ) : (
@@ -1251,7 +1251,7 @@ export const Treasury: React.FC = () => {
             <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between">
               <div>
                 <p className="text-xs text-slate-500">
-                  Página {userTransactionsMeta.page} de {userTransactionsMeta.totalPages} • {userTransactionsMeta.total} transações
+                  PÃ¡gina {userTransactionsMeta.page} de {userTransactionsMeta.totalPages}  {userTransactionsMeta.total} transaÃ§Ãµes
                 </p>
                 <p className="text-xs font-semibold text-slate-700 mt-1">
                   Subtotal do filtro: {userTransactionsFilteredSubtotal < 0 ? '-R$ ' : 'R$ '}{formatMoney(Math.abs(userTransactionsFilteredSubtotal))}
@@ -1280,7 +1280,7 @@ export const Treasury: React.FC = () => {
                   disabled={loadingUserTransactions || userTransactionsMeta.page >= userTransactionsMeta.totalPages}
                   className="px-3 py-1.5 text-xs font-semibold rounded-md border border-slate-200 text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Próxima
+                  Prxima
                 </button>
               </div>
             </div>

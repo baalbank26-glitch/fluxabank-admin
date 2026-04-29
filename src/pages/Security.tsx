@@ -55,11 +55,11 @@ export const Security: React.FC = () => {
                 setLogs(response.data || []);
                 setTotal(response.total || 0);
             } else {
-                toast.error('Erro ao carregar logs de segurança.');
+                toast.error('Erro ao carregar logs de segurana.');
             }
         } catch (error) {
             console.error('[Security] Error fetching logs:', error);
-            toast.error('Erro de conexão ao buscar logs.');
+            toast.error('Erro de conexo ao buscar logs.');
         } finally {
             setLoading(false);
         }
@@ -100,10 +100,10 @@ export const Security: React.FC = () => {
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
                         <Shield className="w-8 h-8 text-orange-600" />
-                        Central de Segurança / IDS
+                        Central de SeguranÃ§a / IDS
                     </h2>
                     <p className="text-slate-500 text-sm">
-                        Monitoramento de tentativas de acesso, transações não autorizadas e bloqueios de IP.
+                        Monitoramento de tentativas de acesso, transaÃ§Ãµes no autorizadas e bloqueios de IP.
                     </p>
                 </div>
                 <button
@@ -115,7 +115,7 @@ export const Security: React.FC = () => {
                 </button>
             </div>
 
-            {/* Estatísticas Rápidas */}
+            {/* Estatsticas Rpidas */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-4">
                     <div className="p-3 bg-orange-50 rounded-lg">
@@ -161,15 +161,15 @@ export const Security: React.FC = () => {
                     >
                         <option value="">Todos</option>
                         <option value="AUTH_FAILURE">Falha de Auth</option>
-                        <option value="INVALID_CREDENTIALS">Credenciais Inválidas</option>
+                        <option value="INVALID_CREDENTIALS">Credenciais Invlidas</option>
                         <option value="IP_BLOCKED">IP Bloqueado</option>
                         <option value="MISSING_CREDENTIALS">Sem Credenciais</option>
                         <option value="2FA_FAILURE">Falha no 2FA</option>
-                        <option value="2FA_MISSING">Código 2FA Ausente</option>
+                        <option value="2FA_MISSING">Cdigo 2FA Ausente</option>
                     </select>
                 </div>
                 <div className="relative">
-                    <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Endereço IP</label>
+                    <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Endereo IP</label>
                     <input
                         type="text"
                         placeholder="Ex: 127.0.0.1"
@@ -179,7 +179,7 @@ export const Security: React.FC = () => {
                     />
                 </div>
                 <div className="relative">
-                    <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Data Início</label>
+                    <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Data Incio</label>
                     <input
                         type="date"
                         className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
@@ -215,7 +215,7 @@ export const Security: React.FC = () => {
                                 <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">IP Origem</th>
                                 <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Caminho</th>
                                 <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Motivo</th>
-                                <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase text-center">Ação</th>
+                                <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase text-center">Ao</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-50">
@@ -228,7 +228,7 @@ export const Security: React.FC = () => {
                             ) : logs.length === 0 ? (
                                 <tr>
                                     <td colSpan={6} className="px-6 py-12 text-center text-slate-400">
-                                        Nenhum alerta de segurança registrado.
+                                        Nenhum alerta de segurana registrado.
                                     </td>
                                 </tr>
                             ) : (
@@ -309,7 +309,7 @@ export const Security: React.FC = () => {
                             <div className="space-y-6">
                                 <div>
                                     <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
-                                        <Info className="w-4 h-4" /> Informações Básicas
+                                        <Info className="w-4 h-4" /> Informaes Bsicas
                                     </h4>
                                     <div className="bg-slate-50 rounded-2xl p-4 space-y-3">
                                         <div className="flex justify-between items-center py-2 border-b border-slate-100">
@@ -321,7 +321,7 @@ export const Security: React.FC = () => {
                                             <span className="text-sm font-bold text-orange-600 font-mono">{selectedLog.ip_address}</span>
                                         </div>
                                         <div className="flex justify-between items-center py-2 border-b border-slate-100">
-                                            <span className="text-sm text-slate-500">Método HTTP</span>
+                                            <span className="text-sm text-slate-500">Mtodo HTTP</span>
                                             <span className="text-sm font-bold text-slate-800 bg-slate-200 px-2 py-0.5 rounded uppercase">{selectedLog.method}</span>
                                         </div>
                                         <div className="flex flex-col py-2">
@@ -350,14 +350,14 @@ export const Security: React.FC = () => {
                                     </h4>
                                     <div className="bg-orange-50 border border-orange-100 rounded-2xl p-4">
                                         <p className="text-sm text-orange-800 font-medium">
-                                            {selectedLog.reason || 'Nenhuma razão detalhada fornecida pelo sistema.'}
+                                            {selectedLog.reason || 'Nenhuma razo detalhada fornecida pelo sistema.'}
                                         </p>
                                     </div>
                                 </div>
 
                                 <div>
                                     <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
-                                        <Clock className="w-4 h-4" /> Payload / Headers da Requisição
+                                        <Clock className="w-4 h-4" /> Payload / Headers da Requisio
                                     </h4>
                                     <div className="bg-slate-900 rounded-2xl p-4 h-[300px] overflow-y-auto custom-scrollbar">
                                         <pre className="text-[10px] text-green-400 font-mono whitespace-pre-wrap">

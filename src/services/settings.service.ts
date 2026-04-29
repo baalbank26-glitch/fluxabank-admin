@@ -7,7 +7,7 @@ export const settingsService = {
     });
     const json = await handleResponse(response);
     // Default safe values
-    return json?.data || { isActive: false, message: 'O sistema está em manutenção.', allowedUserIds: [] };
+    return json?.data || { isActive: false, message: 'O sistema estámanutenção.', allowedUserIds: [] };
   },
 
   updateMaintenance: async (isActive: boolean, message: string, allowedUserIds: number[] = []) => {

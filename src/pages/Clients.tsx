@@ -121,7 +121,7 @@ export const Clients: React.FC = () => {
 
   const openDocumentSafe = (documentLink: string) => {
     if (!documentLink) {
-      toast.error('Documento não disponível');
+      toast.error('Documento no disponvel');
       return;
     }
 
@@ -178,7 +178,7 @@ export const Clients: React.FC = () => {
             pix_out_enabled: user.pix_out_enabled ?? true,
     });
     
-    // Carregar documentos do usuário
+    // Carregar documentos do usurio
     try {
       const docs = await api.admin.documents.getUserDocuments(user.id);
       setUserDocuments(Array.isArray(docs) ? docs : []);
@@ -204,7 +204,7 @@ export const Clients: React.FC = () => {
       setProviders([]);
     }
     
-    // Carregar taxas do usuário
+    // Carregar taxas do usurio
     try {
         const feesData = await api.admin.users.getFees(user.id);
         setFeesForm({ 
@@ -277,11 +277,11 @@ export const Clients: React.FC = () => {
           }
           
           if (status === DocStatus.APPROVED) {
-                openSuccessModal('Conta aprovada', 'A conta do usuário foi aprovada com sucesso.');
+                openSuccessModal('Conta aprovada', 'A conta do usurio foi aprovada com sucesso.');
           } else if (status === DocStatus.REJECTED) {
-                 openSuccessModal('Conta suspensa/rejeitada', 'A conta do usuário foi atualizada com sucesso.');
+                 openSuccessModal('Conta suspensa/rejeitada', 'A conta do usurio foi atualizada com sucesso.');
           } else {
-                 openSuccessModal('Status atualizado', `O status do usuário foi atualizado para ${status}.`);
+                 openSuccessModal('Status atualizado', `O status do usurio foi atualizado para ${status}.`);
           }
           
           const updatedUser = { ...selectedUser, doc_status: status as DocStatus, doc_status_notes: notesToSend };
@@ -300,7 +300,7 @@ export const Clients: React.FC = () => {
       if (!selectedUser) return;
       setActionLoading(true);
       try {
-          // Converter strings para números
+          // Converter strings para nmeros
           const pixInFeeValue = parseFloat((feesForm.pixInFeeValue || '0').toString().replace(',', '.')) || 0;
           const pixInPercent = parseFloat((feesForm.pixInPercent || '0').toString().replace(',', '.')) || 0;
           const pixOutFeeValue = parseFloat((feesForm.pixOutFeeValue || '0').toString().replace(',', '.')) || 0;
@@ -308,8 +308,8 @@ export const Clients: React.FC = () => {
           const otcFeePercentage = parseFloat((feesForm.otcFeePercentage || '0').toString().replace(',', '.')) || 0;
           
           // Determinar o tipo de taxa baseado no que foi configurado
-          // Se houver taxa fixa, usar FIXED, caso contrário PERCENT
-          // Mas sempre enviar ambos os valores (fixa e percentual) para permitir combinação
+          // Se houver taxa fixa, usar FIXED, caso contrrio PERCENT
+          // Mas sempre enviar ambos os valores (fixa e percentual) para permitir combinao
           const pixInFeeType = pixInFeeValue > 0 ? 'FIXED' : (pixInPercent > 0 ? 'PERCENT' : 'PERCENT');
           const pixOutFeeType = pixOutFeeValue > 0 ? 'FIXED' : (pixOutPercent > 0 ? 'PERCENT' : 'PERCENT');
           
@@ -325,7 +325,7 @@ export const Clients: React.FC = () => {
           );
           
           
-          // Atualiza o usuário selecionado e a lista local com as novas taxas
+          // Atualiza o usurio selecionado e a lista local com as novas taxas
           const updatedUser = { 
               ...selectedUser, 
               pixInPercent: pixInPercent, 
@@ -339,7 +339,7 @@ export const Clients: React.FC = () => {
           setSelectedUser(updatedUser);
           setUsers(prev => prev.map(u => u.id === selectedUser.id ? updatedUser : u));
           
-          openSuccessModal('Taxas atualizadas', 'As taxas do usuário foram salvas com sucesso.');
+          openSuccessModal('Taxas atualizadas', 'As taxas do usurio foram salvas com sucesso.');
       } catch (e) {
           toast.error('Erro ao salvar taxas');
       } finally {
@@ -357,13 +357,13 @@ export const Clients: React.FC = () => {
           const result = await api.admin.users.updateProvider(selectedUser.id, selectedProvider);
           if (result.ok == true) {
               setUserProvider(selectedProvider);
-              // Atualiza o provider no objeto do usuário
+              // Atualiza o provider no objeto do usurio
               const updatedUser = { ...selectedUser, provider: selectedProvider };
               setSelectedUser(updatedUser);
-              // Atualiza também na lista de usuários
+              // Atualiza tambm na lista de usurios
               setUsers(prev => prev.map(u => u.id === selectedUser.id ? updatedUser : u));
               const providerName = providers.find(p => p.code === selectedProvider)?.name || selectedProvider;
-              openSuccessModal('Provider atualizado', `O provider do usuário foi alterado para ${providerName}.`);
+              openSuccessModal('Provider atualizado', `O provider do usurio foi alterado para ${providerName}.`);
           } else {
               toast.error('Erro ao salvar provider');
           }
@@ -403,13 +403,13 @@ export const Clients: React.FC = () => {
               };
               setSelectedUser(updatedUser);
               setUsers(prev => prev.map(u => u.id === selectedUser.id ? updatedUser : u));
-              openSuccessModal('Configurações atualizadas', 'As configurações do usuário foram salvas com sucesso.');
+              openSuccessModal('ConfiguraÃ§Ãµes atualizadas', 'As configuraes do usurio foram salvas com sucesso.');
           } else {
-              toast.error('Erro ao salvar configurações');
+              toast.error('Erro ao salvar configuraes');
           }
       } catch (e) {
           console.error(e);
-          toast.error('Erro ao salvar configurações');
+          toast.error('Erro ao salvar configuraes');
       } finally {
           setActionLoading(false);
       }
@@ -417,13 +417,13 @@ export const Clients: React.FC = () => {
 
   useEffect(() => {
       if (activeTab === 'PROVIDER' && selectedUser) {
-          // O provider já vem nos dados do usuário
+          // O provider j vem nos dados do usurio
           const providerCode = selectedUser.provider || null;
           setUserProvider(providerCode);
           setSelectedProvider(providerCode || '');
       }
       if (activeTab === 'CONFIG' && selectedUser) {
-          // Carregar configurações do usuário
+          // Carregar configuraes do usurio
           setConfigForm({
               webhook_url: selectedUser.webhook_url || '',
               webhook_url_pix_in: selectedUser.webhook_url_pix_in || '',
@@ -438,7 +438,7 @@ export const Clients: React.FC = () => {
   }, [activeTab, selectedUser]);
 
   const handleSuspendAccount = () => {
-    const reason = prompt('Motivo da suspensão (será salvo nas notas):', 'Infração dos termos de uso');
+    const reason = prompt('Motivo da suspenso (ser salvo nas notas):', 'Infrao dos termos de uso');
     if (reason) {
         handleUpdateDocStatus(DocStatus.REJECTED, `CONTA SUSPENSA: ${reason}`);
     }
@@ -477,7 +477,7 @@ export const Clients: React.FC = () => {
       <div className="flex justify-between items-center">
         <div>
                     <div className="flex items-center gap-2">
-                        <h2 className="text-2xl font-bold text-slate-800">Gestão de Usuários</h2>
+                        <h2 className="text-2xl font-bold text-slate-800">GestÃ¡ UsuÃ¡rios</h2>
                         <span className="px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold">
                             Ativos: {activeUsersCount}
                         </span>
@@ -512,16 +512,16 @@ export const Clients: React.FC = () => {
                                 <thead className="bg-slate-50 border-b border-slate-200">
                                     <tr>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">ID</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Usuário</th>
+                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Usurio</th>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Tipo Conta</th>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status KYC</th>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status Conta</th>
-                                        <th className="px-6 py-4 text-end text-xs font-bold text-slate-500 uppercase">Ações</th>
+                                        <th className="px-6 py-4 text-end text-xs font-bold text-slate-500 uppercase">AÃ§Ãµes</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-slate-100">
                                     {filteredUsers.length === 0 ? (
-                                        <tr><td colSpan={6} className="p-6 text-center text-slate-500">Nenhum usuário encontrado.</td></tr>
+                                        <tr><td colSpan={6} className="p-6 text-center text-slate-500">Nenhum usurio encontrado.</td></tr>
                                     ) : paginatedUsers.map((user) => (
                                         <tr key={user.id} className="hover:bg-slate-50/50 cursor-pointer" onClick={() => openUserModal(user)}>
                   <td className="px-6 py-4 font-mono text-xs text-slate-500">#{user.id}</td>
@@ -591,7 +591,7 @@ export const Clients: React.FC = () => {
                         {filteredUsers.length > 0 && (
                             <div className="px-6 py-4 border-t border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                                 <p className="text-sm text-slate-600">
-                                    Mostrando {pageStart + 1} a {Math.min(pageStart + USERS_PER_PAGE, filteredUsers.length)} de {filteredUsers.length} usuários
+                                    Mostrando {pageStart + 1} a {Math.min(pageStart + USERS_PER_PAGE, filteredUsers.length)} de {filteredUsers.length} usurios
                                 </p>
                                 <div className="flex items-center gap-2">
                                     <button
@@ -611,7 +611,7 @@ export const Clients: React.FC = () => {
                                         disabled={safeCurrentPage >= totalPages}
                                         className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 bg-white hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        Próxima
+                                        Prxima
                                     </button>
                                 </div>
                             </div>
@@ -710,11 +710,11 @@ export const Clients: React.FC = () => {
                                                 <div className="pt-4 mt-2 border-t border-slate-100">
                                                     <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 flex items-center gap-3">
                                                         <CheckCircle className="w-5 h-5 text-green-600" />
-                                                        <p className="text-sm text-green-800">Este usuário já está aprovado e operando. Para gestão de documentos, utilize o painel de conformidade.</p>
+                                                        <p className="text-sm text-green-800">Este usurio j estÃ¡ovado e operaÃ§Ã£o. Para gestÃ¡ documentos, utilize o painel de conformidade.</p>
                                                     </div>
                                                     
                                                     <div className="space-y-2">
-                                                        <label className="block text-xs font-bold text-slate-500 uppercase">Ações de Risco</label>
+                                                        <label className="block text-xs font-bold text-slate-500 uppercase">AÃ§Ãµes de Risco</label>
                                                         <button 
                                                             disabled={actionLoading}
                                                             onClick={handleSuspendAccount}
@@ -723,18 +723,18 @@ export const Clients: React.FC = () => {
                                                             {actionLoading ? <Loader2 className="animate-spin w-4 h-4" /> : <Ban className="w-4 h-4" />}
                                                             Suspender Conta (Bloquear)
                                                         </button>
-                                                        <p className="text-xs text-slate-400 text-center">Isso revogará o acesso e rejeitará a documentação atual.</p>
+                                                        <p className="text-xs text-slate-400 text-center">Isso revogar o acesso e rejeitar a documentao atual.</p>
                                                     </div>
                                                 </div>
                                             ) : (
                                                 <>
                                                     <div>
-                                                        <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Notas de Análise</label>
+                                                        <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Notas de Anlise</label>
                                                         <textarea 
                                                             value={docNotes}
                                                             onChange={(e) => setDocNotes(e.target.value)}
                                                             className="w-full border border-slate-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-orange-500 outline-none"
-                                                            placeholder="Motivo da aprovação ou rejeição..."
+                                                            placeholder="Motivo da aprovao ou rejeio..."
                                                             rows={3}
                                                         />
                                                     </div>
@@ -758,7 +758,7 @@ export const Clients: React.FC = () => {
                                                             onClick={() => handleUpdateDocStatus(DocStatus.UNDER_REVIEW)}
                                                             className="flex-1 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
                                                         >
-                                                            Em Revisão
+                                                            Em Reviso
                                                         </button>
                                                     </div>
                                                 </>
@@ -771,7 +771,7 @@ export const Clients: React.FC = () => {
                                             <h4 className="font-bold text-green-800 mb-2 flex items-center gap-2">
                                                 <CheckCircle className="w-5 h-5" /> Credenciais Geradas
                                             </h4>
-                                            <p className="text-sm text-green-700 mb-3">Copie agora. O App Secret não será exibido novamente.</p>
+                                            <p className="text-sm text-green-700 mb-3">Copie agora. O App Secret no ser exibido novamente.</p>
                                             <div className="space-y-2">
                                                 <div className="bg-white p-2 rounded border border-green-200">
                                                     <span className="text-xs text-slate-400 block">App ID</span>
@@ -876,7 +876,7 @@ export const Clients: React.FC = () => {
                                         <h4 className="font-bold text-slate-800 mb-4">Contas vinculadas ao titular</h4>
 
                                         {!linkedAccountsData ? (
-                                            <p className="text-sm text-slate-500">Carregando vínculos...</p>
+                                            <p className="text-sm text-slate-500">Carregando vnculos...</p>
                                         ) : (
                                             <div className="space-y-3">
                                                 <div className="text-sm text-slate-600">
@@ -889,7 +889,7 @@ export const Clients: React.FC = () => {
                                                         <div key={account.id} className="p-3 border border-slate-200 rounded-lg flex items-center justify-between gap-3">
                                                             <div>
                                                                 <p className="font-medium text-slate-800">{account.name}</p>
-                                                                <p className="text-xs text-slate-500">ID #{account.id} • {account.email || 'sem email'} • {account.doc_status || 'PENDING'}</p>
+                                                                <p className="text-xs text-slate-500">ID #{account.id}  {account.email || 'sem email'}  {account.doc_status || 'PENDING'}</p>
                                                             </div>
                                                             <span className={`px-2 py-1 rounded-full text-xs font-bold ${account.is_owner ? 'bg-indigo-100 text-indigo-700' : 'bg-cyan-100 text-cyan-700'}`}>
                                                                 {account.is_owner ? 'Principal' : 'Vinculada'}
@@ -919,7 +919,7 @@ export const Clients: React.FC = () => {
                                                 <thead className="bg-slate-50 border-b border-slate-200">
                                                     <tr>
                                                         <th className="px-4 py-3 font-medium text-slate-500">Data</th>
-                                                        <th className="px-4 py-3 font-medium text-slate-500">Descrição</th>
+                                                        <th className="px-4 py-3 font-medium text-slate-500">Descrio</th>
                                                         <th className="px-4 py-3 font-medium text-slate-500">Tipo</th>
                                                         <th className="px-4 py-3 font-medium text-slate-500 text-right">Valor</th>
                                                     </tr>
@@ -945,7 +945,7 @@ export const Clients: React.FC = () => {
                                                         </tr>
                                                     ))}
                                                     {(userLedger || []).length === 0 && (
-                                                        <tr><td colSpan={4} className="p-4 text-center text-slate-400">Nenhuma movimentação</td></tr>
+                                                        <tr><td colSpan={4} className="p-4 text-center text-slate-400">Nenhuma movimentao</td></tr>
                                                     )}
                                                 </tbody>
                                             </table>
@@ -959,8 +959,8 @@ export const Clients: React.FC = () => {
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
                                         <Settings2 className="w-5 h-5 text-blue-600 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Configuração de Tarifas</h4>
-                                            <p className="text-sm text-blue-700">Defina as taxas retidas pelo gateway. Você pode configurar taxa fixa, percentual ou ambas simultaneamente. Se ambas estiverem configuradas, serão somadas.</p>
+                                            <h4 className="font-bold text-blue-900">Configurao de Tarifas</h4>
+                                            <p className="text-sm text-blue-700">Defina as taxas retidas pelo gateway. Voc pode configurar taxa fixa, percentual ou ambas simultaneamente. Se ambas estÃ¡m configuradas, sero somadas.</p>
                                         </div>
                                     </div>
 
@@ -987,7 +987,7 @@ export const Clients: React.FC = () => {
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Valor fixo cobrado por transação (opcional)</p>
+                                                <p className="mt-1 text-xs text-slate-500">Valor fixo cobrado por transao (opcional)</p>
                                             </div>
                                             
                                             <div>
@@ -1005,16 +1005,16 @@ export const Clients: React.FC = () => {
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transação (opcional). Se ambas estiverem configuradas, serão somadas.</p>
+                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transao (opcional). Se ambas estÃ¡m configuradas, sero somadas.</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* PIX SAÍDA */}
+                                    {/* PIX SADA */}
                                     <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-800 flex items-center gap-2">
                                             <ArrowUpRight className="w-5 h-5 text-orange-500" />
-                                            Pix Saída (Cash-out)
+                                            Pix Sada (Cash-out)
                                         </h5>
                                         
                                         <div className="space-y-4">
@@ -1033,7 +1033,7 @@ export const Clients: React.FC = () => {
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Valor fixo cobrado por transação (opcional)</p>
+                                                <p className="mt-1 text-xs text-slate-500">Valor fixo cobrado por transao (opcional)</p>
                                             </div>
                                             
                                             <div>
@@ -1051,7 +1051,7 @@ export const Clients: React.FC = () => {
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transação (opcional). Se ambas estiverem configuradas, serão somadas.</p>
+                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transao (opcional). Se ambas estÃ¡m configuradas, sero somadas.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1078,7 +1078,7 @@ export const Clients: React.FC = () => {
                                                 />
                                                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                             </div>
-                                            <p className="mt-1 text-xs text-slate-500">Taxa de conversão BRL ? Criptomoedas (BTC, ETH, USDT). Exemplo: 5 = 5% de taxa</p>
+                                            <p className="mt-1 text-xs text-slate-500">Taxa de converso BRL ? Criptomoedas (BTC, ETH, USDT). Exemplo: 5 = 5% de taxa</p>
                                         </div>
                                     </div>
 
@@ -1093,8 +1093,8 @@ export const Clients: React.FC = () => {
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
                                         <Building2 className="w-5 h-5 text-blue-600 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Seleção de Provider</h4>
-                                            <p className="text-sm text-blue-700">Escolha um provider de pagamento para este usuário. O provider será usado para processar as transações.</p>
+                                            <h4 className="font-bold text-blue-900">Seleo de Provider</h4>
+                                            <p className="text-sm text-blue-700">Escolha um provider de pagamento para estÃ¡rio. O provider ser usado para processar as transaÃ§Ãµes.</p>
                                         </div>
                                     </div>
 
@@ -1111,7 +1111,7 @@ export const Clients: React.FC = () => {
                                     )}
 
                                     <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                                        <h5 className="font-bold text-slate-800 mb-4">Lista de Providers Disponíveis</h5>
+                                        <h5 className="font-bold text-slate-800 mb-4">Lista de Providers Disponveis</h5>
                                         
                                         {loadingDetails ? (
                                             <div className="flex justify-center py-8">
@@ -1119,7 +1119,7 @@ export const Clients: React.FC = () => {
                                             </div>
                                         ) : providers.length === 0 ? (
                                             <div className="text-center py-8 text-slate-500">
-                                                Nenhum provider disponível.
+                                                Nenhum provider disponvel.
                                             </div>
                                         ) : (
                                             <div className="space-y-3">
@@ -1182,14 +1182,14 @@ export const Clients: React.FC = () => {
                                         <FileText className="w-5 h-5 text-blue-600 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Documentos KYC</h4>
-                                            <p className="text-sm text-blue-700">Documentação enviada pelo usuário para validação de identidade e conformidade.</p>
+                                            <p className="text-sm text-blue-700">Documentao enviada pelo usurio para validao de identidade e conformidade.</p>
                                         </div>
                                     </div>
 
                                     {userDocuments.length === 0 ? (
                                         <div className="bg-white border border-slate-200 rounded-xl p-8 text-center">
                                             <File className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-                                            <p className="text-slate-500">Nenhum documento enviado por este usuário.</p>
+                                            <p className="text-slate-500">Nenhum documento enviado por estÃ¡rio.</p>
                                         </div>
                                     ) : (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1199,8 +1199,8 @@ export const Clients: React.FC = () => {
                                                 const documentType = doc.documentType || doc.document_type || 'Documento';
                                                 const createdAt = doc.created_at || doc.createdAt;
                                                 
-                                                const isImage = documentLink.startsWith('data:image') || /\.(jpg|jpeg|png|gif|webp)$/i.test(documentLink);
-                                                const isPdf = documentLink.startsWith('data:application/pdf') || /\.pdf$/i.test(documentLink);
+                                                const isImage = documentLink.startsWith('data:image') || /\.(jpg|jpeg|png|gif|webp)$/i.testÃ¡mentLink);
+                                                const isPdf = documentLink.startsWith('data:application/pdf') || /\.pdf$/i.testÃ¡mentLink);
                                                 
                                                 return (
                                                     <div key={idx} className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
@@ -1254,8 +1254,8 @@ export const Clients: React.FC = () => {
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
                                         <Settings2 className="w-5 h-5 text-blue-600 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Configurações do Sistema</h4>
-                                            <p className="text-sm text-blue-700">Configure a URL de webhook e os IPs permitidos para este usuário.</p>
+                                            <h4 className="font-bold text-blue-900">ConfiguraÃ§Ãµes do Sistema</h4>
+                                            <p className="text-sm text-blue-700">Configure a URL de webhook e os IPs permitidos para estÃ¡rio.</p>
                                         </div>
                                     </div>
 
@@ -1274,13 +1274,13 @@ export const Clients: React.FC = () => {
                                                 placeholder="https://exemplo.com/webhook"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                URL genérica para todos os eventos. Será usada como fallback se as URLs específicas não estiverem configuradas.
+                                                URL genrica para todos os eventos. Ser usada como fallback se as URLs especficas no estÃ¡m configuradas.
                                             </p>
                                         </div>
 
                                         <div>
                                             <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
-                                                URL de Webhook PIX IN (Depósitos)
+                                                URL de Webhook PIX IN (Depsitos)
                                             </label>
                                             <input
                                                 type="url"
@@ -1290,7 +1290,7 @@ export const Clients: React.FC = () => {
                                                 placeholder="https://exemplo.com/webhook/pix-in"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                URL específica para receber notificações de depósitos PIX. Se não configurada, será usada a URL geral.
+                                                URL especfica para receber notificaes de depsitos PIX. Se no configurada, ser usada a URL geral.
                                             </p>
                                         </div>
 
@@ -1306,7 +1306,7 @@ export const Clients: React.FC = () => {
                                                 placeholder="https://exemplo.com/webhook/pix-out"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                URL específica para receber notificações de saques PIX. Se não configurada, será usada a URL geral.
+                                                URL especfica para receber notificaes de saques PIX. Se no configurada, ser usada a URL geral.
                                             </p>
                                         </div>
 
@@ -1322,7 +1322,7 @@ export const Clients: React.FC = () => {
                                                 placeholder="https://exemplo.com/webhook/refound"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                URL de callback de refund do cliente. Se preenchida, será usada automaticamente no processamento de refund.
+                                                URL de callback de refund do cliente. Se preenchida, ser usada automaticamente no processamento de refund.
                                             </p>
                                         </div>
                                     </div>
@@ -1344,7 +1344,7 @@ export const Clients: React.FC = () => {
                                                 rows={5}
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                Digite um IP por linha. Apenas requisições vindas destes IPs serão aceitas.
+                                                Digite um IP por linha. Apenas requisies vindas destÃ¡s sero aceitas.
                                             </p>
                                         </div>
                                     </div>
@@ -1366,7 +1366,7 @@ export const Clients: React.FC = () => {
                                                 rows={5}
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
-                                                Digite um CNPJ por linha. Apenas transações com estes CNPJs serão aceitas.
+                                                Digite um CNPJ por linha. Apenas transaÃ§Ãµes com estÃ¡PJs sero aceitas.
                                             </p>
                                         </div>
                                     </div>
@@ -1376,8 +1376,8 @@ export const Clients: React.FC = () => {
                                         <div className="space-y-4">
                                             <div className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 p-4">
                                                 <div>
-                                                    <p className="font-medium text-slate-800">PIX IN (Depósitos)</p>
-                                                    <p className="text-xs text-slate-500 mt-1">Desative para bloquear novas entradas PIX deste usuário.</p>
+                                                    <p className="font-medium text-slate-800">PIX IN (Depsitos)</p>
+                                                    <p className="text-xs text-slate-500 mt-1">Desative para bloquear novas entradas PIX destÃ¡rio.</p>
                                                 </div>
                                                 <button
                                                     type="button"
@@ -1393,7 +1393,7 @@ export const Clients: React.FC = () => {
                                             <div className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 p-4">
                                                 <div>
                                                     <p className="font-medium text-slate-800">PIX OUT (Saques)</p>
-                                                    <p className="text-xs text-slate-500 mt-1">Desative para bloquear novos saques PIX deste usuário.</p>
+                                                    <p className="text-xs text-slate-500 mt-1">Desative para bloquear novos saques PIX destÃ¡rio.</p>
                                                 </div>
                                                 <button
                                                     type="button"
@@ -1417,7 +1417,7 @@ export const Clients: React.FC = () => {
                                             <Loader2 className="w-5 h-5 animate-spin" />
                                         ) : (
                                             <>
-                                                <Save className="w-4 h-4" /> Salvar Configurações
+                                                <Save className="w-4 h-4" /> Salvar ConfiguraÃ§Ãµes
                                             </>
                                         )}
                                     </button>

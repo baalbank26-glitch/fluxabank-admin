@@ -118,24 +118,24 @@ export interface TreasuryByUserSummary {
   totalCollected: number;
   totalReversed: number;
   netCollected: number;
-  operations: number;
+  operaçãos: number;
 }
 
-export interface PaginationMeta {
+export interface PáginationMeta {
   page: number;
   pageSize: number;
   total: number;
   totalPages: number;
 }
 
-export interface PaginatedTreasuryByUserSummary {
+export interface PáginatedTreasuryByUserSummary {
   items: TreasuryByUserSummary[];
-  meta: PaginationMeta;
+  meta: PáginationMeta;
 }
 
-export interface PaginatedLedgerItems {
+export interface PáginatedLedgerItems {
   items: LedgerItem[];
-  meta: PaginationMeta;
+  meta: PáginationMeta;
 }
 
 export interface Provider {

@@ -81,7 +81,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
   };
 
   const handleDeleteDocument = async (docId: number) => {
-    if (!confirm('Tem certeza que deseja deletar este documento?')) return;
+    if (!confirm('Tem certeza que deseja deletar estÃ¡umento?')) return;
 
     try {
       const response = await fetch(`${BASE_URL}/documents/admin/${docId}`, {
@@ -109,7 +109,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
       <div className="text-center py-20 bg-slate-50 rounded-lg border border-slate-200 border-dashed">
         <FileText className="w-12 h-12 text-slate-400 mx-auto mb-4" />
         <h3 className="text-lg font-medium text-slate-700">Nenhum documento enviado</h3>
-        <p className="text-slate-500 text-sm mt-2">O usuário ainda não enviou documentos para verificação.</p>
+        <p className="text-slate-500 text-sm mt-2">O usurio ainda no enviou documentos para verificao.</p>
       </div>
     );
   }
@@ -220,11 +220,11 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
             {reviewingDoc === doc.id && (
               <div className="border-t border-slate-200 bg-slate-50 p-4 space-y-3">
                 <div>
-                  <label className="text-xs font-medium text-slate-700">Notas de revisão</label>
+                  <label className="text-xs font-medium text-slate-700">Notas de reviso</label>
                   <textarea
                     value={reviewNotes}
                     onChange={(e) => setReviewNotes(e.target.value)}
-                    placeholder="Adicione observações sobre a aprovação ou rejeição..."
+                    placeholder="Adicione observaes sobre a aprovao ou rejeio..."
                     className="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-orange-500"
                     rows={3}
                   />

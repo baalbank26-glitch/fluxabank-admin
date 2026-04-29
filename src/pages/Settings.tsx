@@ -10,7 +10,7 @@ import {
 import { api } from '../services/api';
 
 export const Settings: React.FC = () => {
-  const defaultMessage = 'O sistema está em manutenção até 02:00.';
+  const defaultMessage = 'O sistema estÃ¡ em manutenÃ§Ã£o atÃ© as 02:00.';
 
   const parseAllowedUserIds = (value: string): number[] => {
     return Array.from(
@@ -23,7 +23,7 @@ export const Settings: React.FC = () => {
     );
   };
 
-  // Inicializa com a mensagem padrão pedida
+  // Inicializa com a mensagem padro pedida
   const [maintenance, setMaintenance] = useState({ 
     isActive: false, 
     message: defaultMessage,
@@ -73,12 +73,12 @@ export const Settings: React.FC = () => {
             allowedUserIdsText: allowedUserIds.join(', ')
         }));
       } else {
-        toast.error('Erro: O servidor não confirmou a alteração. Verifique sua conexão.');
-        // Recarrega para garantir consistência
+        toast.error('Erro: O servidor no confirmou a alterao. Verifique sua conexo.');
+        // Recarrega para garantir consistncia
         loadSettings();
       }
     } catch (e) {
-      toast.error('Erro de conexão ao atualizar modo manutenção.');
+      toast.error('Erro de conexo ao atualizar modo manuteno.');
     } finally {
       setIsSaving(false);
     }
@@ -90,7 +90,7 @@ export const Settings: React.FC = () => {
     try {
       const response = await api.admin.settings.updateMaintenance(maintenance.isActive, maintenance.message, allowedUserIds);
       if (response) {
-        toast.success('Mensagem de manutenção atualizada com sucesso!');
+        toast.success('Mensagem de manuteno atualizada com sucesso!');
       } else {
         toast.error('Erro ao salvar mensagem no servidor.');
       }
@@ -134,8 +134,8 @@ export const Settings: React.FC = () => {
   return (
     <div className="space-y-6">
        <div>
-          <h2 className="text-2xl font-bold text-slate-800">Configurações do Sistema</h2>
-          <p className="text-slate-500 text-sm">Parâmetros globais e controle de disponibilidade.</p>
+          <h2 className="text-2xl font-bold text-slate-800">ConfiguraÃ§Ãµes do Sistema</h2>
+          <p className="text-slate-500 text-sm">ParÃ¢metros globais e controle de disponibilidade.</p>
         </div>
 
       <div className={`rounded-2xl border shadow-sm overflow-hidden transition-all duration-300 ${maintenance.isActive ? 'bg-gradient-to-br from-orange-50 via-white to-sky-50 border-orange-200 shadow-orange-200/40' : 'bg-white border-slate-200'}`}>
@@ -148,12 +148,12 @@ export const Settings: React.FC = () => {
           <div className="flex items-center justify-between">
             <div className="pr-4">
               <p className={`font-medium text-lg ${maintenance.isActive ? 'text-orange-900' : 'text-slate-800'}`}>
-                Modo Manutenção
+                Modo ManutenÃ§Ã£o
               </p>
               <p className={`text-sm mt-1 ${maintenance.isActive ? 'text-orange-700' : 'text-slate-500'}`}>
                 {maintenance.isActive 
-                  ? 'ATIVO: O gateway está rejeitando novas conexões.' 
-                  : 'INATIVO: O sistema está operando normalmente.'}
+                  ? 'ATIVO: O gateway estÃ¡eitando novas conexes.' 
+                  : 'INATIVO: O sistema estÃ¡raÃ§Ã£ormalmente.'}
               </p>
             </div>
             
@@ -185,9 +185,9 @@ export const Settings: React.FC = () => {
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-100">Modo ativo</p>
-                      <h4 className="mt-2 text-xl font-bold">Configuração do aviso e exceções</h4>
+                      <h4 className="mt-2 text-xl font-bold">Configurao do aviso e excees</h4>
                       <p className="mt-1 max-w-2xl text-sm text-orange-100/90">
-                        Defina a mensagem pública exibida pela API e controle quais IDs continuam autorizados durante a janela de manutenção.
+                        Defina a mensagem pblica exibida pela API e controle quais IDs continuam autorizados durante a janela de manuteno.
                       </p>
                     </div>
                     <div className="rounded-2xl border border-white/20 bg-white/10 px-3 py-2 text-right backdrop-blur-sm">
@@ -201,7 +201,7 @@ export const Settings: React.FC = () => {
                   <div className="rounded-2xl border border-orange-100 bg-white/90 p-5 shadow-sm">
                     <label className="block text-sm font-bold text-orange-800 mb-3">Mensagem de Bloqueio</label>
                     <p className="mb-4 text-sm text-slate-500">
-                      Este texto aparece para integrações e acessos bloqueados enquanto a manutenção estiver habilitada.
+                      Este texto aparece para integraes e acessos bloqueados enquanto a manuteno estÃ¡habilitada.
                     </p>
 
                     <div className="flex flex-col gap-3 sm:flex-row">
@@ -210,7 +210,7 @@ export const Settings: React.FC = () => {
                         value={maintenance.message}
                         onChange={(e) => setMaintenance({...maintenance, message: e.target.value})}
                         className="flex-1 rounded-2xl border border-orange-200 bg-orange-50/40 px-4 py-3 text-slate-800 outline-none transition-all placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100"
-                        placeholder="Ex: Sistema em manutenção até as 14h."
+                        placeholder="Ex: Sistema em manuteno at as 14h."
                       />
                       <button
                         onClick={handleUpdateMessage}
@@ -230,7 +230,7 @@ export const Settings: React.FC = () => {
                         <div>
                           <p className="font-semibold">Impacto imediato</p>
                           <p className="mt-1 text-sky-800/80">
-                            Alterar este status afeta imediatamente os endpoints públicos do gateway e os acessos sem exceção configurada.
+                            Alterar estÃ¡tus afeta imediatamente os endpoints pblicos do gateway e os acessos sem exceo configurada.
                           </p>
                         </div>
                       </div>
@@ -240,9 +240,9 @@ export const Settings: React.FC = () => {
                   <div className="rounded-2xl border border-orange-100 bg-slate-950 p-5 text-white shadow-sm">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <label className="block text-sm font-bold text-white">IDs liberados durante manutenção</label>
+                        <label className="block text-sm font-bold text-white">IDs liberados durante manuteno</label>
                         <p className="mt-2 text-sm text-slate-300">
-                          Use vírgula, espaço ou quebra de linha. O campo aceita múltiplos IDs e remove duplicados automaticamente.
+                          Use vrgula, espao ou quebra de linha. O campo aceita mltiplos IDs e remove duplicados automaticamente.
                         </p>
                       </div>
                       <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-center">
@@ -304,14 +304,14 @@ export const Settings: React.FC = () => {
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden opacity-60 pointer-events-none grayscale">
         <div className="p-6 border-b border-slate-100">
           <h3 className="font-bold text-lg flex items-center gap-2 text-slate-800">
-            <Shield className="w-5 h-5 text-slate-500" /> Segurança (Em breve)
+            <Shield className="w-5 h-5 text-slate-500" /> SeguranÃ§a (Em breve)
           </h3>
         </div>
         <div className="p-6 space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-medium text-slate-800">Autenticação 2FA Global</p>
-              <p className="text-sm text-slate-500">Forçar 2FA para todos os administradores.</p>
+              <p className="font-medium text-slate-800">AutenticaÃ§Ã£o 2FA Global</p>
+              <p className="text-sm text-slate-500">Forar 2FA para todos os administradores.</p>
             </div>
              <div className="h-6 w-11 bg-slate-200 rounded-full"></div>
           </div>
