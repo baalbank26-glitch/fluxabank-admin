@@ -152,7 +152,7 @@ const OTCWithdrawals: React.FC = () => {
             }}
             className={`px-4 py-2 rounded-lg font-medium transition-all ${
               filter === f
-                ? 'bg-indigo-600 text-white'
+                ? 'bg-orange-600 text-white'
                 : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
             }`}
           >
@@ -174,7 +174,7 @@ const OTCWithdrawals: React.FC = () => {
         <div className="lg:col-span-2">
           {loading ? (
             <div className="flex justify-center py-12">
-              <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+              <Loader2 className="w-8 h-8 animate-spin text-orange-600" />
             </div>
           ) : withdrawals.length === 0 ? (
             <div className="p-8 text-center text-slate-500 bg-slate-50 rounded-lg">
@@ -188,8 +188,8 @@ const OTCWithdrawals: React.FC = () => {
                   onClick={() => handleSelectWithdrawal(w)}
                   className={`p-4 border rounded-lg cursor-pointer transition-all ${
                     selectedWithdrawal?.id === w.id
-                      ? 'border-indigo-500 bg-indigo-50 shadow-md'
-                      : 'border-slate-200 hover:border-indigo-300'
+                      ? 'border-orange-500 bg-orange-50 shadow-md'
+                      : 'border-slate-200 hover:border-orange-300'
                   }`}
                 >
                   <div className="flex justify-between items-start mb-2">
@@ -307,7 +307,7 @@ const OTCWithdrawals: React.FC = () => {
                     onChange={(e) => setTxHash(e.target.value)}
                     placeholder="0x..."
                     required
-                    className={`w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 ${
+                    className={`w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-orange-500 ${
                       txHash.trim() === '' ? 'border-red-300 bg-red-50' : 'border-slate-300'
                     }`}
                   />
@@ -322,7 +322,7 @@ const OTCWithdrawals: React.FC = () => {
                     value={adminNotes}
                     onChange={(e) => setAdminNotes(e.target.value)}
                     placeholder="Observações..."
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500"
                     rows={3}
                   />
                 </div>

@@ -99,7 +99,7 @@ export const Security: React.FC = () => {
             <div className="flex justify-between items-center">
                 <div>
                     <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-                        <Shield className="w-8 h-8 text-pagandu-600" />
+                        <Shield className="w-8 h-8 text-fluxabank-600" />
                         Central de Segurança / IDS
                     </h2>
                     <p className="text-slate-500 text-sm">
@@ -155,7 +155,7 @@ export const Security: React.FC = () => {
                 <div className="relative">
                     <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Tipo de Evento</label>
                     <select
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pagandu-500"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-fluxabank-500"
                         value={filters.type}
                         onChange={(e) => setFilters({ ...filters, type: e.target.value })}
                     >
@@ -173,7 +173,7 @@ export const Security: React.FC = () => {
                     <input
                         type="text"
                         placeholder="Ex: 127.0.0.1"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pagandu-500"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-fluxabank-500"
                         value={filters.ip}
                         onChange={(e) => setFilters({ ...filters, ip: e.target.value })}
                     />
@@ -182,7 +182,7 @@ export const Security: React.FC = () => {
                     <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Data Início</label>
                     <input
                         type="date"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pagandu-500"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-fluxabank-500"
                         value={filters.dateFrom}
                         onChange={(e) => setFilters({ ...filters, dateFrom: e.target.value })}
                     />
@@ -191,7 +191,7 @@ export const Security: React.FC = () => {
                     <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Data Fim</label>
                     <input
                         type="date"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pagandu-500"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-fluxabank-500"
                         value={filters.dateTo}
                         onChange={(e) => setFilters({ ...filters, dateTo: e.target.value })}
                     />
@@ -269,7 +269,7 @@ export const Security: React.FC = () => {
                                         <td className="px-6 py-4 text-center">
                                             <button
                                                 onClick={() => setSelectedLog(log)}
-                                                className="p-2 text-slate-400 hover:text-pagandu-600 hover:bg-pagandu-50 rounded-lg transition-all"
+                                                className="p-2 text-slate-400 hover:text-fluxabank-600 hover:bg-fluxabank-50 rounded-lg transition-all"
                                                 title="Ver detalhes"
                                             >
                                                 <Eye className="w-5 h-5" />
@@ -318,7 +318,7 @@ export const Security: React.FC = () => {
                                         </div>
                                         <div className="flex justify-between items-center py-2 border-b border-slate-100">
                                             <span className="text-sm text-slate-500">IP de Origem</span>
-                                            <span className="text-sm font-bold text-pagandu-600 font-mono">{selectedLog.ip_address}</span>
+                                            <span className="text-sm font-bold text-fluxabank-600 font-mono">{selectedLog.ip_address}</span>
                                         </div>
                                         <div className="flex justify-between items-center py-2 border-b border-slate-100">
                                             <span className="text-sm text-slate-500">Método HTTP</span>

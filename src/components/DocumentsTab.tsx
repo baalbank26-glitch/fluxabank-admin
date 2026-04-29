@@ -99,7 +99,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-20">
-        <Loader2 className="w-8 h-8 text-pagandu-500 animate-spin" />
+        <Loader2 className="w-8 h-8 text-fluxabank-500 animate-spin" />
       </div>
     );
   }
@@ -193,7 +193,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
                   href={doc.document_link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 px-3 py-2 text-pagandu-600 border border-pagandu-300 rounded text-xs font-medium hover:bg-pagandu-50 transition-colors flex items-center justify-center gap-1"
+                  className="flex-1 px-3 py-2 text-fluxabank-600 border border-fluxabank-300 rounded text-xs font-medium hover:bg-fluxabank-50 transition-colors flex items-center justify-center gap-1"
                 >
                   <Download className="w-3 h-3" /> Download
                 </a>
@@ -225,7 +225,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
                     value={reviewNotes}
                     onChange={(e) => setReviewNotes(e.target.value)}
                     placeholder="Adicione observações sobre a aprovação ou rejeição..."
-                    className="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-pagandu-500"
+                    className="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-fluxabank-500"
                     rows={3}
                   />
                 </div>

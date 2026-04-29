@@ -56,11 +56,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
     <div className="flex flex-col h-full bg-slate-900 border-r border-slate-800">
       <div className="p-6 flex items-center gap-3 border-b border-slate-700">
         <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg">
-          <img src="https://i.postimg.cc/sDYpF67m/logo-pagandu.png" alt="Pagandu" className="w-10 h-10 object-contain" />
+          <img src="https://fluxabank.com/fluxabank-logo.png" alt="Fluxabank" className="w-10 h-10 object-contain" />
         </div>
         <div>
-          <h1 className="text-xl font-bold tracking-tight text-white">PAGANDU</h1>
-          <p className="text-xs text-slate-400 font-medium tracking-wider">PAGANDU ADMIN</p>
+          <h1 className="text-xl font-bold tracking-tight text-white">Fluxabank</h1>
+          <p className="text-xs text-slate-400 font-medium tracking-wider">Fluxabank Admin</p>
         </div>
       </div>
 
@@ -74,7 +74,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
               className={`
                 w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200
                 ${isActive
-                  ? 'bg-pagandu-600 text-white shadow-md shadow-pagandu-900/20 translate-x-1'
+                  ? 'bg-fluxabank-600 text-white shadow-md shadow-fluxabank-900/20 translate-x-1'
                   : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100 hover:translate-x-1'
                 }
               `}

@@ -723,7 +723,7 @@ export const Treasury: React.FC = () => {
               <button
                 onClick={() => setViewMode('DAILY')}
                 className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${viewMode === 'DAILY'
-                    ? 'bg-pagandu-100 text-pagandu-700'
+                    ? 'bg-fluxabank-100 text-fluxabank-700'
                     : 'text-slate-500 hover:bg-slate-50'
                   }`}
               >
@@ -733,7 +733,7 @@ export const Treasury: React.FC = () => {
               <button
                 onClick={() => setViewMode('MONTHLY')}
                 className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${viewMode === 'MONTHLY'
-                    ? 'bg-pagandu-100 text-pagandu-700'
+                    ? 'bg-fluxabank-100 text-fluxabank-700'
                     : 'text-slate-500 hover:bg-slate-50'
                   }`}
               >
@@ -750,7 +750,7 @@ export const Treasury: React.FC = () => {
             </button>
             <button
               onClick={() => handleExportXLS()}
-              className="flex items-center gap-2 px-4 py-2 bg-pagandu-600 text-white rounded-lg hover:bg-pagandu-700 text-sm font-medium shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-fluxabank-600 text-white rounded-lg hover:bg-fluxabank-700 text-sm font-medium shadow-sm"
             >
               <Download className="w-4 h-4" />
               Exportar XLS
@@ -789,7 +789,7 @@ export const Treasury: React.FC = () => {
             Atualizado agora
           </p>
 
-          <div className="absolute right-[-20px] top-[-20px] w-48 h-48 bg-pagandu-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute right-[-20px] top-[-20px] w-48 h-48 bg-fluxabank-500/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
@@ -867,7 +867,7 @@ export const Treasury: React.FC = () => {
                 type="date"
                 value={dateFrom}
                 onChange={(e) => setDateFrom(e.target.value)}
-                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 focus:border-transparent"
               />
             </div>
             <div>
@@ -878,7 +878,7 @@ export const Treasury: React.FC = () => {
                 type="date"
                 value={dateTo}
                 onChange={(e) => setDateTo(e.target.value)}
-                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -894,7 +894,7 @@ export const Treasury: React.FC = () => {
             </button>
             <button
               onClick={() => setShowFilters(false)}
-              className="ml-auto px-4 py-2 bg-pagandu-600 text-white rounded-lg hover:bg-pagandu-700 text-sm font-medium"
+              className="ml-auto px-4 py-2 bg-fluxabank-600 text-white rounded-lg hover:bg-fluxabank-700 text-sm font-medium"
             >
               Aplicar
             </button>
@@ -943,7 +943,7 @@ export const Treasury: React.FC = () => {
                 value={byUserSearch}
                 onChange={(e) => setByUserSearch(e.target.value)}
                 placeholder="Filtrar por nome, email ou ID do usuário"
-                className="w-full md:w-80 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 focus:border-transparent"
+                className="w-full md:w-80 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -1049,7 +1049,7 @@ export const Treasury: React.FC = () => {
             value={ledgerSearch}
             onChange={(e) => setLedgerSearch(e.target.value)}
             placeholder="Filtrar no ledger por usuário, email, descrição ou ID"
-            className="w-full md:w-96 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 focus:border-transparent"
+            className="w-full md:w-96 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 focus:border-transparent"
           />
         </div>
 
@@ -1165,7 +1165,7 @@ export const Treasury: React.FC = () => {
                   value={userTxFrom}
                   max={userTxTo || undefined}
                   onChange={(e) => setUserTxFrom(e.target.value)}
-                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-pagandu-500 outline-none"
+                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-fluxabank-500 outline-none"
                   title="Data inicial (deixe vazio para remover filtro)"
                 />
                 <span className="text-xs text-slate-400">até</span>
@@ -1174,13 +1174,13 @@ export const Treasury: React.FC = () => {
                   value={userTxTo}
                   min={userTxFrom || undefined}
                   onChange={(e) => setUserTxTo(e.target.value)}
-                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-pagandu-500 outline-none"
+                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-fluxabank-500 outline-none"
                   title="Data final (deixe vazio para remover filtro)"
                 />
                 <select
                   value={userTransactionsFlowType}
                   onChange={(e) => setUserTransactionsFlowType(e.target.value as 'ALL' | 'PIX_IN' | 'PIX_OUT' | 'ESTORNO')}
-                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-pagandu-500 outline-none"
+                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-fluxabank-500 outline-none"
                 >
                   <option value="ALL">Todos os fluxos</option>
                   <option value="PIX_IN">Somente PIX IN</option>

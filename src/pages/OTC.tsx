@@ -140,7 +140,7 @@ export const OTC: React.FC = () => {
           </div>
           <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
             <p className="text-sm text-slate-500 mb-1">Taxa Total (BRL)</p>
-            <p className="text-3xl font-bold text-cyan-600">
+            <p className="text-3xl font-bold text-orange-600">
               {stats.completedFeesBrl.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
             </p>
           </div>
@@ -155,7 +155,7 @@ export const OTC: React.FC = () => {
             onClick={() => setFilter(f)}
             className={`px-4 py-2 rounded-lg font-semibold text-sm transition-colors ${
               filter === f
-                ? 'bg-indigo-600 text-white'
+                ? 'bg-orange-600 text-white'
                 : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
             }`}
           >
@@ -226,7 +226,7 @@ export const OTC: React.FC = () => {
                           setSelectedWithdrawal(w);
                           setActionData({ status: w.status, txHash: w.txHash || '', adminNotes: w.adminNotes || '' });
                         }}
-                        className="text-indigo-600 hover:text-indigo-800 font-semibold text-sm"
+                        className="text-orange-600 hover:text-orange-800 font-semibold text-sm"
                       >
                         Gerenciar
                       </button>
@@ -280,7 +280,7 @@ export const OTC: React.FC = () => {
                 <select
                   value={actionData.status}
                   onChange={e => setActionData(prev => ({ ...prev, status: e.target.value }))}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                 >
                   <option value="pending">Pendente</option>
                   <option value="processing">Em Processamento</option>
@@ -296,7 +296,7 @@ export const OTC: React.FC = () => {
                   value={actionData.txHash}
                   onChange={e => setActionData(prev => ({ ...prev, txHash: e.target.value }))}
                   placeholder="0x..."
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 font-mono text-sm"
+                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
                 />
               </div>
 
@@ -306,7 +306,7 @@ export const OTC: React.FC = () => {
                   value={actionData.adminNotes}
                   onChange={e => setActionData(prev => ({ ...prev, adminNotes: e.target.value }))}
                   rows={3}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                   placeholder="Observações internas..."
                 />
               </div>
@@ -315,7 +315,7 @@ export const OTC: React.FC = () => {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={handleUpdateStatus}
-                className="flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors"
+                className="flex-1 px-6 py-3 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700 transition-colors"
               >
                 Salvar Alterações
               </button>
@@ -344,7 +344,7 @@ export const OTC: React.FC = () => {
                   step="0.00001"
                   value={editSettings.feePercentage || 0}
                   onChange={e => setEditSettings(prev => ({ ...prev, feePercentage: parseFloat(e.target.value) }))}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 
@@ -354,7 +354,7 @@ export const OTC: React.FC = () => {
                   type="number"
                   value={editSettings.minWithdrawalBrl || 0}
                   onChange={e => setEditSettings(prev => ({ ...prev, minWithdrawalBrl: parseFloat(e.target.value) }))}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 
@@ -364,7 +364,7 @@ export const OTC: React.FC = () => {
                   type="number"
                   value={editSettings.maxWithdrawalBrl || 0}
                   onChange={e => setEditSettings(prev => ({ ...prev, maxWithdrawalBrl: parseFloat(e.target.value) }))}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 
@@ -374,7 +374,7 @@ export const OTC: React.FC = () => {
                   id="otcEnabled"
                   checked={editSettings.enabled || false}
                   onChange={e => setEditSettings(prev => ({ ...prev, enabled: e.target.checked }))}
-                  className="w-5 h-5 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500"
+                  className="w-5 h-5 text-orange-600 border-slate-300 rounded focus:ring-orange-500"
                 />
                 <label htmlFor="otcEnabled" className="text-sm font-semibold text-slate-700">
                   OTC Habilitado (usuários podem usar)
@@ -385,7 +385,7 @@ export const OTC: React.FC = () => {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={handleUpdateSettings}
-                className="flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700"
+                className="flex-1 px-6 py-3 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700"
               >
                 Salvar
               </button>

@@ -82,7 +82,7 @@ export const TransactionMapper: React.FC = () => {
           <button
             onClick={handleMapTransaction}
             disabled={loading || !transactionId.trim()}
-            className="px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-700 disabled:opacity-50 text-xs font-semibold inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 disabled:opacity-50 text-xs font-semibold inline-flex items-center gap-2"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
             Mapear

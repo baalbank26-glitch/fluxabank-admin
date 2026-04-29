@@ -65,7 +65,7 @@ const App: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div className="flex items-center justify-center h-screen bg-slate-50 text-pagandu-600">Carregando...</div>;
+    return <div className="flex items-center justify-center h-screen bg-slate-50 text-fluxabank-600">Carregando...</div>;
   }
 
   if (!isAuthenticated) {
@@ -96,9 +96,9 @@ const App: React.FC = () => {
         <header className="lg:hidden bg-white border-b border-slate-200 p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded flex items-center justify-center">
-              <img src="https://i.postimg.cc/sDYpF67m/logo-pagandu.png" alt="Pagandu" className="w-8 h-8 object-contain" />
+              <img src="https://fluxabank.com/fluxabank-logo.png" alt="Fluxabank" className="w-8 h-8 object-contain" />
             </div>
-            <span className="font-bold text-slate-800">Pagandu</span>
+            <span className="font-bold text-slate-800">Fluxabank</span>
           </div>
           <button onClick={toggleSidebar} className="p-2 hover:bg-slate-100 rounded-md">
             <Menu className="w-6 h-6 text-slate-600" />

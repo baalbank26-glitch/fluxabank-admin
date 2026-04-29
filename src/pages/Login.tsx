@@ -71,23 +71,23 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
     <div className="min-h-screen w-full flex bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 font-sans overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-pagandu-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 -left-32 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-pagandu-600/5 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-fluxabank-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 -left-32 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-fluxabank-600/5 rounded-full blur-3xl" />
       </div>
 
       {/* Left side - Branding */}
       <div className="hidden lg:flex w-1/2 relative flex-col justify-between items-start p-12 z-10">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pagandu-400 to-cyan-400 flex items-center justify-center shadow-lg">
-            <img src="https://i.postimg.cc/sDYpF67m/logo-pagandu.png" alt="Pagandu" className="w-10 h-10 object-contain" />
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-fluxabank-400 to-orange-400 flex items-center justify-center shadow-lg">
+            <img src="https://fluxabank.com/fluxabank-logo.png" alt="Fluxabank" className="w-10 h-10 object-contain" />
           </div>
-          <span className="text-2xl font-bold tracking-tight text-white">PAGANDU</span>
+          <span className="text-2xl font-bold tracking-tight text-white">Fluxabank</span>
         </div>
 
         <div className="max-w-md">
           <h1 className="text-5xl font-bold mb-6 leading-tight text-white">
-            Gestão Financeira <span className="text-transparent bg-clip-text bg-gradient-to-r from-pagandu-300 to-cyan-300">Inteligente</span>
+            Gestão Financeira <span className="text-transparent bg-clip-text bg-gradient-to-r from-fluxabank-300 to-orange-300">Inteligente</span>
           </h1>
           <p className="text-slate-300 text-lg leading-relaxed">
             Painel administrativo seguro. Gerencie clientes, transações e operações com total controle e transparência.
@@ -95,7 +95,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
         </div>
 
         <div className="text-slate-400 text-sm">
-          <p>© 2024–2026 PAGANDU. Todos os direitos reservados.</p>
+          <p>© 2024–2026 Fluxabank. Todos os direitos reservados.</p>
         </div>
       </div>
 
@@ -104,8 +104,8 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden flex justify-center mb-8">
-            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-pagandu-400 to-cyan-400 flex items-center justify-center shadow-lg">
-              <img src="https://i.postimg.cc/sDYpF67m/logo-pagandu.png" alt="Pagandu" className="w-12 h-12 object-contain" />
+            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-fluxabank-400 to-orange-400 flex items-center justify-center shadow-lg">
+              <img src="https://fluxabank.com/fluxabank-logo.png" alt="Fluxabank" className="w-12 h-12 object-contain" />
             </div>
           </div>
 
@@ -142,7 +142,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-700 ml-0.5">Email</label>
                   <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-pagandu-600 transition-colors duration-200">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-fluxabank-600 transition-colors duration-200">
                       <Mail className="w-5 h-5" />
                     </div>
                     <input
@@ -150,8 +150,8 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       disabled={requires2FA}
-                      placeholder="admin@pagandu.com"
-                      className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500/30 focus:border-pagandu-500 focus:bg-white outline-none transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                      placeholder="admin@fluxabank.com"
+                      className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500/30 focus:border-fluxabank-500 focus:bg-white outline-none transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
                       required
                     />
                   </div>
@@ -161,7 +161,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-700 ml-0.5">Senha</label>
                   <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-pagandu-600 transition-colors duration-200">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-fluxabank-600 transition-colors duration-200">
                       <Lock className="w-5 h-5" />
                     </div>
                     <input
@@ -170,7 +170,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                       onChange={(e) => setPassword(e.target.value)}
                       disabled={requires2FA}
                       placeholder="••••••••"
-                      className="w-full pl-12 pr-12 py-3.5 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500/30 focus:border-pagandu-500 focus:bg-white outline-none transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full pl-12 pr-12 py-3.5 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500/30 focus:border-fluxabank-500 focus:bg-white outline-none transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
                       required
                     />
                     <button
@@ -192,7 +192,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-slate-700 ml-0.5">Código TOTP</label>
                     <div className="relative group">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-cyan-600 transition-colors duration-200">
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-orange-600 transition-colors duration-200">
                         <ShieldCheck className="w-5 h-5" />
                       </div>
                       <input
@@ -205,7 +205,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                         autoFocus
                         placeholder="000000"
                         maxLength="6"
-                        className="w-full pl-12 pr-4 py-3.5 text-center text-2xl font-semibold tracking-widest bg-cyan-50 border border-cyan-200 rounded-lg focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 focus:bg-white outline-none transition-all shadow-sm"
+                        className="w-full pl-12 pr-4 py-3.5 text-center text-2xl font-semibold tracking-widest bg-orange-50 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 focus:bg-white outline-none transition-all shadow-sm"
                       />
                     </div>
                     <p className="text-xs text-slate-500 ml-0.5">Ou use seu recovery code abaixo</p>
@@ -219,7 +219,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                       value={recoveryCode}
                       onChange={(e) => setRecoveryCode(e.target.value)}
                       placeholder="Ex: ABC123-XYZ789"
-                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-500/30 focus:border-cyan-500 focus:bg-white outline-none transition-all shadow-sm"
+                      className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 focus:bg-white outline-none transition-all shadow-sm"
                     />
                   </div>
                 </div>
@@ -229,7 +229,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
               <button
                 type="submit"
                 disabled={loading || (requires2FA && !twoFACode && !recoveryCode)}
-                className="w-full bg-gradient-to-r from-pagandu-600 to-cyan-600 hover:from-pagandu-700 hover:to-cyan-700 text-white py-3.5 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:scale-95"
+                className="w-full bg-gradient-to-r from-fluxabank-600 to-orange-600 hover:from-fluxabank-700 hover:to-orange-700 text-white py-3.5 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:scale-95"
               >
                 {loading ? (
                   <>

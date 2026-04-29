@@ -495,7 +495,7 @@ export const Clients: React.FC = () => {
           <input 
             type="text" 
             placeholder="Buscar por nome ou email..." 
-            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pagandu-500/50"
+            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fluxabank-500/50"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -504,7 +504,7 @@ export const Clients: React.FC = () => {
 
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         {isLoading ? (
-            <div className="flex justify-center p-12"><Loader2 className="w-8 h-8 animate-spin text-pagandu-600" /></div>
+            <div className="flex justify-center p-12"><Loader2 className="w-8 h-8 animate-spin text-fluxabank-600" /></div>
         ) : (
                     <>
                         <div className="overflow-x-auto">
@@ -534,7 +534,7 @@ export const Clients: React.FC = () => {
                                     <td className="px-6 py-4">
                                         {isPrimaryAccount(user) ? (
                                             <div className="flex flex-col gap-1">
-                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-indigo-100 text-indigo-700">
+                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-orange-100 text-orange-700">
                                                     Principal
                                                 </span>
                                                 {!!Number((user as any).linked_accounts_count || 0) && (
@@ -545,7 +545,7 @@ export const Clients: React.FC = () => {
                                             </div>
                                         ) : (
                                             <div className="flex flex-col gap-1">
-                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-cyan-100 text-cyan-700">
+                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-orange-100 text-orange-700">
                                                     Vinculada
                                                 </span>
                                                 <span className="text-[11px] text-slate-500">
@@ -580,7 +580,7 @@ export const Clients: React.FC = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 text-end">
-                    <button className="text-pagandu-600 font-medium text-sm hover:underline">Gerenciar</button>
+                    <button className="text-fluxabank-600 font-medium text-sm hover:underline">Gerenciar</button>
                   </td>
                                         </tr>
                                     ))}
@@ -625,7 +625,7 @@ export const Clients: React.FC = () => {
               <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
                   <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
                       <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pagandu-500 to-cyan-500 text-white flex items-center justify-center font-bold text-xl">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-fluxabank-500 to-orange-500 text-white flex items-center justify-center font-bold text-xl">
                               {(selectedUser.name || '?').charAt(0).toUpperCase()}
                           </div>
                           <div>
@@ -640,43 +640,43 @@ export const Clients: React.FC = () => {
                       <div className="grid grid-cols-2 md:flex md:flex-wrap gap-0">
                           <button onClick={() => setActiveTab('PROFILE')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'PROFILE' 
-                                ? 'border-pagandu-600 text-pagandu-600 bg-pagandu-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-pagandu-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
                           }`}>
                               <UserIcon className="w-4 h-4 flex-shrink-0" /> <span>Perfil</span>
                           </button>
                           <button onClick={() => setActiveTab('WALLET')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'WALLET' 
-                                ? 'border-pagandu-600 text-pagandu-600 bg-pagandu-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-pagandu-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
                           }`}>
                               <WalletIcon className="w-4 h-4 flex-shrink-0" /> <span>Carteira</span>
                           </button>
                           <button onClick={() => setActiveTab('FEES')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'FEES' 
-                                ? 'border-pagandu-600 text-pagandu-600 bg-pagandu-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-pagandu-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
                           }`}>
                               <Settings2 className="w-4 h-4 flex-shrink-0" /> <span>Taxas</span>
                           </button>
                           <button onClick={() => setActiveTab('PROVIDER')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'PROVIDER' 
-                                ? 'border-pagandu-600 text-pagandu-600 bg-pagandu-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-pagandu-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
                           }`}>
                               <Building2 className="w-4 h-4 flex-shrink-0" /> <span>Provider</span>
                           </button>
                           <button onClick={() => setActiveTab('CONFIG')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'CONFIG' 
-                                ? 'border-pagandu-600 text-pagandu-600 bg-pagandu-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-pagandu-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
                           }`}>
                               <Settings2 className="w-4 h-4 flex-shrink-0" /> <span>Config</span>
                           </button>
                           <button onClick={() => setActiveTab('DOCUMENTS')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'DOCUMENTS' 
-                                ? 'border-pagandu-600 text-pagandu-600 bg-pagandu-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-pagandu-600 hover:bg-slate-50'
+                                ? 'border-fluxabank-600 text-fluxabank-600 bg-fluxabank-50/50' 
+                                : 'border-transparent text-slate-600 hover:text-fluxabank-600 hover:bg-slate-50'
                           }`}>
                               <FileText className="w-4 h-4 flex-shrink-0" /> <span>Docs</span>
                           </button>
@@ -685,7 +685,7 @@ export const Clients: React.FC = () => {
 
                   <div className="flex-1 overflow-y-auto p-6 bg-slate-50/30">
                       {loadingDetails ? (
-                          <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-pagandu-600" /></div>
+                          <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-fluxabank-600" /></div>
                       ) : (
                           <>
                             {activeTab === 'PROFILE' && (
@@ -733,7 +733,7 @@ export const Clients: React.FC = () => {
                                                         <textarea 
                                                             value={docNotes}
                                                             onChange={(e) => setDocNotes(e.target.value)}
-                                                            className="w-full border border-slate-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-pagandu-500 outline-none"
+                                                            className="w-full border border-slate-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-fluxabank-500 outline-none"
                                                             placeholder="Motivo da aprovação ou rejeição..."
                                                             rows={3}
                                                         />
@@ -809,7 +809,7 @@ export const Clients: React.FC = () => {
                                                                 <label className="text-xs text-slate-500 font-bold uppercase block mb-1">App ID</label>
                                                                 <code className="text-sm font-mono text-slate-800 break-all block">{selectedUser.app_id || selectedUser.appId || '-'}</code>
                                                             </div>
-                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-pagandu-600 transition-colors ml-3 flex-shrink-0" />
+                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-fluxabank-600 transition-colors ml-3 flex-shrink-0" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -830,7 +830,7 @@ export const Clients: React.FC = () => {
                                                                 <label className="text-xs text-slate-500 font-bold uppercase block mb-1">Client Secret</label>
                                                                 <code className="text-sm font-mono text-slate-800 break-all block">{selectedUser.client_secret || selectedUser.appSecret || '-'}</code>
                                                             </div>
-                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-pagandu-600 transition-colors ml-3 flex-shrink-0" />
+                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-fluxabank-600 transition-colors ml-3 flex-shrink-0" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -891,7 +891,7 @@ export const Clients: React.FC = () => {
                                                                 <p className="font-medium text-slate-800">{account.name}</p>
                                                                 <p className="text-xs text-slate-500">ID #{account.id} • {account.email || 'sem email'} • {account.doc_status || 'PENDING'}</p>
                                                             </div>
-                                                            <span className={`px-2 py-1 rounded-full text-xs font-bold ${account.is_owner ? 'bg-indigo-100 text-indigo-700' : 'bg-cyan-100 text-cyan-700'}`}>
+                                                            <span className={`px-2 py-1 rounded-full text-xs font-bold ${account.is_owner ? 'bg-orange-100 text-orange-700' : 'bg-orange-100 text-orange-700'}`}>
                                                                 {account.is_owner ? 'Principal' : 'Vinculada'}
                                                             </span>
                                                         </div>
@@ -982,7 +982,7 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixInFeeValue}
                                                         onChange={(e) => setFeesForm({...feesForm, pixInFeeValue: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
@@ -1000,7 +1000,7 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixInPercent}
                                                         onChange={(e) => setFeesForm({...feesForm, pixInPercent: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
@@ -1028,7 +1028,7 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixOutFeeValue}
                                                         onChange={(e) => setFeesForm({...feesForm, pixOutFeeValue: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
@@ -1046,7 +1046,7 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixOutPercent}
                                                         onChange={(e) => setFeesForm({...feesForm, pixOutPercent: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
@@ -1073,7 +1073,7 @@ export const Clients: React.FC = () => {
                                                     step="0.00001"
                                                     value={feesForm.otcFeePercentage}
                                                     onChange={(e) => setFeesForm({...feesForm, otcFeePercentage: e.target.value})}
-                                                    className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none font-mono" 
+                                                    className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none font-mono" 
                                                     placeholder="0.00"
                                                 />
                                                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
@@ -1115,7 +1115,7 @@ export const Clients: React.FC = () => {
                                         
                                         {loadingDetails ? (
                                             <div className="flex justify-center py-8">
-                                                <Loader2 className="w-6 h-6 animate-spin text-pagandu-600" />
+                                                <Loader2 className="w-6 h-6 animate-spin text-fluxabank-600" />
                                             </div>
                                         ) : providers.length === 0 ? (
                                             <div className="text-center py-8 text-slate-500">
@@ -1128,7 +1128,7 @@ export const Clients: React.FC = () => {
                                                         key={provider.id}
                                                         className={`flex items-start gap-4 p-4 border-2 rounded-lg cursor-pointer transition-all ${
                                                             selectedProvider === provider.code
-                                                                ? 'border-pagandu-600 bg-pagandu-50'
+                                                                ? 'border-fluxabank-600 bg-fluxabank-50'
                                                                 : 'border-slate-200 hover:border-slate-300'
                                                         } ${!provider.active ? 'opacity-60' : ''}`}
                                                     >
@@ -1139,7 +1139,7 @@ export const Clients: React.FC = () => {
                                                             checked={selectedProvider === provider.code}
                                                             onChange={(e) => setSelectedProvider(e.target.value)}
                                                             disabled={!provider.active}
-                                                            className="mt-1 w-4 h-4 text-pagandu-600 focus:ring-pagandu-500"
+                                                            className="mt-1 w-4 h-4 text-fluxabank-600 focus:ring-fluxabank-500"
                                                         />
                                                         <div className="flex-1">
                                                             <div className="flex items-center gap-2 mb-1">
@@ -1152,7 +1152,7 @@ export const Clients: React.FC = () => {
                                                             <div className="text-xs text-slate-500 mt-1">{provider.base_url}</div>
                                                         </div>
                                                         {selectedProvider === provider.code && (
-                                                            <CheckCircle className="w-5 h-5 text-pagandu-600" />
+                                                            <CheckCircle className="w-5 h-5 text-fluxabank-600" />
                                                         )}
                                                     </label>
                                                 ))}
@@ -1235,7 +1235,7 @@ export const Clients: React.FC = () => {
                                                             
                                                             <button
                                                                 onClick={() => openDocumentSafe(documentLink)}
-                                                                className="w-full py-2 px-3 bg-pagandu-600 hover:bg-pagandu-700 text-white rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2"
+                                                                className="w-full py-2 px-3 bg-fluxabank-600 hover:bg-fluxabank-700 text-white rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2"
                                                             >
                                                                 <Eye className="w-4 h-4" />
                                                                 Visualizar
@@ -1270,7 +1270,7 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.webhook_url}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
@@ -1286,7 +1286,7 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.webhook_url_pix_in}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url_pix_in: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook/pix-in"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
@@ -1302,7 +1302,7 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.webhook_url_pix_out}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url_pix_out: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook/pix-out"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
@@ -1318,7 +1318,7 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.refund_api_route}
                                                 onChange={(e) => setConfigForm({...configForm, refund_api_route: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook/refound"
                                             />
                                             <p className="mt-2 text-xs text-slate-500">
@@ -1337,7 +1337,7 @@ export const Clients: React.FC = () => {
                                             <textarea
                                                 value={configForm.ip_whitelist}
                                                 onChange={(e) => setConfigForm({...configForm, ip_whitelist: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
                                                 placeholder="192.168.1.1
 10.0.0.1
 200.123.45.67"
@@ -1359,7 +1359,7 @@ export const Clients: React.FC = () => {
                                             <textarea
                                                 value={configForm.cnpj_whitelist}
                                                 onChange={(e) => setConfigForm({...configForm, cnpj_whitelist: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-pagandu-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
                                                 placeholder="12.345.678/0001-90
 98.765.432/0001-10
 11.222.333/0001-44"

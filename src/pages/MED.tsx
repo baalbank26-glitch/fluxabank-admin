@@ -450,7 +450,7 @@ export const MED: React.FC = () => {
               value={txSearch}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTxSearch(e.target.value)}
               placeholder="Buscar por TX, externalId, usuário, email, descrição..."
-              className="pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 outline-none w-full"
+              className="pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 outline-none w-full"
             />
           </div>
         </div>
@@ -569,7 +569,7 @@ export const MED: React.FC = () => {
             <div className="p-6 text-sm text-slate-500 flex items-center justify-center gap-2">
               {txLoading ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin text-pagandu-500" />
+                  <Loader2 className="w-4 h-4 animate-spin text-fluxabank-500" />
                   <span>Carregando, Espere!</span>
                 </>
               ) : (
@@ -633,14 +633,14 @@ export const MED: React.FC = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Buscar ID, E2E, transação ou cliente..." 
-                className="pl-9 pr-4 py-1.5 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-pagandu-500 outline-none w-64 md:w-80" 
+                className="pl-9 pr-4 py-1.5 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 outline-none w-64 md:w-80" 
             />
           </div>
         </div>
         
         {isLoading ? (
             <div className="flex justify-center items-center h-48">
-                <Loader2 className="w-8 h-8 text-pagandu-500 animate-spin" />
+                <Loader2 className="w-8 h-8 text-fluxabank-500 animate-spin" />
             </div>
         ) : (
         <div className="divide-y divide-slate-100">
@@ -795,7 +795,7 @@ export const MED: React.FC = () => {
                                   <button
                                     type="button"
                                     onClick={() => setLightboxImage({ url: att.url, filename: att.filename })}
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-indigo-200 bg-indigo-50 text-xs font-medium text-indigo-700 hover:bg-indigo-100"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-orange-200 bg-orange-50 text-xs font-medium text-orange-700 hover:bg-orange-100"
                                   >
                                     Ampliar
                                   </button>

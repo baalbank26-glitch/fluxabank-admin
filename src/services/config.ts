@@ -2,7 +2,7 @@
 const getBaseUrl = (): string => {
   const ls = (typeof window !== 'undefined') ? (localStorage.getItem('admin_api_base') || '') : '';
   const win = (typeof window !== 'undefined' && (window as any).__ADMIN_API_BASE__) || '';
-  const base = (ls || win || 'https://api.pagandu.com/api').trim();
+  const base = (ls || win || 'https://api.fluxabank.com/api').trim();
   return base.endsWith('/') ? base.slice(0, -1) : base;
 };
 
