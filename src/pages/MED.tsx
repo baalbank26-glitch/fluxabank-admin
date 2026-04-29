@@ -905,7 +905,7 @@ export const MED: React.FC = () => {
                 onClick={() => handleAction(selectedCase.id, 'ACCEPT_REFUND')}
                 className="px-3 sm:px-4 py-2 bg-orange-600 text-white font-medium rounded-lg hover:bg-orange-700 transition-colors shadow-md shadow-orange-200 disabled:opacity-50 text-xs sm:text-sm"
               >
-                {processingId === selectedCase.id ? 'Processando devoluo...' : 'Acatar e Devolver Valor'}
+                {processingId === selectedCase.id ? 'Processando devolução...' : 'Acatar e Devolver Valor'}
               </button>
             </div>
           </div>
@@ -921,8 +921,8 @@ export const MED: React.FC = () => {
                   <ShieldAlert className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-800">Abrir MED em transao</h3>
-                  <p className="text-xs text-slate-500">Selecione uma transao e retenha o valor</p>
+                  <h3 className="font-bold text-slate-800">Abrir MED em transação</h3>
+                  <p className="text-xs text-slate-500">Selecione uma transação e retenha o valor</p>
                 </div>
               </div>
               <button onClick={() => setShowCreateModal(false)} className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-400">
@@ -943,7 +943,7 @@ export const MED: React.FC = () => {
                 />
                 <input
                   className="px-3 py-2 border border-slate-200 rounded-lg bg-slate-50"
-                  placeholder="E2E da transao"
+                  placeholder="E2E da transação"
                   value={selectedTxE2E || '-'}
                   readOnly
                 />
@@ -961,19 +961,19 @@ export const MED: React.FC = () => {
                 />
                 <input
                   className="px-3 py-2 border border-slate-200 rounded-lg"
-                  placeholder="Cdigo do motivo"
+                  placeholder="Código do motivo"
                   value={newMed.reasonCode}
                   onChange={(e) => setNewMed((p) => ({ ...p, reasonCode: e.target.value }))}
                 />
                 <input
                   className="px-3 py-2 border border-slate-200 rounded-lg md:col-span-2"
-                  placeholder="Rtulo do motivo"
+                  placeholder="Rótulo do motivo"
                   value={newMed.reasonLabel}
                   onChange={(e) => setNewMed((p) => ({ ...p, reasonLabel: e.target.value }))}
                 />
                 <textarea
                   className="px-3 py-2 border border-slate-200 rounded-lg md:col-span-2"
-                  placeholder="Observao do admin"
+                  placeholder="Observação do admin"
                   value={newMed.note}
                   onChange={(e) => setNewMed((p) => ({ ...p, note: e.target.value }))}
                 />
@@ -981,7 +981,7 @@ export const MED: React.FC = () => {
 
               <div className="border border-slate-200 rounded-xl overflow-hidden">
                 <div className="p-3 bg-slate-50 border-b border-slate-200 text-sm font-medium text-slate-700">
-                  Transaes em tempo real (clique para preencher)
+                  Transações em tempo real (clique para preencher)
                 </div>
                 <div className="max-h-64 overflow-auto divide-y divide-slate-100">
                   {txRows.map((tx) => (
