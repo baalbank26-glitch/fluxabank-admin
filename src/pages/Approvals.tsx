@@ -241,8 +241,8 @@ export const Approvals: React.FC = () => {
                             </div>
                             <span className={`text-xs font-bold px-2 py-1 rounded ${
                               doc.status === 'APPROVED' ? 'bg-emerald-950/30 text-emerald-300' :
-                              doc.status === 'REJECTED' ? 'bg-emerald-950/40 text-emerald-600' :
-                              'bg-amber-100 text-amber-700'
+                              doc.status === 'REJECTED' ? 'bg-red-950/20 text-red-300 border border-red-500/20' :
+                              'bg-amber-500/10 text-amber-300 border border-amber-500/20'
                             }`}>
                               {doc.status}
                             </span>
@@ -266,7 +266,7 @@ export const Approvals: React.FC = () => {
                           </div>
 
                           {doc.admin_notes && (
-                            <div className="bg-blue-50 rounded p-2 mb-3">
+                            <div className="bg-[#0f1713] rounded p-2 mb-3">
                               <p className="text-xs text-emerald-400">{doc.admin_notes}</p>
                             </div>
                           )}
@@ -274,7 +274,7 @@ export const Approvals: React.FC = () => {
                           <div className="flex gap-2">
                             <button
                               onClick={() => openDocumentSafe(doc.document_link, doc.file_name)}
-                              className="flex-1 text-center px-3 py-2 text-emerald-500 border border-emerald-300 rounded text-xs font-medium hover:bg-emerald-950/20 transition-colors flex items-center justify-center gap-1"
+                              className="flex-1 text-center px-3 py-2 text-emerald-500 border border-emerald-500/30 rounded text-xs font-medium hover:bg-emerald-950/20 transition-colors flex items-center justify-center gap-1"
                             >
                               <Download className="w-3 h-3" /> Ver
                             </button>

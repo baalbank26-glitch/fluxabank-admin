@@ -287,7 +287,7 @@ export const Security: React.FC = () => {
             {selectedLog && (
                 <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
                     <div className="bg-[#0f1713] rounded-3xl w-full max-w-4xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
-                        <div className="p-6 bg-slate-900 text-white flex justify-between items-center">
+                        <div className="p-6 bg-[#0f1713] text-white flex justify-between items-center">
                             <div className="flex items-center gap-3">
                                 <div className="p-2 bg-emerald-500/20 rounded-xl">
                                     <Shield className="w-6 h-6 text-emerald-400" />
@@ -359,7 +359,7 @@ export const Security: React.FC = () => {
                                     <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
                                         <Clock className="w-4 h-4" /> Payload / Headers da Requisição
                                     </h4>
-                                    <div className="bg-slate-900 rounded-2xl p-4 h-[300px] overflow-y-auto custom-scrollbar">
+                                    <div className="bg-[#0f1713] rounded-2xl p-4 h-[300px] overflow-y-auto custom-scrollbar">
                                         <pre className="text-[10px] text-green-400 font-mono whitespace-pre-wrap">
                                             {JSON.stringify({
                                                 payload: selectedLog.payload,
@@ -374,7 +374,7 @@ export const Security: React.FC = () => {
                         <div className="p-6 bg-[#090d0a] border-t border-emerald-500/20 flex justify-end gap-3">
                             <button
                                 onClick={() => setSelectedLog(null)}
-                                className="px-6 py-2 bg-[#0f1713] border border-emerald-500/20 text-slate-200 rounded-xl font-bold hover:bg-emerald-950/40 transition-colors"
+                                className="px-6 py-2 bg-[#090d0a] border border-emerald-500/20 text-slate-200 rounded-xl font-bold hover:bg-emerald-950/40 transition-colors"
                             >
                                 Fechar
                             </button>

@@ -106,7 +106,7 @@ const OTCWithdrawals: React.FC = () => {
       case 'pending':
         return 'bg-yellow-100 text-yellow-800';
       case 'processing':
-        return 'bg-emerald-950/40 text-blue-800';
+        return 'bg-emerald-950/40 text-emerald-300';
       case 'completed':
         return 'bg-emerald-950/30 text-green-800';
       case 'cancelled':
@@ -220,7 +220,7 @@ const OTCWithdrawals: React.FC = () => {
 
         {/* Painel de Detalhes e Ação */}
         {selectedWithdrawal && (
-          <div className="p-6 bg-[#0f1713] border border-emerald-500/20 rounded-lg shadow-md space-y-4">
+          <div className="p-6 bg-[#090d0a] border border-emerald-500/20 rounded-lg shadow-md space-y-4">
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-bold text-lg">Detalhes do Saque</h3>
               <button
@@ -308,7 +308,7 @@ const OTCWithdrawals: React.FC = () => {
                     placeholder="0x..."
                     required
                     className={`w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 ${
-                      txHash.trim() === '' ? 'border-emerald-300 bg-emerald-950/20' : 'border-slate-300'
+                      txHash.trim() === '' ? 'border-emerald-500/30 bg-emerald-950/20' : 'border-slate-300'
                     }`}
                   />
                   {txHash.trim() === '' && (

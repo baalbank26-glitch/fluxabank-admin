@@ -145,7 +145,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full">
 
         {/* Treasury Card */}
-        <div className="bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-lg text-white relative overflow-hidden min-w-0 group hover:shadow-xl transition-shadow">
+        <div className="bg-[#0f1713] p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-lg text-white relative overflow-hidden min-w-0 group hover:shadow-xl transition-shadow">
           <div className="absolute right-0 top-0 w-40 h-40 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-white/10 transition-all duration-300"></div>
           <div className="relative z-10">
             <div className="flex items-start justify-between mb-4">

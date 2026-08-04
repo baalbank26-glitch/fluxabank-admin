@@ -129,7 +129,7 @@ export const Admins: React.FC = () => {
 
   if (!canManageAdmins) {
     return (
-      <div className="bg-[#0f1713] border border-emerald-500/20 rounded-2xl p-6">
+      <div className="bg-[#090d0a] border border-emerald-500/20 rounded-2xl p-6">
         <h2 className="text-xl font-bold text-slate-100">Administradores</h2>
         <p className="mt-2 text-slate-400">Apenas admin master pode gerenciar criacao de outros admins.</p>
       </div>
@@ -146,7 +146,7 @@ export const Admins: React.FC = () => {
         <p className="text-slate-400 text-sm mt-1">Crie novos admins e selecione permissoes operacionais.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-[#0f1713] border border-emerald-500/20 rounded-2xl p-6 space-y-4">
+      <form onSubmit={handleSubmit} className="bg-[#090d0a] border border-emerald-500/20 rounded-2xl p-6 space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <input
             type="text"
@@ -193,14 +193,14 @@ export const Admins: React.FC = () => {
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 bg-slate-900 text-white rounded-lg px-4 py-2 font-medium hover:bg-[#0f1713] disabled:opacity-60"
+          className="inline-flex items-center gap-2 bg-[#0f1713] text-white rounded-lg px-4 py-2 font-medium hover:bg-[#0f1713] disabled:opacity-60"
         >
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <UserPlus className="w-4 h-4" />}
           Criar Admin Level2
         </button>
       </form>
 
-      <div className="bg-[#0f1713] border border-emerald-500/20 rounded-2xl overflow-hidden">
+      <div className="bg-[#090d0a] border border-emerald-500/20 rounded-2xl overflow-hidden">
         <div className="px-6 py-4 border-b border-emerald-500/20 flex items-center justify-between">
           <h3 className="font-semibold text-slate-100">Admins cadastrados</h3>
           {loading && <Loader2 className="w-4 h-4 animate-spin text-slate-400" />}
@@ -298,7 +298,7 @@ export const Admins: React.FC = () => {
                 <button
                   type="submit"
                   disabled={editing}
-                  className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 font-medium text-white hover:bg-[#0f1713] disabled:opacity-60"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#0f1713] px-4 py-2 font-medium text-white hover:bg-[#0f1713] disabled:opacity-60"
                 >
                   {editing ? <Loader2 className="w-4 h-4 animate-spin" /> : <PencilLine className="w-4 h-4" />}
                   Salvar permissoes

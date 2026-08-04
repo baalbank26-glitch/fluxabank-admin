@@ -108,12 +108,12 @@ export const Authenticator: React.FC = () => {
       </div>
 
       {error && (
-        <div className="p-3 bg-emerald-950/20 border border-emerald-500/30 text-emerald-600 rounded-lg text-sm flex items-center gap-2">
+        <div className="p-3 bg-red-950/20 border border-red-500/30 text-red-300 rounded-lg text-sm flex items-center gap-2">
           <AlertCircle className="w-4 h-4" /> {error}
         </div>
       )}
       {success && (
-        <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-400 rounded-lg text-sm flex items-center gap-2">
+        <div className="p-3 bg-emerald-950/20 border border-emerald-500/30 text-emerald-400 rounded-lg text-sm flex items-center gap-2">
           <CheckCircle className="w-4 h-4" /> {success}
         </div>
       )}
@@ -127,7 +127,7 @@ export const Authenticator: React.FC = () => {
           <button
             onClick={refreshStatus}
             disabled={isSubmitting}
-            className="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-200 text-sm font-medium flex items-center gap-2"
+            className="px-3 py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-sm font-bold flex items-center gap-2"
           >
             <RefreshCcw className="w-4 h-4" /> Atualizar
           </button>
@@ -139,7 +139,7 @@ export const Authenticator: React.FC = () => {
           <button
             onClick={startSetup}
             disabled={isSubmitting}
-            className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-[#0f1713] text-white text-sm font-semibold flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-sm font-bold flex items-center gap-2"
           >
             <QrCode className="w-4 h-4" /> Iniciar configuração
           </button>
@@ -194,7 +194,7 @@ export const Authenticator: React.FC = () => {
           <button
             onClick={regenerateRecoveryCodes}
             disabled={isSubmitting}
-            className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-[#0f1713] text-white text-sm font-semibold"
+            className="px-4 py-2 rounded-lg bg-[#0f1713] hover:bg-[#0f1713] text-white text-sm font-semibold"
           >
             Gerar novos recovery codes
           </button>
@@ -205,7 +205,7 @@ export const Authenticator: React.FC = () => {
                 <p className="font-semibold text-slate-100">Recovery codes</p>
                 <button
                   onClick={() => navigator.clipboard.writeText(recoveryCodes.join('\n'))}
-                  className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-medium text-slate-200 flex items-center gap-2"
+                  className="px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 text-xs font-bold text-emerald-400 flex items-center gap-2"
                 >
                   <Copy className="w-3 h-3" /> Copiar todos
                 </button>

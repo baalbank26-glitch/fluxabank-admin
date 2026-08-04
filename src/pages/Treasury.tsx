@@ -743,7 +743,7 @@ export const Treasury: React.FC = () => {
           <div className="flex gap-2">
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-4 py-2 bg-[#0f1713] border border-emerald-500/20 text-slate-200 rounded-lg hover:bg-[#090d0a] text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-2 bg-[#090d0a] border border-emerald-500/20 text-slate-200 rounded-lg hover:bg-[#090d0a] text-sm font-medium"
             >
               <Filter className="w-4 h-4" />
               Filtros
@@ -760,7 +760,7 @@ export const Treasury: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800 shadow-lg relative overflow-hidden text-white">
+        <div className="bg-[#0f1713] p-8 rounded-2xl border border-slate-800 shadow-lg relative overflow-hidden text-white">
           <p className="text-sm font-medium text-slate-400">
             Saldo Total da Tesouraria
           </p>

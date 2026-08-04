@@ -558,7 +558,7 @@ export const Clients: React.FC = () => {
                      <span className={`px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 ${
                         user.doc_status === DocStatus.APPROVED ? 'bg-emerald-950/30 text-emerald-300' : 
                         user.doc_status === DocStatus.REJECTED ? 'bg-emerald-950/40 text-emerald-600' :
-                        'bg-amber-100 text-amber-700'
+                        'bg-amber-500/10 text-amber-300 border border-amber-500/20'
                     }`}>
                         {user.doc_status === DocStatus.APPROVED && <CheckCircle className="w-3 h-3"/>}
                         {user.doc_status === DocStatus.REJECTED && <XCircle className="w-3 h-3"/>}
@@ -570,7 +570,7 @@ export const Clients: React.FC = () => {
                     <span className={`px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 ${
                         user.status === UserStatus.ACTIVE ? 'bg-emerald-950/30 text-emerald-300' : 
                         user.status === UserStatus.BLOCKED ? 'bg-emerald-950/40 text-emerald-600' :
-                        user.status === UserStatus.PENDING ? 'bg-amber-100 text-amber-700' :
+                        user.status === UserStatus.PENDING ? 'bg-amber-500/10 text-amber-300 border border-amber-500/20' :
                         'bg-[#0f1713] text-slate-300 border border-emerald-500/10'
                     }`}>
                         {user.status === UserStatus.ACTIVE && <CheckCircle className="w-3 h-3"/>}
@@ -700,7 +700,7 @@ export const Clients: React.FC = () => {
                                                 <span className={`px-3 py-1 rounded-lg text-sm font-bold ${
                                                     selectedUser.doc_status === DocStatus.APPROVED ? 'bg-emerald-950/30 text-emerald-300' : 
                                                     selectedUser.doc_status === DocStatus.REJECTED ? 'bg-emerald-950/40 text-emerald-600' :
-                                                    'bg-amber-100 text-amber-700'
+                                                    'bg-amber-500/10 text-amber-300 border border-amber-500/20'
                                                 }`}>
                                                     {selectedUser.doc_status === 'APPROVED' ? 'APROVADO / ATIVO' : selectedUser.doc_status || 'PENDENTE'}
                                                 </span>
@@ -718,7 +718,7 @@ export const Clients: React.FC = () => {
                                                         <button 
                                                             disabled={actionLoading}
                                                             onClick={handleSuspendAccount}
-                                                            className="w-full py-3 bg-[#0f1713] hover:bg-emerald-950/20 text-emerald-500 border border-emerald-500/30 hover:border-emerald-300 rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+                                                            className="w-full py-3 bg-[#0f1713] hover:bg-emerald-950/20 text-emerald-500 border border-emerald-500/30 hover:border-emerald-500/30 rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
                                                         >
                                                             {actionLoading ? <Loader2 className="animate-spin w-4 h-4" /> : <Ban className="w-4 h-4" />}
                                                             Suspender Conta (Bloquear)
@@ -905,7 +905,7 @@ export const Clients: React.FC = () => {
 
                             {activeTab === 'WALLET' && (
                                 <div className="space-y-8">
-                                    <div className="bg-slate-900 rounded-2xl p-6 text-white flex justify-between items-center shadow-lg">
+                                    <div className="bg-[#0f1713] rounded-2xl p-6 text-white flex justify-between items-center shadow-lg">
                                         <div>
                                             <p className="text-slate-400 text-sm font-medium mb-1">Saldo em Carteira</p>
                                             <h3 className="text-4xl font-bold">R$ {(Number(userWallet?.balance) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</h3>
@@ -914,7 +914,7 @@ export const Clients: React.FC = () => {
 
                                     <div>
                                         <h4 className="font-bold text-slate-100 mb-4">Extrato da Carteira (Ledger)</h4>
-                                        <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl overflow-hidden">
+                                        <div className="bg-[#090d0a] border border-emerald-500/20 rounded-xl overflow-hidden">
                                             <table className="w-full text-sm text-left">
                                                 <thead className="bg-[#090d0a] border-b border-emerald-500/20">
                                                     <tr>
@@ -956,7 +956,7 @@ export const Clients: React.FC = () => {
 
                             {activeTab === 'FEES' && (
                                 <form onSubmit={handleUpdateFees} className="max-w-2xl mx-auto space-y-8 py-4">
-                                    <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
+                                    <div className="bg-[#0f1713] border border-blue-100 p-4 rounded-xl flex items-start gap-3">
                                         <Settings2 className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Configuração de Tarifas</h4>
@@ -965,7 +965,7 @@ export const Clients: React.FC = () => {
                                     </div>
 
                                     {/* PIX ENTRADA */}
-                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                    <div className="bg-[#090d0a] border border-emerald-500/20 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-100 flex items-center gap-2">
                                             <ArrowDownLeft className="w-5 h-5 text-green-500" />
                                             Pix Entrada (Cash-in)
@@ -1011,7 +1011,7 @@ export const Clients: React.FC = () => {
                                     </div>
 
                                     {/* PIX SAÍDA */}
-                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                    <div className="bg-[#090d0a] border border-emerald-500/20 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-100 flex items-center gap-2">
                                             <ArrowUpRight className="w-5 h-5 text-emerald-500" />
                                             Pix Saída (Cash-out)
@@ -1057,7 +1057,7 @@ export const Clients: React.FC = () => {
                                     </div>
 
                                     {/* OTC CRIPTO */}
-                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                    <div className="bg-[#090d0a] border border-emerald-500/20 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-100 flex items-center gap-2">
                                             <Bitcoin className="w-5 h-5 text-emerald-400" />
                                             Taxa OTC (Criptomoedas)
@@ -1082,7 +1082,7 @@ export const Clients: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <button disabled={actionLoading} type="submit" className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-[#0f1713] transition-colors flex justify-center items-center gap-2 shadow-lg">
+                                    <button disabled={actionLoading} type="submit" className="w-full py-3 bg-[#0f1713] text-white rounded-xl font-bold hover:bg-[#0f1713] transition-colors flex justify-center items-center gap-2 shadow-lg">
                                         {actionLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Save className="w-4 h-4"/> Salvar Tarifas</>}
                                     </button>
                                 </form>
@@ -1090,7 +1090,7 @@ export const Clients: React.FC = () => {
 
                             {activeTab === 'PROVIDER' && (
                                 <div className="max-w-2xl mx-auto space-y-6 py-4">
-                                    <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
+                                    <div className="bg-[#0f1713] border border-blue-100 p-4 rounded-xl flex items-start gap-3">
                                         <Building2 className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Seleção de Provider</h4>
@@ -1110,7 +1110,7 @@ export const Clients: React.FC = () => {
                                         </div>
                                     )}
 
-                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                    <div className="bg-[#090d0a] border border-emerald-500/20 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-100 mb-4">Lista de Providers Disponíveis</h5>
                                         
                                         {loadingDetails ? (
@@ -1163,7 +1163,7 @@ export const Clients: React.FC = () => {
                                     <button
                                         disabled={actionLoading || !selectedProvider}
                                         onClick={handleSaveProvider}
-                                        className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-[#0f1713] transition-colors flex justify-center items-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full py-3 bg-[#0f1713] text-white rounded-xl font-bold hover:bg-[#0f1713] transition-colors flex justify-center items-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {actionLoading ? (
                                             <Loader2 className="w-5 h-5 animate-spin" />
@@ -1178,7 +1178,7 @@ export const Clients: React.FC = () => {
 
                             {activeTab === 'DOCUMENTS' && (
                                 <div className="max-w-4xl mx-auto py-4">
-                                    <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3 mb-6">
+                                    <div className="bg-[#0f1713] border border-blue-100 p-4 rounded-xl flex items-start gap-3 mb-6">
                                         <FileText className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Documentos KYC</h4>
@@ -1187,7 +1187,7 @@ export const Clients: React.FC = () => {
                                     </div>
 
                                     {userDocuments.length === 0 ? (
-                                        <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-8 text-center">
+                                        <div className="bg-[#090d0a] border border-emerald-500/20 rounded-xl p-8 text-center">
                                             <File className="w-12 h-12 text-slate-300 mx-auto mb-3" />
                                             <p className="text-slate-400">Nenhum documento enviado por este usuário.</p>
                                         </div>
@@ -1203,7 +1203,7 @@ export const Clients: React.FC = () => {
                                                 const isPdf = documentLink.startsWith('data:application/pdf') || /\.pdf$/i.test(documentLink);
                                                 
                                                 return (
-                                                    <div key={idx} className="bg-[#0f1713] border border-emerald-500/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                                                    <div key={idx} className="bg-[#090d0a] border border-emerald-500/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                                                         <div className="bg-gradient-to-r from-slate-50 to-slate-100 p-4 border-b border-emerald-500/20">
                                                             <div className="flex items-start justify-between mb-2">
                                                                 <h5 className="font-bold text-slate-100 text-sm">{documentType}</h5>
@@ -1251,7 +1251,7 @@ export const Clients: React.FC = () => {
 
                             {activeTab === 'CONFIG' && (
                                 <form onSubmit={handleSaveConfig} className="max-w-2xl mx-auto space-y-6 py-4">
-                                    <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
+                                    <div className="bg-[#0f1713] border border-blue-100 p-4 rounded-xl flex items-start gap-3">
                                         <Settings2 className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Configurações do Sistema</h4>
@@ -1259,7 +1259,7 @@ export const Clients: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                    <div className="bg-[#090d0a] border border-emerald-500/20 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-100 mb-4">Webhook URLs</h5>
                                         
                                         <div>
@@ -1327,7 +1327,7 @@ export const Clients: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                    <div className="bg-[#090d0a] border border-emerald-500/20 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-100 mb-4">IP Whitelist</h5>
                                         
                                         <div>
@@ -1349,7 +1349,7 @@ export const Clients: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                    <div className="bg-[#090d0a] border border-emerald-500/20 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-100 mb-4">CNPJ Whitelist</h5>
                                         
                                         <div>
@@ -1371,7 +1371,7 @@ export const Clients: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                    <div className="bg-[#090d0a] border border-emerald-500/20 rounded-xl p-6 space-y-4">
                                         <h5 className="font-bold text-slate-100 mb-4">Controle de Fluxo PIX</h5>
                                         <div className="space-y-4">
                                             <div className="flex items-center justify-between gap-4 rounded-lg border border-emerald-500/20 p-4">
@@ -1411,7 +1411,7 @@ export const Clients: React.FC = () => {
                                     <button
                                         disabled={actionLoading}
                                         type="submit"
-                                        className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-[#0f1713] transition-colors flex justify-center items-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full py-3 bg-[#0f1713] text-white rounded-xl font-bold hover:bg-[#0f1713] transition-colors flex justify-center items-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {actionLoading ? (
                                             <Loader2 className="w-5 h-5 animate-spin" />

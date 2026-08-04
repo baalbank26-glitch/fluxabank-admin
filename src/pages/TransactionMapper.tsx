@@ -62,7 +62,7 @@ export const TransactionMapper: React.FC = () => {
   }, [activeReference, fetchMapping])
 
   return (
-    <div className="bg-slate-950 text-slate-50 rounded-2xl p-6 space-y-6 min-h-[400px]">
+    <div className="bg-[#090d0a] text-white rounded-2xl p-6 space-y-6 min-h-[400px]">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-xl font-semibold">Mapeador de Transação</h1>
         <div className="text-xs text-slate-400">Rastreia origem do webhook por referência da transação</div>
@@ -76,7 +76,7 @@ export const TransactionMapper: React.FC = () => {
               value={transactionId}
               onChange={(e) => setTransactionId(e.target.value)}
               placeholder="merOrderNo / orderNo / tradeNo / transactionId"
-              className="w-full pl-9 pr-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-xs outline-none"
+              className="w-full pl-9 pr-3 py-2 rounded-lg bg-[#090d0a] border border-emerald-500/20 text-xs outline-none"
             />
           </div>
           <button
@@ -90,7 +90,7 @@ export const TransactionMapper: React.FC = () => {
         </div>
 
         {result && (
-          <div className="rounded-lg border border-slate-700 bg-slate-950/60 p-3 space-y-2 text-xs">
+          <div className="rounded-lg border border-emerald-500/20 bg-slate-950/60 p-3 space-y-2 text-xs">
             {!result?.mapped ? (
               <div className="text-amber-300">Nenhum log encontrado para a referência consultada.</div>
             ) : (

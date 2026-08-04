@@ -195,12 +195,12 @@ export const WebhooksHistory: React.FC = () => {
   }
 
   return (
-    <div className="bg-slate-950 text-slate-50 rounded-2xl p-6 space-y-6 min-h-[400px]">
+    <div className="bg-[#090d0a] text-white rounded-2xl p-6 space-y-6 min-h-[400px]">
       <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-4">
         <h1 className="text-xl font-semibold">Histórico de Webhooks</h1>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="inline-flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-2 rounded-lg sm:rounded-xl bg-slate-900 border border-slate-700">
+          <div className="inline-flex items-center gap-2 px-2 py-1 sm:px-3 sm:py-2 rounded-lg sm:rounded-xl bg-[#090d0a] border border-emerald-500/20">
             <input
               value={ledgerId}
               onChange={(e) => setLedgerId(e.target.value)}
@@ -229,7 +229,7 @@ export const WebhooksHistory: React.FC = () => {
 
       {/* FILTROS */}
       <div className="flex flex-wrap items-center gap-3 text-xs">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#090d0a] border border-emerald-500/20">
           <CalendarDays className="w-4 h-4" />
           <select
             value={filters.datePreset}
@@ -237,16 +237,16 @@ export const WebhooksHistory: React.FC = () => {
               setFilters((f) => ({ ...f, datePreset: e.target.value as Filters['datePreset'] }))
               setPage(1)
             }}
-            className="appearance-none bg-slate-900 text-slate-50 text-xs outline-none px-2 py-1 rounded-md border border-slate-700 focus:border-slate-600"
+            className="appearance-none bg-[#090d0a] text-white text-xs outline-none px-2 py-1 rounded-md border border-emerald-500/20 focus:border-emerald-500/30"
           >
-            <option className="bg-slate-900 text-slate-50" value="today">Hoje</option>
-            <option className="bg-slate-900 text-slate-50" value="7d">Últimos 7 dias</option>
-            <option className="bg-slate-900 text-slate-50" value="30d">Últimos 30 dias</option>
-            <option className="bg-slate-900 text-slate-50" value="all">Todo período</option>
+            <option className="bg-[#0f1713] text-white" value="today">Hoje</option>
+            <option className="bg-[#0f1713] text-white" value="7d">Últimos 7 dias</option>
+            <option className="bg-[#0f1713] text-white" value="30d">Últimos 30 dias</option>
+            <option className="bg-[#0f1713] text-white" value="all">Todo período</option>
           </select>
         </div>
 
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#090d0a] border border-emerald-500/20">
           <Filter className="w-4 h-4" />
           <select
             value={filters.type}
@@ -254,16 +254,16 @@ export const WebhooksHistory: React.FC = () => {
               setFilters((f) => ({ ...f, type: e.target.value }))
               setPage(1)
             }}
-            className="appearance-none bg-slate-900 text-slate-50 text-xs outline-none px-2 py-1 rounded-md border border-slate-700 focus:border-slate-600 min-w-[80px]"
+            className="appearance-none bg-[#090d0a] text-white text-xs outline-none px-2 py-1 rounded-md border border-emerald-500/20 focus:border-emerald-500/30 min-w-[80px]"
           >
-            <option className="bg-slate-900 text-slate-50" value="">Tipo</option>
-            <option className="bg-slate-900 text-slate-50" value="PIX_CREATED">PIX_CREATED</option>
-            <option className="bg-slate-900 text-slate-50" value="PIX_COMPLETED">PIX_COMPLETED</option>
-            <option className="bg-slate-900 text-slate-50" value="PIX_REFUND">PIX_REFUND</option>
+            <option className="bg-[#0f1713] text-white" value="">Tipo</option>
+            <option className="bg-[#0f1713] text-white" value="PIX_CREATED">PIX_CREATED</option>
+            <option className="bg-[#0f1713] text-white" value="PIX_COMPLETED">PIX_COMPLETED</option>
+            <option className="bg-[#0f1713] text-white" value="PIX_REFUND">PIX_REFUND</option>
           </select>
         </div>
 
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#090d0a] border border-emerald-500/20">
           <Filter className="w-4 h-4" />
           <select
             value={filters.status}
@@ -271,11 +271,11 @@ export const WebhooksHistory: React.FC = () => {
               setFilters((f) => ({ ...f, status: e.target.value }))
               setPage(1)
             }}
-            className="appearance-none bg-slate-900 text-slate-50 text-xs outline-none px-2 py-1 rounded-md border border-slate-700 focus:border-slate-600 min-w-[80px]"
+            className="appearance-none bg-[#090d0a] text-white text-xs outline-none px-2 py-1 rounded-md border border-emerald-500/20 focus:border-emerald-500/30 min-w-[80px]"
           >
-            <option className="bg-slate-900 text-slate-50" value="">Status</option>
-            <option className="bg-slate-900 text-slate-50" value="SUCCESS">Sucesso</option>
-            <option className="bg-slate-900 text-slate-50" value="FAILED">Erro</option>
+            <option className="bg-[#0f1713] text-white" value="">Status</option>
+            <option className="bg-[#0f1713] text-white" value="SUCCESS">Sucesso</option>
+            <option className="bg-[#0f1713] text-white" value="FAILED">Erro</option>
           </select>
         </div>
 
@@ -285,7 +285,7 @@ export const WebhooksHistory: React.FC = () => {
             defaultValue={filters.url}
             onChange={(e) => updateFilterDebounced('url', e.target.value)}
             placeholder="URL do Webhook"
-            className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs outline-none"
+            className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-[#090d0a] border border-emerald-500/20 text-xs outline-none"
           />
         </div>
 
@@ -295,7 +295,7 @@ export const WebhooksHistory: React.FC = () => {
             defaultValue={filters.transactionId}
             onChange={(e) => updateFilterDebounced('transactionId', e.target.value)}
             placeholder="ID da transação"
-            className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs outline-none"
+            className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-[#090d0a] border border-emerald-500/20 text-xs outline-none"
           />
         </div>
 
@@ -319,7 +319,7 @@ export const WebhooksHistory: React.FC = () => {
             value={mapperTransactionId}
             onChange={(e) => setMapperTransactionId(e.target.value)}
             placeholder="merOrderNo / orderNo / tradeNo / transactionId"
-            className="flex-1 min-w-[260px] px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-xs outline-none"
+            className="flex-1 min-w-[260px] px-3 py-2 rounded-lg bg-[#090d0a] border border-emerald-500/20 text-xs outline-none"
           />
           <button
             onClick={handleMapTransaction}
@@ -332,7 +332,7 @@ export const WebhooksHistory: React.FC = () => {
         </div>
 
         {mapperResult && (
-          <div className="rounded-lg border border-slate-700 bg-slate-950/60 p-3 space-y-2 text-xs">
+          <div className="rounded-lg border border-emerald-500/20 bg-slate-950/60 p-3 space-y-2 text-xs">
             {!mapperResult?.mapped ? (
               <div className="text-amber-300">Nenhum log encontrado para a referência consultada.</div>
             ) : (
@@ -398,25 +398,25 @@ export const WebhooksHistory: React.FC = () => {
       {/* ACTIVE FILTERS */}
       <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-300">
         {filters.type && (
-          <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700">
+          <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-[#090d0a] border border-emerald-500/20">
             Tipo: {filters.type}
             <button onClick={() => clearFilter('type')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
         {filters.status && (
-          <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700">
+          <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-[#090d0a] border border-emerald-500/20">
             Status: {filters.status}
             <button onClick={() => clearFilter('status')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
         {filters.url && (
-          <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700 max-w-[50%] truncate">
+          <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-[#090d0a] border border-emerald-500/20 max-w-[50%] truncate">
             URL: <span className="truncate">{filters.url}</span>
             <button onClick={() => clearFilter('url')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
         )}
         {filters.transactionId && (
-          <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700">
+          <span className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-[#090d0a] border border-emerald-500/20">
             Tx: {filters.transactionId}
             <button onClick={() => clearFilter('transactionId')} className="text-slate-400 hover:text-slate-200">×</button>
           </span>
@@ -429,7 +429,7 @@ export const WebhooksHistory: React.FC = () => {
           <div className="flex items-center gap-3 w-40">
             <button
               onClick={toggleSelectAll}
-              className="w-4 h-4 border border-slate-600 rounded-sm flex items-center justify-center text-[10px]"
+              className="w-4 h-4 border border-emerald-500/30 rounded-sm flex items-center justify-center text-[10px]"
             >
               {selectedIds.length === logs.length && logs.length > 0 ? '✓' : ''}
             </button>
@@ -470,7 +470,7 @@ export const WebhooksHistory: React.FC = () => {
                 <div className="flex md:hidden gap-3">
                   <button
                     onClick={() => toggleSelect(log.id)}
-                    className="mt-1 w-4 h-4 border border-slate-600 rounded-sm flex items-center justify-center text-[10px] shrink-0"
+                    className="mt-1 w-4 h-4 border border-emerald-500/30 rounded-sm flex items-center justify-center text-[10px] shrink-0"
                   >
                     {selectedIds.includes(log.id) ? '✓' : ''}
                   </button>
@@ -493,17 +493,17 @@ export const WebhooksHistory: React.FC = () => {
                       </div>
                       <button
                         onClick={() => navigator.clipboard?.writeText(log.target_url || '')}
-                        className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-[#0f1713] shrink-0"
+                        className="px-2 py-1 rounded-lg border border-emerald-500/20 text-[11px] hover:bg-[#0f1713] shrink-0"
                         title="Copiar URL do webhook"
                       >
                         Copiar URL
                       </button>
                     </div>
                     <div className="mt-1 flex items-center gap-2 flex-wrap">
-                      <span className="px-2 py-0.5 rounded bg-[#0f1713] border border-slate-700 text-[10px] shrink-0">
+                      <span className="px-2 py-0.5 rounded bg-[#090d0a] border border-emerald-500/20 text-[10px] shrink-0">
                         {log.payload?.status || '-'}
                       </span>
-                      <span className="px-2 py-0.5 rounded bg-[#0f1713] border border-slate-700 text-[10px] shrink-0">
+                      <span className="px-2 py-0.5 rounded bg-[#090d0a] border border-emerald-500/20 text-[10px] shrink-0">
                         {log.payload?.type || '-'}
                       </span>
                     </div>
@@ -522,13 +522,13 @@ export const WebhooksHistory: React.FC = () => {
                         </button>
                         <button
                           onClick={() => navigator.clipboard?.writeText(log.target_url || '')}
-                          className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-[#0f1713]"
+                          className="px-2 py-1 rounded-lg border border-emerald-500/20 text-[11px] hover:bg-[#0f1713]"
                         >
                           Copiar
                         </button>
                         <button
                           onClick={() => toggleSelect(log.id)}
-                          className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-[#0f1713]"
+                          className="px-2 py-1 rounded-lg border border-emerald-500/20 text-[11px] hover:bg-[#0f1713]"
                         >
                           Selecionar
                         </button>
@@ -542,7 +542,7 @@ export const WebhooksHistory: React.FC = () => {
                   <div className="flex items-center gap-3 w-40">
                     <button
                       onClick={() => toggleSelect(log.id)}
-                      className="w-4 h-4 border border-slate-600 rounded-sm flex items-center justify-center text-[10px]"
+                      className="w-4 h-4 border border-emerald-500/30 rounded-sm flex items-center justify-center text-[10px]"
                     >
                       {selectedIds.includes(log.id) ? '✓' : ''}
                     </button>
@@ -568,7 +568,7 @@ export const WebhooksHistory: React.FC = () => {
                   <div className="w-32 text-center flex items-center justify-center gap-2">
                     <button
                       onClick={() => toggleSelect(log.id)}
-                      className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-[#0f1713]"
+                      className="px-2 py-1 rounded-lg border border-emerald-500/20 text-[11px] hover:bg-[#0f1713]"
                     >
                       Selecionar
                     </button>
@@ -581,7 +581,7 @@ export const WebhooksHistory: React.FC = () => {
                     </button>
                     <button
                       onClick={() => navigator.clipboard?.writeText(log.target_url || '')}
-                      className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-[#0f1713]"
+                      className="px-2 py-1 rounded-lg border border-emerald-500/20 text-[11px] hover:bg-[#0f1713]"
                       title="Copiar URL"
                     >
                       Copiar
@@ -603,14 +603,14 @@ export const WebhooksHistory: React.FC = () => {
           <button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page === 1}
-            className="px-3 py-1 rounded-lg border border-slate-700 disabled:opacity-40"
+            className="px-3 py-1 rounded-lg border border-emerald-500/20 disabled:opacity-40"
           >
             Anterior
           </button>
           <button
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
-            className="px-3 py-1 rounded-lg border border-slate-700 disabled:opacity-40"
+            className="px-3 py-1 rounded-lg border border-emerald-500/20 disabled:opacity-40"
           >
             Próximo
           </button>

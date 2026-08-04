@@ -237,7 +237,7 @@ export const Settings: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-emerald-950/40 bg-slate-950 p-5 text-white shadow-sm">
+                  <div className="rounded-2xl border border-emerald-950/40 bg-[#090d0a] p-5 text-white shadow-sm">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <label className="block text-sm font-bold text-white">IDs liberados durante manutenção</label>
@@ -255,7 +255,7 @@ export const Settings: React.FC = () => {
                       <textarea
                         value={maintenance.allowedUserIdsText}
                         onChange={(e) => setMaintenance({ ...maintenance, allowedUserIdsText: e.target.value })}
-                        className="min-h-[148px] w-full resize-y rounded-xl border border-transparent bg-slate-900 px-4 py-3 font-mono text-sm text-slate-100 outline-none transition-all placeholder:text-slate-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20"
+                        className="min-h-[148px] w-full resize-y rounded-xl border border-transparent bg-[#0f1713] px-4 py-3 font-mono text-sm text-slate-100 outline-none transition-all placeholder:text-slate-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20"
                         placeholder={'251\n300\n450'}
                       />
 

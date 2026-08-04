@@ -292,7 +292,7 @@ export const MED: React.FC = () => {
     switch (status) {
       case 'OPEN': return 'bg-emerald-950/40 text-emerald-600 border-emerald-500/30';
       case 'UNDER_REVIEW': return 'bg-amber-100 text-amber-700 border-amber-200';
-      case 'DEFENSE_SENT': return 'bg-emerald-950/40 text-emerald-400 border-blue-200';
+      case 'DEFENSE_SENT': return 'bg-emerald-950/40 text-emerald-400 border-emerald-500/30';
       case 'REFUND_ACCEPTED': return 'bg-emerald-950/30 text-emerald-300 border-green-200';
       case 'REFUND_REJECTED': return 'bg-[#0f1713] text-slate-300 border border-emerald-500/10 border-emerald-500/20';
       default: return 'bg-[#0f1713] text-slate-300 border border-emerald-500/10';
@@ -383,7 +383,7 @@ export const MED: React.FC = () => {
                fetchCases();
                fetchTransactions({ reset: true });
              }}
-             className="p-2 bg-[#0f1713] border border-emerald-500/20 text-slate-300 rounded-lg hover:bg-[#090d0a] transition-all"
+             className="p-2 bg-[#090d0a] border border-emerald-500/20 text-slate-300 rounded-lg hover:bg-[#090d0a] transition-all"
            >
              <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
            </button>
@@ -805,7 +805,7 @@ export const MED: React.FC = () => {
                                     href={att.url}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-blue-200 bg-blue-50 text-xs font-medium text-emerald-400 hover:bg-emerald-950/40"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/30 bg-[#0f1713] text-xs font-medium text-emerald-400 hover:bg-emerald-950/40"
                                   >
                                     Abrir imagem
                                   </a>
@@ -848,7 +848,7 @@ export const MED: React.FC = () => {
                                     href={att.url}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-blue-200 bg-blue-50 text-xs font-medium text-emerald-400 hover:bg-emerald-950/40"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/30 bg-[#0f1713] text-xs font-medium text-emerald-400 hover:bg-emerald-950/40"
                                   >
                                     Abrir arquivo
                                   </a>
@@ -886,7 +886,7 @@ export const MED: React.FC = () => {
               <button
                 disabled={processingId === selectedCase.id}
                 onClick={() => handleAction(selectedCase.id, 'REJECT_REFUND')}
-                className="px-3 sm:px-4 py-2 bg-[#0f1713] border border-emerald-500/20 text-slate-200 font-medium rounded-lg hover:bg-emerald-950/40 transition-colors shadow-sm disabled:opacity-50 text-xs sm:text-sm"
+                className="px-3 sm:px-4 py-2 bg-[#090d0a] border border-emerald-500/20 text-slate-200 font-medium rounded-lg hover:bg-emerald-950/40 transition-colors shadow-sm disabled:opacity-50 text-xs sm:text-sm"
               >
                 {processingId === selectedCase.id ? 'Processando...' : 'Rejeitar Devolução'}
               </button>
@@ -1005,7 +1005,7 @@ export const MED: React.FC = () => {
             </div>
 
             <div className="px-6 py-4 border-t border-emerald-500/20 bg-[#090d0a] flex justify-end gap-3">
-              <button onClick={() => setShowCreateModal(false)} className="px-4 py-2 bg-[#0f1713] border border-emerald-500/20 rounded-lg">
+              <button onClick={() => setShowCreateModal(false)} className="px-4 py-2 bg-[#090d0a] border border-emerald-500/20 rounded-lg">
                 Cancelar
               </button>
               <button
@@ -1028,7 +1028,7 @@ export const MED: React.FC = () => {
                 href={lightboxImage.url}
                 target="_blank"
                 rel="noreferrer"
-                className="px-3 py-1.5 rounded-lg border border-blue-300 bg-blue-50 text-xs sm:text-sm font-medium text-emerald-400 hover:bg-emerald-950/40"
+                className="px-3 py-1.5 rounded-lg border border-emerald-500/30 bg-[#0f1713] text-xs sm:text-sm font-medium text-emerald-400 hover:bg-emerald-950/40"
               >
                 Abrir em nova aba
               </a>
@@ -1063,7 +1063,7 @@ export const MED: React.FC = () => {
           <img
             src={lightboxImage.url}
             alt={lightboxImage.filename || 'Anexo ampliado'}
-            className="relative z-[71] max-h-[88vh] max-w-[94vw] rounded-xl border border-slate-700 shadow-2xl"
+            className="relative z-[71] max-h-[88vh] max-w-[94vw] rounded-xl border border-emerald-500/20 shadow-2xl"
           />
         </div>
       )}

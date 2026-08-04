@@ -134,8 +134,8 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
             {/* Status Badge */}
             <div className={`px-4 py-2 text-xs font-bold flex items-center justify-between ${
               doc.status === 'APPROVED' ? 'bg-emerald-950/30 text-emerald-300' :
-              doc.status === 'REJECTED' ? 'bg-emerald-950/40 text-emerald-600' :
-              'bg-amber-100 text-amber-700'
+              doc.status === 'REJECTED' ? 'bg-red-950/20 text-red-300 border border-red-500/20' :
+              'bg-amber-500/10 text-amber-300 border border-amber-500/20'
             }`}>
               <span className="flex items-center gap-1">
                 {doc.status === 'APPROVED' && <CheckCircle className="w-3 h-3" />}
@@ -182,7 +182,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
               </div>
 
               {doc.admin_notes && (
-                <div className="bg-blue-50 rounded p-2">
+                <div className="bg-emerald-950/20 rounded p-2 border border-emerald-500/10">
                   <p className="text-xs text-emerald-400"><strong>Notas:</strong> {doc.admin_notes}</p>
                 </div>
               )}
@@ -193,7 +193,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
                   href={doc.document_link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 px-3 py-2 text-emerald-500 border border-emerald-300 rounded text-xs font-medium hover:bg-emerald-950/20 transition-colors flex items-center justify-center gap-1"
+                  className="flex-1 px-3 py-2 text-emerald-500 border border-emerald-500/30 rounded text-xs font-medium hover:bg-emerald-950/20 transition-colors flex items-center justify-center gap-1"
                 >
                   <Download className="w-3 h-3" /> Download
                 </a>
@@ -233,7 +233,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleApproveDocument(doc.id)}
-                    className="flex-1 px-3 py-2 bg-green-600 text-white rounded text-xs font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-1"
+                    className="flex-1 px-3 py-2 bg-emerald-500 text-slate-950 rounded text-xs font-extrabold hover:bg-emerald-400 transition-colors flex items-center justify-center gap-1"
                   >
                     <CheckCircle className="w-3 h-3" /> Aprovar
                   </button>
@@ -248,7 +248,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
                       setReviewingDoc(null);
                       setReviewNotes('');
                     }}
-                    className="px-3 py-2 bg-slate-300 text-slate-200 rounded text-xs font-medium hover:bg-slate-400 transition-colors"
+                    className="px-3 py-2 bg-[#090d0a] text-slate-300 border border-emerald-500/20 rounded text-xs font-bold hover:bg-emerald-950/30 transition-colors"
                   >
                     Cancelar
                   </button>
