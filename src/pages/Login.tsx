@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Lock, Mail, ArrowRight, Loader2, AlertCircle, ShieldCheck, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 import { api } from '../services/api';
 import { UserRole } from '../types/index';
@@ -78,11 +78,10 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
       {/* Left side - Branding */}
       <div className="hidden lg:flex w-1/2 relative flex-col justify-between items-start p-12 z-10">
+        {/* Top Header Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-[#0f1713] border border-emerald-500/30 flex items-center justify-center shadow-lg shadow-emerald-500/10">
-            <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 30 L20 10 L32 30 L26 30 L20 18 L14 30 Z" fill="#10b981"/>
-            </svg>
+          <div className="w-12 h-12 rounded-2xl bg-[#0f1713] border border-emerald-500/30 flex items-center justify-center shadow-lg shadow-emerald-500/10 p-2 overflow-hidden">
+            <img src="/viperpag-logo.png" alt="VIPERPAG" className="w-full h-full object-contain" />
           </div>
           <div>
             <span className="text-2xl font-extrabold tracking-tight text-white">VIPERPAG</span>
@@ -90,11 +89,37 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
           </div>
         </div>
 
-        <div className="max-w-md">
-          <h1 className="text-5xl font-bold mb-6 leading-tight text-white">
-            Gestão Financeira <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-300">Inteligente</span>
+        {/* Centered Hero Logo Showcase with Emerald Glow */}
+        <div className="my-auto py-8 flex flex-col items-start max-w-lg relative w-full">
+          {/* Glowing Aura Effects */}
+          <div className="absolute -left-12 -top-12 w-80 h-80 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none animate-pulse" />
+          <div className="absolute left-24 top-16 w-56 h-56 bg-emerald-400/15 rounded-full blur-2xl pointer-events-none" />
+
+          {/* Centered Logo Card Banner */}
+          <div className="relative mb-8 group w-full">
+            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-300 rounded-3xl blur-lg opacity-60 group-hover:opacity-100 transition duration-700" />
+            <div className="relative p-6 bg-[#090d0a]/90 backdrop-blur-xl border border-emerald-500/40 rounded-3xl shadow-2xl flex items-center gap-5">
+              <div className="w-20 h-20 rounded-2xl bg-[#0f1713] border border-emerald-500/50 p-3 shadow-inner flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+                <div className="absolute inset-0 bg-emerald-500/10 animate-pulse" />
+                <img 
+                  src="/viperpag-logo.png" 
+                  alt="VIPERPAG Logo" 
+                  className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(16,185,129,0.7)] relative z-10" 
+                />
+              </div>
+              <div>
+                <h2 className="text-3xl font-extrabold tracking-wider text-white">VIPERPAG</h2>
+                <span className="text-[11px] font-bold px-3 py-1 bg-emerald-950/70 text-emerald-400 border border-emerald-500/30 rounded-full inline-block mt-1 tracking-wider uppercase shadow-sm">
+                  PAINEL ADMINISTRATIVO
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <h1 className="text-4xl lg:text-5xl font-extrabold mb-4 leading-tight text-white">
+            Gestão Financeira <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-200">Inteligente</span>
           </h1>
-          <p className="text-slate-400 text-lg leading-relaxed">
+          <p className="text-slate-400 text-base leading-relaxed">
             Painel administrativo seguro. Gerencie clientes, transações e operações com total controle e transparência.
           </p>
         </div>
@@ -109,10 +134,8 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden flex justify-center mb-8">
-            <div className="w-14 h-14 rounded-2xl bg-[#0f1713] border border-emerald-500/30 flex items-center justify-center shadow-lg shadow-emerald-500/10">
-              <svg viewBox="0 0 40 40" className="w-9 h-9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 30 L20 10 L32 30 L26 30 L20 18 L14 30 Z" fill="#10b981"/>
-              </svg>
+            <div className="w-16 h-16 rounded-2xl bg-[#0f1713] border border-emerald-500/30 flex items-center justify-center shadow-lg shadow-emerald-500/20 p-3 overflow-hidden">
+              <img src="/viperpag-logo.png" alt="VIPERPAG Logo" className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
             </div>
           </div>
 
