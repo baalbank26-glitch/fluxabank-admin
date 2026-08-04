@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bitcoin, RefreshCw, CheckCircle, XCircle, Clock, AlertCircle, Settings } from 'lucide-react';
 import { otcAdminService, type OtcWithdrawal, type OtcStats, type OtcSettings } from '../services/otc.service';
 
@@ -82,10 +82,10 @@ export const OTC: React.FC = () => {
 
   const getStatusBadge = (status: string) => {
     const styles = {
-      pending: 'bg-yellow-100 text-yellow-700',
-      processing: 'bg-emerald-950/40 text-emerald-400',
-      completed: 'bg-green-100 text-green-700',
-      cancelled: 'bg-emerald-950/40 text-emerald-600'
+      pending: 'bg-amber-500/10 text-amber-300 border border-amber-500/20',
+      processing: 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20',
+      completed: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
+      cancelled: 'bg-red-500/10 text-red-300 border border-red-500/20'
     };
     const icons = {
       pending: Clock,
@@ -96,7 +96,7 @@ export const OTC: React.FC = () => {
     const Icon = icons[status as keyof typeof icons] || Clock;
     
     return (
-      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${styles[status as keyof typeof styles]}`}>
+      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${styles[status as keyof typeof styles] || 'bg-slate-700 text-slate-300'}`}>
         <Icon className="w-3 h-3" />
         {status.toUpperCase()}
       </span>
@@ -108,8 +108,8 @@ export const OTC: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-white flex items-center gap-2">
-            <Bitcoin className="w-8 h-8 text-amber-500" />
+          <h1 className="text-3xl font-extrabold text-white flex items-center gap-2">
+            <Bitcoin className="w-8 h-8 text-emerald-400" />
             Gestão OTC
           </h1>
           <p className="text-slate-400 mt-1">Gerenciar solicitações de saque de criptomoedas</p>
