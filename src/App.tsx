@@ -65,7 +65,7 @@ const App: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div className="flex items-center justify-center h-screen bg-slate-50 text-fluxabank-500">Carregando...</div>;
+    return <div className="flex items-center justify-center h-screen bg-[#090d0a] text-emerald-400 font-bold tracking-wider">Carregando...</div>;
   }
 
   if (!isAuthenticated) {
@@ -73,16 +73,16 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="flex h-screen bg-slate-50 overflow-hidden">
+    <div className="flex h-screen bg-[#090d0a] overflow-hidden">
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-20 lg:hidden"
+          className="fixed inset-0 bg-black/70 z-20 lg:hidden"
           onClick={closeSidebar}
         />
       )}
 
       <div className={`
-        fixed inset-y-0 left-0 z-30 w-64 bg-slate-900 text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto
+        fixed inset-y-0 left-0 z-30 w-64 bg-[#090d0a] text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <Sidebar
@@ -93,19 +93,21 @@ const App: React.FC = () => {
       </div>
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <header className="lg:hidden bg-white border-b border-slate-200 p-4 flex items-center justify-between">
+        <header className="lg:hidden bg-[#0f1713] border-b border-emerald-500/20 p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded flex items-center justify-center">
-              <img src="https://fluxabank.com/fluxabank-logo.png" alt="Fluxabank" className="w-8 h-8 object-contain" />
+            <div className="w-8 h-8 rounded-xl bg-[#090d0a] border border-emerald-500/30 flex items-center justify-center">
+              <svg viewBox="0 0 40 40" className="w-5 h-5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 30 L20 10 L32 30 L26 30 L20 18 L14 30 Z" fill="#10b981"/>
+              </svg>
             </div>
-            <span className="font-bold text-slate-800">Fluxabank</span>
+            <span className="font-extrabold text-white tracking-tight">VIPERPAG</span>
           </div>
-          <button onClick={toggleSidebar} className="p-2 hover:bg-slate-100 rounded-md">
-            <Menu className="w-6 h-6 text-slate-600" />
+          <button onClick={toggleSidebar} className="p-2 hover:bg-emerald-950/40 rounded-xl">
+            <Menu className="w-6 h-6 text-slate-400" />
           </button>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth bg-slate-50/50">
+        <main className="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth bg-[#090d0a]">
           <div className="max-w-7xl mx-auto">
             {renderView()}
           </div>
