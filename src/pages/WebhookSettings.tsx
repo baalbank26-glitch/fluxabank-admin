@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Loader2, Webhook, Save, AlertTriangle } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { api } from '../services/api';
@@ -45,7 +45,7 @@ export const WebhookSettings: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center p-20">
-        <Loader2 className="animate-spin w-8 h-8 text-fluxabank-500" />
+        <Loader2 className="animate-spin w-8 h-8 text-emerald-500" />
       </div>
     );
   }
@@ -53,21 +53,21 @@ export const WebhookSettings: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-slate-800">Webhook Settings</h2>
-        <p className="text-slate-500 text-sm">Controle global de entrega de webhooks da Fluxabank.</p>
+        <h2 className="text-2xl font-bold text-slate-100">Webhook Settings</h2>
+        <p className="text-slate-400 text-sm">Controle global de entrega de webhooks da Fluxabank.</p>
       </div>
 
-      <div className={`rounded-2xl border shadow-sm overflow-hidden ${webhooksDisabled ? 'border-orange-200 bg-orange-50/40' : 'border-slate-200 bg-white'}`}>
-        <div className="p-6 border-b border-slate-100 flex items-center gap-2">
-          <Webhook className="w-5 h-5 text-slate-700" />
-          <h3 className="font-bold text-lg text-slate-900">Entrega Global de Webhooks</h3>
+      <div className={`rounded-2xl border shadow-sm overflow-hidden ${webhooksDisabled ? 'border-emerald-500/30 bg-orange-50/40' : 'border-emerald-500/20 bg-[#0f1713]'}`}>
+        <div className="p-6 border-b border-emerald-500/20 flex items-center gap-2">
+          <Webhook className="w-5 h-5 text-slate-200" />
+          <h3 className="font-bold text-lg text-white">Entrega Global de Webhooks</h3>
         </div>
 
         <div className="p-6 space-y-5">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="font-semibold text-slate-800">Desativar webhooks globalmente</p>
-              <p className="text-sm text-slate-600 mt-1">
+              <p className="font-semibold text-slate-100">Desativar webhooks globalmente</p>
+              <p className="text-sm text-slate-300 mt-1">
                 Quando ativo, nenhum webhook de PIX IN/PIX OUT sera enviado para clientes, independentemente das URLs configuradas por usuario.
               </p>
             </div>
@@ -75,14 +75,14 @@ export const WebhookSettings: React.FC = () => {
             <button
               disabled={isSaving}
               onClick={() => setWebhooksDisabled((prev) => !prev)}
-              className={`relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ${webhooksDisabled ? 'bg-orange-500' : 'bg-slate-200'} ${isSaving ? 'opacity-60 cursor-not-allowed' : ''}`}
+              className={`relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ${webhooksDisabled ? 'bg-emerald-500' : 'bg-slate-200'} ${isSaving ? 'opacity-60 cursor-not-allowed' : ''}`}
             >
-              <span className={`pointer-events-none inline-block h-7 w-7 transform rounded-full bg-white shadow ring-0 transition duration-200 ${webhooksDisabled ? 'translate-x-6' : 'translate-x-0'}`} />
+              <span className={`pointer-events-none inline-block h-7 w-7 transform rounded-full bg-[#0f1713] shadow ring-0 transition duration-200 ${webhooksDisabled ? 'translate-x-6' : 'translate-x-0'}`} />
             </button>
           </div>
 
           {webhooksDisabled && (
-            <div className="rounded-xl border border-orange-200 bg-orange-100/70 p-4 text-orange-800 text-sm flex items-start gap-2">
+            <div className="rounded-xl border border-emerald-500/30 bg-orange-100/70 p-4 text-emerald-300 text-sm flex items-start gap-2">
               <AlertTriangle className="w-4 h-4 mt-0.5" />
               Todos os envios de webhook estao pausados globalmente. Eventos continuarao sendo processados internamente.
             </div>

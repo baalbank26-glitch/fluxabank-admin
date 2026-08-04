@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+﻿import React, { useCallback, useEffect, useState } from 'react'
 import { Loader2, Search } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { webhooksService } from '../services/webhooks.service'
@@ -71,7 +71,7 @@ export const TransactionMapper: React.FC = () => {
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 space-y-3">
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex-1 min-w-[260px] relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               value={transactionId}
               onChange={(e) => setTransactionId(e.target.value)}
@@ -82,7 +82,7 @@ export const TransactionMapper: React.FC = () => {
           <button
             onClick={handleMapTransaction}
             disabled={loading || !transactionId.trim()}
-            className="px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-xs font-semibold inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-xs font-semibold inline-flex items-center gap-2"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
             Mapear
@@ -135,7 +135,7 @@ export const TransactionMapper: React.FC = () => {
                         <span className="text-slate-200 truncate flex-1">{item.event_type || '-'}</span>
                         <span className="text-slate-300">{item.status || '-'}</span>
                         <span className="text-slate-400">HTTP {item.http_status ?? '-'}</span>
-                        <span className="text-slate-500">{item.created_at ? new Date(item.created_at).toLocaleString() : '-'}</span>
+                        <span className="text-slate-400">{item.created_at ? new Date(item.created_at).toLocaleString() : '-'}</span>
                         <button
                           onClick={() => handleResendWebhook(item.id)}
                           disabled={resendingId === item.id}

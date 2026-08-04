@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Lock, Mail, ArrowRight, Loader2, AlertCircle, ShieldCheck, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 import { api } from '../services/api';
 import { UserRole } from '../types/index';
@@ -99,7 +99,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
           </p>
         </div>
 
-        <div className="text-slate-500 text-sm">
+        <div className="text-slate-400 text-sm">
           <p>© 2024–2026 VIPERPAG. Todos os direitos reservados.</p>
         </div>
       </div>
@@ -145,7 +145,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-300 ml-0.5">Email</label>
                   <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-emerald-400 transition-colors duration-200">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-400 transition-colors duration-200">
                       <Mail className="w-5 h-5" />
                     </div>
                     <input
@@ -164,7 +164,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-300 ml-0.5">Senha</label>
                   <div className="relative group">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-emerald-400 transition-colors duration-200">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-400 transition-colors duration-200">
                       <Lock className="w-5 h-5" />
                     </div>
                     <input
@@ -180,7 +180,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
                       disabled={requires2FA}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-emerald-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -195,7 +195,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-300 ml-0.5">Código TOTP</label>
                     <div className="relative group">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-emerald-400 transition-colors duration-200">
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-400 transition-colors duration-200">
                         <ShieldCheck className="w-5 h-5" />
                       </div>
                       <input
@@ -211,7 +211,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
                         className="w-full pl-12 pr-4 py-3.5 text-center text-2xl font-semibold tracking-widest bg-[#090d0a] border border-emerald-500/30 rounded-xl focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-white placeholder-slate-500"
                       />
                     </div>
-                    <p className="text-xs text-slate-500 ml-0.5">Ou use seu recovery code abaixo</p>
+                    <p className="text-xs text-slate-400 ml-0.5">Ou use seu recovery code abaixo</p>
                   </div>
 
                   {/* Recovery Code */}
@@ -267,7 +267,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
           </div>
 
           {/* Footer */}
-          <p className="text-center text-slate-500 text-xs mt-6">
+          <p className="text-center text-slate-400 text-xs mt-6">
             Painel administrativo seguro • Protegido pelas melhores tecnologias
           </p>
         </div>

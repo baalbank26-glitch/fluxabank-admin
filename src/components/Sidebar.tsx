@@ -1,4 +1,4 @@
-
+﻿
 
 import React from 'react';
 import { AppView } from '../types/index';
@@ -82,7 +82,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
                 }
               `}
             >
-              <item.icon className={`w-5 h-5 ${isActive ? 'text-slate-950' : 'text-slate-500 group-hover:text-emerald-400'}`} />
+              <item.icon className={`w-5 h-5 ${isActive ? 'text-slate-950' : 'text-slate-400 group-hover:text-emerald-400'}`} />
               {item.label}
               {item.id === AppView.MED && (
                 <span className="ml-auto w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>

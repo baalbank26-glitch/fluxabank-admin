@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Loader2, Send, Check, X, Copy, AlertCircle, TrendingDown } from 'lucide-react';
 import { otcAdminService } from '../services/otc.service';
 
@@ -106,11 +106,11 @@ const OTCWithdrawals: React.FC = () => {
       case 'pending':
         return 'bg-yellow-100 text-yellow-800';
       case 'processing':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-emerald-950/40 text-blue-800';
       case 'completed':
         return 'bg-green-100 text-green-800';
       case 'cancelled':
-        return 'bg-fluxabank-100 text-fluxabank-700';
+        return 'bg-emerald-950/40 text-fluxabank-700';
       default:
         return 'bg-gray-100 text-gray-800';
     }
@@ -134,11 +134,11 @@ const OTCWithdrawals: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold text-slate-900 flex items-center gap-2">
+        <h2 className="text-3xl font-bold text-white flex items-center gap-2">
           <TrendingDown className="w-8 h-8 text-amber-500" />
           Saques OTC
         </h2>
-        <p className="text-slate-600 mt-1">Gerenciar solicitações de saque de criptomoedas</p>
+        <p className="text-slate-300 mt-1">Gerenciar solicitações de saque de criptomoedas</p>
       </div>
 
       {/* Filtros */}
@@ -152,8 +152,8 @@ const OTCWithdrawals: React.FC = () => {
             }}
             className={`px-4 py-2 rounded-lg font-medium transition-all ${
               filter === f
-                ? 'bg-orange-500 text-white'
-                : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
+                ? 'bg-emerald-500 text-white'
+                : 'bg-slate-200 text-slate-200 hover:bg-slate-300'
             }`}
           >
             {f === 'all' ? 'Todos' : getStatusLabel(f)}
@@ -174,10 +174,10 @@ const OTCWithdrawals: React.FC = () => {
         <div className="lg:col-span-2">
           {loading ? (
             <div className="flex justify-center py-12">
-              <Loader2 className="w-8 h-8 animate-spin text-orange-500" />
+              <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
             </div>
           ) : withdrawals.length === 0 ? (
-            <div className="p-8 text-center text-slate-500 bg-slate-50 rounded-lg">
+            <div className="p-8 text-center text-slate-400 bg-[#0c1410] rounded-lg">
               Nenhum saque encontrado neste filtro.
             </div>
           ) : (
@@ -188,14 +188,14 @@ const OTCWithdrawals: React.FC = () => {
                   onClick={() => handleSelectWithdrawal(w)}
                   className={`p-4 border rounded-lg cursor-pointer transition-all ${
                     selectedWithdrawal?.id === w.id
-                      ? 'border-orange-500 bg-orange-50 shadow-md'
-                      : 'border-slate-200 hover:border-orange-300'
+                      ? 'border-orange-500 bg-emerald-950/30 shadow-md'
+                      : 'border-emerald-500/20 hover:border-orange-300'
                   }`}
                 >
                   <div className="flex justify-between items-start mb-2">
                     <div>
-                      <h3 className="font-bold text-slate-900">{w.userName}</h3>
-                      <p className="text-xs text-slate-500">{w.userEmail}</p>
+                      <h3 className="font-bold text-white">{w.userName}</h3>
+                      <p className="text-xs text-slate-400">{w.userEmail}</p>
                     </div>
                     <span className={`px-2 py-1 rounded text-xs font-bold ${getStatusColor(w.status)}`}>
                       {getStatusLabel(w.status)}
@@ -203,12 +203,12 @@ const OTCWithdrawals: React.FC = () => {
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-sm">
                     <div>
-                      <span className="text-slate-500">Moeda:</span>
-                      <p className="font-mono font-bold text-slate-900">{w.cryptoAmount.toFixed(8)} {w.cryptoCurrency}</p>
+                      <span className="text-slate-400">Moeda:</span>
+                      <p className="font-mono font-bold text-white">{w.cryptoAmount.toFixed(8)} {w.cryptoCurrency}</p>
                     </div>
                     <div>
-                      <span className="text-slate-500">Em BRL:</span>
-                      <p className="font-mono font-bold text-slate-900">R$ {w.amountBrl.toFixed(2)}</p>
+                      <span className="text-slate-400">Em BRL:</span>
+                      <p className="font-mono font-bold text-white">R$ {w.amountBrl.toFixed(2)}</p>
                     </div>
                   </div>
                   <p className="text-xs text-slate-400 mt-2">ID: {w.id}</p>
@@ -220,12 +220,12 @@ const OTCWithdrawals: React.FC = () => {
 
         {/* Painel de Detalhes e Ação */}
         {selectedWithdrawal && (
-          <div className="p-6 bg-white border border-slate-200 rounded-lg shadow-md space-y-4">
+          <div className="p-6 bg-[#0f1713] border border-emerald-500/20 rounded-lg shadow-md space-y-4">
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-bold text-lg">Detalhes do Saque</h3>
               <button
                 onClick={() => setSelectedWithdrawal(null)}
-                className="p-1 hover:bg-slate-100 rounded"
+                className="p-1 hover:bg-emerald-950/40 rounded"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -234,37 +234,37 @@ const OTCWithdrawals: React.FC = () => {
             {/* Informações */}
             <div className="space-y-3 text-sm">
               <div>
-                <p className="text-slate-500 font-medium">Usuário</p>
-                <p className="text-slate-900 font-mono">{selectedWithdrawal.userName}</p>
-                <p className="text-xs text-slate-500">{selectedWithdrawal.userEmail}</p>
+                <p className="text-slate-400 font-medium">Usuário</p>
+                <p className="text-white font-mono">{selectedWithdrawal.userName}</p>
+                <p className="text-xs text-slate-400">{selectedWithdrawal.userEmail}</p>
               </div>
 
               <div className="border-t pt-3">
-                <p className="text-slate-500 font-medium">Criptomoeda</p>
-                <p className="text-slate-900 font-bold">
+                <p className="text-slate-400 font-medium">Criptomoeda</p>
+                <p className="text-white font-bold">
                   {selectedWithdrawal.cryptoAmount.toFixed(8)} {selectedWithdrawal.cryptoCurrency}
                 </p>
               </div>
 
               <div>
-                <p className="text-slate-500 font-medium">Valor BRL</p>
-                <p className="text-slate-900 font-bold">R$ {selectedWithdrawal.amountBrl.toFixed(2)}</p>
+                <p className="text-slate-400 font-medium">Valor BRL</p>
+                <p className="text-white font-bold">R$ {selectedWithdrawal.amountBrl.toFixed(2)}</p>
               </div>
 
               <div>
-                <p className="text-slate-500 font-medium">Rede</p>
-                <p className="text-slate-900">{selectedWithdrawal.walletNetwork}</p>
+                <p className="text-slate-400 font-medium">Rede</p>
+                <p className="text-white">{selectedWithdrawal.walletNetwork}</p>
               </div>
 
               <div>
-                <p className="text-slate-500 font-medium">Endereço</p>
+                <p className="text-slate-400 font-medium">Endereço</p>
                 <div className="flex items-center gap-2 mt-1">
-                  <p className="text-xs font-mono text-slate-600 break-all">
+                  <p className="text-xs font-mono text-slate-300 break-all">
                     {selectedWithdrawal.walletAddress.slice(0, 20)}...{selectedWithdrawal.walletAddress.slice(-10)}
                   </p>
                   <button
                     onClick={() => copyToClipboard(selectedWithdrawal.walletAddress)}
-                    className="p-1 hover:bg-slate-100 rounded"
+                    className="p-1 hover:bg-emerald-950/40 rounded"
                   >
                     <Copy className="w-4 h-4" />
                   </button>
@@ -273,14 +273,14 @@ const OTCWithdrawals: React.FC = () => {
 
               {selectedWithdrawal.txHash && (
                 <div>
-                  <p className="text-slate-500 font-medium">Hash TX</p>
+                  <p className="text-slate-400 font-medium">Hash TX</p>
                   <div className="flex items-center gap-2 mt-1">
-                    <p className="text-xs font-mono text-slate-600 break-all">
+                    <p className="text-xs font-mono text-slate-300 break-all">
                       {selectedWithdrawal.txHash.slice(0, 20)}...{selectedWithdrawal.txHash.slice(-10)}
                     </p>
                     <button
                       onClick={() => copyToClipboard(selectedWithdrawal.txHash || '')}
-                      className="p-1 hover:bg-slate-100 rounded"
+                      className="p-1 hover:bg-emerald-950/40 rounded"
                     >
                       <Copy className="w-4 h-4" />
                     </button>
@@ -293,36 +293,36 @@ const OTCWithdrawals: React.FC = () => {
             {selectedWithdrawal.status === 'pending' || selectedWithdrawal.status === 'processing' ? (
               <div className="border-t pt-4 space-y-3">
                 {error && (
-                  <div className="p-3 bg-fluxabank-50 text-fluxabank-600 rounded-lg flex items-center gap-2 text-sm">
+                  <div className="p-3 bg-emerald-950/20 text-emerald-600 rounded-lg flex items-center gap-2 text-sm">
                     <AlertCircle className="w-4 h-4" />
                     {error}
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Hash da Transação * <span className="text-fluxabank-500">(obrigatório)</span></label>
+                  <label className="block text-sm font-medium text-slate-200 mb-1">Hash da Transação * <span className="text-emerald-500">(obrigatório)</span></label>
                   <input
                     type="text"
                     value={txHash}
                     onChange={(e) => setTxHash(e.target.value)}
                     placeholder="0x..."
                     required
-                    className={`w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-orange-500 ${
-                      txHash.trim() === '' ? 'border-fluxabank-300 bg-fluxabank-50' : 'border-slate-300'
+                    className={`w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 ${
+                      txHash.trim() === '' ? 'border-emerald-300 bg-emerald-950/20' : 'border-slate-300'
                     }`}
                   />
                   {txHash.trim() === '' && (
-                    <p className="text-xs text-fluxabank-500 mt-1">⚠️ Campo obrigatório para marcar como completo</p>
+                    <p className="text-xs text-emerald-500 mt-1">⚠️ Campo obrigatório para marcar como completo</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Notas do Admin</label>
+                  <label className="block text-sm font-medium text-slate-200 mb-1">Notas do Admin</label>
                   <textarea
                     value={adminNotes}
                     onChange={(e) => setAdminNotes(e.target.value)}
                     placeholder="Observações..."
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500"
                     rows={3}
                   />
                 </div>
@@ -347,7 +347,7 @@ const OTCWithdrawals: React.FC = () => {
                   <button
                     onClick={() => handleUpdateStatus('cancelled')}
                     disabled={processing}
-                    className="flex-1 py-2 bg-fluxabank-500 text-white rounded-lg font-medium hover:bg-fluxabank-600 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="flex-1 py-2 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     {processing ? <Loader2 className="w-4 h-4 animate-spin" /> : <X className="w-4 h-4" />}
                     Cancelar
@@ -355,7 +355,7 @@ const OTCWithdrawals: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <div className="border-t pt-4 p-3 bg-slate-50 rounded text-sm text-slate-600">
+              <div className="border-t pt-4 p-3 bg-[#0c1410] rounded text-sm text-slate-300">
                 Este saque não pode ser alterado pois já foi {getStatusLabel(selectedWithdrawal.status)}.
               </div>
             )}
@@ -365,18 +365,18 @@ const OTCWithdrawals: React.FC = () => {
         {/* Validation Modal */}
         {validationModal && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className={`bg-white rounded-2xl p-6 max-w-md w-full shadow-xl ${validationModal.type === 'error' ? 'border-l-4 border-fluxabank-500' : 'border-l-4 border-green-500'}`}>
+            <div className={`bg-[#0f1713] rounded-2xl p-6 max-w-md w-full shadow-xl ${validationModal.type === 'error' ? 'border-l-4 border-emerald-500' : 'border-l-4 border-green-500'}`}>
               <div className="flex items-center gap-3 mb-4">
                 {validationModal.type === 'error' ? (
-                  <AlertCircle className="w-6 h-6 text-fluxabank-500 flex-shrink-0" />
+                  <AlertCircle className="w-6 h-6 text-emerald-500 flex-shrink-0" />
                 ) : (
                   <Check className="w-6 h-6 text-green-600 flex-shrink-0" />
                 )}
-                <h3 className="text-lg font-bold text-slate-900">
+                <h3 className="text-lg font-bold text-white">
                   {validationModal.type === 'error' ? 'Atenção' : 'Sucesso'}
                 </h3>
               </div>
-              <p className="text-slate-700 mb-6">{validationModal.message}</p>
+              <p className="text-slate-200 mb-6">{validationModal.message}</p>
               <button
                 onClick={() => {
                   setValidationModal(null);
@@ -386,7 +386,7 @@ const OTCWithdrawals: React.FC = () => {
                 }}
                 className={`w-full py-3 rounded-lg font-semibold transition-colors ${
                   validationModal.type === 'error'
-                    ? 'bg-fluxabank-500 text-white hover:bg-fluxabank-600'
+                    ? 'bg-emerald-500 text-white hover:bg-emerald-600'
                     : 'bg-green-600 text-white hover:bg-green-700'
                 }`}
               >

@@ -1,4 +1,4 @@
-import { BASE_URL, getHeaders, handleResponse } from './config';
+﻿import { BASE_URL, getHeaders, handleResponse } from './config';
 
 export const settingsService = {
   getMaintenance: async () => {

@@ -1,4 +1,4 @@
-import { MedCase } from '../types/index';
+﻿import { MedCase } from '../types/index';
 import { BASE_URL, getHeaders, handleResponse } from './config';
 
 const isPixE2E = (value: unknown): value is string => {

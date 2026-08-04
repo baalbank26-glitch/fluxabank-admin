@@ -1,4 +1,4 @@
-import { BASE_URL, getHeaders, handleResponse } from './config';
+﻿import { BASE_URL, getHeaders, handleResponse } from './config';
 
 const buildHeaders = (): HeadersInit => {
   // Config.ts getHeaders() returns Authorization: Bearer <ADMIN_TOKEN>

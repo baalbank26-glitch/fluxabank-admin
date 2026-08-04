@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { ShieldCheck, UserPlus, Loader2, PencilLine, X } from 'lucide-react';
 import { api } from '../services/api';
@@ -129,9 +129,9 @@ export const Admins: React.FC = () => {
 
   if (!canManageAdmins) {
     return (
-      <div className="bg-white border border-slate-200 rounded-2xl p-6">
-        <h2 className="text-xl font-bold text-slate-800">Administradores</h2>
-        <p className="mt-2 text-slate-500">Apenas admin master pode gerenciar criacao de outros admins.</p>
+      <div className="bg-[#0f1713] border border-emerald-500/20 rounded-2xl p-6">
+        <h2 className="text-xl font-bold text-slate-100">Administradores</h2>
+        <p className="mt-2 text-slate-400">Apenas admin master pode gerenciar criacao de outros admins.</p>
       </div>
     );
   }
@@ -139,18 +139,18 @@ export const Admins: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-          <ShieldCheck className="w-7 h-7 text-fluxabank-500" />
+        <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
+          <ShieldCheck className="w-7 h-7 text-emerald-500" />
           Admins e Permissoes Level2
         </h2>
-        <p className="text-slate-500 text-sm mt-1">Crie novos admins e selecione permissoes operacionais.</p>
+        <p className="text-slate-400 text-sm mt-1">Crie novos admins e selecione permissoes operacionais.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
+      <form onSubmit={handleSubmit} className="bg-[#0f1713] border border-emerald-500/20 rounded-2xl p-6 space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <input
             type="text"
-            className="border border-slate-200 rounded-lg px-3 py-2"
+            className="border border-emerald-500/20 rounded-lg px-3 py-2"
             placeholder="Nome do admin"
             value={form.name}
             onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
@@ -158,7 +158,7 @@ export const Admins: React.FC = () => {
           />
           <input
             type="email"
-            className="border border-slate-200 rounded-lg px-3 py-2"
+            className="border border-emerald-500/20 rounded-lg px-3 py-2"
             placeholder="E-mail"
             value={form.email}
             onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
@@ -166,7 +166,7 @@ export const Admins: React.FC = () => {
           />
           <input
             type="password"
-            className="border border-slate-200 rounded-lg px-3 py-2"
+            className="border border-emerald-500/20 rounded-lg px-3 py-2"
             placeholder="Senha provisoria"
             value={form.password}
             onChange={(e) => setForm((prev) => ({ ...prev, password: e.target.value }))}
@@ -175,10 +175,10 @@ export const Admins: React.FC = () => {
         </div>
 
         <div>
-          <p className="text-sm font-semibold text-slate-700 mb-2">Permissoes</p>
+          <p className="text-sm font-semibold text-slate-200 mb-2">Permissoes</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {permissionCatalog.map((permission) => (
-              <label key={permission.key} className="flex items-center gap-2 text-sm text-slate-700 bg-slate-50 rounded-lg px-3 py-2">
+              <label key={permission.key} className="flex items-center gap-2 text-sm text-slate-200 bg-[#0c1410] rounded-lg px-3 py-2">
                 <input
                   type="checkbox"
                   checked={Boolean(form.permissions[permission.key])}
@@ -200,14 +200,14 @@ export const Admins: React.FC = () => {
         </button>
       </form>
 
-      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-          <h3 className="font-semibold text-slate-800">Admins cadastrados</h3>
-          {loading && <Loader2 className="w-4 h-4 animate-spin text-slate-500" />}
+      <div className="bg-[#0f1713] border border-emerald-500/20 rounded-2xl overflow-hidden">
+        <div className="px-6 py-4 border-b border-emerald-500/20 flex items-center justify-between">
+          <h3 className="font-semibold text-slate-100">Admins cadastrados</h3>
+          {loading && <Loader2 className="w-4 h-4 animate-spin text-slate-400" />}
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 text-slate-500">
+            <thead className="bg-[#0c1410] text-slate-400">
               <tr>
                 <th className="px-4 py-3">Nome</th>
                 <th className="px-4 py-3">E-mail</th>
@@ -218,11 +218,11 @@ export const Admins: React.FC = () => {
             </thead>
             <tbody>
               {admins.map((admin) => (
-                <tr key={admin.id} className="border-t border-slate-100 align-top">
-                  <td className="px-4 py-3 font-medium text-slate-800">{admin.name}</td>
-                  <td className="px-4 py-3 text-slate-600">{admin.email}</td>
-                  <td className="px-4 py-3 text-slate-600">{admin.isMaster ? 'Master' : 'Level2'}</td>
-                  <td className="px-4 py-3 text-slate-600">
+                <tr key={admin.id} className="border-t border-emerald-500/20 align-top">
+                  <td className="px-4 py-3 font-medium text-slate-100">{admin.name}</td>
+                  <td className="px-4 py-3 text-slate-300">{admin.email}</td>
+                  <td className="px-4 py-3 text-slate-300">{admin.isMaster ? 'Master' : 'Level2'}</td>
+                  <td className="px-4 py-3 text-slate-300">
                     {admin.isMaster
                       ? 'Acesso total'
                       : permissionCatalog
@@ -235,7 +235,7 @@ export const Admins: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => openEditModal(admin)}
-                        className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-slate-700 hover:bg-slate-50"
+                        className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/20 px-3 py-2 text-slate-200 hover:bg-[#0c1410]"
                       >
                         <PencilLine className="w-4 h-4" />
                         Editar permissoes
@@ -258,16 +258,16 @@ export const Admins: React.FC = () => {
 
       {editingAdmin && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-2xl rounded-2xl bg-white shadow-xl">
-            <div className="flex items-center justify-between border-b border-slate-100 px-6 py-4">
+          <div className="w-full max-w-2xl rounded-2xl bg-[#0f1713] shadow-xl">
+            <div className="flex items-center justify-between border-b border-emerald-500/20 px-6 py-4">
               <div>
-                <h3 className="text-lg font-semibold text-slate-800">Editar permissoes</h3>
-                <p className="text-sm text-slate-500 mt-1">{editingAdmin.name} - {editingAdmin.email}</p>
+                <h3 className="text-lg font-semibold text-slate-100">Editar permissoes</h3>
+                <p className="text-sm text-slate-400 mt-1">{editingAdmin.name} - {editingAdmin.email}</p>
               </div>
               <button
                 type="button"
                 onClick={closeEditModal}
-                className="rounded-lg p-2 text-slate-500 hover:bg-slate-100"
+                className="rounded-lg p-2 text-slate-400 hover:bg-emerald-950/40"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -276,7 +276,7 @@ export const Admins: React.FC = () => {
             <form onSubmit={handleUpdatePermissions} className="space-y-4 px-6 py-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {permissionCatalog.map((permission) => (
-                  <label key={permission.key} className="flex items-center gap-2 text-sm text-slate-700 bg-slate-50 rounded-lg px-3 py-2">
+                  <label key={permission.key} className="flex items-center gap-2 text-sm text-slate-200 bg-[#0c1410] rounded-lg px-3 py-2">
                     <input
                       type="checkbox"
                       checked={Boolean(editingPermissions[permission.key])}
@@ -291,7 +291,7 @@ export const Admins: React.FC = () => {
                 <button
                   type="button"
                   onClick={closeEditModal}
-                  className="rounded-lg border border-slate-200 px-4 py-2 text-slate-700 hover:bg-slate-50"
+                  className="rounded-lg border border-emerald-500/20 px-4 py-2 text-slate-200 hover:bg-[#0c1410]"
                 >
                   Cancelar
                 </button>

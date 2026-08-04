@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Bitcoin, RefreshCw, CheckCircle, XCircle, Clock, AlertCircle, Settings } from 'lucide-react';
 import { otcAdminService, type OtcWithdrawal, type OtcStats, type OtcSettings } from '../services/otc.service';
 
@@ -83,9 +83,9 @@ export const OTC: React.FC = () => {
   const getStatusBadge = (status: string) => {
     const styles = {
       pending: 'bg-yellow-100 text-yellow-700',
-      processing: 'bg-blue-100 text-blue-700',
+      processing: 'bg-emerald-950/40 text-emerald-400',
       completed: 'bg-green-100 text-green-700',
-      cancelled: 'bg-fluxabank-100 text-fluxabank-600'
+      cancelled: 'bg-emerald-950/40 text-emerald-600'
     };
     const icons = {
       pending: Clock,
@@ -108,11 +108,11 @@ export const OTC: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-2">
+          <h1 className="text-3xl font-bold text-white flex items-center gap-2">
             <Bitcoin className="w-8 h-8 text-amber-500" />
             Gestão OTC
           </h1>
-          <p className="text-slate-500 mt-1">Gerenciar solicitações de saque de criptomoedas</p>
+          <p className="text-slate-400 mt-1">Gerenciar solicitações de saque de criptomoedas</p>
         </div>
         <button
           onClick={() => setShowSettings(true)}
@@ -126,21 +126,21 @@ export const OTC: React.FC = () => {
       {/* Stats */}
       {stats && (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-            <p className="text-sm text-slate-500 mb-1">Pendentes</p>
+          <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm">
+            <p className="text-sm text-slate-400 mb-1">Pendentes</p>
             <p className="text-3xl font-bold text-yellow-600">{stats.pending}</p>
           </div>
-          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-            <p className="text-sm text-slate-500 mb-1">Em Processamento</p>
-            <p className="text-3xl font-bold text-blue-600">{stats.processing}</p>
+          <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm">
+            <p className="text-sm text-slate-400 mb-1">Em Processamento</p>
+            <p className="text-3xl font-bold text-emerald-400">{stats.processing}</p>
           </div>
-          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-            <p className="text-sm text-slate-500 mb-1">Concluídas</p>
+          <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm">
+            <p className="text-sm text-slate-400 mb-1">Concluídas</p>
             <p className="text-3xl font-bold text-green-600">{stats.completed}</p>
           </div>
-          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-            <p className="text-sm text-slate-500 mb-1">Taxa Total (BRL)</p>
-            <p className="text-3xl font-bold text-orange-500">
+          <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm">
+            <p className="text-sm text-slate-400 mb-1">Taxa Total (BRL)</p>
+            <p className="text-3xl font-bold text-emerald-400">
               {stats.completedFeesBrl.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
             </p>
           </div>
@@ -155,8 +155,8 @@ export const OTC: React.FC = () => {
             onClick={() => setFilter(f)}
             className={`px-4 py-2 rounded-lg font-semibold text-sm transition-colors ${
               filter === f
-                ? 'bg-orange-500 text-white'
-                : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                ? 'bg-emerald-500 text-white'
+                : 'bg-[#0f1713] text-slate-300 border border-emerald-500/20 hover:bg-[#0c1410]'
             }`}
           >
             {f === 'all' ? 'Todas' : f.charAt(0).toUpperCase() + f.slice(1)}
@@ -165,49 +165,49 @@ export const OTC: React.FC = () => {
       </div>
 
       {/* Withdrawals Table */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+      <div className="bg-[#0f1713] rounded-2xl border border-emerald-500/20 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-slate-50 border-b border-slate-100">
+            <thead className="bg-[#0c1410] border-b border-emerald-500/20">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">ID</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Usuário</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Cripto</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Valor (BRL)</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Taxa</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Rede</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Status</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Data</th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Ações</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">ID</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">Usuário</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">Cripto</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">Valor (BRL)</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">Taxa</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">Rede</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">Status</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">Data</th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">Ações</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-emerald-500/10">
               {loading ? (
                 <tr>
-                  <td colSpan={9} className="px-6 py-8 text-center text-slate-500">
+                  <td colSpan={9} className="px-6 py-8 text-center text-slate-400">
                     <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2" />
                     Carregando...
                   </td>
                 </tr>
               ) : withdrawals.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="px-6 py-8 text-center text-slate-500">
+                  <td colSpan={9} className="px-6 py-8 text-center text-slate-400">
                     Nenhuma solicitação encontrada
                   </td>
                 </tr>
               ) : (
                 withdrawals.map(w => (
-                  <tr key={w.id} className="hover:bg-slate-50 transition-colors">
+                  <tr key={w.id} className="hover:bg-[#0c1410] transition-colors">
                     <td className="px-6 py-4 font-mono text-sm"># {w.id}</td>
                     <td className="px-6 py-4">
                       <div>
-                        <p className="font-medium text-slate-900">{w.userName}</p>
-                        <p className="text-xs text-slate-500">{w.userEmail}</p>
+                        <p className="font-medium text-white">{w.userName}</p>
+                        <p className="text-xs text-slate-400">{w.userEmail}</p>
                       </div>
                     </td>
                     <td className="px-6 py-4">
                       <p className="font-semibold">{w.cryptoCurrency}</p>
-                      <p className="text-xs text-slate-500">{w.cryptoAmount.toFixed(8)}</p>
+                      <p className="text-xs text-slate-400">{w.cryptoAmount.toFixed(8)}</p>
                     </td>
                     <td className="px-6 py-4 font-medium">
                       {w.amountBrl.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
@@ -217,7 +217,7 @@ export const OTC: React.FC = () => {
                     </td>
                     <td className="px-6 py-4 text-sm">{w.walletNetwork}</td>
                     <td className="px-6 py-4">{getStatusBadge(w.status)}</td>
-                    <td className="px-6 py-4 text-sm text-slate-500">
+                    <td className="px-6 py-4 text-sm text-slate-400">
                       {new Date(w.createdAt).toLocaleDateString('pt-BR')}
                     </td>
                     <td className="px-6 py-4">
@@ -226,7 +226,7 @@ export const OTC: React.FC = () => {
                           setSelectedWithdrawal(w);
                           setActionData({ status: w.status, txHash: w.txHash || '', adminNotes: w.adminNotes || '' });
                         }}
-                        className="text-orange-500 hover:text-orange-800 font-semibold text-sm"
+                        className="text-emerald-400 hover:text-emerald-300 font-semibold text-sm"
                       >
                         Gerenciar
                       </button>
@@ -242,32 +242,32 @@ export const OTC: React.FC = () => {
       {/* Action Modal */}
       {selectedWithdrawal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
+          <div className="bg-[#0f1713] rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
             <h2 className="text-2xl font-bold mb-4">Gerenciar Solicitação #{selectedWithdrawal.id}</h2>
             
             <div className="space-y-4 mb-6">
-              <div className="bg-slate-50 p-4 rounded-xl">
-                <p className="text-sm text-slate-500">Cliente</p>
+              <div className="bg-[#0c1410] p-4 rounded-xl">
+                <p className="text-sm text-slate-400">Cliente</p>
                 <p className="font-semibold">{selectedWithdrawal.userName} ({selectedWithdrawal.userEmail})</p>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-slate-50 p-4 rounded-xl">
-                  <p className="text-sm text-slate-500">Criptomoeda</p>
+                <div className="bg-[#0c1410] p-4 rounded-xl">
+                  <p className="text-sm text-slate-400">Criptomoeda</p>
                   <p className="font-semibold">{selectedWithdrawal.cryptoAmount.toFixed(8)} {selectedWithdrawal.cryptoCurrency}</p>
                 </div>
-                <div className="bg-slate-50 p-4 rounded-xl">
-                  <p className="text-sm text-slate-500">Rede</p>
+                <div className="bg-[#0c1410] p-4 rounded-xl">
+                  <p className="text-sm text-slate-400">Rede</p>
                   <p className="font-semibold">{selectedWithdrawal.walletNetwork}</p>
                 </div>
               </div>
               
-              <div className="bg-slate-50 p-4 rounded-xl">
-                <p className="text-sm text-slate-500 mb-1">Endereço da Carteira</p>
+              <div className="bg-[#0c1410] p-4 rounded-xl">
+                <p className="text-sm text-slate-400 mb-1">Endereço da Carteira</p>
                 <p className="font-mono text-sm break-all">{selectedWithdrawal.walletAddress}</p>
                 {selectedWithdrawal.walletMemo && (
                   <>
-                    <p className="text-sm text-slate-500 mt-2 mb-1">Memo/Tag</p>
+                    <p className="text-sm text-slate-400 mt-2 mb-1">Memo/Tag</p>
                     <p className="font-mono text-sm">{selectedWithdrawal.walletMemo}</p>
                   </>
                 )}
@@ -276,11 +276,11 @@ export const OTC: React.FC = () => {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Status</label>
+                <label className="block text-sm font-semibold text-slate-200 mb-2">Status</label>
                 <select
                   value={actionData.status}
                   onChange={e => setActionData(prev => ({ ...prev, status: e.target.value }))}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-emerald-500/20 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                 >
                   <option value="pending">Pendente</option>
                   <option value="processing">Em Processamento</option>
@@ -290,23 +290,23 @@ export const OTC: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Hash da Transação (Blockchain)</label>
+                <label className="block text-sm font-semibold text-slate-200 mb-2">Hash da Transação (Blockchain)</label>
                 <input
                   type="text"
                   value={actionData.txHash}
                   onChange={e => setActionData(prev => ({ ...prev, txHash: e.target.value }))}
                   placeholder="0x..."
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-mono text-sm"
+                  className="w-full px-4 py-3 border border-emerald-500/20 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 font-mono text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Notas Admin</label>
+                <label className="block text-sm font-semibold text-slate-200 mb-2">Notas Admin</label>
                 <textarea
                   value={actionData.adminNotes}
                   onChange={e => setActionData(prev => ({ ...prev, adminNotes: e.target.value }))}
                   rows={3}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  className="w-full px-4 py-3 border border-emerald-500/20 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                   placeholder="Observações internas..."
                 />
               </div>
@@ -315,13 +315,13 @@ export const OTC: React.FC = () => {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={handleUpdateStatus}
-                className="flex-1 px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl hover:bg-orange-600 transition-colors"
+                className="flex-1 px-6 py-3 bg-emerald-500 text-white font-semibold rounded-xl hover:bg-emerald-600 transition-colors"
               >
                 Salvar Alterações
               </button>
               <button
                 onClick={() => setSelectedWithdrawal(null)}
-                className="px-6 py-3 bg-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-300 transition-colors"
+                className="px-6 py-3 bg-slate-200 text-slate-200 font-semibold rounded-xl hover:bg-slate-300 transition-colors"
               >
                 Cancelar
               </button>
@@ -333,38 +333,38 @@ export const OTC: React.FC = () => {
       {/* Settings Modal */}
       {showSettings && settings && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6">
+          <div className="bg-[#0f1713] rounded-2xl max-w-lg w-full p-6">
             <h2 className="text-2xl font-bold mb-4">Configurações OTC</h2>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Taxa (%)</label>
+                <label className="block text-sm font-semibold text-slate-200 mb-2">Taxa (%)</label>
                 <input
                   type="number"
                   step="0.00001"
                   value={editSettings.feePercentage || 0}
                   onChange={e => setEditSettings(prev => ({ ...prev, feePercentage: parseFloat(e.target.value) }))}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-4 py-3 border border-emerald-500/20 rounded-xl focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Saque Mínimo (BRL)</label>
+                <label className="block text-sm font-semibold text-slate-200 mb-2">Saque Mínimo (BRL)</label>
                 <input
                   type="number"
                   value={editSettings.minWithdrawalBrl || 0}
                   onChange={e => setEditSettings(prev => ({ ...prev, minWithdrawalBrl: parseFloat(e.target.value) }))}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-4 py-3 border border-emerald-500/20 rounded-xl focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Saque Máximo (BRL)</label>
+                <label className="block text-sm font-semibold text-slate-200 mb-2">Saque Máximo (BRL)</label>
                 <input
                   type="number"
                   value={editSettings.maxWithdrawalBrl || 0}
                   onChange={e => setEditSettings(prev => ({ ...prev, maxWithdrawalBrl: parseFloat(e.target.value) }))}
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-4 py-3 border border-emerald-500/20 rounded-xl focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
 
@@ -374,9 +374,9 @@ export const OTC: React.FC = () => {
                   id="otcEnabled"
                   checked={editSettings.enabled || false}
                   onChange={e => setEditSettings(prev => ({ ...prev, enabled: e.target.checked }))}
-                  className="w-5 h-5 text-orange-500 border-slate-300 rounded focus:ring-orange-500"
+                  className="w-5 h-5 text-emerald-400 border-slate-300 rounded focus:ring-emerald-500"
                 />
-                <label htmlFor="otcEnabled" className="text-sm font-semibold text-slate-700">
+                <label htmlFor="otcEnabled" className="text-sm font-semibold text-slate-200">
                   OTC Habilitado (usuários podem usar)
                 </label>
               </div>
@@ -385,13 +385,13 @@ export const OTC: React.FC = () => {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={handleUpdateSettings}
-                className="flex-1 px-6 py-3 bg-orange-500 text-white font-semibold rounded-xl hover:bg-orange-600"
+                className="flex-1 px-6 py-3 bg-emerald-500 text-white font-semibold rounded-xl hover:bg-emerald-600"
               >
                 Salvar
               </button>
               <button
                 onClick={() => setShowSettings(false)}
-                className="px-6 py-3 bg-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-300"
+                className="px-6 py-3 bg-slate-200 text-slate-200 font-semibold rounded-xl hover:bg-slate-300"
               >
                 Cancelar
               </button>
@@ -403,23 +403,23 @@ export const OTC: React.FC = () => {
       {/* Validation Modal */}
       {validationModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className={`bg-white rounded-2xl p-6 max-w-md w-full shadow-xl ${validationModal.type === 'error' ? 'border-l-4 border-fluxabank-500' : 'border-l-4 border-green-500'}`}>
+          <div className={`bg-[#0f1713] rounded-2xl p-6 max-w-md w-full shadow-xl ${validationModal.type === 'error' ? 'border-l-4 border-emerald-500' : 'border-l-4 border-green-500'}`}>
             <div className="flex items-center gap-3 mb-4">
               {validationModal.type === 'error' ? (
-                <AlertCircle className="w-6 h-6 text-fluxabank-500 flex-shrink-0" />
+                <AlertCircle className="w-6 h-6 text-emerald-500 flex-shrink-0" />
               ) : (
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
               )}
-              <h3 className="text-lg font-bold text-slate-900">
+              <h3 className="text-lg font-bold text-white">
                 {validationModal.type === 'error' ? 'Atenção' : 'Sucesso'}
               </h3>
             </div>
-            <p className="text-slate-700 mb-6">{validationModal.message}</p>
+            <p className="text-slate-200 mb-6">{validationModal.message}</p>
             <button
               onClick={() => setValidationModal(null)}
               className={`w-full py-3 rounded-lg font-semibold transition-colors ${
                 validationModal.type === 'error'
-                  ? 'bg-fluxabank-500 text-white hover:bg-fluxabank-600'
+                  ? 'bg-emerald-500 text-white hover:bg-emerald-600'
                   : 'bg-green-600 text-white hover:bg-green-700'
               }`}
             >

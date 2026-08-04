@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { User, UserStatus, DocStatus, Wallet, LedgerItem, Provider } from '../types/index';
@@ -468,8 +468,8 @@ export const Clients: React.FC = () => {
   const getTypeStyle = (type: string) => {
       const t = type?.toUpperCase() || '';
       if (t === 'CREDIT' || t === 'PIX_IN') return 'bg-green-100 text-green-700';
-      if (t === 'DEBIT' || t === 'PIX_OUT') return 'bg-fluxabank-100 text-fluxabank-600';
-      return 'bg-slate-100 text-slate-700';
+      if (t === 'DEBIT' || t === 'PIX_OUT') return 'bg-emerald-950/40 text-emerald-600';
+      return 'bg-slate-100 text-slate-200';
   };
 
   return (
@@ -477,78 +477,78 @@ export const Clients: React.FC = () => {
       <div className="flex justify-between items-center">
         <div>
                     <div className="flex items-center gap-2">
-                        <h2 className="text-2xl font-bold text-slate-800">Gestão de Usuários</h2>
+                        <h2 className="text-2xl font-bold text-slate-100">Gestão de Usuários</h2>
                         <span className="px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold">
                             Ativos: {activeUsersCount}
                         </span>
                     </div>
-          <p className="text-slate-500 text-sm">Base de clientes cadastrados no sistema.</p>
+          <p className="text-slate-400 text-sm">Base de clientes cadastrados no sistema.</p>
         </div>
-        <button onClick={fetchUsers} className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg border border-slate-200">
+        <button onClick={fetchUsers} className="p-2 text-slate-300 hover:bg-emerald-950/40 rounded-lg border border-emerald-500/20">
             <RefreshCw className={`w-5 h-5 ${isLoading ? 'animate-spin' : ''}`} />
         </button>
       </div>
 
-      <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+      <div className="bg-[#0f1713] p-4 rounded-xl border border-emerald-500/20 shadow-sm">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
           <input 
             type="text" 
             placeholder="Buscar por nome ou email..." 
-            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fluxabank-500/50"
+            className="w-full pl-10 pr-4 py-2.5 bg-[#0c1410] border border-emerald-500/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <div className="bg-[#0f1713] rounded-xl border border-emerald-500/20 shadow-sm overflow-hidden">
         {isLoading ? (
-            <div className="flex justify-center p-12"><Loader2 className="w-8 h-8 animate-spin text-fluxabank-500" /></div>
+            <div className="flex justify-center p-12"><Loader2 className="w-8 h-8 animate-spin text-emerald-500" /></div>
         ) : (
                     <>
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
-                                <thead className="bg-slate-50 border-b border-slate-200">
+                                <thead className="bg-[#0c1410] border-b border-emerald-500/20">
                                     <tr>
-                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">ID</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Usuário</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Tipo Conta</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status KYC</th>
-                                        <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status Conta</th>
-                                        <th className="px-6 py-4 text-end text-xs font-bold text-slate-500 uppercase">Ações</th>
+                                        <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">ID</th>
+                                        <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Usuário</th>
+                                        <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Tipo Conta</th>
+                                        <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Status KYC</th>
+                                        <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Status Conta</th>
+                                        <th className="px-6 py-4 text-end text-xs font-bold text-slate-400 uppercase">Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-100">
+                                <tbody className="divide-y divide-emerald-500/10">
                                     {filteredUsers.length === 0 ? (
-                                        <tr><td colSpan={6} className="p-6 text-center text-slate-500">Nenhum usuário encontrado.</td></tr>
+                                        <tr><td colSpan={6} className="p-6 text-center text-slate-400">Nenhum usuário encontrado.</td></tr>
                                     ) : paginatedUsers.map((user) => (
                                         <tr key={user.id} className="hover:bg-slate-50/50 cursor-pointer" onClick={() => openUserModal(user)}>
-                  <td className="px-6 py-4 font-mono text-xs text-slate-500">#{user.id}</td>
+                  <td className="px-6 py-4 font-mono text-xs text-slate-400">#{user.id}</td>
                   <td className="px-6 py-4">
                     <div>
-                        <p className="font-medium text-slate-800">{user.name}</p>
-                        <p className="text-xs text-slate-500">{user.email}</p>
+                        <p className="font-medium text-slate-100">{user.name}</p>
+                        <p className="text-xs text-slate-400">{user.email}</p>
                     </div>
                   </td>
                                     <td className="px-6 py-4">
                                         {isPrimaryAccount(user) ? (
                                             <div className="flex flex-col gap-1">
-                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-orange-100 text-orange-600">
+                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-emerald-950/40 text-orange-600">
                                                     Principal
                                                 </span>
                                                 {!!Number((user as any).linked_accounts_count || 0) && (
-                                                    <span className="text-[11px] text-slate-500">
+                                                    <span className="text-[11px] text-slate-400">
                                                         {Number((user as any).linked_accounts_count)} vinculada(s)
                                                     </span>
                                                 )}
                                             </div>
                                         ) : (
                                             <div className="flex flex-col gap-1">
-                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-orange-100 text-orange-600">
+                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-emerald-950/40 text-orange-600">
                                                     Vinculada
                                                 </span>
-                                                <span className="text-[11px] text-slate-500">
+                                                <span className="text-[11px] text-slate-400">
                                                     Titular #{resolveOwnerId(user)}
                                                 </span>
                                             </div>
@@ -557,7 +557,7 @@ export const Clients: React.FC = () => {
                   <td className="px-6 py-4">
                      <span className={`px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 ${
                         user.doc_status === DocStatus.APPROVED ? 'bg-green-100 text-green-700' : 
-                        user.doc_status === DocStatus.REJECTED ? 'bg-fluxabank-100 text-fluxabank-600' :
+                        user.doc_status === DocStatus.REJECTED ? 'bg-emerald-950/40 text-emerald-600' :
                         'bg-amber-100 text-amber-700'
                     }`}>
                         {user.doc_status === DocStatus.APPROVED && <CheckCircle className="w-3 h-3"/>}
@@ -569,9 +569,9 @@ export const Clients: React.FC = () => {
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 ${
                         user.status === UserStatus.ACTIVE ? 'bg-green-100 text-green-700' : 
-                        user.status === UserStatus.BLOCKED ? 'bg-fluxabank-100 text-fluxabank-600' :
+                        user.status === UserStatus.BLOCKED ? 'bg-emerald-950/40 text-emerald-600' :
                         user.status === UserStatus.PENDING ? 'bg-amber-100 text-amber-700' :
-                        'bg-slate-100 text-slate-600'
+                        'bg-slate-100 text-slate-300'
                     }`}>
                         {user.status === UserStatus.ACTIVE && <CheckCircle className="w-3 h-3"/>}
                         {user.status === UserStatus.BLOCKED && <XCircle className="w-3 h-3"/>}
@@ -580,7 +580,7 @@ export const Clients: React.FC = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 text-end">
-                    <button className="text-fluxabank-500 font-medium text-sm hover:underline">Gerenciar</button>
+                    <button className="text-emerald-500 font-medium text-sm hover:underline">Gerenciar</button>
                   </td>
                                         </tr>
                                     ))}
@@ -589,8 +589,8 @@ export const Clients: React.FC = () => {
                         </div>
 
                         {filteredUsers.length > 0 && (
-                            <div className="px-6 py-4 border-t border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                                <p className="text-sm text-slate-600">
+                            <div className="px-6 py-4 border-t border-emerald-500/20 bg-[#0c1410] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                <p className="text-sm text-slate-300">
                                     Mostrando {pageStart + 1} a {Math.min(pageStart + USERS_PER_PAGE, filteredUsers.length)} de {filteredUsers.length} usuários
                                 </p>
                                 <div className="flex items-center gap-2">
@@ -598,18 +598,18 @@ export const Clients: React.FC = () => {
                                         type="button"
                                         onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                                         disabled={safeCurrentPage <= 1}
-                                        className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 bg-white hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="px-3 py-1.5 rounded-lg border border-emerald-500/20 text-slate-200 bg-[#0f1713] hover:bg-emerald-950/40 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         Anterior
                                     </button>
-                                    <span className="text-sm text-slate-600 min-w-20 text-center">
+                                    <span className="text-sm text-slate-300 min-w-20 text-center">
                                         {safeCurrentPage} / {totalPages}
                                     </span>
                                     <button
                                         type="button"
                                         onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                                         disabled={safeCurrentPage >= totalPages}
-                                        className="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 bg-white hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="px-3 py-1.5 rounded-lg border border-emerald-500/20 text-slate-200 bg-[#0f1713] hover:bg-emerald-950/40 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         Próxima
                                     </button>
@@ -622,61 +622,61 @@ export const Clients: React.FC = () => {
 
       {selectedUser && (
           <div className="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-              <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
-                  <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+              <div className="bg-[#0f1713] rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
+                  <div className="p-6 border-b border-emerald-500/20 flex justify-between items-center bg-[#0c1410]">
                       <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-fluxabank-500 to-orange-500 text-white flex items-center justify-center font-bold text-xl">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-orange-500 text-white flex items-center justify-center font-bold text-xl">
                               {(selectedUser.name || '?').charAt(0).toUpperCase()}
                           </div>
                           <div>
-                              <h3 className="text-xl font-bold text-slate-800">{selectedUser.name}</h3>
-                              <p className="text-sm text-slate-500">ID: {selectedUser.id}</p>
+                              <h3 className="text-xl font-bold text-slate-100">{selectedUser.name}</h3>
+                              <p className="text-sm text-slate-400">ID: {selectedUser.id}</p>
                           </div>
                       </div>
                       <button onClick={() => setSelectedUser(null)} className="p-2 hover:bg-slate-200 rounded-full transition-colors"><X className="w-6 h-6 text-slate-400" /></button>
                   </div>
 
-                  <div className="border-b border-slate-200 bg-white">
+                  <div className="border-b border-emerald-500/20 bg-[#0f1713]">
                       <div className="grid grid-cols-2 md:flex md:flex-wrap gap-0">
                           <button onClick={() => setActiveTab('PROFILE')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'PROFILE' 
-                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
+                                ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
                           }`}>
                               <UserIcon className="w-4 h-4 flex-shrink-0" /> <span>Perfil</span>
                           </button>
                           <button onClick={() => setActiveTab('WALLET')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'WALLET' 
-                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
+                                ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
                           }`}>
                               <WalletIcon className="w-4 h-4 flex-shrink-0" /> <span>Carteira</span>
                           </button>
                           <button onClick={() => setActiveTab('FEES')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'FEES' 
-                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
+                                ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
                           }`}>
                               <Settings2 className="w-4 h-4 flex-shrink-0" /> <span>Taxas</span>
                           </button>
                           <button onClick={() => setActiveTab('PROVIDER')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'PROVIDER' 
-                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
+                                ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
                           }`}>
                               <Building2 className="w-4 h-4 flex-shrink-0" /> <span>Provider</span>
                           </button>
                           <button onClick={() => setActiveTab('CONFIG')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'CONFIG' 
-                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
+                                ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
                           }`}>
                               <Settings2 className="w-4 h-4 flex-shrink-0" /> <span>Config</span>
                           </button>
                           <button onClick={() => setActiveTab('DOCUMENTS')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'DOCUMENTS' 
-                                ? 'border-fluxabank-500 text-fluxabank-500 bg-fluxabank-50/50' 
-                                : 'border-transparent text-slate-600 hover:text-fluxabank-500 hover:bg-slate-50'
+                                ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
                           }`}>
                               <FileText className="w-4 h-4 flex-shrink-0" /> <span>Docs</span>
                           </button>
@@ -685,21 +685,21 @@ export const Clients: React.FC = () => {
 
                   <div className="flex-1 overflow-y-auto p-6 bg-slate-50/30">
                       {loadingDetails ? (
-                          <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-fluxabank-500" /></div>
+                          <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-emerald-500" /></div>
                       ) : (
                           <>
                             {activeTab === 'PROFILE' && (
                                 <div className="space-y-6 max-w-2xl mx-auto">
-                                    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                                        <h4 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                            <FileText className="w-5 h-5 text-slate-500" /> Status da Conta
+                                    <div className="bg-[#0f1713] p-6 rounded-xl border border-emerald-500/20 shadow-sm">
+                                        <h4 className="font-bold text-slate-100 mb-4 flex items-center gap-2">
+                                            <FileText className="w-5 h-5 text-slate-400" /> Status da Conta
                                         </h4>
                                         <div className="space-y-4">
                                             <div>
-                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Status Atual</label>
+                                                <label className="block text-xs font-bold text-slate-400 uppercase mb-1">Status Atual</label>
                                                 <span className={`px-3 py-1 rounded-lg text-sm font-bold ${
                                                     selectedUser.doc_status === DocStatus.APPROVED ? 'bg-green-100 text-green-700' : 
-                                                    selectedUser.doc_status === DocStatus.REJECTED ? 'bg-fluxabank-100 text-fluxabank-600' :
+                                                    selectedUser.doc_status === DocStatus.REJECTED ? 'bg-emerald-950/40 text-emerald-600' :
                                                     'bg-amber-100 text-amber-700'
                                                 }`}>
                                                     {selectedUser.doc_status === 'APPROVED' ? 'APROVADO / ATIVO' : selectedUser.doc_status || 'PENDENTE'}
@@ -707,18 +707,18 @@ export const Clients: React.FC = () => {
                                             </div>
                                             
                                             {selectedUser.doc_status === DocStatus.APPROVED ? (
-                                                <div className="pt-4 mt-2 border-t border-slate-100">
+                                                <div className="pt-4 mt-2 border-t border-emerald-500/20">
                                                     <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 flex items-center gap-3">
                                                         <CheckCircle className="w-5 h-5 text-green-600" />
                                                         <p className="text-sm text-green-800">Este usuário já está aprovado e operando. Para gestão de documentos, utilize o painel de conformidade.</p>
                                                     </div>
                                                     
                                                     <div className="space-y-2">
-                                                        <label className="block text-xs font-bold text-slate-500 uppercase">Ações de Risco</label>
+                                                        <label className="block text-xs font-bold text-slate-400 uppercase">Ações de Risco</label>
                                                         <button 
                                                             disabled={actionLoading}
                                                             onClick={handleSuspendAccount}
-                                                            className="w-full py-3 bg-white hover:bg-fluxabank-50 text-fluxabank-500 border border-fluxabank-200 hover:border-fluxabank-300 rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+                                                            className="w-full py-3 bg-[#0f1713] hover:bg-emerald-950/20 text-emerald-500 border border-emerald-500/30 hover:border-emerald-300 rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
                                                         >
                                                             {actionLoading ? <Loader2 className="animate-spin w-4 h-4" /> : <Ban className="w-4 h-4" />}
                                                             Suspender Conta (Bloquear)
@@ -729,11 +729,11 @@ export const Clients: React.FC = () => {
                                             ) : (
                                                 <>
                                                     <div>
-                                                        <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Notas de Análise</label>
+                                                        <label className="block text-xs font-bold text-slate-400 uppercase mb-2">Notas de Análise</label>
                                                         <textarea 
                                                             value={docNotes}
                                                             onChange={(e) => setDocNotes(e.target.value)}
-                                                            className="w-full border border-slate-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-fluxabank-500 outline-none"
+                                                            className="w-full border border-emerald-500/20 rounded-lg p-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
                                                             placeholder="Motivo da aprovação ou rejeição..."
                                                             rows={3}
                                                         />
@@ -749,7 +749,7 @@ export const Clients: React.FC = () => {
                                                         <button 
                                                             disabled={actionLoading}
                                                             onClick={() => handleUpdateDocStatus(DocStatus.REJECTED)}
-                                                            className="flex-1 py-2 bg-fluxabank-500 hover:bg-fluxabank-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
+                                                            className="flex-1 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
                                                         >
                                                             Rejeitar
                                                         </button>
@@ -773,13 +773,13 @@ export const Clients: React.FC = () => {
                                             </h4>
                                             <p className="text-sm text-green-700 mb-3">Copie agora. O App Secret não será exibido novamente.</p>
                                             <div className="space-y-2">
-                                                <div className="bg-white p-2 rounded border border-green-200">
+                                                <div className="bg-[#0f1713] p-2 rounded border border-green-200">
                                                     <span className="text-xs text-slate-400 block">App ID</span>
-                                                    <code className="text-sm font-mono text-slate-800">{apiCredentials.appId}</code>
+                                                    <code className="text-sm font-mono text-slate-100">{apiCredentials.appId}</code>
                                                 </div>
-                                                <div className="bg-white p-2 rounded border border-green-200">
+                                                <div className="bg-[#0f1713] p-2 rounded border border-green-200">
                                                     <span className="text-xs text-slate-400 block">App Secret</span>
-                                                    <code className="text-sm font-mono text-slate-800 break-all">{apiCredentials.appSecret}</code>
+                                                    <code className="text-sm font-mono text-slate-100 break-all">{apiCredentials.appSecret}</code>
                                                 </div>
                                             </div>
                                         </div>
@@ -787,9 +787,9 @@ export const Clients: React.FC = () => {
 
                                     {/* Card de Credenciais API */}
                                     {(selectedUser.app_id || selectedUser.appId || selectedUser.client_secret || selectedUser.appSecret) && (
-                                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                                            <h4 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                                <Settings2 className="w-5 h-5 text-slate-500" /> Credenciais da API
+                                        <div className="bg-[#0f1713] p-6 rounded-xl border border-emerald-500/20 shadow-sm">
+                                            <h4 className="font-bold text-slate-100 mb-4 flex items-center gap-2">
+                                                <Settings2 className="w-5 h-5 text-slate-400" /> Credenciais da API
                                             </h4>
                                             <div className="space-y-3">
                                                 {(selectedUser.app_id || selectedUser.appId) && (
@@ -802,14 +802,14 @@ export const Clients: React.FC = () => {
                                                                 toast.error('Erro ao copiar');
                                                             });
                                                         }}
-                                                        className="bg-slate-50 border border-slate-200 rounded-lg p-4 cursor-pointer hover:bg-slate-100 transition-colors group"
+                                                        className="bg-[#0c1410] border border-emerald-500/20 rounded-lg p-4 cursor-pointer hover:bg-emerald-950/40 transition-colors group"
                                                     >
                                                         <div className="flex items-center justify-between">
                                                             <div className="flex-1">
-                                                                <label className="text-xs text-slate-500 font-bold uppercase block mb-1">App ID</label>
-                                                                <code className="text-sm font-mono text-slate-800 break-all block">{selectedUser.app_id || selectedUser.appId || '-'}</code>
+                                                                <label className="text-xs text-slate-400 font-bold uppercase block mb-1">App ID</label>
+                                                                <code className="text-sm font-mono text-slate-100 break-all block">{selectedUser.app_id || selectedUser.appId || '-'}</code>
                                                             </div>
-                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-fluxabank-500 transition-colors ml-3 flex-shrink-0" />
+                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-emerald-500 transition-colors ml-3 flex-shrink-0" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -823,14 +823,14 @@ export const Clients: React.FC = () => {
                                                                 toast.error('Erro ao copiar');
                                                             });
                                                         }}
-                                                        className="bg-slate-50 border border-slate-200 rounded-lg p-4 cursor-pointer hover:bg-slate-100 transition-colors group"
+                                                        className="bg-[#0c1410] border border-emerald-500/20 rounded-lg p-4 cursor-pointer hover:bg-emerald-950/40 transition-colors group"
                                                     >
                                                         <div className="flex items-center justify-between">
                                                             <div className="flex-1">
-                                                                <label className="text-xs text-slate-500 font-bold uppercase block mb-1">Client Secret</label>
-                                                                <code className="text-sm font-mono text-slate-800 break-all block">{selectedUser.client_secret || selectedUser.appSecret || '-'}</code>
+                                                                <label className="text-xs text-slate-400 font-bold uppercase block mb-1">Client Secret</label>
+                                                                <code className="text-sm font-mono text-slate-100 break-all block">{selectedUser.client_secret || selectedUser.appSecret || '-'}</code>
                                                             </div>
-                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-fluxabank-500 transition-colors ml-3 flex-shrink-0" />
+                                                            <Copy className="w-4 h-4 text-slate-400 group-hover:text-emerald-500 transition-colors ml-3 flex-shrink-0" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -838,60 +838,60 @@ export const Clients: React.FC = () => {
                                         </div>
                                     )}
 
-                                    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                                        <h4 className="font-bold text-slate-800 mb-4">Dados Cadastrais</h4>
+                                    <div className="bg-[#0f1713] p-6 rounded-xl border border-emerald-500/20 shadow-sm">
+                                        <h4 className="font-bold text-slate-100 mb-4">Dados Cadastrais</h4>
                                         <div className="grid grid-cols-2 gap-4">
                                             <div>
-                                                <label className="text-xs text-slate-500 font-bold uppercase">Nome</label>
-                                                <p className="text-slate-800">{selectedUser.name}</p>
+                                                <label className="text-xs text-slate-400 font-bold uppercase">Nome</label>
+                                                <p className="text-slate-100">{selectedUser.name}</p>
                                             </div>
                                             <div>
-                                                <label className="text-xs text-slate-500 font-bold uppercase">Email</label>
-                                                <p className="text-slate-800">{selectedUser.email}</p>
+                                                <label className="text-xs text-slate-400 font-bold uppercase">Email</label>
+                                                <p className="text-slate-100">{selectedUser.email}</p>
                                             </div>
                                             <div>
-                                                <label className="text-xs text-slate-500 font-bold uppercase">Documento</label>
-                                                <p className="text-slate-800">{selectedUser.document || '-'}</p>
+                                                <label className="text-xs text-slate-400 font-bold uppercase">Documento</label>
+                                                <p className="text-slate-100">{selectedUser.document || '-'}</p>
                                             </div>
                                             <div>
-                                                <label className="text-xs text-slate-500 font-bold uppercase">Empresa</label>
-                                                <p className="text-slate-800">{selectedUser.company || '-'}</p>
+                                                <label className="text-xs text-slate-400 font-bold uppercase">Empresa</label>
+                                                <p className="text-slate-100">{selectedUser.company || '-'}</p>
                                             </div>
                                             <div>
-                                                <label className="text-xs text-slate-500 font-bold uppercase">Tipo da Conta</label>
-                                                <p className="text-slate-800">
+                                                <label className="text-xs text-slate-400 font-bold uppercase">Tipo da Conta</label>
+                                                <p className="text-slate-100">
                                                     {Number(selectedUser.id) === Number((selectedUser as any).owner_user_id || (selectedUser as any).ownerUserId || selectedUser.id)
                                                         ? 'Principal'
                                                         : 'Vinculada'}
                                                 </p>
                                             </div>
                                             <div>
-                                                <label className="text-xs text-slate-500 font-bold uppercase">Titular (Owner ID)</label>
-                                                <p className="text-slate-800">#{Number((selectedUser as any).owner_user_id || (selectedUser as any).ownerUserId || selectedUser.id)}</p>
+                                                <label className="text-xs text-slate-400 font-bold uppercase">Titular (Owner ID)</label>
+                                                <p className="text-slate-100">#{Number((selectedUser as any).owner_user_id || (selectedUser as any).ownerUserId || selectedUser.id)}</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                                        <h4 className="font-bold text-slate-800 mb-4">Contas vinculadas ao titular</h4>
+                                    <div className="bg-[#0f1713] p-6 rounded-xl border border-emerald-500/20 shadow-sm">
+                                        <h4 className="font-bold text-slate-100 mb-4">Contas vinculadas ao titular</h4>
 
                                         {!linkedAccountsData ? (
-                                            <p className="text-sm text-slate-500">Carregando vínculos...</p>
+                                            <p className="text-sm text-slate-400">Carregando vínculos...</p>
                                         ) : (
                                             <div className="space-y-3">
-                                                <div className="text-sm text-slate-600">
-                                                    Titular: <span className="font-semibold text-slate-800">{linkedAccountsData?.ownerUser?.name || '-'}</span>
+                                                <div className="text-sm text-slate-300">
+                                                    Titular: <span className="font-semibold text-slate-100">{linkedAccountsData?.ownerUser?.name || '-'}</span>
                                                     {' '}#{linkedAccountsData?.ownerUserId}
                                                 </div>
 
                                                 <div className="space-y-2">
                                                     {(linkedAccountsData?.accounts || []).map((account: any) => (
-                                                        <div key={account.id} className="p-3 border border-slate-200 rounded-lg flex items-center justify-between gap-3">
+                                                        <div key={account.id} className="p-3 border border-emerald-500/20 rounded-lg flex items-center justify-between gap-3">
                                                             <div>
-                                                                <p className="font-medium text-slate-800">{account.name}</p>
-                                                                <p className="text-xs text-slate-500">ID #{account.id} • {account.email || 'sem email'} • {account.doc_status || 'PENDING'}</p>
+                                                                <p className="font-medium text-slate-100">{account.name}</p>
+                                                                <p className="text-xs text-slate-400">ID #{account.id} • {account.email || 'sem email'} • {account.doc_status || 'PENDING'}</p>
                                                             </div>
-                                                            <span className={`px-2 py-1 rounded-full text-xs font-bold ${account.is_owner ? 'bg-orange-100 text-orange-600' : 'bg-orange-100 text-orange-600'}`}>
+                                                            <span className={`px-2 py-1 rounded-full text-xs font-bold ${account.is_owner ? 'bg-emerald-950/40 text-orange-600' : 'bg-emerald-950/40 text-orange-600'}`}>
                                                                 {account.is_owner ? 'Principal' : 'Vinculada'}
                                                             </span>
                                                         </div>
@@ -913,31 +913,31 @@ export const Clients: React.FC = () => {
                                     </div>
 
                                     <div>
-                                        <h4 className="font-bold text-slate-800 mb-4">Extrato da Carteira (Ledger)</h4>
-                                        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+                                        <h4 className="font-bold text-slate-100 mb-4">Extrato da Carteira (Ledger)</h4>
+                                        <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl overflow-hidden">
                                             <table className="w-full text-sm text-left">
-                                                <thead className="bg-slate-50 border-b border-slate-200">
+                                                <thead className="bg-[#0c1410] border-b border-emerald-500/20">
                                                     <tr>
-                                                        <th className="px-4 py-3 font-medium text-slate-500">Data</th>
-                                                        <th className="px-4 py-3 font-medium text-slate-500">Descrição</th>
-                                                        <th className="px-4 py-3 font-medium text-slate-500">Tipo</th>
-                                                        <th className="px-4 py-3 font-medium text-slate-500 text-right">Valor</th>
+                                                        <th className="px-4 py-3 font-medium text-slate-400">Data</th>
+                                                        <th className="px-4 py-3 font-medium text-slate-400">Descrição</th>
+                                                        <th className="px-4 py-3 font-medium text-slate-400">Tipo</th>
+                                                        <th className="px-4 py-3 font-medium text-slate-400 text-right">Valor</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody className="divide-y divide-slate-100">
+                                                <tbody className="divide-y divide-emerald-500/10">
                                                     {(userLedger || []).map((item, idx) => (
-                                                        <tr key={idx} className="hover:bg-slate-50">
-                                                            <td className="px-4 py-3 text-slate-600 whitespace-nowrap">
+                                                        <tr key={idx} className="hover:bg-[#0c1410]">
+                                                            <td className="px-4 py-3 text-slate-300 whitespace-nowrap">
                                                                 {safeDateTime(item.created_at)}
                                                             </td>
-                                                            <td className="px-4 py-3 text-slate-800">{item.description}</td>
+                                                            <td className="px-4 py-3 text-slate-100">{item.description}</td>
                                                             <td className="px-4 py-3">
                                                                 <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${getTypeStyle(item.type)}`}>
                                                                     {item.type}
                                                                 </span>
                                                             </td>
                                                             <td className={`px-4 py-3 text-right font-mono font-medium ${
-                                                                (item.type === 'CREDIT' || item.type === 'PIX_IN') ? 'text-green-600' : 'text-slate-800'
+                                                                (item.type === 'CREDIT' || item.type === 'PIX_IN') ? 'text-green-600' : 'text-slate-100'
                                                             }`}>
                                                                 {(item.type === 'DEBIT' || item.type === 'PIX_OUT') ? '-' : '+'}
                                                                 R$ {(Number(item.amount) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
@@ -957,23 +957,23 @@ export const Clients: React.FC = () => {
                             {activeTab === 'FEES' && (
                                 <form onSubmit={handleUpdateFees} className="max-w-2xl mx-auto space-y-8 py-4">
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
-                                        <Settings2 className="w-5 h-5 text-blue-600 mt-0.5" />
+                                        <Settings2 className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Configuração de Tarifas</h4>
-                                            <p className="text-sm text-blue-700">Defina as taxas retidas pelo gateway. Você pode configurar taxa fixa, percentual ou ambas simultaneamente. Se ambas estiverem configuradas, serão somadas.</p>
+                                            <p className="text-sm text-emerald-400">Defina as taxas retidas pelo gateway. Você pode configurar taxa fixa, percentual ou ambas simultaneamente. Se ambas estiverem configuradas, serão somadas.</p>
                                         </div>
                                     </div>
 
                                     {/* PIX ENTRADA */}
-                                    <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                                        <h5 className="font-bold text-slate-800 flex items-center gap-2">
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                        <h5 className="font-bold text-slate-100 flex items-center gap-2">
                                             <ArrowDownLeft className="w-5 h-5 text-green-500" />
                                             Pix Entrada (Cash-in)
                                         </h5>
                                         
                                         <div className="space-y-4">
                                             <div>
-                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                                <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                     Taxa Fixa (R$)
                                                 </label>
                                                 <div className="relative">
@@ -982,16 +982,16 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixInFeeValue}
                                                         onChange={(e) => setFeesForm({...feesForm, pixInFeeValue: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Valor fixo cobrado por transação (opcional)</p>
+                                                <p className="mt-1 text-xs text-slate-400">Valor fixo cobrado por transação (opcional)</p>
                                             </div>
                                             
                                             <div>
-                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                                <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                     Taxa Percentual (%)
                                                 </label>
                                                 <div className="relative">
@@ -1000,26 +1000,26 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixInPercent}
                                                         onChange={(e) => setFeesForm({...feesForm, pixInPercent: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transação (opcional). Se ambas estiverem configuradas, serão somadas.</p>
+                                                <p className="mt-1 text-xs text-slate-400">Percentual sobre o valor da transação (opcional). Se ambas estiverem configuradas, serão somadas.</p>
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* PIX SAÍDA */}
-                                    <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                                        <h5 className="font-bold text-slate-800 flex items-center gap-2">
-                                            <ArrowUpRight className="w-5 h-5 text-fluxabank-500" />
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                        <h5 className="font-bold text-slate-100 flex items-center gap-2">
+                                            <ArrowUpRight className="w-5 h-5 text-emerald-500" />
                                             Pix Saída (Cash-out)
                                         </h5>
                                         
                                         <div className="space-y-4">
                                             <div>
-                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                                <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                     Taxa Fixa (R$)
                                                 </label>
                                                 <div className="relative">
@@ -1028,16 +1028,16 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixOutFeeValue}
                                                         onChange={(e) => setFeesForm({...feesForm, pixOutFeeValue: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Valor fixo cobrado por transação (opcional)</p>
+                                                <p className="mt-1 text-xs text-slate-400">Valor fixo cobrado por transação (opcional)</p>
                                             </div>
                                             
                                             <div>
-                                                <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                                <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                     Taxa Percentual (%)
                                                 </label>
                                                 <div className="relative">
@@ -1046,25 +1046,25 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixOutPercent}
                                                         onChange={(e) => setFeesForm({...feesForm, pixOutPercent: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none font-mono" 
+                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                                 </div>
-                                                <p className="mt-1 text-xs text-slate-500">Percentual sobre o valor da transação (opcional). Se ambas estiverem configuradas, serão somadas.</p>
+                                                <p className="mt-1 text-xs text-slate-400">Percentual sobre o valor da transação (opcional). Se ambas estiverem configuradas, serão somadas.</p>
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* OTC CRIPTO */}
-                                    <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                                        <h5 className="font-bold text-slate-800 flex items-center gap-2">
-                                            <Bitcoin className="w-5 h-5 text-orange-500" />
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                        <h5 className="font-bold text-slate-100 flex items-center gap-2">
+                                            <Bitcoin className="w-5 h-5 text-emerald-400" />
                                             Taxa OTC (Criptomoedas)
                                         </h5>
                                         
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                            <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                 Taxa Percentual (%)
                                             </label>
                                             <div className="relative">
@@ -1073,12 +1073,12 @@ export const Clients: React.FC = () => {
                                                     step="0.00001"
                                                     value={feesForm.otcFeePercentage}
                                                     onChange={(e) => setFeesForm({...feesForm, otcFeePercentage: e.target.value})}
-                                                    className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none font-mono" 
+                                                    className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono" 
                                                     placeholder="0.00"
                                                 />
                                                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
                                             </div>
-                                            <p className="mt-1 text-xs text-slate-500">Taxa de conversão BRL → Criptomoedas (BTC, ETH, USDT). Exemplo: 5 = 5% de taxa</p>
+                                            <p className="mt-1 text-xs text-slate-400">Taxa de conversão BRL → Criptomoedas (BTC, ETH, USDT). Exemplo: 5 = 5% de taxa</p>
                                         </div>
                                     </div>
 
@@ -1091,10 +1091,10 @@ export const Clients: React.FC = () => {
                             {activeTab === 'PROVIDER' && (
                                 <div className="max-w-2xl mx-auto space-y-6 py-4">
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
-                                        <Building2 className="w-5 h-5 text-blue-600 mt-0.5" />
+                                        <Building2 className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Seleção de Provider</h4>
-                                            <p className="text-sm text-blue-700">Escolha um provider de pagamento para este usuário. O provider será usado para processar as transações.</p>
+                                            <p className="text-sm text-emerald-400">Escolha um provider de pagamento para este usuário. O provider será usado para processar as transações.</p>
                                         </div>
                                     </div>
 
@@ -1110,15 +1110,15 @@ export const Clients: React.FC = () => {
                                         </div>
                                     )}
 
-                                    <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                                        <h5 className="font-bold text-slate-800 mb-4">Lista de Providers Disponíveis</h5>
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                        <h5 className="font-bold text-slate-100 mb-4">Lista de Providers Disponíveis</h5>
                                         
                                         {loadingDetails ? (
                                             <div className="flex justify-center py-8">
-                                                <Loader2 className="w-6 h-6 animate-spin text-fluxabank-500" />
+                                                <Loader2 className="w-6 h-6 animate-spin text-emerald-500" />
                                             </div>
                                         ) : providers.length === 0 ? (
-                                            <div className="text-center py-8 text-slate-500">
+                                            <div className="text-center py-8 text-slate-400">
                                                 Nenhum provider disponível.
                                             </div>
                                         ) : (
@@ -1128,8 +1128,8 @@ export const Clients: React.FC = () => {
                                                         key={provider.id}
                                                         className={`flex items-start gap-4 p-4 border-2 rounded-lg cursor-pointer transition-all ${
                                                             selectedProvider === provider.code
-                                                                ? 'border-fluxabank-500 bg-fluxabank-50'
-                                                                : 'border-slate-200 hover:border-slate-300'
+                                                                ? 'border-emerald-500 bg-emerald-950/20'
+                                                                : 'border-emerald-500/20 hover:border-slate-300'
                                                         } ${!provider.active ? 'opacity-60' : ''}`}
                                                     >
                                                         <input
@@ -1139,20 +1139,20 @@ export const Clients: React.FC = () => {
                                                             checked={selectedProvider === provider.code}
                                                             onChange={(e) => setSelectedProvider(e.target.value)}
                                                             disabled={!provider.active}
-                                                            className="mt-1 w-4 h-4 text-fluxabank-500 focus:ring-fluxabank-500"
+                                                            className="mt-1 w-4 h-4 text-emerald-500 focus:ring-emerald-500"
                                                         />
                                                         <div className="flex-1">
                                                             <div className="flex items-center gap-2 mb-1">
-                                                                <div className="font-bold text-slate-800">{provider.name}</div>
+                                                                <div className="font-bold text-slate-100">{provider.name}</div>
                                                                 {!provider.active && (
-                                                                    <span className="px-2 py-0.5 bg-slate-100 text-slate-600 text-xs rounded">Inativo</span>
+                                                                    <span className="px-2 py-0.5 bg-slate-100 text-slate-300 text-xs rounded">Inativo</span>
                                                                 )}
                                                             </div>
-                                                            <div className="text-sm text-slate-600 font-mono">{provider.code}</div>
-                                                            <div className="text-xs text-slate-500 mt-1">{provider.base_url}</div>
+                                                            <div className="text-sm text-slate-300 font-mono">{provider.code}</div>
+                                                            <div className="text-xs text-slate-400 mt-1">{provider.base_url}</div>
                                                         </div>
                                                         {selectedProvider === provider.code && (
-                                                            <CheckCircle className="w-5 h-5 text-fluxabank-500" />
+                                                            <CheckCircle className="w-5 h-5 text-emerald-500" />
                                                         )}
                                                     </label>
                                                 ))}
@@ -1179,17 +1179,17 @@ export const Clients: React.FC = () => {
                             {activeTab === 'DOCUMENTS' && (
                                 <div className="max-w-4xl mx-auto py-4">
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3 mb-6">
-                                        <FileText className="w-5 h-5 text-blue-600 mt-0.5" />
+                                        <FileText className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Documentos KYC</h4>
-                                            <p className="text-sm text-blue-700">Documentação enviada pelo usuário para validação de identidade e conformidade.</p>
+                                            <p className="text-sm text-emerald-400">Documentação enviada pelo usuário para validação de identidade e conformidade.</p>
                                         </div>
                                     </div>
 
                                     {userDocuments.length === 0 ? (
-                                        <div className="bg-white border border-slate-200 rounded-xl p-8 text-center">
+                                        <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-8 text-center">
                                             <File className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-                                            <p className="text-slate-500">Nenhum documento enviado por este usuário.</p>
+                                            <p className="text-slate-400">Nenhum documento enviado por este usuário.</p>
                                         </div>
                                     ) : (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1203,20 +1203,20 @@ export const Clients: React.FC = () => {
                                                 const isPdf = documentLink.startsWith('data:application/pdf') || /\.pdf$/i.test(documentLink);
                                                 
                                                 return (
-                                                    <div key={idx} className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                                                        <div className="bg-gradient-to-r from-slate-50 to-slate-100 p-4 border-b border-slate-200">
+                                                    <div key={idx} className="bg-[#0f1713] border border-emerald-500/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                                                        <div className="bg-gradient-to-r from-slate-50 to-slate-100 p-4 border-b border-emerald-500/20">
                                                             <div className="flex items-start justify-between mb-2">
-                                                                <h5 className="font-bold text-slate-800 text-sm">{documentType}</h5>
+                                                                <h5 className="font-bold text-slate-100 text-sm">{documentType}</h5>
                                                                 <span className={`text-xs px-2 py-1 rounded-full font-bold ${
-                                                                    isImage ? 'bg-blue-100 text-blue-700' :
-                                                                    isPdf ? 'bg-fluxabank-100 text-fluxabank-600' :
-                                                                    'bg-slate-100 text-slate-700'
+                                                                    isImage ? 'bg-emerald-950/40 text-emerald-400' :
+                                                                    isPdf ? 'bg-emerald-950/40 text-emerald-600' :
+                                                                    'bg-slate-100 text-slate-200'
                                                                 }`}>
                                                                     {isImage ? 'Imagem' : isPdf ? 'PDF' : 'Arquivo'}
                                                                 </span>
                                                             </div>
                                                             {createdAt && (
-                                                                <p className="text-xs text-slate-500">
+                                                                <p className="text-xs text-slate-400">
                                                                     Enviado em {safeDateTime(createdAt)}
                                                                 </p>
                                                             )}
@@ -1224,7 +1224,7 @@ export const Clients: React.FC = () => {
                                                         
                                                         <div className="p-4 space-y-3">
                                                             {isImage && documentLink.startsWith('data:image') ? (
-                                                                <div className="bg-slate-50 rounded-lg overflow-hidden border border-slate-200">
+                                                                <div className="bg-[#0c1410] rounded-lg overflow-hidden border border-emerald-500/20">
                                                                     <img 
                                                                         src={documentLink} 
                                                                         alt={documentType}
@@ -1235,7 +1235,7 @@ export const Clients: React.FC = () => {
                                                             
                                                             <button
                                                                 onClick={() => openDocumentSafe(documentLink)}
-                                                                className="w-full py-2 px-3 bg-fluxabank-500 hover:bg-fluxabank-600 text-white rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2"
+                                                                className="w-full py-2 px-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2"
                                                             >
                                                                 <Eye className="w-4 h-4" />
                                                                 Visualizar
@@ -1252,132 +1252,132 @@ export const Clients: React.FC = () => {
                             {activeTab === 'CONFIG' && (
                                 <form onSubmit={handleSaveConfig} className="max-w-2xl mx-auto space-y-6 py-4">
                                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex items-start gap-3">
-                                        <Settings2 className="w-5 h-5 text-blue-600 mt-0.5" />
+                                        <Settings2 className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
                                             <h4 className="font-bold text-blue-900">Configurações do Sistema</h4>
-                                            <p className="text-sm text-blue-700">Configure a URL de webhook e os IPs permitidos para este usuário.</p>
+                                            <p className="text-sm text-emerald-400">Configure a URL de webhook e os IPs permitidos para este usuário.</p>
                                         </div>
                                     </div>
 
-                                    <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                                        <h5 className="font-bold text-slate-800 mb-4">Webhook URLs</h5>
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                        <h5 className="font-bold text-slate-100 mb-4">Webhook URLs</h5>
                                         
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                            <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                 URL de Webhook Geral (Opcional)
                                             </label>
                                             <input
                                                 type="url"
                                                 value={configForm.webhook_url}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook"
                                             />
-                                            <p className="mt-2 text-xs text-slate-500">
+                                            <p className="mt-2 text-xs text-slate-400">
                                                 URL genérica para todos os eventos. Será usada como fallback se as URLs específicas não estiverem configuradas.
                                             </p>
                                         </div>
 
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                            <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                 URL de Webhook PIX IN (Depósitos)
                                             </label>
                                             <input
                                                 type="url"
                                                 value={configForm.webhook_url_pix_in}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url_pix_in: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook/pix-in"
                                             />
-                                            <p className="mt-2 text-xs text-slate-500">
+                                            <p className="mt-2 text-xs text-slate-400">
                                                 URL específica para receber notificações de depósitos PIX. Se não configurada, será usada a URL geral.
                                             </p>
                                         </div>
 
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                            <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                 URL de Webhook PIX OUT (Saques)
                                             </label>
                                             <input
                                                 type="url"
                                                 value={configForm.webhook_url_pix_out}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url_pix_out: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook/pix-out"
                                             />
-                                            <p className="mt-2 text-xs text-slate-500">
+                                            <p className="mt-2 text-xs text-slate-400">
                                                 URL específica para receber notificações de saques PIX. Se não configurada, será usada a URL geral.
                                             </p>
                                         </div>
 
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                            <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                 Webhook de Refund
                                             </label>
                                             <input
                                                 type="url"
                                                 value={configForm.refund_api_route}
                                                 onChange={(e) => setConfigForm({...configForm, refund_api_route: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
                                                 placeholder="https://exemplo.com/webhook/refound"
                                             />
-                                            <p className="mt-2 text-xs text-slate-500">
+                                            <p className="mt-2 text-xs text-slate-400">
                                                 URL de callback de refund do cliente. Se preenchida, será usada automaticamente no processamento de refund.
                                             </p>
                                         </div>
                                     </div>
 
-                                    <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                                        <h5 className="font-bold text-slate-800 mb-4">IP Whitelist</h5>
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                        <h5 className="font-bold text-slate-100 mb-4">IP Whitelist</h5>
                                         
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                            <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                 IPs Permitidos
                                             </label>
                                             <textarea
                                                 value={configForm.ip_whitelist}
                                                 onChange={(e) => setConfigForm({...configForm, ip_whitelist: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
                                                 placeholder="192.168.1.1
 10.0.0.1
 200.123.45.67"
                                                 rows={5}
                                             />
-                                            <p className="mt-2 text-xs text-slate-500">
+                                            <p className="mt-2 text-xs text-slate-400">
                                                 Digite um IP por linha. Apenas requisições vindas destes IPs serão aceitas.
                                             </p>
                                         </div>
                                     </div>
 
-                                    <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                                        <h5 className="font-bold text-slate-800 mb-4">CNPJ Whitelist</h5>
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                        <h5 className="font-bold text-slate-100 mb-4">CNPJ Whitelist</h5>
                                         
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-500 uppercase mb-2">
+                                            <label className="block text-xs font-bold text-slate-400 uppercase mb-2">
                                                 CNPJs Permitidos
                                             </label>
                                             <textarea
                                                 value={configForm.cnpj_whitelist}
                                                 onChange={(e) => setConfigForm({...configForm, cnpj_whitelist: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-fluxabank-500 outline-none"
+                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
                                                 placeholder="12.345.678/0001-90
 98.765.432/0001-10
 11.222.333/0001-44"
                                                 rows={5}
                                             />
-                                            <p className="mt-2 text-xs text-slate-500">
+                                            <p className="mt-2 text-xs text-slate-400">
                                                 Digite um CNPJ por linha. Apenas transações com estes CNPJs serão aceitas.
                                             </p>
                                         </div>
                                     </div>
 
-                                    <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-                                        <h5 className="font-bold text-slate-800 mb-4">Controle de Fluxo PIX</h5>
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl p-6 space-y-4">
+                                        <h5 className="font-bold text-slate-100 mb-4">Controle de Fluxo PIX</h5>
                                         <div className="space-y-4">
-                                            <div className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 p-4">
+                                            <div className="flex items-center justify-between gap-4 rounded-lg border border-emerald-500/20 p-4">
                                                 <div>
-                                                    <p className="font-medium text-slate-800">PIX IN (Depósitos)</p>
-                                                    <p className="text-xs text-slate-500 mt-1">Desative para bloquear novas entradas PIX deste usuário.</p>
+                                                    <p className="font-medium text-slate-100">PIX IN (Depósitos)</p>
+                                                    <p className="text-xs text-slate-400 mt-1">Desative para bloquear novas entradas PIX deste usuário.</p>
                                                 </div>
                                                 <button
                                                     type="button"
@@ -1385,15 +1385,15 @@ export const Clients: React.FC = () => {
                                                     className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${configForm.pix_in_enabled ? 'bg-emerald-500' : 'bg-slate-300'}`}
                                                 >
                                                     <span
-                                                        className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0 transition ${configForm.pix_in_enabled ? 'translate-x-5' : 'translate-x-0'}`}
+                                                        className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-[#0f1713] shadow ring-0 transition ${configForm.pix_in_enabled ? 'translate-x-5' : 'translate-x-0'}`}
                                                     />
                                                 </button>
                                             </div>
 
-                                            <div className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 p-4">
+                                            <div className="flex items-center justify-between gap-4 rounded-lg border border-emerald-500/20 p-4">
                                                 <div>
-                                                    <p className="font-medium text-slate-800">PIX OUT (Saques)</p>
-                                                    <p className="text-xs text-slate-500 mt-1">Desative para bloquear novos saques PIX deste usuário.</p>
+                                                    <p className="font-medium text-slate-100">PIX OUT (Saques)</p>
+                                                    <p className="text-xs text-slate-400 mt-1">Desative para bloquear novos saques PIX deste usuário.</p>
                                                 </div>
                                                 <button
                                                     type="button"
@@ -1401,7 +1401,7 @@ export const Clients: React.FC = () => {
                                                     className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${configForm.pix_out_enabled ? 'bg-emerald-500' : 'bg-slate-300'}`}
                                                 >
                                                     <span
-                                                        className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0 transition ${configForm.pix_out_enabled ? 'translate-x-5' : 'translate-x-0'}`}
+                                                        className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-[#0f1713] shadow ring-0 transition ${configForm.pix_out_enabled ? 'translate-x-5' : 'translate-x-0'}`}
                                                     />
                                                 </button>
                                             </div>

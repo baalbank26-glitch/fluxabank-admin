@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+﻿import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { CalendarDays, Filter, RefreshCw, Search, Loader2 } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { webhooksService } from '../services/webhooks.service'
@@ -280,7 +280,7 @@ export const WebhooksHistory: React.FC = () => {
         </div>
 
         <div className="flex-1 min-w-[180px] relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             defaultValue={filters.url}
             onChange={(e) => updateFilterDebounced('url', e.target.value)}
@@ -290,7 +290,7 @@ export const WebhooksHistory: React.FC = () => {
         </div>
 
         <div className="flex-1 min-w-[140px] relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             defaultValue={filters.transactionId}
             onChange={(e) => updateFilterDebounced('transactionId', e.target.value)}
@@ -324,7 +324,7 @@ export const WebhooksHistory: React.FC = () => {
           <button
             onClick={handleMapTransaction}
             disabled={mapperLoading || !mapperTransactionId.trim()}
-            className="px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-xs font-semibold inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-xs font-semibold inline-flex items-center gap-2"
           >
             {mapperLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
             Mapear
@@ -377,7 +377,7 @@ export const WebhooksHistory: React.FC = () => {
                         <span className="text-slate-200 truncate flex-1">{item.event_type || '-'}</span>
                         <span className="text-slate-300">{item.status || '-'}</span>
                         <span className="text-slate-400">HTTP {item.http_status ?? '-'}</span>
-                        <span className="text-slate-500">{item.created_at ? new Date(item.created_at).toLocaleString() : '-'}</span>
+                        <span className="text-slate-400">{item.created_at ? new Date(item.created_at).toLocaleString() : '-'}</span>
                         <button
                           onClick={() => handleResend([item.id])}
                           disabled={resendingId === item.id}
@@ -456,7 +456,7 @@ export const WebhooksHistory: React.FC = () => {
             <Loader2 className="w-6 h-6 animate-spin text-emerald-400" />
           </div>
         ) : logs.length === 0 ? (
-          <div className="py-10 text-center text-sm text-slate-500">
+          <div className="py-10 text-center text-sm text-slate-400">
             Nenhum resultado encontrado.
           </div>
         ) : (
@@ -489,7 +489,7 @@ export const WebhooksHistory: React.FC = () => {
                           </div>
                           <span className="font-mono truncate block max-w-[150px]">{log.payload?.merOrderNo || log.payload?.orderNo || log.payload?.tradeNo || '-'}</span>
                         </div>
-                        <span className="text-[10px] text-slate-500">{new Date(log.created_at).toLocaleDateString()} {new Date(log.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        <span className="text-[10px] text-slate-400">{new Date(log.created_at).toLocaleDateString()} {new Date(log.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                       </div>
                       <button
                         onClick={() => navigator.clipboard?.writeText(log.target_url || '')}
@@ -511,7 +511,7 @@ export const WebhooksHistory: React.FC = () => {
                       {log.payload?.externalId || ''}
                     </div>
                     <div className="mt-2 flex items-center justify-between gap-2">
-                      <div className="text-[10px] text-slate-500 truncate" title={log.target_url}>{log.target_url}</div>
+                      <div className="text-[10px] text-slate-400 truncate" title={log.target_url}>{log.target_url}</div>
                       <div className="flex items-center gap-2 shrink-0">
                         <button
                           onClick={() => handleResend([log.id])}
@@ -548,7 +548,7 @@ export const WebhooksHistory: React.FC = () => {
                     </button>
                     <div className="flex flex-col">
                       <span>{new Date(log.created_at).toLocaleDateString()}</span>
-                      <span className="text-[10px] text-slate-500">
+                      <span className="text-[10px] text-slate-400">
                         {new Date(log.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
                     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../services/api';
 import { MedCase } from '../types/index';
@@ -290,12 +290,12 @@ export const MED: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'OPEN': return 'bg-fluxabank-100 text-fluxabank-600 border-fluxabank-200';
+      case 'OPEN': return 'bg-emerald-950/40 text-emerald-600 border-emerald-500/30';
       case 'UNDER_REVIEW': return 'bg-amber-100 text-amber-700 border-amber-200';
-      case 'DEFENSE_SENT': return 'bg-blue-100 text-blue-700 border-blue-200';
+      case 'DEFENSE_SENT': return 'bg-emerald-950/40 text-emerald-400 border-blue-200';
       case 'REFUND_ACCEPTED': return 'bg-green-100 text-green-700 border-green-200';
-      case 'REFUND_REJECTED': return 'bg-slate-100 text-slate-700 border-slate-200';
-      default: return 'bg-slate-100 text-slate-700';
+      case 'REFUND_REJECTED': return 'bg-slate-100 text-slate-200 border-emerald-500/20';
+      default: return 'bg-slate-100 text-slate-200';
     }
   };
 
@@ -372,10 +372,10 @@ export const MED: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-             <h2 className="text-2xl font-bold text-slate-800">Mecanismo Especial de Devolução</h2>
-             <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-fluxabank-100 text-fluxabank-500 border border-fluxabank-200 uppercase tracking-wide">Área Sensível</span>
+             <h2 className="text-2xl font-bold text-slate-100">Mecanismo Especial de Devolução</h2>
+             <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950/40 text-emerald-500 border border-emerald-500/30 uppercase tracking-wide">Área Sensível</span>
           </div>
-          <p className="text-slate-500 text-sm">Gerencie disputas, bloqueios cautelares e solicitações de devolução do Banco Central.</p>
+          <p className="text-slate-400 text-sm">Gerencie disputas, bloqueios cautelares e solicitações de devolução do Banco Central.</p>
         </div>
         <div className="flex gap-2">
            <button
@@ -383,13 +383,13 @@ export const MED: React.FC = () => {
                fetchCases();
                fetchTransactions({ reset: true });
              }}
-             className="p-2 bg-white border border-slate-200 text-slate-600 rounded-lg hover:bg-slate-50 transition-all"
+             className="p-2 bg-[#0f1713] border border-emerald-500/20 text-slate-300 rounded-lg hover:bg-[#0c1410] transition-all"
            >
              <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
            </button>
            <button
              onClick={() => setShowCreateModal(true)}
-             className="flex items-center gap-2 px-4 py-2 bg-fluxabank-500 text-white rounded-lg hover:bg-fluxabank-600 text-sm font-medium shadow-sm shadow-fluxabank-200 transition-all"
+             className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 text-sm font-medium shadow-sm shadow-emerald-500/30 transition-all"
            >
              <PlusCircle className="w-4 h-4" /> Marcar Transação como MED
            </button>
@@ -397,49 +397,49 @@ export const MED: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-2xl border border-fluxabank-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-fluxabank-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+        <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-950/40 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+          <div className="absolute right-0 top-0 w-24 h-24 bg-emerald-950/20 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
           <div className="relative z-10">
-            <div className="flex items-center gap-2 text-fluxabank-500 font-medium mb-2">
+            <div className="flex items-center gap-2 text-emerald-500 font-medium mb-2">
               <AlertTriangle className="w-4 h-4" /> Em Análise
             </div>
-            <h3 className="text-3xl font-bold text-slate-800">
+            <h3 className="text-3xl font-bold text-slate-100">
                 {safeCases.filter(c => c.status === 'OPEN' || c.status === 'UNDER_REVIEW' || c.status === 'DEFENSE_SENT').length}
             </h3>
-            <p className="text-sm text-slate-500 mt-1">Casos pendentes de ação</p>
+            <p className="text-sm text-slate-400 mt-1">Casos pendentes de ação</p>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-slate-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+        <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+          <div className="absolute right-0 top-0 w-24 h-24 bg-[#0c1410] rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
           <div className="relative z-10">
-             <div className="flex items-center gap-2 text-slate-600 font-medium mb-2">
+             <div className="flex items-center gap-2 text-slate-300 font-medium mb-2">
               <CheckCircle className="w-4 h-4" /> Devoluções Realizadas
             </div>
-            <h3 className="text-3xl font-bold text-slate-800">
+            <h3 className="text-3xl font-bold text-slate-100">
                 {safeCases.filter(c => c.status === 'REFUND_ACCEPTED').length}
             </h3>
-            <p className="text-sm text-slate-500 mt-1">Casos acatados</p>
+            <p className="text-sm text-slate-400 mt-1">Casos acatados</p>
           </div>
         </div>
         
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-slate-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+        <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+          <div className="absolute right-0 top-0 w-24 h-24 bg-[#0c1410] rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
           <div className="relative z-10">
-             <div className="flex items-center gap-2 text-slate-600 font-medium mb-2">
+             <div className="flex items-center gap-2 text-slate-300 font-medium mb-2">
               <XCircle className="w-4 h-4" /> Disputas Vencidas
             </div>
-            <h3 className="text-3xl font-bold text-slate-800">
+            <h3 className="text-3xl font-bold text-slate-100">
                 {safeCases.filter(c => c.status === 'REFUND_REJECTED').length}
             </h3>
-            <p className="text-sm text-slate-500 mt-1">Casos rejeitados</p>
+            <p className="text-sm text-slate-400 mt-1">Casos rejeitados</p>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="p-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-slate-50/50">
-          <h3 className="font-bold text-slate-800 flex items-center gap-2">
+      <div className="bg-[#0f1713] rounded-xl border border-emerald-500/20 shadow-sm overflow-hidden">
+        <div className="p-4 border-b border-emerald-500/20 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-slate-50/50">
+          <h3 className="font-bold text-slate-100 flex items-center gap-2">
             <RefreshCw className={`w-4 h-4 ${txLoading ? 'animate-spin' : ''}`} />
             Transações em tempo real (PIX IN/OUT, API, etc.)
           </h3>
@@ -450,16 +450,16 @@ export const MED: React.FC = () => {
               value={txSearch}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTxSearch(e.target.value)}
               placeholder="Buscar por TX, externalId, usuário, email, descrição..."
-              className="pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 outline-none w-full"
+              className="pl-9 pr-4 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none w-full"
             />
           </div>
         </div>
 
-        <div className="px-4 py-3 border-b border-slate-100 bg-white">
+        <div className="px-4 py-3 border-b border-emerald-500/20 bg-[#0f1713]">
           <div className="flex flex-col lg:flex-row lg:items-center gap-4">
             {/* Presets de período */}
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold text-slate-700 uppercase tracking-wide">Período:</span>
+              <span className="text-xs font-semibold text-slate-200 uppercase tracking-wide">Período:</span>
               <div className="flex flex-wrap gap-2">
                 {[
                   { key: 'ALL', label: 'Todo período' },
@@ -475,8 +475,8 @@ export const MED: React.FC = () => {
                       onClick={() => applyTxPeriodPreset(preset.key as 'ALL' | '7D' | '30D' | '90D')}
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                         active
-                          ? 'bg-fluxabank-50 text-fluxabank-600 border-fluxabank-200'
-                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                          ? 'bg-emerald-950/20 text-emerald-600 border-emerald-500/30'
+                          : 'bg-[#0f1713] text-slate-300 border-emerald-500/20 hover:bg-[#0c1410]'
                       }`}
                     >
                       {preset.label}
@@ -488,7 +488,7 @@ export const MED: React.FC = () => {
 
             {/* Filtro de data customizado */}
             <div className="flex flex-col sm:flex-row gap-2 sm:items-center w-full lg:w-auto lg:ml-auto">
-              <span className="text-xs font-semibold text-slate-700 uppercase tracking-wide">De:</span>
+              <span className="text-xs font-semibold text-slate-200 uppercase tracking-wide">De:</span>
               <input
                 type="date"
                 value={txFrom}
@@ -497,9 +497,9 @@ export const MED: React.FC = () => {
                   setTxFrom(e.target.value);
                   setTxPeriodPreset('CUSTOM');
                 }}
-                className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-300 outline-none"
+                className="px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-300 outline-none"
               />
-              <span className="text-xs font-semibold text-slate-700 uppercase tracking-wide">até:</span>
+              <span className="text-xs font-semibold text-slate-200 uppercase tracking-wide">até:</span>
               <input
                 type="date"
                 value={txTo}
@@ -508,7 +508,7 @@ export const MED: React.FC = () => {
                   setTxTo(e.target.value);
                   setTxPeriodPreset('CUSTOM');
                 }}
-                className="px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-300 outline-none"
+                className="px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-300 outline-none"
               />
               {(txFrom || txTo) && (
                 <button
@@ -517,7 +517,7 @@ export const MED: React.FC = () => {
                     setTxTo('');
                     setTxPeriodPreset('ALL');
                   }}
-                  className="px-2 py-2 text-xs font-medium text-fluxabank-500 hover:text-fluxabank-600 hover:bg-fluxabank-50 rounded-lg transition-colors"
+                  className="px-2 py-2 text-xs font-medium text-emerald-500 hover:text-emerald-600 hover:bg-emerald-950/20 rounded-lg transition-colors"
                   title="Limpar filtro de data"
                 >
                   ✕ Limpar
@@ -526,7 +526,7 @@ export const MED: React.FC = () => {
               <select
                 value={txPageSize}
                 onChange={(e) => setTxPageSize(Number(e.target.value))}
-                className="px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white focus:ring-2 focus:ring-fluxabank-300 outline-none"
+                className="px-3 py-2 text-sm border border-emerald-500/20 rounded-lg bg-[#0f1713] focus:ring-2 focus:ring-emerald-300 outline-none"
               >
                 {[50, 100, 200, 500].map((size) => (
                   <option key={size} value={size}>Por página: {size}</option>
@@ -536,7 +536,7 @@ export const MED: React.FC = () => {
           </div>
         </div>
 
-        <div className="px-4 py-3 border-b border-slate-100 flex flex-wrap gap-2 bg-white">
+        <div className="px-4 py-3 border-b border-emerald-500/20 flex flex-wrap gap-2 bg-[#0f1713]">
           {[
             { key: 'ALL', label: 'Todas' },
             { key: 'PIX_IN', label: 'PIX_IN' },
@@ -554,8 +554,8 @@ export const MED: React.FC = () => {
                 onClick={() => setTxQuickFilter(filter.key as typeof txQuickFilter)}
                 className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                   active
-                    ? 'bg-fluxabank-50 text-fluxabank-600 border-fluxabank-200'
-                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                    ? 'bg-emerald-950/20 text-emerald-600 border-emerald-500/30'
+                    : 'bg-[#0f1713] text-slate-300 border-emerald-500/20 hover:bg-[#0c1410]'
                 }`}
               >
                 {filter.label}
@@ -564,12 +564,12 @@ export const MED: React.FC = () => {
           })}
         </div>
 
-        <div className="max-h-80 overflow-auto divide-y divide-slate-100">
+        <div className="max-h-80 overflow-auto divide-y divide-emerald-500/10">
           {txRows.length === 0 ? (
-            <div className="p-6 text-sm text-slate-500 flex items-center justify-center gap-2">
+            <div className="p-6 text-sm text-slate-400 flex items-center justify-center gap-2">
               {txLoading ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin text-fluxabank-500" />
+                  <Loader2 className="w-4 h-4 animate-spin text-emerald-500" />
                   <span>Carregando, Espere!</span>
                 </>
               ) : (
@@ -583,17 +583,17 @@ export const MED: React.FC = () => {
                   type="button"
                   key={`${tx.transaction_id}-${tx.user_id}-${tx.external_id || 'no-ext'}`}
                   onClick={() => handleOpenCreateFromTx(tx)}
-                  className="w-full text-left p-4 hover:bg-slate-50 transition-colors"
+                  className="w-full text-left p-4 hover:bg-[#0c1410] transition-colors"
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                     <div className="space-y-1">
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-slate-400">
                         TX {tx.transaction_id} • USER {tx.user_id} • {tx.source_channel || 'WALLET'} • {tx.direction || '-'}
                       </div>
-                      <div className="font-medium text-slate-800">
+                      <div className="font-medium text-slate-100">
                         {tx.user_name || '-'} • R$ {Number(tx.amount || 0).toFixed(2)}
                       </div>
-                      <div className="text-xs text-slate-500 break-all">
+                      <div className="text-xs text-slate-400 break-all">
                         {tx.description || '-'}
                         {tx.med_id ? ` • MED ${tx.med_code || tx.med_id} (${tx.med_status || 'OPEN'})` : ''}
                       </div>
@@ -602,15 +602,15 @@ export const MED: React.FC = () => {
                   </div>
                 </button>
               ))}
-              <div className="p-3 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                <div className="text-xs text-slate-500">
+              <div className="p-3 border-t border-emerald-500/20 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div className="text-xs text-slate-400">
                   Página {txPage} de {txTotalPages} • {txTotal} transações encontradas
                 </div>
                 <button
                   type="button"
                   onClick={handleLoadMoreTransactions}
                   disabled={!txHasMore || txLoading}
-                  className="px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 disabled:opacity-50"
+                  className="px-3 py-1.5 text-xs font-semibold rounded-lg border border-emerald-500/20 bg-[#0f1713] text-slate-200 hover:bg-emerald-950/40 disabled:opacity-50"
                 >
                   {txLoading ? 'Carregando...' : txHasMore ? 'Carregar mais antigas' : 'Fim do histórico'}
                 </button>
@@ -620,9 +620,9 @@ export const MED: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden min-h-[300px]">
-        <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-          <h3 className="font-bold text-slate-800 flex items-center gap-2">
+      <div className="bg-[#0f1713] rounded-xl border border-emerald-500/20 shadow-sm overflow-hidden min-h-[300px]">
+        <div className="p-4 border-b border-emerald-500/20 flex items-center justify-between bg-slate-50/50">
+          <h3 className="font-bold text-slate-100 flex items-center gap-2">
             <FileWarning className="w-5 h-5 text-slate-400" />
             Solicitações Recentes
           </h3>
@@ -633,41 +633,41 @@ export const MED: React.FC = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Buscar ID, E2E, transação ou cliente..." 
-                className="pl-9 pr-4 py-1.5 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 outline-none w-64 md:w-80" 
+                className="pl-9 pr-4 py-1.5 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none w-64 md:w-80" 
             />
           </div>
         </div>
         
         {isLoading ? (
             <div className="flex justify-center items-center h-48">
-                <Loader2 className="w-8 h-8 text-fluxabank-500 animate-spin" />
+                <Loader2 className="w-8 h-8 text-emerald-500 animate-spin" />
             </div>
         ) : (
-        <div className="divide-y divide-slate-100">
+        <div className="divide-y divide-emerald-500/10">
           {filteredCases.length === 0 ? (
-             <div className="p-8 text-center text-slate-500">
+             <div className="p-8 text-center text-slate-400">
                  {searchTerm ? 'Nenhuma disputa encontrada para sua busca.' : 'Nenhuma disputa registrada.'}
              </div>
           ) : filteredCases.map((item) => (
-            <div key={item.id} className="p-4 hover:bg-slate-50 transition-colors flex flex-col md:flex-row items-center justify-between gap-4">
+            <div key={item.id} className="p-4 hover:bg-[#0c1410] transition-colors flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-4 flex-1 w-full">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${item.status === 'OPEN' ? 'bg-fluxabank-50 border-fluxabank-100 text-fluxabank-500' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${item.status === 'OPEN' ? 'bg-emerald-950/20 border-emerald-950/40 text-emerald-500' : 'bg-[#0c1410] border-emerald-500/20 text-slate-400'}`}>
                     <AlertTriangle className="w-6 h-6" />
                  </div>
                  <div className="flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-mono text-xs font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">{item.id}</span>
+                      <span className="font-mono text-xs font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">{item.id}</span>
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${getStatusColor(item.status)}`}>
                         {item.status}
                       </span>
                     </div>
-                    <h4 className="font-bold text-slate-800 mt-1">{getReasonLabel(item.reason)}</h4>
+                    <h4 className="font-bold text-slate-100 mt-1">{getReasonLabel(item.reason)}</h4>
                     
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-sm text-slate-500 mt-1">
-                        <span className="font-medium text-slate-700 flex items-center gap-1">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-sm text-slate-400 mt-1">
+                        <span className="font-medium text-slate-200 flex items-center gap-1">
                              {item.clientName || 'Cliente Desconhecido'}
                         </span>
-                      <span className="text-xs font-mono text-slate-500 break-all">E2E: {item.e2e || '-'}</span>
+                      <span className="text-xs font-mono text-slate-400 break-all">E2E: {item.e2e || '-'}</span>
                     </div>
                  </div>
               </div>
@@ -675,9 +675,9 @@ export const MED: React.FC = () => {
               <div className="flex flex-row md:flex-col justify-between md:items-end w-full md:w-auto gap-1 min-w-[150px]">
                 <div className="flex flex-col md:items-end">
                     <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">Valor Contestado</span>
-                    <span className="text-lg font-bold text-slate-800">R$ {(Number(item.amount) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                    <span className="text-lg font-bold text-slate-100">R$ {(Number(item.amount) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
                 </div>
-                <span className="text-xs text-fluxabank-500 font-medium flex items-center gap-1 self-end md:self-end">
+                <span className="text-xs text-emerald-500 font-medium flex items-center gap-1 self-end md:self-end">
                   <Clock className="w-3 h-3" /> {safeDate(item.deadline)}
                 </span>
               </div>
@@ -685,14 +685,14 @@ export const MED: React.FC = () => {
               <div className="flex gap-2 w-full md:w-auto mt-2 md:mt-0">
                  <button 
                   onClick={() => handleOpenCase(item)}
-                  className="px-4 py-2 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors flex-1 md:flex-none"
+                  className="px-4 py-2 text-sm font-medium text-slate-300 border border-emerald-500/20 rounded-lg hover:bg-[#0c1410] hover:text-white transition-colors flex-1 md:flex-none"
                  >
                    Ver Detalhes
                  </button>
                  {item.status === 'OPEN' && (
                    <button 
                      onClick={() => handleOpenCase(item)}
-                     className="px-4 py-2 text-sm font-medium text-white bg-fluxabank-500 rounded-lg hover:bg-fluxabank-600 shadow-sm shadow-fluxabank-200 transition-colors flex-1 md:flex-none"
+                     className="px-4 py-2 text-sm font-medium text-white bg-emerald-500 rounded-lg hover:bg-emerald-600 shadow-sm shadow-emerald-500/30 transition-colors flex-1 md:flex-none"
                    >
                      Analisar
                    </button>
@@ -707,17 +707,17 @@ export const MED: React.FC = () => {
       {selectedCase && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-2 sm:p-4 backdrop-blur-sm animate-in fade-in duration-200">
           <div
-            className="bg-white w-full max-w-md sm:max-w-2xl rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+            className="bg-[#0f1713] w-full max-w-md sm:max-w-2xl rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
             style={{ maxHeight: '95vh', display: 'flex', flexDirection: 'column' }}
           >
-            <div className="bg-slate-50 px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100 flex justify-between items-center">
+            <div className="bg-[#0c1410] px-4 sm:px-6 py-3 sm:py-4 border-b border-emerald-500/20 flex justify-between items-center">
               <div className="flex items-center gap-2 sm:gap-3">
-                <div className="p-2 bg-fluxabank-100 text-fluxabank-500 rounded-lg">
+                <div className="p-2 bg-emerald-950/40 text-emerald-500 rounded-lg">
                   <Siren className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-800 text-base sm:text-lg">Detalhes da Disputa MED</h3>
-                  <p className="text-xs text-slate-500 break-all">{selectedCase.id}</p>
+                  <h3 className="font-bold text-slate-100 text-base sm:text-lg">Detalhes da Disputa MED</h3>
+                  <p className="text-xs text-slate-400 break-all">{selectedCase.id}</p>
                 </div>
               </div>
               <button
@@ -733,17 +733,17 @@ export const MED: React.FC = () => {
               <div className="space-y-3 sm:space-y-4">
                 <div>
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Cliente Afetado</label>
-                  <p className="font-medium text-slate-800 text-base sm:text-lg">
+                  <p className="font-medium text-slate-100 text-base sm:text-lg">
                     {selectedCase.clientName || selectedCase.userName || (selectedCase.userId ? `Cliente ID: ${selectedCase.userId}` : `Cliente ID: ${selectedCase.id}`)}
                   </p>
                 </div>
                 <div>
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Transação Original</label>
-                  <div className="mt-1 sm:mt-2 p-2 sm:p-3 bg-slate-50 rounded-lg border border-slate-100">
-                    <p className="font-mono text-xs text-slate-500 break-all">{selectedCase.transactionId}</p>
-                    <p className="font-mono text-xs text-slate-500 break-all mt-1">E2E: {selectedCase.e2e || '-'}</p>
+                  <div className="mt-1 sm:mt-2 p-2 sm:p-3 bg-[#0c1410] rounded-lg border border-emerald-500/20">
+                    <p className="font-mono text-xs text-slate-400 break-all">{selectedCase.transactionId}</p>
+                    <p className="font-mono text-xs text-slate-400 break-all mt-1">E2E: {selectedCase.e2e || '-'}</p>
                     <div className="flex justify-between items-center mt-1 sm:mt-2">
-                      <span className="font-bold text-slate-700 text-sm sm:text-base">R$ {(Number(selectedCase.amount) || 0).toLocaleString('pt-BR')}</span>
+                      <span className="font-bold text-slate-200 text-sm sm:text-base">R$ {(Number(selectedCase.amount) || 0).toLocaleString('pt-BR')}</span>
                     </div>
                   </div>
                 </div>
@@ -754,10 +754,10 @@ export const MED: React.FC = () => {
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Timeline</label>
                   <div className="mt-1 sm:mt-2 space-y-2 sm:space-y-3 relative before:absolute before:left-[5px] before:top-2 before:bottom-0 before:w-px before:bg-slate-200">
                     <div className="flex gap-2 sm:gap-3 relative">
-                      <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-fluxabank-500 shrink-0 mt-1 ring-4 ring-white"></div>
+                      <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-500 shrink-0 mt-1 ring-4 ring-white"></div>
                       <div>
-                        <p className="text-xs sm:text-sm font-medium text-slate-800">Notificação de Infração</p>
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs sm:text-sm font-medium text-slate-100">Notificação de Infração</p>
+                        <p className="text-xs text-slate-400">
                           {safeDateTime(selectedCase.reportedAt)} • {selectedCase.reporterBank || 'Banco'}
                         </p>
                       </div>
@@ -767,7 +767,7 @@ export const MED: React.FC = () => {
 
                 <div>
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Defesa do Usuário</label>
-                  <div className="mt-1 sm:mt-2 p-2 sm:p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs sm:text-sm text-slate-700 whitespace-pre-wrap">
+                  <div className="mt-1 sm:mt-2 p-2 sm:p-3 bg-[#0c1410] rounded-lg border border-emerald-500/20 text-xs sm:text-sm text-slate-200 whitespace-pre-wrap">
                     {selectedCase.defenseText || 'Sem defesa enviada até o momento.'}
                   </div>
                 </div>
@@ -779,23 +779,23 @@ export const MED: React.FC = () => {
                       selectedCase.attachments.map((att: any) => (
                         <div
                           key={att.id || att.url}
-                          className="block p-2 sm:p-3 rounded-lg border border-slate-200 bg-white text-xs sm:text-sm"
+                          className="block p-2 sm:p-3 rounded-lg border border-emerald-500/20 bg-[#0f1713] text-xs sm:text-sm"
                         >
-                          <div className="font-medium text-slate-800 mb-1 sm:mb-2">{att.filename || 'Arquivo anexado'}</div>
+                          <div className="font-medium text-slate-100 mb-1 sm:mb-2">{att.filename || 'Arquivo anexado'}</div>
 
                           {isImageAttachment(att) ? (
                             <div className="space-y-1 sm:space-y-2">
                               <img
                                 src={att.url}
                                 alt={att.filename || 'Anexo da defesa'}
-                                className="max-h-40 sm:max-h-56 w-auto rounded-lg border border-slate-200"
+                                className="max-h-40 sm:max-h-56 w-auto rounded-lg border border-emerald-500/20"
                               />
                               <div className="flex flex-wrap items-center gap-2 pt-1">
                                 {canOpenAttachment(att.url) && (
                                   <button
                                     type="button"
                                     onClick={() => setLightboxImage({ url: att.url, filename: att.filename })}
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-orange-200 bg-orange-50 text-xs font-medium text-orange-600 hover:bg-orange-100"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/30 bg-emerald-950/30 text-xs font-medium text-orange-600 hover:bg-emerald-950/40"
                                   >
                                     Ampliar
                                   </button>
@@ -805,7 +805,7 @@ export const MED: React.FC = () => {
                                     href={att.url}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-blue-200 bg-blue-50 text-xs font-medium text-blue-700 hover:bg-blue-100"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-blue-200 bg-blue-50 text-xs font-medium text-emerald-400 hover:bg-emerald-950/40"
                                   >
                                     Abrir imagem
                                   </a>
@@ -819,7 +819,7 @@ export const MED: React.FC = () => {
                                   <a
                                     href={att.url}
                                     download={att.filename || 'anexo-med'}
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/20 bg-[#0f1713] text-xs font-medium text-slate-200 hover:bg-[#0c1410]"
                                   >
                                     Baixar arquivo
                                   </a>
@@ -833,12 +833,12 @@ export const MED: React.FC = () => {
                                   href={att.url}
                                   target="_blank"
                                   rel="noreferrer"
-                                  className="inline-flex text-xs text-blue-600 hover:underline break-all"
+                                  className="inline-flex text-xs text-emerald-400 hover:underline break-all"
                                 >
                                   {att.url}
                                 </a>
                               ) : (
-                                <span className="inline-flex text-xs text-slate-500 break-all">
+                                <span className="inline-flex text-xs text-slate-400 break-all">
                                   {isDataUrl(att.url) ? 'Arquivo anexado (data URL)' : att.url}
                                 </span>
                               )}
@@ -848,7 +848,7 @@ export const MED: React.FC = () => {
                                     href={att.url}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-blue-200 bg-blue-50 text-xs font-medium text-blue-700 hover:bg-blue-100"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-blue-200 bg-blue-50 text-xs font-medium text-emerald-400 hover:bg-emerald-950/40"
                                   >
                                     Abrir arquivo
                                   </a>
@@ -862,7 +862,7 @@ export const MED: React.FC = () => {
                                   <a
                                     href={att.url}
                                     download={att.filename || 'anexo-med'}
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-slate-200 bg-white text-xs font-medium text-slate-700 hover:bg-slate-50"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/20 bg-[#0f1713] text-xs font-medium text-slate-200 hover:bg-[#0c1410]"
                                   >
                                     Baixar arquivo
                                   </a>
@@ -873,7 +873,7 @@ export const MED: React.FC = () => {
                         </div>
                       ))
                     ) : (
-                      <div className="p-2 sm:p-3 rounded-lg border border-slate-200 bg-slate-50 text-xs sm:text-sm text-slate-500">
+                      <div className="p-2 sm:p-3 rounded-lg border border-emerald-500/20 bg-[#0c1410] text-xs sm:text-sm text-slate-400">
                         Nenhum anexo enviado.
                       </div>
                     )}
@@ -882,11 +882,11 @@ export const MED: React.FC = () => {
               </div>
             </div>
 
-            <div className="px-4 sm:px-6 py-3 sm:py-4 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row justify-end gap-2 sm:gap-3">
+            <div className="px-4 sm:px-6 py-3 sm:py-4 bg-[#0c1410] border-t border-emerald-500/20 flex flex-col sm:flex-row justify-end gap-2 sm:gap-3">
               <button
                 disabled={processingId === selectedCase.id}
                 onClick={() => handleAction(selectedCase.id, 'REJECT_REFUND')}
-                className="px-3 sm:px-4 py-2 bg-white border border-slate-200 text-slate-700 font-medium rounded-lg hover:bg-slate-100 transition-colors shadow-sm disabled:opacity-50 text-xs sm:text-sm"
+                className="px-3 sm:px-4 py-2 bg-[#0f1713] border border-emerald-500/20 text-slate-200 font-medium rounded-lg hover:bg-emerald-950/40 transition-colors shadow-sm disabled:opacity-50 text-xs sm:text-sm"
               >
                 {processingId === selectedCase.id ? 'Processando...' : 'Rejeitar Devolução'}
               </button>
@@ -903,7 +903,7 @@ export const MED: React.FC = () => {
                   !['OPEN', 'DEFENSE_SENT', 'UNDER_REVIEW'].includes(selectedCase.status)
                 }
                 onClick={() => handleAction(selectedCase.id, 'ACCEPT_REFUND')}
-                className="px-3 sm:px-4 py-2 bg-fluxabank-500 text-white font-medium rounded-lg hover:bg-fluxabank-600 transition-colors shadow-md shadow-fluxabank-200 disabled:opacity-50 text-xs sm:text-sm"
+                className="px-3 sm:px-4 py-2 bg-emerald-500 text-white font-medium rounded-lg hover:bg-emerald-600 transition-colors shadow-md shadow-emerald-500/30 disabled:opacity-50 text-xs sm:text-sm"
               >
                 {processingId === selectedCase.id ? 'Processando devolução...' : 'Acatar e Devolver Valor'}
               </button>
@@ -914,15 +914,15 @@ export const MED: React.FC = () => {
 
       {showCreateModal && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden">
-            <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex justify-between items-center">
+          <div className="bg-[#0f1713] w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden">
+            <div className="bg-[#0c1410] px-6 py-4 border-b border-emerald-500/20 flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-fluxabank-100 text-fluxabank-500 rounded-lg">
+                <div className="p-2 bg-emerald-950/40 text-emerald-500 rounded-lg">
                   <ShieldAlert className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-800">Abrir MED em transação</h3>
-                  <p className="text-xs text-slate-500">Selecione uma transação e retenha o valor</p>
+                  <h3 className="font-bold text-slate-100">Abrir MED em transação</h3>
+                  <p className="text-xs text-slate-400">Selecione uma transação e retenha o valor</p>
                 </div>
               </div>
               <button onClick={() => setShowCreateModal(false)} className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-400">
@@ -933,7 +933,7 @@ export const MED: React.FC = () => {
             <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <input
-                  className="px-3 py-2 border border-slate-200 rounded-lg"
+                  className="px-3 py-2 border border-emerald-500/20 rounded-lg"
                   placeholder="Transaction ID"
                   value={newMed.transactionId}
                   onChange={(e) => {
@@ -942,76 +942,76 @@ export const MED: React.FC = () => {
                   }}
                 />
                 <input
-                  className="px-3 py-2 border border-slate-200 rounded-lg bg-slate-50"
+                  className="px-3 py-2 border border-emerald-500/20 rounded-lg bg-[#0c1410]"
                   placeholder="E2E da transação"
                   value={selectedTxE2E || '-'}
                   readOnly
                 />
                 <input
-                  className="px-3 py-2 border border-slate-200 rounded-lg"
+                  className="px-3 py-2 border border-emerald-500/20 rounded-lg"
                   placeholder="User ID"
                   value={newMed.userId}
                   onChange={(e) => setNewMed((p) => ({ ...p, userId: e.target.value }))}
                 />
                 <input
-                  className="px-3 py-2 border border-slate-200 rounded-lg"
+                  className="px-3 py-2 border border-emerald-500/20 rounded-lg"
                   placeholder="Valor a reter"
                   value={newMed.amount}
                   onChange={(e) => setNewMed((p) => ({ ...p, amount: e.target.value }))}
                 />
                 <input
-                  className="px-3 py-2 border border-slate-200 rounded-lg"
+                  className="px-3 py-2 border border-emerald-500/20 rounded-lg"
                   placeholder="Código do motivo"
                   value={newMed.reasonCode}
                   onChange={(e) => setNewMed((p) => ({ ...p, reasonCode: e.target.value }))}
                 />
                 <input
-                  className="px-3 py-2 border border-slate-200 rounded-lg md:col-span-2"
+                  className="px-3 py-2 border border-emerald-500/20 rounded-lg md:col-span-2"
                   placeholder="Rótulo do motivo"
                   value={newMed.reasonLabel}
                   onChange={(e) => setNewMed((p) => ({ ...p, reasonLabel: e.target.value }))}
                 />
                 <textarea
-                  className="px-3 py-2 border border-slate-200 rounded-lg md:col-span-2"
+                  className="px-3 py-2 border border-emerald-500/20 rounded-lg md:col-span-2"
                   placeholder="Observação do admin"
                   value={newMed.note}
                   onChange={(e) => setNewMed((p) => ({ ...p, note: e.target.value }))}
                 />
               </div>
 
-              <div className="border border-slate-200 rounded-xl overflow-hidden">
-                <div className="p-3 bg-slate-50 border-b border-slate-200 text-sm font-medium text-slate-700">
+              <div className="border border-emerald-500/20 rounded-xl overflow-hidden">
+                <div className="p-3 bg-[#0c1410] border-b border-emerald-500/20 text-sm font-medium text-slate-200">
                   Transações em tempo real (clique para preencher)
                 </div>
-                <div className="max-h-64 overflow-auto divide-y divide-slate-100">
+                <div className="max-h-64 overflow-auto divide-y divide-emerald-500/10">
                   {txRows.map((tx) => (
                     <button
                       type="button"
                       key={`${tx.transaction_id}-${tx.user_id}`}
                       onClick={() => handleSelectTransaction(tx)}
-                      className="w-full text-left p-3 hover:bg-slate-50 transition-colors"
+                      className="w-full text-left p-3 hover:bg-[#0c1410] transition-colors"
                     >
-                      <div className="text-xs text-slate-500">TX {tx.transaction_id} • USER {tx.user_id} • {tx.source_channel || 'WALLET'} • {tx.direction || '-'}</div>
-                      <div className="text-xs font-mono text-slate-500 break-all">E2E: {tx.e2e || '-'}</div>
-                      <div className="font-medium text-slate-800">{tx.user_name || '-'} • R$ {Number(tx.amount || 0).toFixed(2)}</div>
-                      <div className="text-xs text-slate-500">{tx.description || '-'} {tx.med_id ? `• MED ${tx.med_code || tx.med_id}` : ''}</div>
+                      <div className="text-xs text-slate-400">TX {tx.transaction_id} • USER {tx.user_id} • {tx.source_channel || 'WALLET'} • {tx.direction || '-'}</div>
+                      <div className="text-xs font-mono text-slate-400 break-all">E2E: {tx.e2e || '-'}</div>
+                      <div className="font-medium text-slate-100">{tx.user_name || '-'} • R$ {Number(tx.amount || 0).toFixed(2)}</div>
+                      <div className="text-xs text-slate-400">{tx.description || '-'} {tx.med_id ? `• MED ${tx.med_code || tx.med_id}` : ''}</div>
                     </button>
                   ))}
                   {txRows.length === 0 && (
-                    <div className="p-4 text-sm text-slate-500">Nenhuma transação elegível encontrada.</div>
+                    <div className="p-4 text-sm text-slate-400">Nenhuma transação elegível encontrada.</div>
                   )}
                 </div>
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
-              <button onClick={() => setShowCreateModal(false)} className="px-4 py-2 bg-white border border-slate-200 rounded-lg">
+            <div className="px-6 py-4 border-t border-emerald-500/20 bg-[#0c1410] flex justify-end gap-3">
+              <button onClick={() => setShowCreateModal(false)} className="px-4 py-2 bg-[#0f1713] border border-emerald-500/20 rounded-lg">
                 Cancelar
               </button>
               <button
                 onClick={handleCreateMed}
                 disabled={creating}
-                className="px-4 py-2 bg-fluxabank-500 text-white rounded-lg hover:bg-fluxabank-600 disabled:opacity-50"
+                className="px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 disabled:opacity-50"
               >
                 {creating ? 'Criando...' : 'Criar MED e reter valor'}
               </button>
@@ -1028,7 +1028,7 @@ export const MED: React.FC = () => {
                 href={lightboxImage.url}
                 target="_blank"
                 rel="noreferrer"
-                className="px-3 py-1.5 rounded-lg border border-blue-300 bg-blue-50 text-xs sm:text-sm font-medium text-blue-700 hover:bg-blue-100"
+                className="px-3 py-1.5 rounded-lg border border-blue-300 bg-blue-50 text-xs sm:text-sm font-medium text-emerald-400 hover:bg-emerald-950/40"
               >
                 Abrir em nova aba
               </a>
@@ -1040,14 +1040,14 @@ export const MED: React.FC = () => {
             <a
               href={lightboxImage.url}
               download={lightboxImage.filename || 'anexo-med'}
-              className="px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs sm:text-sm font-medium text-slate-700 hover:bg-slate-100"
+              className="px-3 py-1.5 rounded-lg border border-slate-300 bg-[#0f1713] text-xs sm:text-sm font-medium text-slate-200 hover:bg-emerald-950/40"
             >
               Baixar
             </a>
             <button
               type="button"
               onClick={() => setLightboxImage(null)}
-              className="px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs sm:text-sm font-medium text-slate-700 hover:bg-slate-100"
+              className="px-3 py-1.5 rounded-lg border border-slate-300 bg-[#0f1713] text-xs sm:text-sm font-medium text-slate-200 hover:bg-emerald-950/40"
             >
               Fechar
             </button>

@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../services/api';
@@ -64,42 +64,42 @@ export const PixArea: React.FC = () => {
                     </div>
                     <p className="text-4xl font-mono font-bold mt-4">{myFees?.pixInPercent ?? '--'}%</p>
                 </div>
-                <div className="bg-gradient-to-br from-fluxabank-500 to-orange-500 rounded-2xl p-6 text-white shadow-lg">
+                <div className="bg-gradient-to-br from-emerald-500 to-orange-500 rounded-2xl p-6 text-white shadow-lg">
                     <div className="flex justify-between items-start">
                         <div>
-                            <p className="font-medium text-fluxabank-100">Suas Taxas</p>
+                            <p className="font-medium text-emerald-950/40">Suas Taxas</p>
                             <h3 className="text-2xl font-bold mt-1">Pix Saída</h3>
                         </div>
-                        <ArrowUpRight className="w-8 h-8 text-fluxabank-200" />
+                        <ArrowUpRight className="w-8 h-8 text-emerald-500/30" />
                     </div>
                     <p className="text-4xl font-mono font-bold mt-4">{myFees?.pixOutPercent ?? '--'}%</p>
                 </div>
             </div>
 
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col md:flex-row min-h-[500px]">
-                <div className="w-full md:w-1/3 bg-slate-50 border-r border-slate-200 p-2 flex flex-col gap-2">
+            <div className="bg-[#0f1713] rounded-2xl border border-emerald-500/20 shadow-sm overflow-hidden flex flex-col md:flex-row min-h-[500px]">
+                <div className="w-full md:w-1/3 bg-[#0c1410] border-r border-emerald-500/20 p-2 flex flex-col gap-2">
                     <button 
                         onClick={() => { setMode('DEPOSIT'); setDepositCode(''); }}
-                        className={`p-4 rounded-xl text-left transition-all ${mode === 'DEPOSIT' ? 'bg-white shadow-md ring-1 ring-slate-200' : 'hover:bg-slate-100'}`}
+                        className={`p-4 rounded-xl text-left transition-all ${mode === 'DEPOSIT' ? 'bg-[#0f1713] shadow-md ring-1 ring-slate-200' : 'hover:bg-emerald-950/40'}`}
                     >
                         <div className="flex items-center gap-3 mb-2">
-                            <div className={`p-2 rounded-lg ${mode === 'DEPOSIT' ? 'bg-green-100 text-green-600' : 'bg-slate-200 text-slate-500'}`}>
+                            <div className={`p-2 rounded-lg ${mode === 'DEPOSIT' ? 'bg-green-100 text-green-600' : 'bg-slate-200 text-slate-400'}`}>
                                 <ArrowDownLeft className="w-5 h-5" />
                             </div>
-                            <span className={`font-bold ${mode === 'DEPOSIT' ? 'text-slate-800' : 'text-slate-500'}`}>Depósito</span>
+                            <span className={`font-bold ${mode === 'DEPOSIT' ? 'text-slate-100' : 'text-slate-400'}`}>Depósito</span>
                         </div>
                         <p className="text-xs text-slate-400">Gerar QR Code para adicionar saldo.</p>
                     </button>
 
                     <button 
                         onClick={() => { setMode('WITHDRAW'); setWithdrawStatus(''); }}
-                        className={`p-4 rounded-xl text-left transition-all ${mode === 'WITHDRAW' ? 'bg-white shadow-md ring-1 ring-slate-200' : 'hover:bg-slate-100'}`}
+                        className={`p-4 rounded-xl text-left transition-all ${mode === 'WITHDRAW' ? 'bg-[#0f1713] shadow-md ring-1 ring-slate-200' : 'hover:bg-emerald-950/40'}`}
                     >
                         <div className="flex items-center gap-3 mb-2">
-                            <div className={`p-2 rounded-lg ${mode === 'WITHDRAW' ? 'bg-fluxabank-100 text-fluxabank-500' : 'bg-slate-200 text-slate-500'}`}>
+                            <div className={`p-2 rounded-lg ${mode === 'WITHDRAW' ? 'bg-emerald-950/40 text-emerald-500' : 'bg-slate-200 text-slate-400'}`}>
                                 <ArrowUpRight className="w-5 h-5" />
                             </div>
-                            <span className={`font-bold ${mode === 'WITHDRAW' ? 'text-slate-800' : 'text-slate-500'}`}>Saque</span>
+                            <span className={`font-bold ${mode === 'WITHDRAW' ? 'text-slate-100' : 'text-slate-400'}`}>Saque</span>
                         </div>
                         <p className="text-xs text-slate-400">Transferir saldo para conta externa.</p>
                     </button>
@@ -108,11 +108,11 @@ export const PixArea: React.FC = () => {
                 <div className="flex-1 p-8 flex items-center justify-center">
                     {mode === 'DEPOSIT' ? (
                         <div className="w-full max-w-md space-y-6">
-                            <h3 className="text-xl font-bold text-slate-800">Novo Depósito Pix</h3>
+                            <h3 className="text-xl font-bold text-slate-100">Novo Depósito Pix</h3>
                             {!depositCode ? (
                                 <form onSubmit={handleDeposit} className="space-y-4">
                                     <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-2">Valor do Depósito (R$)</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2">Valor do Depósito (R$)</label>
                                         <input 
                                             type="number" step="0.01" required
                                             value={amount} onChange={e => setAmount(e.target.value)}
@@ -126,14 +126,14 @@ export const PixArea: React.FC = () => {
                                 </form>
                             ) : (
                                 <div className="text-center space-y-6 animate-in zoom-in duration-300">
-                                    <div className="bg-white p-4 rounded-2xl shadow-lg border border-slate-100 inline-block">
-                                        <QrCode className="w-48 h-48 text-slate-800" />
+                                    <div className="bg-[#0f1713] p-4 rounded-2xl shadow-lg border border-emerald-500/20 inline-block">
+                                        <QrCode className="w-48 h-48 text-slate-100" />
                                     </div>
                                     <div className="space-y-2">
-                                        <p className="text-sm font-medium text-slate-500">Copia e Cola</p>
+                                        <p className="text-sm font-medium text-slate-400">Copia e Cola</p>
                                         <div className="flex gap-2">
                                             <input readOnly value={depositCode} className="w-full bg-slate-100 text-xs p-3 rounded-lg border-none" />
-                                            <button onClick={() => navigator.clipboard.writeText(depositCode)} className="p-3 bg-slate-200 hover:bg-slate-300 rounded-lg text-slate-600">
+                                            <button onClick={() => navigator.clipboard.writeText(depositCode)} className="p-3 bg-slate-200 hover:bg-slate-300 rounded-lg text-slate-300">
                                                 <Copy className="w-4 h-4" />
                                             </button>
                                         </div>
@@ -146,7 +146,7 @@ export const PixArea: React.FC = () => {
                         </div>
                     ) : (
                         <div className="w-full max-w-md space-y-6">
-                            <h3 className="text-xl font-bold text-slate-800">Solicitar Saque</h3>
+                            <h3 className="text-xl font-bold text-slate-100">Solicitar Saque</h3>
                             {withdrawStatus ? (
                                 <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center animate-in zoom-in">
                                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
@@ -158,24 +158,24 @@ export const PixArea: React.FC = () => {
                             ) : (
                                 <form onSubmit={handleWithdraw} className="space-y-4">
                                      <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-2">Chave Pix</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2">Chave Pix</label>
                                         <input 
                                             type="text" required
                                             value={pixKey} onChange={e => setPixKey(e.target.value)}
-                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-fluxabank-500"
+                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500"
                                             placeholder="CPF, Email ou Aleatória"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-2">Valor (R$)</label>
+                                        <label className="block text-sm font-bold text-slate-200 mb-2">Valor (R$)</label>
                                         <input 
                                             type="number" step="0.01" required
                                             value={amount} onChange={e => setAmount(e.target.value)}
-                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 text-lg outline-none focus:ring-2 focus:ring-fluxabank-500"
+                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 text-lg outline-none focus:ring-2 focus:ring-emerald-500"
                                             placeholder="0,00"
                                         />
                                     </div>
-                                    <button disabled={loading} className="w-full py-3 bg-fluxabank-500 hover:bg-fluxabank-600 text-white font-bold rounded-xl transition-colors flex justify-center gap-2">
+                                    <button disabled={loading} className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl transition-colors flex justify-center gap-2">
                                         {loading ? <Loader2 className="animate-spin" /> : 'Confirmar Saque'}
                                     </button>
                                 </form>

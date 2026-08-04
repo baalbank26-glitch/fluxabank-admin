@@ -1,4 +1,4 @@
-
+﻿
 import React, { useEffect, useState } from 'react';
 import {
   BarChart,
@@ -712,19 +712,19 @@ export const Treasury: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-slate-800">Tesouraria</h2>
-          <p className="text-slate-500 text-sm">
+          <h2 className="text-2xl font-bold text-slate-100">Tesouraria</h2>
+          <p className="text-slate-400 text-sm">
             Controle de caixa, lucros e movimentações do Gateway.
           </p>
         </div>
 
         <div className="flex gap-2">
-            <div className="flex bg-white rounded-lg border border-slate-200 p-1">
+            <div className="flex bg-[#0f1713] rounded-lg border border-emerald-500/20 p-1">
               <button
                 onClick={() => setViewMode('DAILY')}
                 className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${viewMode === 'DAILY'
-                    ? 'bg-fluxabank-100 text-fluxabank-600'
-                    : 'text-slate-500 hover:bg-slate-50'
+                    ? 'bg-emerald-950/40 text-emerald-600'
+                    : 'text-slate-400 hover:bg-[#0c1410]'
                   }`}
               >
                 Diário
@@ -733,8 +733,8 @@ export const Treasury: React.FC = () => {
               <button
                 onClick={() => setViewMode('MONTHLY')}
                 className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${viewMode === 'MONTHLY'
-                    ? 'bg-fluxabank-100 text-fluxabank-600'
-                    : 'text-slate-500 hover:bg-slate-50'
+                    ? 'bg-emerald-950/40 text-emerald-600'
+                    : 'text-slate-400 hover:bg-[#0c1410]'
                   }`}
               >
                 Mensal
@@ -743,14 +743,14 @@ export const Treasury: React.FC = () => {
           <div className="flex gap-2">
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg hover:bg-slate-50 text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-2 bg-[#0f1713] border border-emerald-500/20 text-slate-200 rounded-lg hover:bg-[#0c1410] text-sm font-medium"
             >
               <Filter className="w-4 h-4" />
               Filtros
             </button>
             <button
               onClick={() => handleExportXLS()}
-              className="flex items-center gap-2 px-4 py-2 bg-fluxabank-500 text-white rounded-lg hover:bg-fluxabank-600 text-sm font-medium shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 text-sm font-medium shadow-sm"
             >
               <Download className="w-4 h-4" />
               Exportar XLS
@@ -789,11 +789,11 @@ export const Treasury: React.FC = () => {
             Atualizado agora
           </p>
 
-          <div className="absolute right-[-20px] top-[-20px] w-48 h-48 bg-fluxabank-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute right-[-20px] top-[-20px] w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
-          <h3 className="text-lg font-bold text-slate-800 mb-6">
+        <div className="bg-[#0f1713] p-8 rounded-2xl border border-emerald-500/20 shadow-sm relative overflow-hidden">
+          <h3 className="text-lg font-bold text-slate-100 mb-6">
             Faturamento ({viewMode === 'DAILY' ? 'Hoje' : 'Mês atual'})
           </h3>
 
@@ -845,40 +845,40 @@ export const Treasury: React.FC = () => {
 
       {/* Filtros */}
       {showFilters && (
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+            <h3 className="text-lg font-bold text-slate-100 flex items-center gap-2">
               <Calendar className="w-5 h-5" />
               Filtros de Data
             </h3>
             <button
               onClick={() => setShowFilters(false)}
-              className="p-2 text-slate-400 hover:text-slate-600"
+              className="p-2 text-slate-400 hover:text-slate-300"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-slate-200 mb-2">
                 Data Inicial
               </label>
               <input
                 type="date"
                 value={dateFrom}
                 onChange={(e) => setDateFrom(e.target.value)}
-                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-slate-200 mb-2">
                 Data Final
               </label>
               <input
                 type="date"
                 value={dateTo}
                 onChange={(e) => setDateTo(e.target.value)}
-                className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -888,13 +888,13 @@ export const Treasury: React.FC = () => {
                 setDateFrom('');
                 setDateTo('');
               }}
-              className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-800"
+              className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-slate-100"
             >
               Limpar Filtros
             </button>
             <button
               onClick={() => setShowFilters(false)}
-              className="ml-auto px-4 py-2 bg-fluxabank-500 text-white rounded-lg hover:bg-fluxabank-600 text-sm font-medium"
+              className="ml-auto px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 text-sm font-medium"
             >
               Aplicar
             </button>
@@ -902,17 +902,17 @@ export const Treasury: React.FC = () => {
         </div>
       )}
 
-      <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div className="bg-[#0f1713] p-4 rounded-2xl border border-emerald-500/20 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div>
-          <h3 className="font-bold text-slate-800">Visualização de Tesouraria</h3>
-          <p className="text-xs text-slate-500 mt-1">Escolha entre ledger geral ou consolidação por usuário.</p>
+          <h3 className="font-bold text-slate-100">Visualização de Tesouraria</h3>
+          <p className="text-xs text-slate-400 mt-1">Escolha entre ledger geral ou consolidação por usuário.</p>
         </div>
         <div className="flex bg-slate-100 rounded-lg p-1 w-full md:w-auto">
           <button
             onClick={() => setLedgerViewMode('LEDGER')}
             className={`flex-1 md:flex-initial px-4 py-2 text-xs font-bold rounded-md transition-colors ${ledgerViewMode === 'LEDGER'
-              ? 'bg-white text-slate-900 shadow-sm'
-              : 'text-slate-500 hover:text-slate-700'
+              ? 'bg-[#0f1713] text-white shadow-sm'
+              : 'text-slate-400 hover:text-slate-200'
               }`}
           >
             Ledger Geral
@@ -920,8 +920,8 @@ export const Treasury: React.FC = () => {
           <button
             onClick={() => setLedgerViewMode('BY_USER')}
             className={`flex-1 md:flex-initial px-4 py-2 text-xs font-bold rounded-md transition-colors ${ledgerViewMode === 'BY_USER'
-              ? 'bg-white text-slate-900 shadow-sm'
-              : 'text-slate-500 hover:text-slate-700'
+              ? 'bg-[#0f1713] text-white shadow-sm'
+              : 'text-slate-400 hover:text-slate-200'
               }`}
           >
             Por Usuário
@@ -930,11 +930,11 @@ export const Treasury: React.FC = () => {
       </div>
 
       {ledgerViewMode === 'BY_USER' && (
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div className="bg-[#0f1713] rounded-2xl border border-emerald-500/20 shadow-sm overflow-hidden">
+        <div className="p-6 border-b border-emerald-500/20 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           <div>
-            <h3 className="font-bold text-slate-800">Arrecadação por Usuário</h3>
-            <p className="text-xs text-slate-500 mt-1">
+            <h3 className="font-bold text-slate-100">Arrecadação por Usuário</h3>
+            <p className="text-xs text-slate-400 mt-1">
               Consolidado de taxas creditadas na tesouraria por usuário no período selecionado.
             </p>
             <div className="mt-3">
@@ -943,13 +943,13 @@ export const Treasury: React.FC = () => {
                 value={byUserSearch}
                 onChange={(e) => setByUserSearch(e.target.value)}
                 placeholder="Filtrar por nome, email ou ID do usuário"
-                className="w-full md:w-80 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 focus:border-transparent"
+                className="w-full md:w-80 px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               />
             </div>
           </div>
-          <div className="text-sm text-slate-700 font-medium">
+          <div className="text-sm text-slate-200 font-medium">
             Total líquido no período:{' '}
-            <span className="font-bold text-slate-900">
+            <span className="font-bold text-white">
               R$ {formatMoney(byUserNetTotal)}
             </span>
           </div>
@@ -957,7 +957,7 @@ export const Treasury: React.FC = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="bg-slate-50 border-b border-slate-200">
+            <thead className="bg-[#0c1410] border-b border-emerald-500/20">
               <tr>
                 <th className="px-6 py-3">Usuário</th>
                 <th className="px-6 py-3 text-right">Arrecadado</th>
@@ -966,7 +966,7 @@ export const Treasury: React.FC = () => {
                 <th className="px-6 py-3 text-right">Operações</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-emerald-500/10">
               {loading ? (
                 <tr>
                   <td colSpan={5} className="p-8 text-center">
@@ -975,7 +975,7 @@ export const Treasury: React.FC = () => {
                 </tr>
               ) : byUserSummary.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-8 text-center text-slate-500">
+                  <td colSpan={5} className="p-8 text-center text-slate-400">
                     Nenhuma arrecadação por usuário encontrada para este período.
                   </td>
                 </tr>
@@ -989,9 +989,9 @@ export const Treasury: React.FC = () => {
                   >
                     <td className="px-6 py-4">
                       <div className="flex flex-col">
-                        <span className="text-sm font-medium text-slate-800">{item.userName || `Usuário #${item.userId}`}</span>
+                        <span className="text-sm font-medium text-slate-100">{item.userName || `Usuário #${item.userId}`}</span>
                         {item.userEmail ? (
-                          <span className="text-xs text-slate-500">{item.userEmail}</span>
+                          <span className="text-xs text-slate-400">{item.userEmail}</span>
                         ) : (
                           <span className="text-xs text-slate-400">ID: {item.userId}</span>
                         )}
@@ -1003,10 +1003,10 @@ export const Treasury: React.FC = () => {
                     <td className="px-6 py-4 text-right font-mono font-medium text-orange-600">
                       R$ {formatMoney(item.totalReversed || 0)}
                     </td>
-                    <td className="px-6 py-4 text-right font-mono font-semibold text-slate-900">
+                    <td className="px-6 py-4 text-right font-mono font-semibold text-white">
                       R$ {formatMoney(item.netCollected || 0)}
                     </td>
-                    <td className="px-6 py-4 text-right text-slate-600">{item.operations}</td>
+                    <td className="px-6 py-4 text-right text-slate-300">{item.operations}</td>
                   </tr>
                 ))
               )}
@@ -1015,22 +1015,22 @@ export const Treasury: React.FC = () => {
         </div>
 
         {!loading && byUserMeta.totalPages > 1 && (
-          <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between gap-3">
-            <p className="text-xs text-slate-500">
+          <div className="px-6 py-4 border-t border-emerald-500/20 flex items-center justify-between gap-3">
+            <p className="text-xs text-slate-400">
               Página {byUserMeta.page} de {byUserMeta.totalPages} • {byUserMeta.total} usuários
             </p>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setByUserPage((p) => Math.max(1, p - 1))}
                 disabled={byUserMeta.page <= 1}
-                className="px-3 py-1.5 text-xs font-semibold rounded-md border border-slate-200 text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-3 py-1.5 text-xs font-semibold rounded-md border border-emerald-500/20 text-slate-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Anterior
               </button>
               <button
                 onClick={() => setByUserPage((p) => Math.min(byUserMeta.totalPages, p + 1))}
                 disabled={byUserMeta.page >= byUserMeta.totalPages}
-                className="px-3 py-1.5 text-xs font-semibold rounded-md border border-slate-200 text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-3 py-1.5 text-xs font-semibold rounded-md border border-emerald-500/20 text-slate-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Próxima
               </button>
@@ -1041,21 +1041,21 @@ export const Treasury: React.FC = () => {
       )}
 
       {ledgerViewMode === 'LEDGER' && (
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-          <h3 className="font-bold text-slate-800">Últimos Lançamentos (Ledger)</h3>
+      <div className="bg-[#0f1713] rounded-2xl border border-emerald-500/20 shadow-sm overflow-hidden">
+        <div className="p-6 border-b border-emerald-500/20 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <h3 className="font-bold text-slate-100">Últimos Lançamentos (Ledger)</h3>
           <input
             type="text"
             value={ledgerSearch}
             onChange={(e) => setLedgerSearch(e.target.value)}
             placeholder="Filtrar no ledger por usuário, email, descrição ou ID"
-            className="w-full md:w-96 px-3 py-2 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-fluxabank-500 focus:border-transparent"
+            className="w-full md:w-96 px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
           />
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="bg-slate-50 border-b border-slate-200">
+            <thead className="bg-[#0c1410] border-b border-emerald-500/20">
               <tr>
                 <th className="px-6 py-3">ID</th>
                 <th className="px-6 py-3">Data</th>
@@ -1066,7 +1066,7 @@ export const Treasury: React.FC = () => {
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-emerald-500/10">
               {loading ? (
                 <tr>
                   <td colSpan={6} className="p-8 text-center">
@@ -1075,7 +1075,7 @@ export const Treasury: React.FC = () => {
                 </tr>
               ) : filteredLedger.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-slate-500">
+                  <td colSpan={6} className="p-8 text-center text-slate-400">
                     Nenhum lançamento encontrado.
                   </td>
                 </tr>
@@ -1105,11 +1105,11 @@ export const Treasury: React.FC = () => {
                       <td className="px-6 py-4">
                         {item.userId ? (
                           <div className="flex flex-col">
-                            <span className="text-sm font-medium text-slate-800">
+                            <span className="text-sm font-medium text-slate-100">
                               {item.userName || `Usuário #${item.userId}`}
                             </span>
                             {item.userEmail && (
-                              <span className="text-xs text-slate-500">
+                              <span className="text-xs text-slate-400">
                                 {item.userEmail}
                               </span>
                             )}
@@ -1128,7 +1128,7 @@ export const Treasury: React.FC = () => {
                         <span
                           className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${(item.type || '').includes('CREDIT')
                               ? 'bg-green-100 text-green-700'
-                              : 'bg-fluxabank-100 text-fluxabank-600'
+                              : 'bg-emerald-950/40 text-emerald-600'
                             }`}
                         >
                           {item.type}
@@ -1151,11 +1151,11 @@ export const Treasury: React.FC = () => {
 
       {showUserModal && selectedUser && (
         <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-[1px] flex items-center justify-center p-4">
-          <div className="w-full max-w-5xl max-h-[90vh] overflow-hidden bg-white rounded-2xl border border-slate-200 shadow-2xl">
-            <div className="px-6 py-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="w-full max-w-5xl max-h-[90vh] overflow-hidden bg-[#0f1713] rounded-2xl border border-emerald-500/20 shadow-2xl">
+            <div className="px-6 py-4 border-b border-emerald-500/20 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h3 className="text-lg font-bold text-slate-900">Transações do Usuário</h3>
-                <p className="text-sm text-slate-500 mt-0.5">
+                <h3 className="text-lg font-bold text-white">Transações do Usuário</h3>
+                <p className="text-sm text-slate-400 mt-0.5">
                   {selectedUser.userName || `Usuário #${selectedUser.userId}`} • ID {selectedUser.userId}
                 </p>
               </div>
@@ -1165,7 +1165,7 @@ export const Treasury: React.FC = () => {
                   value={userTxFrom}
                   max={userTxTo || undefined}
                   onChange={(e) => setUserTxFrom(e.target.value)}
-                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-fluxabank-500 outline-none"
+                  className="rounded-lg border border-emerald-500/20 px-3 py-2 text-sm text-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none"
                   title="Data inicial (deixe vazio para remover filtro)"
                 />
                 <span className="text-xs text-slate-400">até</span>
@@ -1174,13 +1174,13 @@ export const Treasury: React.FC = () => {
                   value={userTxTo}
                   min={userTxFrom || undefined}
                   onChange={(e) => setUserTxTo(e.target.value)}
-                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-fluxabank-500 outline-none"
+                  className="rounded-lg border border-emerald-500/20 px-3 py-2 text-sm text-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none"
                   title="Data final (deixe vazio para remover filtro)"
                 />
                 <select
                   value={userTransactionsFlowType}
                   onChange={(e) => setUserTransactionsFlowType(e.target.value as 'ALL' | 'PIX_IN' | 'PIX_OUT' | 'ESTORNO')}
-                  className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 focus:ring-2 focus:ring-fluxabank-500 outline-none"
+                  className="rounded-lg border border-emerald-500/20 px-3 py-2 text-sm text-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none"
                 >
                   <option value="ALL">Todos os fluxos</option>
                   <option value="PIX_IN">Somente PIX IN</option>
@@ -1190,7 +1190,7 @@ export const Treasury: React.FC = () => {
 
                 <button
                   onClick={closeUserModal}
-                  className="p-2 text-slate-400 hover:text-slate-700 rounded-md"
+                  className="p-2 text-slate-400 hover:text-slate-200 rounded-md"
                   aria-label="Fechar modal"
                 >
                   <X className="w-5 h-5" />
@@ -1200,7 +1200,7 @@ export const Treasury: React.FC = () => {
 
             <div className="p-4 overflow-auto max-h-[60vh]">
               <table className="w-full text-sm text-left">
-                <thead className="bg-slate-50 border-b border-slate-200">
+                <thead className="bg-[#0c1410] border-b border-emerald-500/20">
                   <tr>
                     <th className="px-4 py-3">Data</th>
                     <th className="px-4 py-3">Descrição</th>
@@ -1208,7 +1208,7 @@ export const Treasury: React.FC = () => {
                     <th className="px-4 py-3 text-right">Valor</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
+                <tbody className="divide-y divide-emerald-500/10">
                   {loadingUserTransactions ? (
                     <tr>
                       <td colSpan={4} className="p-8 text-center">
@@ -1217,7 +1217,7 @@ export const Treasury: React.FC = () => {
                     </tr>
                   ) : userTransactions.length === 0 ? (
                     <tr>
-                      <td colSpan={4} className="p-8 text-center text-slate-500">
+                      <td colSpan={4} className="p-8 text-center text-slate-400">
                         Nenhuma transação encontrada para esse usuário no período.
                       </td>
                     </tr>
@@ -1229,11 +1229,11 @@ export const Treasury: React.FC = () => {
                             ? safeDate(tx.created_at).toLocaleString('pt-BR')
                             : '--/--'}
                         </td>
-                        <td className="px-4 py-3 font-medium text-slate-800">{tx.description}</td>
+                        <td className="px-4 py-3 font-medium text-slate-100">{tx.description}</td>
                         <td className="px-4 py-3">
                           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${(tx.type || '').includes('CREDIT')
                             ? 'bg-green-100 text-green-700'
-                            : 'bg-fluxabank-100 text-fluxabank-600'
+                            : 'bg-emerald-950/40 text-emerald-600'
                             }`}>
                             {tx.type}
                           </span>
@@ -1248,12 +1248,12 @@ export const Treasury: React.FC = () => {
               </table>
             </div>
 
-            <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between">
+            <div className="px-6 py-4 border-t border-emerald-500/20 flex items-center justify-between">
               <div>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-400">
                   Página {userTransactionsMeta.page} de {userTransactionsMeta.totalPages} • {userTransactionsMeta.total} transações
                 </p>
-                <p className="text-xs font-semibold text-slate-700 mt-1">
+                <p className="text-xs font-semibold text-slate-200 mt-1">
                   Subtotal do filtro: {userTransactionsFilteredSubtotal < 0 ? '-R$ ' : 'R$ '}{formatMoney(Math.abs(userTransactionsFilteredSubtotal))}
                 </p>
               </div>
@@ -1266,7 +1266,7 @@ export const Treasury: React.FC = () => {
                     await fetchUserTransactions(selectedUser, nextPage);
                   }}
                   disabled={loadingUserTransactions || userTransactionsMeta.page <= 1}
-                  className="px-3 py-1.5 text-xs font-semibold rounded-md border border-slate-200 text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-1.5 text-xs font-semibold rounded-md border border-emerald-500/20 text-slate-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Anterior
                 </button>
@@ -1278,7 +1278,7 @@ export const Treasury: React.FC = () => {
                     await fetchUserTransactions(selectedUser, nextPage);
                   }}
                   disabled={loadingUserTransactions || userTransactionsMeta.page >= userTransactionsMeta.totalPages}
-                  className="px-3 py-1.5 text-xs font-semibold rounded-md border border-slate-200 text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-1.5 text-xs font-semibold rounded-md border border-emerald-500/20 text-slate-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Próxima
                 </button>

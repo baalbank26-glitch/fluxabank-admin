@@ -1,4 +1,4 @@
-
+﻿
 import React, { useEffect, useState } from 'react';
 import { AppView, UserStatus, DocStatus } from '../types/index';
 import { api } from '../services/api';
@@ -154,7 +154,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                   <DollarSign className="w-4 h-4" /> Tesouraria
                 </p>
                 {stats.loading ? (
-                  <Loader2 className="w-8 h-8 animate-spin text-slate-500" />
+                  <Loader2 className="w-8 h-8 animate-spin text-slate-400" />
                 ) : (
                   <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight break-words leading-tight">
                     R$ {Number(stats.treasuryBalance).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
@@ -177,7 +177,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
 
             <button
               onClick={() => onViewChange(AppView.TREASURY)}
-              className="mt-6 inline-flex items-center gap-2 text-fluxabank-300 hover:text-white font-medium text-sm transition-colors group/btn"
+              className="mt-6 inline-flex items-center gap-2 text-emerald-300 hover:text-white font-medium text-sm transition-colors group/btn"
             >
               Ver detalhes <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
             </button>
@@ -311,13 +311,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 </AreaChart>
               </ResponsiveContainer>
             ) : (
-              <div className="h-full flex flex-col items-center justify-center text-slate-500">
+              <div className="h-full flex flex-col items-center justify-center text-slate-400">
                 {stats.loading ? (
                   <Loader2 className="w-8 h-8 animate-spin text-emerald-500 mb-2" />
                 ) : (
                   <>
                     <p className="font-medium text-slate-400">Sem dados de faturamento</p>
-                    <p className="text-xs mt-2 text-slate-500">Novas transações aparecerão aqui</p>
+                    <p className="text-xs mt-2 text-slate-400">Novas transações aparecerão aqui</p>
                   </>
                 )}
               </div>
