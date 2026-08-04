@@ -147,7 +147,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
             </div>
 
             {/* Document Preview */}
-            <div className="bg-slate-100 border-b border-emerald-500/20 flex items-center justify-center p-4 min-h-[150px] cursor-pointer hover:bg-slate-200 transition-colors" onClick={() => setSelectedDoc(doc)}>
+            <div className="bg-[#0f1713] border-b border-emerald-500/20 flex items-center justify-center p-4 min-h-[150px] cursor-pointer hover:bg-emerald-950/30 transition-colors" onClick={() => setSelectedDoc(doc)}>
               {doc.document_link.includes('image') || doc.document_link.includes('data:') ? (
                 <img 
                   src={doc.document_link} 
@@ -225,7 +225,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
                     value={reviewNotes}
                     onChange={(e) => setReviewNotes(e.target.value)}
                     placeholder="Adicione observações sobre a aprovação ou rejeição..."
-                    className="w-full mt-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-emerald-500"
+                    className="w-full mt-1 px-3 py-2 border border-emerald-500/30 rounded-lg text-sm focus:outline-none focus:border-emerald-500"
                     rows={3}
                   />
                 </div>

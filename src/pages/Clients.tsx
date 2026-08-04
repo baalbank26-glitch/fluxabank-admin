@@ -469,7 +469,7 @@ export const Clients: React.FC = () => {
       const t = type?.toUpperCase() || '';
       if (t === 'CREDIT' || t === 'PIX_IN') return 'bg-emerald-950/30 text-emerald-300';
       if (t === 'DEBIT' || t === 'PIX_OUT') return 'bg-emerald-950/40 text-emerald-600';
-      return 'bg-slate-100 text-slate-200';
+      return 'bg-[#0f1713] text-slate-300 border border-emerald-500/10';
   };
 
   return (
@@ -495,7 +495,7 @@ export const Clients: React.FC = () => {
           <input 
             type="text" 
             placeholder="Buscar por nome ou email..." 
-            className="w-full pl-10 pr-4 py-2.5 bg-[#090d0a] border border-emerald-500/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+            className="w-full pl-10 pr-4 py-2.5 bg-[#090d0a] border border-emerald-500/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-white placeholder-slate-500"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -523,7 +523,7 @@ export const Clients: React.FC = () => {
                                     {filteredUsers.length === 0 ? (
                                         <tr><td colSpan={6} className="p-6 text-center text-slate-400">Nenhum usuário encontrado.</td></tr>
                                     ) : paginatedUsers.map((user) => (
-                                        <tr key={user.id} className="hover:bg-slate-50/50 cursor-pointer" onClick={() => openUserModal(user)}>
+                                        <tr key={user.id} className="hover:bg-emerald-950/20 cursor-pointer" onClick={() => openUserModal(user)}>
                   <td className="px-6 py-4 font-mono text-xs text-slate-400">#{user.id}</td>
                   <td className="px-6 py-4">
                     <div>
@@ -571,7 +571,7 @@ export const Clients: React.FC = () => {
                         user.status === UserStatus.ACTIVE ? 'bg-emerald-950/30 text-emerald-300' : 
                         user.status === UserStatus.BLOCKED ? 'bg-emerald-950/40 text-emerald-600' :
                         user.status === UserStatus.PENDING ? 'bg-amber-100 text-amber-700' :
-                        'bg-slate-100 text-slate-300'
+                        'bg-[#0f1713] text-slate-300 border border-emerald-500/10'
                     }`}>
                         {user.status === UserStatus.ACTIVE && <CheckCircle className="w-3 h-3"/>}
                         {user.status === UserStatus.BLOCKED && <XCircle className="w-3 h-3"/>}
@@ -621,11 +621,11 @@ export const Clients: React.FC = () => {
       </div>
 
       {selectedUser && (
-          <div className="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+          <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
               <div className="bg-[#0f1713] rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
                   <div className="p-6 border-b border-emerald-500/20 flex justify-between items-center bg-[#090d0a]">
                       <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-orange-500 text-white flex items-center justify-center font-bold text-xl">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-400 text-white flex items-center justify-center font-bold text-xl">
                               {(selectedUser.name || '?').charAt(0).toUpperCase()}
                           </div>
                           <div>
@@ -633,7 +633,7 @@ export const Clients: React.FC = () => {
                               <p className="text-sm text-slate-400">ID: {selectedUser.id}</p>
                           </div>
                       </div>
-                      <button onClick={() => setSelectedUser(null)} className="p-2 hover:bg-slate-200 rounded-full transition-colors"><X className="w-6 h-6 text-slate-400" /></button>
+                      <button onClick={() => setSelectedUser(null)} className="p-2 hover:bg-emerald-950/30 rounded-full transition-colors"><X className="w-6 h-6 text-slate-400" /></button>
                   </div>
 
                   <div className="border-b border-emerald-500/20 bg-[#0f1713]">
@@ -683,7 +683,7 @@ export const Clients: React.FC = () => {
                       </div>
                   </div>
 
-                  <div className="flex-1 overflow-y-auto p-6 bg-slate-50/30">
+                  <div className="flex-1 overflow-y-auto p-6 bg-[#090d0a]">
                       {loadingDetails ? (
                           <div className="flex justify-center py-10"><Loader2 className="w-8 h-8 animate-spin text-emerald-500" /></div>
                       ) : (
@@ -982,7 +982,7 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixInFeeValue}
                                                         onChange={(e) => setFeesForm({...feesForm, pixInFeeValue: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono" 
+                                                        className="w-full border border-emerald-500/30 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono bg-[#090d0a] text-white placeholder-slate-500" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
@@ -1000,7 +1000,7 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixInPercent}
                                                         onChange={(e) => setFeesForm({...feesForm, pixInPercent: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono" 
+                                                        className="w-full border border-emerald-500/30 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono bg-[#090d0a] text-white placeholder-slate-500" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
@@ -1028,7 +1028,7 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixOutFeeValue}
                                                         onChange={(e) => setFeesForm({...feesForm, pixOutFeeValue: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono" 
+                                                        className="w-full border border-emerald-500/30 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono bg-[#090d0a] text-white placeholder-slate-500" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
@@ -1046,7 +1046,7 @@ export const Clients: React.FC = () => {
                                                         step="0.00001"
                                                         value={feesForm.pixOutPercent}
                                                         onChange={(e) => setFeesForm({...feesForm, pixOutPercent: e.target.value})}
-                                                        className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono" 
+                                                        className="w-full border border-emerald-500/30 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono bg-[#090d0a] text-white placeholder-slate-500" 
                                                         placeholder="0.00"
                                                     />
                                                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
@@ -1073,7 +1073,7 @@ export const Clients: React.FC = () => {
                                                     step="0.00001"
                                                     value={feesForm.otcFeePercentage}
                                                     onChange={(e) => setFeesForm({...feesForm, otcFeePercentage: e.target.value})}
-                                                    className="w-full border border-slate-300 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono" 
+                                                    className="w-full border border-emerald-500/30 rounded-lg pl-3 pr-8 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono bg-[#090d0a] text-white placeholder-slate-500" 
                                                     placeholder="0.00"
                                                 />
                                                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
@@ -1145,7 +1145,7 @@ export const Clients: React.FC = () => {
                                                             <div className="flex items-center gap-2 mb-1">
                                                                 <div className="font-bold text-slate-100">{provider.name}</div>
                                                                 {!provider.active && (
-                                                                    <span className="px-2 py-0.5 bg-slate-100 text-slate-300 text-xs rounded">Inativo</span>
+                                                                    <span className="px-2 py-0.5 bg-[#0f1713] text-slate-300 border border-emerald-500/10 text-xs rounded">Inativo</span>
                                                                 )}
                                                             </div>
                                                             <div className="text-sm text-slate-300 font-mono">{provider.code}</div>
@@ -1210,7 +1210,7 @@ export const Clients: React.FC = () => {
                                                                 <span className={`text-xs px-2 py-1 rounded-full font-bold ${
                                                                     isImage ? 'bg-emerald-950/40 text-emerald-400' :
                                                                     isPdf ? 'bg-emerald-950/40 text-emerald-600' :
-                                                                    'bg-slate-100 text-slate-200'
+                                                                    'bg-[#0f1713] text-slate-300 border border-emerald-500/10'
                                                                 }`}>
                                                                     {isImage ? 'Imagem' : isPdf ? 'PDF' : 'Arquivo'}
                                                                 </span>
@@ -1270,7 +1270,7 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.webhook_url}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
+                                                className="w-full border border-emerald-500/30 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none bg-[#090d0a] text-white placeholder-slate-500"
                                                 placeholder="https://exemplo.com/webhook"
                                             />
                                             <p className="mt-2 text-xs text-slate-400">
@@ -1286,7 +1286,7 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.webhook_url_pix_in}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url_pix_in: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
+                                                className="w-full border border-emerald-500/30 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none bg-[#090d0a] text-white placeholder-slate-500"
                                                 placeholder="https://exemplo.com/webhook/pix-in"
                                             />
                                             <p className="mt-2 text-xs text-slate-400">
@@ -1302,7 +1302,7 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.webhook_url_pix_out}
                                                 onChange={(e) => setConfigForm({...configForm, webhook_url_pix_out: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
+                                                className="w-full border border-emerald-500/30 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none bg-[#090d0a] text-white placeholder-slate-500"
                                                 placeholder="https://exemplo.com/webhook/pix-out"
                                             />
                                             <p className="mt-2 text-xs text-slate-400">
@@ -1318,7 +1318,7 @@ export const Clients: React.FC = () => {
                                                 type="url"
                                                 value={configForm.refund_api_route}
                                                 onChange={(e) => setConfigForm({...configForm, refund_api_route: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
+                                                className="w-full border border-emerald-500/30 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none bg-[#090d0a] text-white placeholder-slate-500"
                                                 placeholder="https://exemplo.com/webhook/refound"
                                             />
                                             <p className="mt-2 text-xs text-slate-400">
@@ -1337,7 +1337,7 @@ export const Clients: React.FC = () => {
                                             <textarea
                                                 value={configForm.ip_whitelist}
                                                 onChange={(e) => setConfigForm({...configForm, ip_whitelist: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
+                                                className="w-full border border-emerald-500/30 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none bg-[#090d0a] text-white placeholder-slate-500"
                                                 placeholder="192.168.1.1
 10.0.0.1
 200.123.45.67"
@@ -1359,7 +1359,7 @@ export const Clients: React.FC = () => {
                                             <textarea
                                                 value={configForm.cnpj_whitelist}
                                                 onChange={(e) => setConfigForm({...configForm, cnpj_whitelist: e.target.value})}
-                                                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
+                                                className="w-full border border-emerald-500/30 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none bg-[#090d0a] text-white placeholder-slate-500"
                                                 placeholder="12.345.678/0001-90
 98.765.432/0001-10
 11.222.333/0001-44"

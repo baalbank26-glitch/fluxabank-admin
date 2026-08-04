@@ -294,8 +294,8 @@ export const MED: React.FC = () => {
       case 'UNDER_REVIEW': return 'bg-amber-100 text-amber-700 border-amber-200';
       case 'DEFENSE_SENT': return 'bg-emerald-950/40 text-emerald-400 border-blue-200';
       case 'REFUND_ACCEPTED': return 'bg-emerald-950/30 text-emerald-300 border-green-200';
-      case 'REFUND_REJECTED': return 'bg-slate-100 text-slate-200 border-emerald-500/20';
-      default: return 'bg-slate-100 text-slate-200';
+      case 'REFUND_REJECTED': return 'bg-[#0f1713] text-slate-300 border border-emerald-500/10 border-emerald-500/20';
+      default: return 'bg-[#0f1713] text-slate-300 border border-emerald-500/10';
     }
   };
 
@@ -497,7 +497,7 @@ export const MED: React.FC = () => {
                   setTxFrom(e.target.value);
                   setTxPeriodPreset('CUSTOM');
                 }}
-                className="px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-300 outline-none"
+                className="px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-300 outline-none bg-[#090d0a] text-white [color-scheme:dark]"
               />
               <span className="text-xs font-semibold text-slate-200 uppercase tracking-wide">até:</span>
               <input
@@ -508,7 +508,7 @@ export const MED: React.FC = () => {
                   setTxTo(e.target.value);
                   setTxPeriodPreset('CUSTOM');
                 }}
-                className="px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-300 outline-none"
+                className="px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-300 outline-none bg-[#090d0a] text-white [color-scheme:dark]"
               />
               {(txFrom || txTo) && (
                 <button
@@ -656,7 +656,7 @@ export const MED: React.FC = () => {
                  </div>
                  <div className="flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-mono text-xs font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded">{item.id}</span>
+                      <span className="font-mono text-xs font-bold text-emerald-300 bg-emerald-950/30 border border-emerald-500/20 px-1.5 py-0.5 rounded">{item.id}</span>
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${getStatusColor(item.status)}`}>
                         {item.status}
                       </span>
@@ -722,7 +722,7 @@ export const MED: React.FC = () => {
               </div>
               <button
                 onClick={() => setSelectedCase(null)}
-                className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-400"
+                className="p-2 hover:bg-emerald-950/30 rounded-full transition-colors text-slate-400"
                 aria-label="Fechar detalhes"
               >
                 <ChevronDown className="w-5 h-5" />
@@ -925,7 +925,7 @@ export const MED: React.FC = () => {
                   <p className="text-xs text-slate-400">Selecione uma transação e retenha o valor</p>
                 </div>
               </div>
-              <button onClick={() => setShowCreateModal(false)} className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-400">
+              <button onClick={() => setShowCreateModal(false)} className="p-2 hover:bg-emerald-950/30 rounded-full transition-colors text-slate-400">
                 <ChevronDown className="w-5 h-5" />
               </button>
             </div>

@@ -215,7 +215,7 @@ export const Providers: React.FC = () => {
           <input 
             type="text" 
             placeholder="Buscar por nome, código ou URL..." 
-            className="w-full pl-10 pr-4 py-2.5 bg-[#090d0a] border border-emerald-500/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+            className="w-full pl-10 pr-4 py-2.5 bg-[#090d0a] border border-emerald-500/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-white placeholder-slate-500"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -249,10 +249,10 @@ export const Providers: React.FC = () => {
                     </td>
                   </tr>
                 ) : filteredProviders.map((provider) => (
-                  <tr key={provider.id} className="hover:bg-slate-50/50">
+                  <tr key={provider.id} className="hover:bg-emerald-950/20">
                     <td className="px-6 py-4 font-mono text-xs text-slate-400">#{provider.id}</td>
                     <td className="px-6 py-4">
-                      <span className="font-mono text-sm font-medium text-slate-100 bg-slate-100 px-2 py-1 rounded">
+                      <span className="font-mono text-sm font-bold text-emerald-300 bg-emerald-950/30 border border-emerald-500/20 px-2 py-1 rounded">
                         {provider.code}
                       </span>
                     </td>
@@ -272,7 +272,7 @@ export const Providers: React.FC = () => {
                       <span className={`px-2 py-1 rounded-full text-xs font-bold ${
                         provider.active 
                           ? 'bg-emerald-950/30 text-emerald-300' 
-                          : 'bg-slate-100 text-slate-300'
+                          : 'bg-[#0f1713] text-slate-300 border border-emerald-500/10'
                       }`}>
                         {provider.active ? 'Ativo' : 'Inativo'}
                       </span>
@@ -287,8 +287,8 @@ export const Providers: React.FC = () => {
                           disabled={actionLoading}
                           className={`p-2 rounded-lg transition-colors ${
                             provider.active
-                              ? 'text-amber-600 hover:bg-amber-50'
-                              : 'text-emerald-400 hover:bg-green-50'
+                              ? 'text-amber-600 hover:bg-amber-950/20'
+                              : 'text-emerald-400 hover:bg-emerald-950/20'
                           }`}
                           title={provider.active ? 'Desativar' : 'Ativar'}
                         >
@@ -301,7 +301,7 @@ export const Providers: React.FC = () => {
                         <button
                           onClick={() => openEditModal(provider)}
                           disabled={actionLoading}
-                          className="p-2 text-emerald-400 hover:bg-blue-50 rounded-lg transition-colors"
+                          className="p-2 text-emerald-400 hover:bg-emerald-950/20 rounded-lg transition-colors"
                           title="Editar"
                         >
                           <Edit className="w-4 h-4" />
@@ -326,11 +326,11 @@ export const Providers: React.FC = () => {
 
       {/* Modal de Create/Edit */}
       {showModal && (
-        <div className="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
           <div className="bg-[#0f1713] rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
             <div className="p-6 border-b border-emerald-500/20 flex justify-between items-center bg-[#090d0a]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-orange-500 text-white flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-400 text-white flex items-center justify-center">
                   <Building2 className="w-5 h-5" />
                 </div>
                 <div>
@@ -344,14 +344,14 @@ export const Providers: React.FC = () => {
               </div>
               <button 
                 onClick={closeModal} 
-                className="p-2 hover:bg-slate-200 rounded-full transition-colors"
+                className="p-2 hover:bg-emerald-950/30 rounded-full transition-colors"
                 disabled={actionLoading}
               >
                 <X className="w-6 h-6 text-slate-400" />
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 bg-slate-50/30">
+            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 bg-[#090d0a]">
               <div className="space-y-6 max-w-xl mx-auto">
                 <div className="bg-[#0f1713] p-6 rounded-xl border border-emerald-500/20 shadow-sm space-y-4">
                   <div>
@@ -363,7 +363,7 @@ export const Providers: React.FC = () => {
                       required
                       value={formData.code}
                       onChange={(e) => setFormData({ ...formData, code: e.target.value.toUpperCase().replace(/\s+/g, '_') })}
-                      className="w-full border border-slate-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono"
+                      className="w-full border border-emerald-500/30 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono bg-[#090d0a] text-white placeholder-slate-500"
                       placeholder="PROVIDER_CODE"
                       disabled={!!editingProvider}
                     />
@@ -381,7 +381,7 @@ export const Providers: React.FC = () => {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full border border-slate-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none"
+                      className="w-full border border-emerald-500/30 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none bg-[#090d0a] text-white placeholder-slate-500"
                       placeholder="Nome do Provider"
                     />
                   </div>
@@ -397,7 +397,7 @@ export const Providers: React.FC = () => {
                         required
                         value={formData.base_url}
                         onChange={(e) => setFormData({ ...formData, base_url: e.target.value })}
-                        className="w-full border border-slate-300 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono text-sm"
+                        className="w-full border border-emerald-500/30 rounded-lg pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-emerald-500 outline-none font-mono text-sm bg-[#090d0a] text-white placeholder-slate-500"
                         placeholder="https://api.provider.com"
                       />
                     </div>
@@ -427,14 +427,14 @@ export const Providers: React.FC = () => {
                     type="button"
                     onClick={closeModal}
                     disabled={actionLoading}
-                    className="flex-1 py-3 bg-[#0f1713] hover:bg-[#090d0a] text-slate-200 border border-slate-300 rounded-xl font-medium transition-colors disabled:opacity-50"
+                    className="flex-1 py-3 bg-[#090d0a] hover:bg-emerald-950/30 text-slate-300 border border-emerald-500/20 rounded-xl font-bold transition-colors disabled:opacity-50"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
                     disabled={actionLoading}
-                    className="flex-1 py-3 bg-slate-900 hover:bg-[#0f1713] text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
+                    className="flex-1 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-extrabold shadow-md shadow-emerald-500/30 transition-colors flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
                   >
                     {actionLoading ? (
                       <Loader2 className="w-5 h-5 animate-spin" />

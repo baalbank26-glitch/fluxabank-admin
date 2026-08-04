@@ -315,7 +315,7 @@ export const Settings: React.FC = () => {
             </div>
              <div className="h-6 w-11 bg-slate-200 rounded-full"></div>
           </div>
-           <div className="h-px bg-slate-100"></div>
+           <div className="h-px bg-emerald-500/10"></div>
           <div>
             <p className="font-medium text-slate-100 mb-2">Lista Branca de IPs (Admin)</p>
             <textarea 

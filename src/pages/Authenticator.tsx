@@ -151,7 +151,7 @@ export const Authenticator: React.FC = () => {
               </div>
               {secret && (
                 <div className="text-center text-sm text-slate-300">
-                  <span className="font-mono bg-slate-100 px-2 py-1 rounded">{secret}</span>
+                  <span className="font-mono bg-emerald-950/30 text-emerald-300 border border-emerald-500/20 px-2 py-1 rounded">{secret}</span>
                 </div>
               )}
               <div className="max-w-sm mx-auto space-y-2">
@@ -159,7 +159,7 @@ export const Authenticator: React.FC = () => {
                   value={code}
                   onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                   placeholder="Código TOTP (6 dígitos)"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg"
+                  className="w-full px-3 py-2 border border-emerald-500/30 rounded-lg"
                 />
                 <button
                   onClick={enable2FA}
@@ -182,13 +182,13 @@ export const Authenticator: React.FC = () => {
               value={code}
               onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
               placeholder="Código TOTP (6 dígitos)"
-              className="px-3 py-2 border border-slate-300 rounded-lg"
+              className="px-3 py-2 border border-emerald-500/30 rounded-lg"
             />
             <input
               value={recoveryCode}
               onChange={(e) => setRecoveryCode(e.target.value)}
               placeholder="Recovery code"
-              className="px-3 py-2 border border-slate-300 rounded-lg"
+              className="px-3 py-2 border border-emerald-500/30 rounded-lg"
             />
           </div>
           <button
@@ -212,7 +212,7 @@ export const Authenticator: React.FC = () => {
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 {recoveryCodes.map((item) => (
-                  <div key={item} className="px-2 py-1.5 bg-slate-100 rounded text-xs font-mono text-slate-200">
+                  <div key={item} className="px-2 py-1.5 bg-[#090d0a] rounded text-xs font-mono text-emerald-300 border border-emerald-500/10">
                     {item}
                   </div>
                 ))}

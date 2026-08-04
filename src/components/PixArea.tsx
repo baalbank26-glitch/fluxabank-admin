@@ -64,7 +64,7 @@ export const PixArea: React.FC = () => {
                     </div>
                     <p className="text-4xl font-mono font-bold mt-4">{myFees?.pixInPercent ?? '--'}%</p>
                 </div>
-                <div className="bg-gradient-to-br from-emerald-500 to-orange-500 rounded-2xl p-6 text-white shadow-lg">
+                <div className="bg-gradient-to-br from-emerald-600 to-emerald-400 rounded-2xl p-6 text-white shadow-lg">
                     <div className="flex justify-between items-start">
                         <div>
                             <p className="font-medium text-emerald-950/40">Suas Taxas</p>
@@ -116,7 +116,7 @@ export const PixArea: React.FC = () => {
                                         <input 
                                             type="number" step="0.01" required
                                             value={amount} onChange={e => setAmount(e.target.value)}
-                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 text-lg outline-none focus:ring-2 focus:ring-green-500"
+                                            className="w-full border border-emerald-500/30 rounded-xl px-4 py-3 text-lg outline-none focus:ring-2 focus:ring-emerald-500 bg-[#090d0a] text-white placeholder-slate-500"
                                             placeholder="0,00"
                                         />
                                     </div>
@@ -132,7 +132,7 @@ export const PixArea: React.FC = () => {
                                     <div className="space-y-2">
                                         <p className="text-sm font-medium text-slate-400">Copia e Cola</p>
                                         <div className="flex gap-2">
-                                            <input readOnly value={depositCode} className="w-full bg-slate-100 text-xs p-3 rounded-lg border-none" />
+                                            <input readOnly value={depositCode} className="w-full bg-[#090d0a] text-emerald-300 text-xs p-3 rounded-lg border border-emerald-500/20" />
                                             <button onClick={() => navigator.clipboard.writeText(depositCode)} className="p-3 bg-slate-200 hover:bg-slate-300 rounded-lg text-slate-300">
                                                 <Copy className="w-4 h-4" />
                                             </button>
@@ -162,7 +162,7 @@ export const PixArea: React.FC = () => {
                                         <input 
                                             type="text" required
                                             value={pixKey} onChange={e => setPixKey(e.target.value)}
-                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500"
+                                            className="w-full border border-emerald-500/30 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500"
                                             placeholder="CPF, Email ou Aleatória"
                                         />
                                     </div>
@@ -171,7 +171,7 @@ export const PixArea: React.FC = () => {
                                         <input 
                                             type="number" step="0.01" required
                                             value={amount} onChange={e => setAmount(e.target.value)}
-                                            className="w-full border border-slate-300 rounded-xl px-4 py-3 text-lg outline-none focus:ring-2 focus:ring-emerald-500"
+                                            className="w-full border border-emerald-500/30 rounded-xl px-4 py-3 text-lg outline-none focus:ring-2 focus:ring-emerald-500"
                                             placeholder="0,00"
                                         />
                                     </div>

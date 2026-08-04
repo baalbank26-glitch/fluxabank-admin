@@ -84,7 +84,7 @@ export const Security: React.FC = () => {
             case 'IP_BLOCKED':
                 return <span className="px-2 py-1 bg-emerald-950/40 text-orange-600 rounded text-xs font-bold ring-1 ring-orange-200">IP_BLOCKED</span>;
             case 'MISSING_CREDENTIALS':
-                return <span className="px-2 py-1 bg-slate-100 text-slate-200 rounded text-xs font-bold ring-1 ring-slate-200">MISSING_CREDENTIALS</span>;
+                return <span className="px-2 py-1 bg-[#0f1713] text-slate-300 border border-emerald-500/10 rounded text-xs font-bold ring-1 ring-slate-200">MISSING_CREDENTIALS</span>;
             case '2FA_FAILURE':
                 return <span className="px-2 py-1 bg-emerald-950/40 text-orange-600 rounded text-xs font-bold ring-1 ring-orange-200">2FA_FAILURE</span>;
             case '2FA_MISSING':

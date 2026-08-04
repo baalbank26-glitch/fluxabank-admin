@@ -867,7 +867,7 @@ export const Treasury: React.FC = () => {
                 type="date"
                 value={dateFrom}
                 onChange={(e) => setDateFrom(e.target.value)}
-                className="w-full px-4 py-2 border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 bg-[#090d0a] text-white placeholder-slate-500 [color-scheme:dark]"
               />
             </div>
             <div>
@@ -878,7 +878,7 @@ export const Treasury: React.FC = () => {
                 type="date"
                 value={dateTo}
                 onChange={(e) => setDateTo(e.target.value)}
-                className="w-full px-4 py-2 border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 bg-[#090d0a] text-white placeholder-slate-500 [color-scheme:dark]"
               />
             </div>
           </div>
@@ -907,11 +907,11 @@ export const Treasury: React.FC = () => {
           <h3 className="font-bold text-slate-100">Visualização de Tesouraria</h3>
           <p className="text-xs text-slate-400 mt-1">Escolha entre ledger geral ou consolidação por usuário.</p>
         </div>
-        <div className="flex bg-slate-100 rounded-lg p-1 w-full md:w-auto">
+        <div className="flex bg-[#090d0a] border border-emerald-500/20 rounded-xl p-1 w-full md:w-auto">
           <button
             onClick={() => setLedgerViewMode('LEDGER')}
             className={`flex-1 md:flex-initial px-4 py-2 text-xs font-bold rounded-md transition-colors ${ledgerViewMode === 'LEDGER'
-              ? 'bg-[#0f1713] text-white shadow-sm'
+              ? 'bg-emerald-500 text-slate-950 shadow-md font-extrabold'
               : 'text-slate-400 hover:text-slate-200'
               }`}
           >
@@ -920,7 +920,7 @@ export const Treasury: React.FC = () => {
           <button
             onClick={() => setLedgerViewMode('BY_USER')}
             className={`flex-1 md:flex-initial px-4 py-2 text-xs font-bold rounded-md transition-colors ${ledgerViewMode === 'BY_USER'
-              ? 'bg-[#0f1713] text-white shadow-sm'
+              ? 'bg-emerald-500 text-slate-950 shadow-md font-extrabold'
               : 'text-slate-400 hover:text-slate-200'
               }`}
           >
@@ -943,7 +943,7 @@ export const Treasury: React.FC = () => {
                 value={byUserSearch}
                 onChange={(e) => setByUserSearch(e.target.value)}
                 placeholder="Filtrar por nome, email ou ID do usuário"
-                className="w-full md:w-80 px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="w-full md:w-80 px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 bg-[#090d0a] text-white placeholder-slate-500 [color-scheme:dark] [color-scheme:dark]"
               />
             </div>
           </div>
@@ -983,7 +983,7 @@ export const Treasury: React.FC = () => {
                 byUserSummary.map((item) => (
                   <tr
                     key={item.userId}
-                    className="hover:bg-slate-50/50 cursor-pointer"
+                    className="hover:bg-emerald-950/20 cursor-pointer"
                     onClick={() => openUserTransactionsModal(item)}
                     title="Clique para ver as transações deste usuário"
                   >
@@ -1048,8 +1048,8 @@ export const Treasury: React.FC = () => {
             type="text"
             value={ledgerSearch}
             onChange={(e) => setLedgerSearch(e.target.value)}
-            placeholder="Filtrar no ledger por usuário, email, descrição ou ID"
-            className="w-full md:w-96 px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+            placeholder="Filtrar no ledger..."
+            className="w-full md:w-96 px-3 py-2 text-sm border border-emerald-500/20 rounded-lg focus:ring-2 focus:ring-emerald-500 bg-[#090d0a] text-white placeholder-slate-500 [color-scheme:dark]"
           />
         </div>
 
@@ -1083,7 +1083,7 @@ export const Treasury: React.FC = () => {
                 filteredLedger
                   .filter(item => !!item)
                   .map(item => (
-                    <tr key={item.id} className="hover:bg-slate-50/50">
+                    <tr key={item.id} className="hover:bg-emerald-950/20">
                       <td className="px-6 py-4 font-mono text-xs">{item.id}</td>
 
                       <td className="px-6 py-4">
@@ -1223,7 +1223,7 @@ export const Treasury: React.FC = () => {
                     </tr>
                   ) : (
                     userTransactions.map((tx) => (
-                      <tr key={tx.id} className="hover:bg-slate-50/50">
+                      <tr key={tx.id} className="hover:bg-emerald-950/20">
                         <td className="px-4 py-3">
                           {safeDate(tx.created_at).toString() !== 'Invalid'
                             ? safeDate(tx.created_at).toLocaleString('pt-BR')
