@@ -108,7 +108,7 @@ const OTCWithdrawals: React.FC = () => {
       case 'processing':
         return 'bg-emerald-950/40 text-emerald-300';
       case 'completed':
-        return 'bg-emerald-950/30 text-green-800';
+        return 'bg-emerald-950/30 text-emerald-300';
       case 'cancelled':
         return 'bg-emerald-950/40 text-fluxabank-700';
       default:
@@ -163,7 +163,7 @@ const OTCWithdrawals: React.FC = () => {
 
       {/* Sucesso */}
       {success && (
-        <div className="p-4 bg-green-50 text-emerald-300 rounded-lg border border-green-200 flex items-center gap-2">
+        <div className="p-4 bg-emerald-950/20 text-emerald-300 rounded-lg border border-emerald-500/30 flex items-center gap-2">
           <Check className="w-5 h-5" />
           {success}
         </div>
@@ -331,7 +331,7 @@ const OTCWithdrawals: React.FC = () => {
                   <button
                     onClick={() => handleUpdateStatus('processing')}
                     disabled={processing}
-                    className="flex-1 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="flex-1 py-2 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-400 disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     {processing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                     Processando
@@ -339,7 +339,7 @@ const OTCWithdrawals: React.FC = () => {
                   <button
                     onClick={() => handleUpdateStatus('completed')}
                     disabled={processing || !txHash.trim()}
-                    className="flex-1 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="flex-1 py-2 bg-emerald-500 text-slate-950 font-bold rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     {processing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
                     Completo
@@ -387,7 +387,7 @@ const OTCWithdrawals: React.FC = () => {
                 className={`w-full py-3 rounded-lg font-semibold transition-colors ${
                   validationModal.type === 'error'
                     ? 'bg-emerald-500 text-white hover:bg-emerald-600'
-                    : 'bg-green-600 text-white hover:bg-green-700'
+                    : 'bg-emerald-500 text-slate-950 font-bold hover:bg-green-700'
                 }`}
               >
                 OK

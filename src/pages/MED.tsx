@@ -293,7 +293,7 @@ export const MED: React.FC = () => {
       case 'OPEN': return 'bg-emerald-950/40 text-emerald-600 border-emerald-500/30';
       case 'UNDER_REVIEW': return 'bg-amber-100 text-amber-700 border-amber-200';
       case 'DEFENSE_SENT': return 'bg-emerald-950/40 text-emerald-400 border-emerald-500/30';
-      case 'REFUND_ACCEPTED': return 'bg-emerald-950/30 text-emerald-300 border-green-200';
+      case 'REFUND_ACCEPTED': return 'bg-emerald-950/30 text-emerald-300 border-emerald-500/30';
       case 'REFUND_REJECTED': return 'bg-[#0f1713] text-slate-300 border border-emerald-500/10 border-emerald-500/20';
       default: return 'bg-[#0f1713] text-slate-300 border border-emerald-500/10';
     }

@@ -138,8 +138,8 @@ export const Settings: React.FC = () => {
           <p className="text-slate-400 text-sm">Parâmetros globais e controle de disponibilidade.</p>
         </div>
 
-      <div className={`rounded-2xl border shadow-sm overflow-hidden transition-all duration-300 ${maintenance.isActive ? 'bg-gradient-to-br from-emerald-950/20 via-white to-orange-50 border-emerald-500/30 shadow-emerald-500/30/40' : 'bg-[#0f1713] border-emerald-500/20'}`}>
-        <div className={`p-6 border-b ${maintenance.isActive ? 'border-emerald-500/30 bg-gradient-to-r from-emerald-950/20 to-orange-50' : 'border-emerald-500/20'}`}>
+      <div className={`rounded-2xl border shadow-sm overflow-hidden transition-all duration-300 ${maintenance.isActive ? 'bg-gradient-to-br from-emerald-950/20 via-[#0f1713] to-[#090d0a] border-emerald-500/30 shadow-emerald-500/30/40' : 'bg-[#0f1713] border-emerald-500/20'}`}>
+        <div className={`p-6 border-b ${maintenance.isActive ? 'border-emerald-500/30 bg-gradient-to-r from-emerald-950/20 to-[#090d0a]' : 'border-emerald-500/20'}`}>
           <h3 className={`font-bold text-lg flex items-center gap-2 ${maintenance.isActive ? 'text-fluxabank-800' : 'text-slate-100'}`}>
             <Server className="w-5 h-5" /> Sistema & Disponibilidade
           </h3>
@@ -180,7 +180,7 @@ export const Settings: React.FC = () => {
 
           {maintenance.isActive && (
             <div className="animate-in fade-in slide-in-from-top-2 pt-6 border-t border-emerald-500/30/70">
-              <div className="rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 via-white to-orange-50 shadow-[0_20px_60px_-30px_rgba(8,145,178,0.45)] overflow-hidden">
+              <div className="rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 via-[#0f1713] to-[#090d0a] shadow-[0_20px_60px_-30px_rgba(8,145,178,0.45)] overflow-hidden">
                 <div className="border-b border-emerald-950/40 bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 py-5 text-white">
                   <div className="flex items-start justify-between gap-4">
                     <div>

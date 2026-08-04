@@ -708,9 +708,9 @@ export const Clients: React.FC = () => {
                                             
                                             {selectedUser.doc_status === DocStatus.APPROVED ? (
                                                 <div className="pt-4 mt-2 border-t border-emerald-500/20">
-                                                    <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 flex items-center gap-3">
+                                                    <div className="bg-emerald-950/20 border border-emerald-500/30 rounded-lg p-3 mb-4 flex items-center gap-3">
                                                         <CheckCircle className="w-5 h-5 text-emerald-400" />
-                                                        <p className="text-sm text-green-800">Este usuário já está aprovado e operando. Para gestão de documentos, utilize o painel de conformidade.</p>
+                                                        <p className="text-sm text-emerald-300">Este usuário já está aprovado e operando. Para gestão de documentos, utilize o painel de conformidade.</p>
                                                     </div>
                                                     
                                                     <div className="space-y-2">
@@ -742,7 +742,7 @@ export const Clients: React.FC = () => {
                                                         <button 
                                                             disabled={actionLoading}
                                                             onClick={() => handleUpdateDocStatus(DocStatus.APPROVED)}
-                                                            className="flex-1 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
+                                                            className="flex-1 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold rounded-lg font-medium transition-colors disabled:opacity-50"
                                                         >
                                                             Aprovar Conta
                                                         </button>
@@ -767,17 +767,17 @@ export const Clients: React.FC = () => {
                                     </div>
 
                                     {apiCredentials && (
-                                        <div className="bg-green-50 border border-green-200 rounded-xl p-4 animate-in slide-in-from-top-4">
-                                            <h4 className="font-bold text-green-800 mb-2 flex items-center gap-2">
+                                        <div className="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-4 animate-in slide-in-from-top-4">
+                                            <h4 className="font-bold text-emerald-300 mb-2 flex items-center gap-2">
                                                 <CheckCircle className="w-5 h-5" /> Credenciais Geradas
                                             </h4>
                                             <p className="text-sm text-emerald-300 mb-3">Copie agora. O App Secret não será exibido novamente.</p>
                                             <div className="space-y-2">
-                                                <div className="bg-[#0f1713] p-2 rounded border border-green-200">
+                                                <div className="bg-[#0f1713] p-2 rounded border border-emerald-500/30">
                                                     <span className="text-xs text-slate-400 block">App ID</span>
                                                     <code className="text-sm font-mono text-slate-100">{apiCredentials.appId}</code>
                                                 </div>
-                                                <div className="bg-[#0f1713] p-2 rounded border border-green-200">
+                                                <div className="bg-[#0f1713] p-2 rounded border border-emerald-500/30">
                                                     <span className="text-xs text-slate-400 block">App Secret</span>
                                                     <code className="text-sm font-mono text-slate-100 break-all">{apiCredentials.appSecret}</code>
                                                 </div>
@@ -956,10 +956,10 @@ export const Clients: React.FC = () => {
 
                             {activeTab === 'FEES' && (
                                 <form onSubmit={handleUpdateFees} className="max-w-2xl mx-auto space-y-8 py-4">
-                                    <div className="bg-[#0f1713] border border-blue-100 p-4 rounded-xl flex items-start gap-3">
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 p-4 rounded-xl flex items-start gap-3">
                                         <Settings2 className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Configuração de Tarifas</h4>
+                                            <h4 className="font-bold text-emerald-300">Configuração de Tarifas</h4>
                                             <p className="text-sm text-emerald-400">Defina as taxas retidas pelo gateway. Você pode configurar taxa fixa, percentual ou ambas simultaneamente. Se ambas estiverem configuradas, serão somadas.</p>
                                         </div>
                                     </div>
@@ -1090,19 +1090,19 @@ export const Clients: React.FC = () => {
 
                             {activeTab === 'PROVIDER' && (
                                 <div className="max-w-2xl mx-auto space-y-6 py-4">
-                                    <div className="bg-[#0f1713] border border-blue-100 p-4 rounded-xl flex items-start gap-3">
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 p-4 rounded-xl flex items-start gap-3">
                                         <Building2 className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Seleção de Provider</h4>
+                                            <h4 className="font-bold text-emerald-300">Seleção de Provider</h4>
                                             <p className="text-sm text-emerald-400">Escolha um provider de pagamento para este usuário. O provider será usado para processar as transações.</p>
                                         </div>
                                     </div>
 
                                     {userProvider && (
-                                        <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                                        <div className="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-4">
                                             <div className="flex items-center gap-2 mb-2">
                                                 <CheckCircle className="w-5 h-5 text-emerald-400" />
-                                                <h5 className="font-bold text-green-900">Provider Atual</h5>
+                                                <h5 className="font-bold text-emerald-300">Provider Atual</h5>
                                             </div>
                                             <p className="text-sm text-emerald-300">
                                                 {providers.find(p => p.code === userProvider)?.name || 'Provider selecionado'}
@@ -1129,7 +1129,7 @@ export const Clients: React.FC = () => {
                                                         className={`flex items-start gap-4 p-4 border-2 rounded-lg cursor-pointer transition-all ${
                                                             selectedProvider === provider.code
                                                                 ? 'border-emerald-500 bg-emerald-950/20'
-                                                                : 'border-emerald-500/20 hover:border-slate-300'
+                                                                : 'border-emerald-500/20 hover:border-emerald-500/50'
                                                         } ${!provider.active ? 'opacity-60' : ''}`}
                                                     >
                                                         <input
@@ -1178,10 +1178,10 @@ export const Clients: React.FC = () => {
 
                             {activeTab === 'DOCUMENTS' && (
                                 <div className="max-w-4xl mx-auto py-4">
-                                    <div className="bg-[#0f1713] border border-blue-100 p-4 rounded-xl flex items-start gap-3 mb-6">
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 p-4 rounded-xl flex items-start gap-3 mb-6">
                                         <FileText className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Documentos KYC</h4>
+                                            <h4 className="font-bold text-emerald-300">Documentos KYC</h4>
                                             <p className="text-sm text-emerald-400">Documentação enviada pelo usuário para validação de identidade e conformidade.</p>
                                         </div>
                                     </div>
@@ -1204,7 +1204,7 @@ export const Clients: React.FC = () => {
                                                 
                                                 return (
                                                     <div key={idx} className="bg-[#090d0a] border border-emerald-500/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                                                        <div className="bg-gradient-to-r from-slate-50 to-slate-100 p-4 border-b border-emerald-500/20">
+                                                        <div className="bg-gradient-to-r from-[#0f1713] to-[#090d0a] p-4 border-b border-emerald-500/20">
                                                             <div className="flex items-start justify-between mb-2">
                                                                 <h5 className="font-bold text-slate-100 text-sm">{documentType}</h5>
                                                                 <span className={`text-xs px-2 py-1 rounded-full font-bold ${
@@ -1251,10 +1251,10 @@ export const Clients: React.FC = () => {
 
                             {activeTab === 'CONFIG' && (
                                 <form onSubmit={handleSaveConfig} className="max-w-2xl mx-auto space-y-6 py-4">
-                                    <div className="bg-[#0f1713] border border-blue-100 p-4 rounded-xl flex items-start gap-3">
+                                    <div className="bg-[#0f1713] border border-emerald-500/20 p-4 rounded-xl flex items-start gap-3">
                                         <Settings2 className="w-5 h-5 text-emerald-400 mt-0.5" />
                                         <div>
-                                            <h4 className="font-bold text-blue-900">Configurações do Sistema</h4>
+                                            <h4 className="font-bold text-emerald-300">Configurações do Sistema</h4>
                                             <p className="text-sm text-emerald-400">Configure a URL de webhook e os IPs permitidos para este usuário.</p>
                                         </div>
                                     </div>

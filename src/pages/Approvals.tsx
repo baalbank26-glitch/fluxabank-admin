@@ -212,7 +212,7 @@ export const Approvals: React.FC = () => {
                   <button onClick={() => handleReject(user.id)} className="px-4 py-2 bg-emerald-950/20 text-emerald-500 rounded-lg text-sm font-medium hover:bg-emerald-950/40 flex items-center justify-center gap-2 transition-colors">
                     <X className="w-4 h-4" /> Rejeitar
                   </button>
-                  <button onClick={() => handleApprove(user.id)} className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 flex items-center justify-center gap-2 shadow-sm transition-colors">
+                  <button onClick={() => handleApprove(user.id)} className="px-4 py-2 bg-emerald-500 text-slate-950 font-bold rounded-lg text-sm font-medium hover:bg-green-700 flex items-center justify-center gap-2 shadow-sm transition-colors">
                     <Check className="w-4 h-4" /> Aprovar
                   </button>
                 </div>

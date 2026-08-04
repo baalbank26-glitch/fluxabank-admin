@@ -420,7 +420,7 @@ export const OTC: React.FC = () => {
               className={`w-full py-3 rounded-lg font-semibold transition-colors ${
                 validationModal.type === 'error'
                   ? 'bg-emerald-500 text-white hover:bg-emerald-600'
-                  : 'bg-green-600 text-white hover:bg-green-700'
+                  : 'bg-emerald-500 text-slate-950 font-bold hover:bg-green-700'
               }`}
             >
               OK

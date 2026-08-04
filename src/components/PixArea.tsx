@@ -120,7 +120,7 @@ export const PixArea: React.FC = () => {
                                             placeholder="0,00"
                                         />
                                     </div>
-                                    <button disabled={loading} className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-colors flex justify-center gap-2">
+                                    <button disabled={loading} className="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold font-bold rounded-xl transition-colors flex justify-center gap-2">
                                         {loading ? <Loader2 className="animate-spin" /> : 'Gerar QR Code'}
                                     </button>
                                 </form>
@@ -148,11 +148,11 @@ export const PixArea: React.FC = () => {
                         <div className="w-full max-w-md space-y-6">
                             <h3 className="text-xl font-bold text-slate-100">Solicitar Saque</h3>
                             {withdrawStatus ? (
-                                <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center animate-in zoom-in">
+                                <div className="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-6 text-center animate-in zoom-in">
                                     <div className="w-12 h-12 bg-emerald-950/30 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400">
                                         <Check className="w-6 h-6" />
                                     </div>
-                                    <p className="text-green-800 font-bold">{withdrawStatus}</p>
+                                    <p className="text-emerald-300 font-bold">{withdrawStatus}</p>
                                     <button onClick={() => setWithdrawStatus('')} className="mt-4 text-sm text-emerald-400 hover:underline">Novo Saque</button>
                                 </div>
                             ) : (

@@ -90,7 +90,7 @@ export const Security: React.FC = () => {
             case '2FA_MISSING':
                 return <span className="px-2 py-1 bg-violet-100 text-violet-700 rounded text-xs font-bold ring-1 ring-violet-200">2FA_MISSING</span>;
             default:
-                return <span className="px-2 py-1 bg-emerald-950/40 text-emerald-400 rounded text-xs font-bold ring-1 ring-blue-200">{type}</span>;
+                return <span className="px-2 py-1 bg-emerald-950/40 text-emerald-400 rounded text-xs font-bold ring-1 ring-emerald-500/20">{type}</span>;
         }
     };
 
