@@ -1,5 +1,4 @@
 import React from 'react';
-import FluxabankLogoAsset from '../assets/fluxabank-logo.png';
 
 interface FluxabankLogoProps {
   className?: string;
@@ -15,14 +14,17 @@ export const FluxabankLogo: React.FC<FluxabankLogoProps> = ({ className = '', si
   };
 
   return (
-    <div className={`relative group inline-block ${className}`}>
-      {/* Gloss layer */}
-      <div className="absolute inset-x-0 -inset-y-2 bg-orange-500/10 blur-xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
-      <img
-        src={FluxabankLogoAsset}
-        alt="Fluxabank"
-        className={`${sizeMap[size]} object-contain relative z-10 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)] transition-transform duration-500 group-hover:scale-110`}
-      />
+    <div className={`relative group inline-flex items-center justify-center ${sizeMap[size]} ${className}`}>
+      {/* Glow layer */}
+      <div className="absolute inset-0 bg-emerald-500/10 blur-xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <svg
+        viewBox="0 0 40 40"
+        className="relative z-10 w-full h-full drop-shadow-[0_0_8px_rgba(16,185,129,0.5)] transition-transform duration-500 group-hover:scale-110"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M8 30 L20 10 L32 30 L26 30 L20 18 L14 30 Z" fill="#10b981"/>
+      </svg>
     </div>
   );
 };
