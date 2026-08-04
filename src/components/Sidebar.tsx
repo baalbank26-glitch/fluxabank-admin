@@ -1,4 +1,4 @@
-﻿
+
 
 import React from 'react';
 import { AppView } from '../types/index';
@@ -56,10 +56,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange, onL
     <div className="flex flex-col h-full bg-[#090d0a] border-r border-emerald-500/20">
       {/* Logo / Branding */}
       <div className="p-6 flex items-center gap-3 border-b border-emerald-500/20">
-        <div className="w-10 h-10 rounded-xl bg-[#0f1713] border border-emerald-500/30 flex items-center justify-center shadow-lg shadow-emerald-500/10">
-          <svg viewBox="0 0 40 40" className="w-7 h-7" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 30 L20 10 L32 30 L26 30 L20 18 L14 30 Z" fill="#10b981"/>
-          </svg>
+        <div className="w-10 h-10 rounded-xl bg-[#0f1713] border border-emerald-500/30 flex items-center justify-center shadow-lg shadow-emerald-500/10 p-1.5 overflow-hidden">
+          <img src="/viperpag-logo.png" alt="VIPERPAG Logo" className="w-full h-full object-contain" />
         </div>
         <div>
           <h1 className="text-lg font-extrabold tracking-tight text-white">VIPERPAG</h1>
