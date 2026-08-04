@@ -287,7 +287,7 @@ export const Providers: React.FC = () => {
                           disabled={actionLoading}
                           className={`p-2 rounded-lg transition-colors ${
                             provider.active
-                              ? 'text-amber-600 hover:bg-amber-950/20'
+                              ? 'text-amber-400 hover:bg-amber-950/20'
                               : 'text-emerald-400 hover:bg-emerald-950/20'
                           }`}
                           title={provider.active ? 'Desativar' : 'Ativar'}

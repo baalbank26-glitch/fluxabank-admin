@@ -534,7 +534,7 @@ export const Clients: React.FC = () => {
                                     <td className="px-6 py-4">
                                         {isPrimaryAccount(user) ? (
                                             <div className="flex flex-col gap-1">
-                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-emerald-950/40 text-orange-600">
+                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-emerald-950/40 text-amber-400">
                                                     Principal
                                                 </span>
                                                 {!!Number((user as any).linked_accounts_count || 0) && (
@@ -545,7 +545,7 @@ export const Clients: React.FC = () => {
                                             </div>
                                         ) : (
                                             <div className="flex flex-col gap-1">
-                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-emerald-950/40 text-orange-600">
+                                                <span className="px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 bg-emerald-950/40 text-amber-400">
                                                     Vinculada
                                                 </span>
                                                 <span className="text-[11px] text-slate-400">
@@ -891,7 +891,7 @@ export const Clients: React.FC = () => {
                                                                 <p className="font-medium text-slate-100">{account.name}</p>
                                                                 <p className="text-xs text-slate-400">ID #{account.id} • {account.email || 'sem email'} • {account.doc_status || 'PENDING'}</p>
                                                             </div>
-                                                            <span className={`px-2 py-1 rounded-full text-xs font-bold ${account.is_owner ? 'bg-emerald-950/40 text-orange-600' : 'bg-emerald-950/40 text-orange-600'}`}>
+                                                            <span className={`px-2 py-1 rounded-full text-xs font-bold ${account.is_owner ? 'bg-emerald-950/40 text-amber-400' : 'bg-emerald-950/40 text-amber-400'}`}>
                                                                 {account.is_owner ? 'Principal' : 'Vinculada'}
                                                             </span>
                                                         </div>

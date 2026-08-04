@@ -224,7 +224,7 @@ export const Settings: React.FC = () => {
 
                     <div className="mt-4 rounded-2xl border border-orange-100 bg-emerald-950/30 px-4 py-3 text-sm text-orange-900">
                       <div className="flex items-start gap-3">
-                        <div className="mt-0.5 rounded-full bg-emerald-950/40 p-1.5 text-orange-600">
+                        <div className="mt-0.5 rounded-full bg-emerald-950/40 p-1.5 text-amber-400">
                           <AlertTriangle className="w-4 h-4 shrink-0" />
                         </div>
                         <div>

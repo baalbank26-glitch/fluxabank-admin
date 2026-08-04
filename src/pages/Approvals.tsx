@@ -174,7 +174,7 @@ export const Approvals: React.FC = () => {
             <div key={user.id} className="bg-[#0f1713] rounded-xl border border-emerald-500/20 shadow-sm animate-in slide-in-from-bottom-2 duration-300">
               <div className="p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className="w-12 h-12 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-lg bg-amber-50 text-amber-400 flex items-center justify-center shrink-0">
                      <AlertCircle className="w-6 h-6" />
                   </div>
                   <div className="flex-1">
@@ -189,11 +189,11 @@ export const Approvals: React.FC = () => {
                             Doc: {user.doc_status || 'PENDING'}
                         </span>
                         {Number((user as any).id) === Number((user as any).owner_user_id || (user as any).ownerUserId || (user as any).id) ? (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950/40 text-orange-600 border border-emerald-500/30 uppercase">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950/40 text-amber-400 border border-emerald-500/30 uppercase">
                             Conta Principal
                           </span>
                         ) : (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950/40 text-orange-600 border border-emerald-500/30 uppercase">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950/40 text-amber-400 border border-emerald-500/30 uppercase">
                             Conta Vinculada • Titular #{Number((user as any).owner_user_id || (user as any).ownerUserId || user.id)}
                           </span>
                         )}

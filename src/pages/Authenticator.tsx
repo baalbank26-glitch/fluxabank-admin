@@ -113,7 +113,7 @@ export const Authenticator: React.FC = () => {
         </div>
       )}
       {success && (
-        <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-lg text-sm flex items-center gap-2">
+        <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-400 rounded-lg text-sm flex items-center gap-2">
           <CheckCircle className="w-4 h-4" /> {success}
         </div>
       )}

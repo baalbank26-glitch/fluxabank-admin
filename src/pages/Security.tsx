@@ -82,11 +82,11 @@ export const Security: React.FC = () => {
             case 'INVALID_CREDENTIALS':
                 return <span className="px-2 py-1 bg-emerald-950/40 text-emerald-600 rounded text-xs font-bold ring-1 ring-emerald-500/30">INVALID_CREDENTIALS</span>;
             case 'IP_BLOCKED':
-                return <span className="px-2 py-1 bg-emerald-950/40 text-orange-600 rounded text-xs font-bold ring-1 ring-orange-200">IP_BLOCKED</span>;
+                return <span className="px-2 py-1 bg-emerald-950/40 text-amber-400 rounded text-xs font-bold ring-1 ring-orange-200">IP_BLOCKED</span>;
             case 'MISSING_CREDENTIALS':
                 return <span className="px-2 py-1 bg-[#0f1713] text-slate-300 border border-emerald-500/10 rounded text-xs font-bold ring-1 ring-slate-200">MISSING_CREDENTIALS</span>;
             case '2FA_FAILURE':
-                return <span className="px-2 py-1 bg-emerald-950/40 text-orange-600 rounded text-xs font-bold ring-1 ring-orange-200">2FA_FAILURE</span>;
+                return <span className="px-2 py-1 bg-emerald-950/40 text-amber-400 rounded text-xs font-bold ring-1 ring-orange-200">2FA_FAILURE</span>;
             case '2FA_MISSING':
                 return <span className="px-2 py-1 bg-violet-100 text-violet-700 rounded text-xs font-bold ring-1 ring-violet-200">2FA_MISSING</span>;
             default:
@@ -128,7 +128,7 @@ export const Security: React.FC = () => {
                 </div>
                 <div className="bg-[#0f1713] p-4 rounded-xl border border-emerald-500/20 shadow-sm flex items-center gap-4">
                     <div className="p-3 bg-amber-50 rounded-lg">
-                        <UserIcon className="w-6 h-6 text-amber-600" />
+                        <UserIcon className="w-6 h-6 text-amber-400" />
                     </div>
                     <div>
                         <p className="text-xs font-medium text-slate-400 uppercase">Falhas de Auth (24h)</p>

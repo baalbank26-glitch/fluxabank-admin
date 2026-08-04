@@ -997,10 +997,10 @@ export const Treasury: React.FC = () => {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-right font-mono font-medium text-emerald-700">
+                    <td className="px-6 py-4 text-right font-mono font-medium text-emerald-400">
                       R$ {formatMoney(item.totalCollected || 0)}
                     </td>
-                    <td className="px-6 py-4 text-right font-mono font-medium text-orange-600">
+                    <td className="px-6 py-4 text-right font-mono font-medium text-amber-400">
                       R$ {formatMoney(item.totalReversed || 0)}
                     </td>
                     <td className="px-6 py-4 text-right font-mono font-semibold text-white">

@@ -795,7 +795,7 @@ export const MED: React.FC = () => {
                                   <button
                                     type="button"
                                     onClick={() => setLightboxImage({ url: att.url, filename: att.filename })}
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/30 bg-emerald-950/30 text-xs font-medium text-orange-600 hover:bg-emerald-950/40"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/30 bg-emerald-950/30 text-xs font-medium text-amber-400 hover:bg-emerald-950/40"
                                   >
                                     Ampliar
                                   </button>
@@ -1040,14 +1040,14 @@ export const MED: React.FC = () => {
             <a
               href={lightboxImage.url}
               download={lightboxImage.filename || 'anexo-med'}
-              className="px-3 py-1.5 rounded-lg border border-slate-300 bg-[#0f1713] text-xs sm:text-sm font-medium text-slate-200 hover:bg-emerald-950/40"
+              className="px-3 py-1.5 rounded-lg border border-emerald-500/30 bg-[#0f1713] text-xs sm:text-sm font-medium text-slate-200 hover:bg-emerald-950/40"
             >
               Baixar
             </a>
             <button
               type="button"
               onClick={() => setLightboxImage(null)}
-              className="px-3 py-1.5 rounded-lg border border-slate-300 bg-[#0f1713] text-xs sm:text-sm font-medium text-slate-200 hover:bg-emerald-950/40"
+              className="px-3 py-1.5 rounded-lg border border-emerald-500/30 bg-[#0f1713] text-xs sm:text-sm font-medium text-slate-200 hover:bg-emerald-950/40"
             >
               Fechar
             </button>
