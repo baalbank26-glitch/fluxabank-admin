@@ -106,7 +106,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
 
   if (documents.length === 0) {
     return (
-      <div className="text-center py-20 bg-[#0c1410] rounded-lg border border-emerald-500/20 border-dashed">
+      <div className="text-center py-20 bg-[#090d0a] rounded-lg border border-emerald-500/20 border-dashed">
         <FileText className="w-12 h-12 text-slate-400 mx-auto mb-4" />
         <h3 className="text-lg font-medium text-slate-200">Nenhum documento enviado</h3>
         <p className="text-slate-400 text-sm mt-2">O usuário ainda não enviou documentos para verificação.</p>
@@ -133,7 +133,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
           <div key={doc.id} className="border border-emerald-500/20 rounded-lg overflow-hidden hover:shadow-md transition-shadow bg-[#0f1713]">
             {/* Status Badge */}
             <div className={`px-4 py-2 text-xs font-bold flex items-center justify-between ${
-              doc.status === 'APPROVED' ? 'bg-green-100 text-green-700' :
+              doc.status === 'APPROVED' ? 'bg-emerald-950/30 text-emerald-300' :
               doc.status === 'REJECTED' ? 'bg-emerald-950/40 text-emerald-600' :
               'bg-amber-100 text-amber-700'
             }`}>
@@ -218,7 +218,7 @@ export const DocumentsTab: React.FC<DocumentsTabProps> = ({ userId }) => {
 
             {/* Review Modal */}
             {reviewingDoc === doc.id && (
-              <div className="border-t border-emerald-500/20 bg-[#0c1410] p-4 space-y-3">
+              <div className="border-t border-emerald-500/20 bg-[#090d0a] p-4 space-y-3">
                 <div>
                   <label className="text-xs font-medium text-slate-200">Notas de revisão</label>
                   <textarea

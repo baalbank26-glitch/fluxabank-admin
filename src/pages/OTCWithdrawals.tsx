@@ -108,7 +108,7 @@ const OTCWithdrawals: React.FC = () => {
       case 'processing':
         return 'bg-emerald-950/40 text-blue-800';
       case 'completed':
-        return 'bg-green-100 text-green-800';
+        return 'bg-emerald-950/30 text-green-800';
       case 'cancelled':
         return 'bg-emerald-950/40 text-fluxabank-700';
       default:
@@ -163,7 +163,7 @@ const OTCWithdrawals: React.FC = () => {
 
       {/* Sucesso */}
       {success && (
-        <div className="p-4 bg-green-50 text-green-700 rounded-lg border border-green-200 flex items-center gap-2">
+        <div className="p-4 bg-green-50 text-emerald-300 rounded-lg border border-green-200 flex items-center gap-2">
           <Check className="w-5 h-5" />
           {success}
         </div>
@@ -177,7 +177,7 @@ const OTCWithdrawals: React.FC = () => {
               <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
             </div>
           ) : withdrawals.length === 0 ? (
-            <div className="p-8 text-center text-slate-400 bg-[#0c1410] rounded-lg">
+            <div className="p-8 text-center text-slate-400 bg-[#090d0a] rounded-lg">
               Nenhum saque encontrado neste filtro.
             </div>
           ) : (
@@ -355,7 +355,7 @@ const OTCWithdrawals: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <div className="border-t pt-4 p-3 bg-[#0c1410] rounded text-sm text-slate-300">
+              <div className="border-t pt-4 p-3 bg-[#090d0a] rounded text-sm text-slate-300">
                 Este saque não pode ser alterado pois já foi {getStatusLabel(selectedWithdrawal.status)}.
               </div>
             )}
@@ -370,7 +370,7 @@ const OTCWithdrawals: React.FC = () => {
                 {validationModal.type === 'error' ? (
                   <AlertCircle className="w-6 h-6 text-emerald-500 flex-shrink-0" />
                 ) : (
-                  <Check className="w-6 h-6 text-green-600 flex-shrink-0" />
+                  <Check className="w-6 h-6 text-emerald-400 flex-shrink-0" />
                 )}
                 <h3 className="text-lg font-bold text-white">
                   {validationModal.type === 'error' ? 'Atenção' : 'Sucesso'}

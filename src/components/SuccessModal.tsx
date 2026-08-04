@@ -21,7 +21,7 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({
       <div className="w-full max-w-md bg-[#0f1713] rounded-2xl border border-emerald-500/20 shadow-2xl overflow-hidden">
         <div className="p-5 border-b border-emerald-500/20 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-green-600" />
+            <CheckCircle className="w-5 h-5 text-emerald-400" />
             <h3 className="text-base font-bold text-white">Sucesso</h3>
           </div>
           <button

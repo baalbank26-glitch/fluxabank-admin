@@ -211,7 +211,7 @@ export const WebhooksHistory: React.FC = () => {
             <button
               onClick={handleTriggerLedgerWebhook}
               disabled={triggering || !ledgerId}
-              className="px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-[10px] sm:text-xs"
+              className="px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-[#0f1713] hover:bg-slate-700 disabled:opacity-50 text-[10px] sm:text-xs"
             >
               Acionar Ledger
             </button>
@@ -493,17 +493,17 @@ export const WebhooksHistory: React.FC = () => {
                       </div>
                       <button
                         onClick={() => navigator.clipboard?.writeText(log.target_url || '')}
-                        className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-slate-800 shrink-0"
+                        className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-[#0f1713] shrink-0"
                         title="Copiar URL do webhook"
                       >
                         Copiar URL
                       </button>
                     </div>
                     <div className="mt-1 flex items-center gap-2 flex-wrap">
-                      <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-[10px] shrink-0">
+                      <span className="px-2 py-0.5 rounded bg-[#0f1713] border border-slate-700 text-[10px] shrink-0">
                         {log.payload?.status || '-'}
                       </span>
-                      <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-[10px] shrink-0">
+                      <span className="px-2 py-0.5 rounded bg-[#0f1713] border border-slate-700 text-[10px] shrink-0">
                         {log.payload?.type || '-'}
                       </span>
                     </div>
@@ -522,13 +522,13 @@ export const WebhooksHistory: React.FC = () => {
                         </button>
                         <button
                           onClick={() => navigator.clipboard?.writeText(log.target_url || '')}
-                          className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-slate-800"
+                          className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-[#0f1713]"
                         >
                           Copiar
                         </button>
                         <button
                           onClick={() => toggleSelect(log.id)}
-                          className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-slate-800"
+                          className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-[#0f1713]"
                         >
                           Selecionar
                         </button>
@@ -568,7 +568,7 @@ export const WebhooksHistory: React.FC = () => {
                   <div className="w-32 text-center flex items-center justify-center gap-2">
                     <button
                       onClick={() => toggleSelect(log.id)}
-                      className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-slate-800"
+                      className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-[#0f1713]"
                     >
                       Selecionar
                     </button>
@@ -581,7 +581,7 @@ export const WebhooksHistory: React.FC = () => {
                     </button>
                     <button
                       onClick={() => navigator.clipboard?.writeText(log.target_url || '')}
-                      className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-slate-800"
+                      className="px-2 py-1 rounded-lg border border-slate-700 text-[11px] hover:bg-[#0f1713]"
                       title="Copiar URL"
                     >
                       Copiar

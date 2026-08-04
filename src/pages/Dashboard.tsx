@@ -326,45 +326,45 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
         </div>
 
         {/* Status Card */}
-        <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-700 shadow-lg text-white flex flex-col justify-between hover:shadow-xl transition-shadow group relative overflow-hidden min-w-0">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-12 -mt-12 blur-3xl group-hover:bg-white/10 transition-all duration-300"></div>
+        <div className="bg-[#0f1713] p-6 sm:p-8 rounded-2xl border border-emerald-500/30 shadow-lg text-white flex flex-col justify-between hover:shadow-emerald-500/10 transition-shadow group relative overflow-hidden min-w-0">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full -mr-12 -mt-12 blur-3xl group-hover:bg-emerald-500/10 transition-all duration-300"></div>
           
           <div className="relative z-10">
             <div className="flex items-start justify-between mb-6">
               <div>
-                <p className="text-sm font-medium text-slate-400 mb-2">Status do Sistema</p>
+                <p className="text-xs font-extrabold text-emerald-400 uppercase tracking-widest mb-2">Status do Sistema</p>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                  <h3 className="text-2xl font-bold text-white">Operacional</h3>
+                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                  <h3 className="text-2xl font-extrabold text-white">Operacional</h3>
                 </div>
               </div>
-              <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-green-400" />
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-emerald-400" />
               </div>
             </div>
 
-            <div className="space-y-3 py-6 border-y border-slate-700">
+            <div className="space-y-3 py-6 border-y border-emerald-500/20">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-slate-300">API Gateway</span>
-                <span className="text-xs font-semibold text-green-400">Online</span>
+                <span className="text-xs font-bold text-emerald-400">Online</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-slate-300">Serviços de Pagamento</span>
-                <span className="text-xs font-semibold text-green-400">Online</span>
+                <span className="text-xs font-bold text-emerald-400">Online</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-slate-300">Base de Dados</span>
-                <span className="text-xs font-semibold text-green-400">Online</span>
+                <span className="text-xs font-bold text-emerald-400">Online</span>
               </div>
             </div>
 
-            <p className="mt-6 text-sm text-slate-300 leading-relaxed">
+            <p className="mt-6 text-sm text-slate-400 leading-relaxed">
               Todos os serviços estão respondendo normalmente. Nenhum incidente reportado.
             </p>
 
             <button
               onClick={() => onViewChange(AppView.SETTINGS)}
-              className="mt-6 w-full py-2.5 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-all border border-white/20"
+              className="mt-6 w-full py-2.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-xl text-sm font-bold text-emerald-400 flex items-center justify-center gap-2 transition-all"
             >
               Configurações <ArrowRight className="w-4 h-4" />
             </button>

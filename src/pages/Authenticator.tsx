@@ -139,7 +139,7 @@ export const Authenticator: React.FC = () => {
           <button
             onClick={startSetup}
             disabled={isSubmitting}
-            className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-[#0f1713] text-white text-sm font-semibold flex items-center gap-2"
           >
             <QrCode className="w-4 h-4" /> Iniciar configuração
           </button>
@@ -194,7 +194,7 @@ export const Authenticator: React.FC = () => {
           <button
             onClick={regenerateRecoveryCodes}
             disabled={isSubmitting}
-            className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold"
+            className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-[#0f1713] text-white text-sm font-semibold"
           >
             Gerar novos recovery codes
           </button>

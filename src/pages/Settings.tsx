@@ -320,7 +320,7 @@ export const Settings: React.FC = () => {
             <p className="font-medium text-slate-100 mb-2">Lista Branca de IPs (Admin)</p>
             <textarea 
               readOnly
-              className="w-full border border-emerald-500/20 rounded-lg p-3 text-sm font-mono bg-[#0c1410] resize-none" 
+              className="w-full border border-emerald-500/20 rounded-lg p-3 text-sm font-mono bg-[#090d0a] resize-none" 
               rows={3}
               value="Funcionalidade em desenvolvimento..."
             ></textarea>

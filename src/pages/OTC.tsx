@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Bitcoin, RefreshCw, CheckCircle, XCircle, Clock, AlertCircle, Settings } from 'lucide-react';
 import { otcAdminService, type OtcWithdrawal, type OtcStats, type OtcSettings } from '../services/otc.service';
 
@@ -116,7 +116,7 @@ export const OTC: React.FC = () => {
         </div>
         <button
           onClick={() => setShowSettings(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl hover:bg-[#0f1713] transition-colors"
         >
           <Settings className="w-4 h-4" />
           Configurações
@@ -136,7 +136,7 @@ export const OTC: React.FC = () => {
           </div>
           <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm">
             <p className="text-sm text-slate-400 mb-1">Concluídas</p>
-            <p className="text-3xl font-bold text-green-600">{stats.completed}</p>
+            <p className="text-3xl font-bold text-emerald-400">{stats.completed}</p>
           </div>
           <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm">
             <p className="text-sm text-slate-400 mb-1">Taxa Total (BRL)</p>
@@ -156,7 +156,7 @@ export const OTC: React.FC = () => {
             className={`px-4 py-2 rounded-lg font-semibold text-sm transition-colors ${
               filter === f
                 ? 'bg-emerald-500 text-white'
-                : 'bg-[#0f1713] text-slate-300 border border-emerald-500/20 hover:bg-[#0c1410]'
+                : 'bg-[#0f1713] text-slate-300 border border-emerald-500/20 hover:bg-[#090d0a]'
             }`}
           >
             {f === 'all' ? 'Todas' : f.charAt(0).toUpperCase() + f.slice(1)}
@@ -168,7 +168,7 @@ export const OTC: React.FC = () => {
       <div className="bg-[#0f1713] rounded-2xl border border-emerald-500/20 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-[#0c1410] border-b border-emerald-500/20">
+            <thead className="bg-[#090d0a] border-b border-emerald-500/20">
               <tr>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">ID</th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase">Usuário</th>
@@ -197,7 +197,7 @@ export const OTC: React.FC = () => {
                 </tr>
               ) : (
                 withdrawals.map(w => (
-                  <tr key={w.id} className="hover:bg-[#0c1410] transition-colors">
+                  <tr key={w.id} className="hover:bg-[#090d0a] transition-colors">
                     <td className="px-6 py-4 font-mono text-sm"># {w.id}</td>
                     <td className="px-6 py-4">
                       <div>
@@ -212,7 +212,7 @@ export const OTC: React.FC = () => {
                     <td className="px-6 py-4 font-medium">
                       {w.amountBrl.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                     </td>
-                    <td className="px-6 py-4 text-sm text-green-600 font-semibold">
+                    <td className="px-6 py-4 text-sm text-emerald-400 font-semibold">
                       +{w.feeAmountBrl.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                     </td>
                     <td className="px-6 py-4 text-sm">{w.walletNetwork}</td>
@@ -246,23 +246,23 @@ export const OTC: React.FC = () => {
             <h2 className="text-2xl font-bold mb-4">Gerenciar Solicitação #{selectedWithdrawal.id}</h2>
             
             <div className="space-y-4 mb-6">
-              <div className="bg-[#0c1410] p-4 rounded-xl">
+              <div className="bg-[#090d0a] p-4 rounded-xl">
                 <p className="text-sm text-slate-400">Cliente</p>
                 <p className="font-semibold">{selectedWithdrawal.userName} ({selectedWithdrawal.userEmail})</p>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-[#0c1410] p-4 rounded-xl">
+                <div className="bg-[#090d0a] p-4 rounded-xl">
                   <p className="text-sm text-slate-400">Criptomoeda</p>
                   <p className="font-semibold">{selectedWithdrawal.cryptoAmount.toFixed(8)} {selectedWithdrawal.cryptoCurrency}</p>
                 </div>
-                <div className="bg-[#0c1410] p-4 rounded-xl">
+                <div className="bg-[#090d0a] p-4 rounded-xl">
                   <p className="text-sm text-slate-400">Rede</p>
                   <p className="font-semibold">{selectedWithdrawal.walletNetwork}</p>
                 </div>
               </div>
               
-              <div className="bg-[#0c1410] p-4 rounded-xl">
+              <div className="bg-[#090d0a] p-4 rounded-xl">
                 <p className="text-sm text-slate-400 mb-1">Endereço da Carteira</p>
                 <p className="font-mono text-sm break-all">{selectedWithdrawal.walletAddress}</p>
                 {selectedWithdrawal.walletMemo && (
@@ -408,7 +408,7 @@ export const OTC: React.FC = () => {
               {validationModal.type === 'error' ? (
                 <AlertCircle className="w-6 h-6 text-emerald-500 flex-shrink-0" />
               ) : (
-                <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
+                <CheckCircle className="w-6 h-6 text-emerald-400 flex-shrink-0" />
               )}
               <h3 className="text-lg font-bold text-white">
                 {validationModal.type === 'error' ? 'Atenção' : 'Sucesso'}

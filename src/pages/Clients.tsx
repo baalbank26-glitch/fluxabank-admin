@@ -467,7 +467,7 @@ export const Clients: React.FC = () => {
 
   const getTypeStyle = (type: string) => {
       const t = type?.toUpperCase() || '';
-      if (t === 'CREDIT' || t === 'PIX_IN') return 'bg-green-100 text-green-700';
+      if (t === 'CREDIT' || t === 'PIX_IN') return 'bg-emerald-950/30 text-emerald-300';
       if (t === 'DEBIT' || t === 'PIX_OUT') return 'bg-emerald-950/40 text-emerald-600';
       return 'bg-slate-100 text-slate-200';
   };
@@ -478,7 +478,7 @@ export const Clients: React.FC = () => {
         <div>
                     <div className="flex items-center gap-2">
                         <h2 className="text-2xl font-bold text-slate-100">Gestão de Usuários</h2>
-                        <span className="px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold">
+                        <span className="px-2 py-1 rounded-full bg-emerald-950/30 text-emerald-300 text-xs font-bold">
                             Ativos: {activeUsersCount}
                         </span>
                     </div>
@@ -489,13 +489,13 @@ export const Clients: React.FC = () => {
         </button>
       </div>
 
-      <div className="bg-[#0f1713] p-4 rounded-xl border border-emerald-500/20 shadow-sm">
+      <div className="bg-[#0f1713] p-4 rounded-xl border border-emerald-500/20">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
           <input 
             type="text" 
             placeholder="Buscar por nome ou email..." 
-            className="w-full pl-10 pr-4 py-2.5 bg-[#0c1410] border border-emerald-500/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+            className="w-full pl-10 pr-4 py-2.5 bg-[#090d0a] border border-emerald-500/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -509,7 +509,7 @@ export const Clients: React.FC = () => {
                     <>
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
-                                <thead className="bg-[#0c1410] border-b border-emerald-500/20">
+                                <thead className="bg-[#090d0a] border-b border-emerald-500/20">
                                     <tr>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">ID</th>
                                         <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Usuário</th>
@@ -556,7 +556,7 @@ export const Clients: React.FC = () => {
                                     </td>
                   <td className="px-6 py-4">
                      <span className={`px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 ${
-                        user.doc_status === DocStatus.APPROVED ? 'bg-green-100 text-green-700' : 
+                        user.doc_status === DocStatus.APPROVED ? 'bg-emerald-950/30 text-emerald-300' : 
                         user.doc_status === DocStatus.REJECTED ? 'bg-emerald-950/40 text-emerald-600' :
                         'bg-amber-100 text-amber-700'
                     }`}>
@@ -568,7 +568,7 @@ export const Clients: React.FC = () => {
                   </td>
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-bold flex w-fit items-center gap-1 ${
-                        user.status === UserStatus.ACTIVE ? 'bg-green-100 text-green-700' : 
+                        user.status === UserStatus.ACTIVE ? 'bg-emerald-950/30 text-emerald-300' : 
                         user.status === UserStatus.BLOCKED ? 'bg-emerald-950/40 text-emerald-600' :
                         user.status === UserStatus.PENDING ? 'bg-amber-100 text-amber-700' :
                         'bg-slate-100 text-slate-300'
@@ -589,7 +589,7 @@ export const Clients: React.FC = () => {
                         </div>
 
                         {filteredUsers.length > 0 && (
-                            <div className="px-6 py-4 border-t border-emerald-500/20 bg-[#0c1410] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                            <div className="px-6 py-4 border-t border-emerald-500/20 bg-[#090d0a] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                                 <p className="text-sm text-slate-300">
                                     Mostrando {pageStart + 1} a {Math.min(pageStart + USERS_PER_PAGE, filteredUsers.length)} de {filteredUsers.length} usuários
                                 </p>
@@ -623,7 +623,7 @@ export const Clients: React.FC = () => {
       {selectedUser && (
           <div className="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
               <div className="bg-[#0f1713] rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
-                  <div className="p-6 border-b border-emerald-500/20 flex justify-between items-center bg-[#0c1410]">
+                  <div className="p-6 border-b border-emerald-500/20 flex justify-between items-center bg-[#090d0a]">
                       <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-orange-500 text-white flex items-center justify-center font-bold text-xl">
                               {(selectedUser.name || '?').charAt(0).toUpperCase()}
@@ -641,42 +641,42 @@ export const Clients: React.FC = () => {
                           <button onClick={() => setActiveTab('PROFILE')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'PROFILE' 
                                 ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
-                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#090d0a]'
                           }`}>
                               <UserIcon className="w-4 h-4 flex-shrink-0" /> <span>Perfil</span>
                           </button>
                           <button onClick={() => setActiveTab('WALLET')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'WALLET' 
                                 ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
-                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#090d0a]'
                           }`}>
                               <WalletIcon className="w-4 h-4 flex-shrink-0" /> <span>Carteira</span>
                           </button>
                           <button onClick={() => setActiveTab('FEES')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'FEES' 
                                 ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
-                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#090d0a]'
                           }`}>
                               <Settings2 className="w-4 h-4 flex-shrink-0" /> <span>Taxas</span>
                           </button>
                           <button onClick={() => setActiveTab('PROVIDER')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'PROVIDER' 
                                 ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
-                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#090d0a]'
                           }`}>
                               <Building2 className="w-4 h-4 flex-shrink-0" /> <span>Provider</span>
                           </button>
                           <button onClick={() => setActiveTab('CONFIG')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'CONFIG' 
                                 ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
-                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#090d0a]'
                           }`}>
                               <Settings2 className="w-4 h-4 flex-shrink-0" /> <span>Config</span>
                           </button>
                           <button onClick={() => setActiveTab('DOCUMENTS')} className={`py-3 md:py-4 px-2 md:px-4 text-xs md:text-sm font-semibold flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 border-b-2 transition-all ${
                               activeTab === 'DOCUMENTS' 
                                 ? 'border-emerald-500 text-emerald-500 bg-emerald-950/20/50' 
-                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#0c1410]'
+                                : 'border-transparent text-slate-300 hover:text-emerald-500 hover:bg-[#090d0a]'
                           }`}>
                               <FileText className="w-4 h-4 flex-shrink-0" /> <span>Docs</span>
                           </button>
@@ -698,7 +698,7 @@ export const Clients: React.FC = () => {
                                             <div>
                                                 <label className="block text-xs font-bold text-slate-400 uppercase mb-1">Status Atual</label>
                                                 <span className={`px-3 py-1 rounded-lg text-sm font-bold ${
-                                                    selectedUser.doc_status === DocStatus.APPROVED ? 'bg-green-100 text-green-700' : 
+                                                    selectedUser.doc_status === DocStatus.APPROVED ? 'bg-emerald-950/30 text-emerald-300' : 
                                                     selectedUser.doc_status === DocStatus.REJECTED ? 'bg-emerald-950/40 text-emerald-600' :
                                                     'bg-amber-100 text-amber-700'
                                                 }`}>
@@ -709,7 +709,7 @@ export const Clients: React.FC = () => {
                                             {selectedUser.doc_status === DocStatus.APPROVED ? (
                                                 <div className="pt-4 mt-2 border-t border-emerald-500/20">
                                                     <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 flex items-center gap-3">
-                                                        <CheckCircle className="w-5 h-5 text-green-600" />
+                                                        <CheckCircle className="w-5 h-5 text-emerald-400" />
                                                         <p className="text-sm text-green-800">Este usuário já está aprovado e operando. Para gestão de documentos, utilize o painel de conformidade.</p>
                                                     </div>
                                                     
@@ -771,7 +771,7 @@ export const Clients: React.FC = () => {
                                             <h4 className="font-bold text-green-800 mb-2 flex items-center gap-2">
                                                 <CheckCircle className="w-5 h-5" /> Credenciais Geradas
                                             </h4>
-                                            <p className="text-sm text-green-700 mb-3">Copie agora. O App Secret não será exibido novamente.</p>
+                                            <p className="text-sm text-emerald-300 mb-3">Copie agora. O App Secret não será exibido novamente.</p>
                                             <div className="space-y-2">
                                                 <div className="bg-[#0f1713] p-2 rounded border border-green-200">
                                                     <span className="text-xs text-slate-400 block">App ID</span>
@@ -802,7 +802,7 @@ export const Clients: React.FC = () => {
                                                                 toast.error('Erro ao copiar');
                                                             });
                                                         }}
-                                                        className="bg-[#0c1410] border border-emerald-500/20 rounded-lg p-4 cursor-pointer hover:bg-emerald-950/40 transition-colors group"
+                                                        className="bg-[#090d0a] border border-emerald-500/20 rounded-lg p-4 cursor-pointer hover:bg-emerald-950/40 transition-colors group"
                                                     >
                                                         <div className="flex items-center justify-between">
                                                             <div className="flex-1">
@@ -823,7 +823,7 @@ export const Clients: React.FC = () => {
                                                                 toast.error('Erro ao copiar');
                                                             });
                                                         }}
-                                                        className="bg-[#0c1410] border border-emerald-500/20 rounded-lg p-4 cursor-pointer hover:bg-emerald-950/40 transition-colors group"
+                                                        className="bg-[#090d0a] border border-emerald-500/20 rounded-lg p-4 cursor-pointer hover:bg-emerald-950/40 transition-colors group"
                                                     >
                                                         <div className="flex items-center justify-between">
                                                             <div className="flex-1">
@@ -916,7 +916,7 @@ export const Clients: React.FC = () => {
                                         <h4 className="font-bold text-slate-100 mb-4">Extrato da Carteira (Ledger)</h4>
                                         <div className="bg-[#0f1713] border border-emerald-500/20 rounded-xl overflow-hidden">
                                             <table className="w-full text-sm text-left">
-                                                <thead className="bg-[#0c1410] border-b border-emerald-500/20">
+                                                <thead className="bg-[#090d0a] border-b border-emerald-500/20">
                                                     <tr>
                                                         <th className="px-4 py-3 font-medium text-slate-400">Data</th>
                                                         <th className="px-4 py-3 font-medium text-slate-400">Descrição</th>
@@ -926,7 +926,7 @@ export const Clients: React.FC = () => {
                                                 </thead>
                                                 <tbody className="divide-y divide-emerald-500/10">
                                                     {(userLedger || []).map((item, idx) => (
-                                                        <tr key={idx} className="hover:bg-[#0c1410]">
+                                                        <tr key={idx} className="hover:bg-[#090d0a]">
                                                             <td className="px-4 py-3 text-slate-300 whitespace-nowrap">
                                                                 {safeDateTime(item.created_at)}
                                                             </td>
@@ -937,7 +937,7 @@ export const Clients: React.FC = () => {
                                                                 </span>
                                                             </td>
                                                             <td className={`px-4 py-3 text-right font-mono font-medium ${
-                                                                (item.type === 'CREDIT' || item.type === 'PIX_IN') ? 'text-green-600' : 'text-slate-100'
+                                                                (item.type === 'CREDIT' || item.type === 'PIX_IN') ? 'text-emerald-400' : 'text-slate-100'
                                                             }`}>
                                                                 {(item.type === 'DEBIT' || item.type === 'PIX_OUT') ? '-' : '+'}
                                                                 R$ {(Number(item.amount) || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
@@ -1082,7 +1082,7 @@ export const Clients: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <button disabled={actionLoading} type="submit" className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-colors flex justify-center items-center gap-2 shadow-lg">
+                                    <button disabled={actionLoading} type="submit" className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-[#0f1713] transition-colors flex justify-center items-center gap-2 shadow-lg">
                                         {actionLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Save className="w-4 h-4"/> Salvar Tarifas</>}
                                     </button>
                                 </form>
@@ -1101,10 +1101,10 @@ export const Clients: React.FC = () => {
                                     {userProvider && (
                                         <div className="bg-green-50 border border-green-200 rounded-xl p-4">
                                             <div className="flex items-center gap-2 mb-2">
-                                                <CheckCircle className="w-5 h-5 text-green-600" />
+                                                <CheckCircle className="w-5 h-5 text-emerald-400" />
                                                 <h5 className="font-bold text-green-900">Provider Atual</h5>
                                             </div>
-                                            <p className="text-sm text-green-700">
+                                            <p className="text-sm text-emerald-300">
                                                 {providers.find(p => p.code === userProvider)?.name || 'Provider selecionado'}
                                             </p>
                                         </div>
@@ -1163,7 +1163,7 @@ export const Clients: React.FC = () => {
                                     <button
                                         disabled={actionLoading || !selectedProvider}
                                         onClick={handleSaveProvider}
-                                        className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-colors flex justify-center items-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-[#0f1713] transition-colors flex justify-center items-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {actionLoading ? (
                                             <Loader2 className="w-5 h-5 animate-spin" />
@@ -1224,7 +1224,7 @@ export const Clients: React.FC = () => {
                                                         
                                                         <div className="p-4 space-y-3">
                                                             {isImage && documentLink.startsWith('data:image') ? (
-                                                                <div className="bg-[#0c1410] rounded-lg overflow-hidden border border-emerald-500/20">
+                                                                <div className="bg-[#090d0a] rounded-lg overflow-hidden border border-emerald-500/20">
                                                                     <img 
                                                                         src={documentLink} 
                                                                         alt={documentType}
@@ -1411,7 +1411,7 @@ export const Clients: React.FC = () => {
                                     <button
                                         disabled={actionLoading}
                                         type="submit"
-                                        className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-colors flex justify-center items-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-[#0f1713] transition-colors flex justify-center items-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {actionLoading ? (
                                             <Loader2 className="w-5 h-5 animate-spin" />

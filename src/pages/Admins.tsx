@@ -178,7 +178,7 @@ export const Admins: React.FC = () => {
           <p className="text-sm font-semibold text-slate-200 mb-2">Permissoes</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {permissionCatalog.map((permission) => (
-              <label key={permission.key} className="flex items-center gap-2 text-sm text-slate-200 bg-[#0c1410] rounded-lg px-3 py-2">
+              <label key={permission.key} className="flex items-center gap-2 text-sm text-slate-200 bg-[#090d0a] rounded-lg px-3 py-2">
                 <input
                   type="checkbox"
                   checked={Boolean(form.permissions[permission.key])}
@@ -193,7 +193,7 @@ export const Admins: React.FC = () => {
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 bg-slate-900 text-white rounded-lg px-4 py-2 font-medium hover:bg-slate-800 disabled:opacity-60"
+          className="inline-flex items-center gap-2 bg-slate-900 text-white rounded-lg px-4 py-2 font-medium hover:bg-[#0f1713] disabled:opacity-60"
         >
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <UserPlus className="w-4 h-4" />}
           Criar Admin Level2
@@ -207,7 +207,7 @@ export const Admins: React.FC = () => {
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-[#0c1410] text-slate-400">
+            <thead className="bg-[#090d0a] text-slate-400">
               <tr>
                 <th className="px-4 py-3">Nome</th>
                 <th className="px-4 py-3">E-mail</th>
@@ -235,7 +235,7 @@ export const Admins: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => openEditModal(admin)}
-                        className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/20 px-3 py-2 text-slate-200 hover:bg-[#0c1410]"
+                        className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/20 px-3 py-2 text-slate-200 hover:bg-[#090d0a]"
                       >
                         <PencilLine className="w-4 h-4" />
                         Editar permissoes
@@ -276,7 +276,7 @@ export const Admins: React.FC = () => {
             <form onSubmit={handleUpdatePermissions} className="space-y-4 px-6 py-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {permissionCatalog.map((permission) => (
-                  <label key={permission.key} className="flex items-center gap-2 text-sm text-slate-200 bg-[#0c1410] rounded-lg px-3 py-2">
+                  <label key={permission.key} className="flex items-center gap-2 text-sm text-slate-200 bg-[#090d0a] rounded-lg px-3 py-2">
                     <input
                       type="checkbox"
                       checked={Boolean(editingPermissions[permission.key])}
@@ -291,14 +291,14 @@ export const Admins: React.FC = () => {
                 <button
                   type="button"
                   onClick={closeEditModal}
-                  className="rounded-lg border border-emerald-500/20 px-4 py-2 text-slate-200 hover:bg-[#0c1410]"
+                  className="rounded-lg border border-emerald-500/20 px-4 py-2 text-slate-200 hover:bg-[#090d0a]"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={editing}
-                  className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 font-medium text-white hover:bg-slate-800 disabled:opacity-60"
+                  className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 font-medium text-white hover:bg-[#0f1713] disabled:opacity-60"
                 >
                   {editing ? <Loader2 className="w-4 h-4 animate-spin" /> : <PencilLine className="w-4 h-4" />}
                   Salvar permissoes

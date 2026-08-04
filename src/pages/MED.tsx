@@ -293,7 +293,7 @@ export const MED: React.FC = () => {
       case 'OPEN': return 'bg-emerald-950/40 text-emerald-600 border-emerald-500/30';
       case 'UNDER_REVIEW': return 'bg-amber-100 text-amber-700 border-amber-200';
       case 'DEFENSE_SENT': return 'bg-emerald-950/40 text-emerald-400 border-blue-200';
-      case 'REFUND_ACCEPTED': return 'bg-green-100 text-green-700 border-green-200';
+      case 'REFUND_ACCEPTED': return 'bg-emerald-950/30 text-emerald-300 border-green-200';
       case 'REFUND_REJECTED': return 'bg-slate-100 text-slate-200 border-emerald-500/20';
       default: return 'bg-slate-100 text-slate-200';
     }
@@ -383,7 +383,7 @@ export const MED: React.FC = () => {
                fetchCases();
                fetchTransactions({ reset: true });
              }}
-             className="p-2 bg-[#0f1713] border border-emerald-500/20 text-slate-300 rounded-lg hover:bg-[#0c1410] transition-all"
+             className="p-2 bg-[#0f1713] border border-emerald-500/20 text-slate-300 rounded-lg hover:bg-[#090d0a] transition-all"
            >
              <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
            </button>
@@ -411,7 +411,7 @@ export const MED: React.FC = () => {
         </div>
 
         <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-[#0c1410] rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+          <div className="absolute right-0 top-0 w-24 h-24 bg-[#090d0a] rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
           <div className="relative z-10">
              <div className="flex items-center gap-2 text-slate-300 font-medium mb-2">
               <CheckCircle className="w-4 h-4" /> Devoluções Realizadas
@@ -424,7 +424,7 @@ export const MED: React.FC = () => {
         </div>
         
         <div className="bg-[#0f1713] p-6 rounded-2xl border border-emerald-500/20 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-          <div className="absolute right-0 top-0 w-24 h-24 bg-[#0c1410] rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+          <div className="absolute right-0 top-0 w-24 h-24 bg-[#090d0a] rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
           <div className="relative z-10">
              <div className="flex items-center gap-2 text-slate-300 font-medium mb-2">
               <XCircle className="w-4 h-4" /> Disputas Vencidas
@@ -476,7 +476,7 @@ export const MED: React.FC = () => {
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                         active
                           ? 'bg-emerald-950/20 text-emerald-600 border-emerald-500/30'
-                          : 'bg-[#0f1713] text-slate-300 border-emerald-500/20 hover:bg-[#0c1410]'
+                          : 'bg-[#0f1713] text-slate-300 border-emerald-500/20 hover:bg-[#090d0a]'
                       }`}
                     >
                       {preset.label}
@@ -555,7 +555,7 @@ export const MED: React.FC = () => {
                 className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                   active
                     ? 'bg-emerald-950/20 text-emerald-600 border-emerald-500/30'
-                    : 'bg-[#0f1713] text-slate-300 border-emerald-500/20 hover:bg-[#0c1410]'
+                    : 'bg-[#0f1713] text-slate-300 border-emerald-500/20 hover:bg-[#090d0a]'
                 }`}
               >
                 {filter.label}
@@ -583,7 +583,7 @@ export const MED: React.FC = () => {
                   type="button"
                   key={`${tx.transaction_id}-${tx.user_id}-${tx.external_id || 'no-ext'}`}
                   onClick={() => handleOpenCreateFromTx(tx)}
-                  className="w-full text-left p-4 hover:bg-[#0c1410] transition-colors"
+                  className="w-full text-left p-4 hover:bg-[#090d0a] transition-colors"
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                     <div className="space-y-1">
@@ -649,9 +649,9 @@ export const MED: React.FC = () => {
                  {searchTerm ? 'Nenhuma disputa encontrada para sua busca.' : 'Nenhuma disputa registrada.'}
              </div>
           ) : filteredCases.map((item) => (
-            <div key={item.id} className="p-4 hover:bg-[#0c1410] transition-colors flex flex-col md:flex-row items-center justify-between gap-4">
+            <div key={item.id} className="p-4 hover:bg-[#090d0a] transition-colors flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-4 flex-1 w-full">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${item.status === 'OPEN' ? 'bg-emerald-950/20 border-emerald-950/40 text-emerald-500' : 'bg-[#0c1410] border-emerald-500/20 text-slate-400'}`}>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 ${item.status === 'OPEN' ? 'bg-emerald-950/20 border-emerald-950/40 text-emerald-500' : 'bg-[#090d0a] border-emerald-500/20 text-slate-400'}`}>
                     <AlertTriangle className="w-6 h-6" />
                  </div>
                  <div className="flex-1">
@@ -685,7 +685,7 @@ export const MED: React.FC = () => {
               <div className="flex gap-2 w-full md:w-auto mt-2 md:mt-0">
                  <button 
                   onClick={() => handleOpenCase(item)}
-                  className="px-4 py-2 text-sm font-medium text-slate-300 border border-emerald-500/20 rounded-lg hover:bg-[#0c1410] hover:text-white transition-colors flex-1 md:flex-none"
+                  className="px-4 py-2 text-sm font-medium text-slate-300 border border-emerald-500/20 rounded-lg hover:bg-[#090d0a] hover:text-white transition-colors flex-1 md:flex-none"
                  >
                    Ver Detalhes
                  </button>
@@ -710,7 +710,7 @@ export const MED: React.FC = () => {
             className="bg-[#0f1713] w-full max-w-md sm:max-w-2xl rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
             style={{ maxHeight: '95vh', display: 'flex', flexDirection: 'column' }}
           >
-            <div className="bg-[#0c1410] px-4 sm:px-6 py-3 sm:py-4 border-b border-emerald-500/20 flex justify-between items-center">
+            <div className="bg-[#090d0a] px-4 sm:px-6 py-3 sm:py-4 border-b border-emerald-500/20 flex justify-between items-center">
               <div className="flex items-center gap-2 sm:gap-3">
                 <div className="p-2 bg-emerald-950/40 text-emerald-500 rounded-lg">
                   <Siren className="w-5 h-5" />
@@ -739,7 +739,7 @@ export const MED: React.FC = () => {
                 </div>
                 <div>
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Transação Original</label>
-                  <div className="mt-1 sm:mt-2 p-2 sm:p-3 bg-[#0c1410] rounded-lg border border-emerald-500/20">
+                  <div className="mt-1 sm:mt-2 p-2 sm:p-3 bg-[#090d0a] rounded-lg border border-emerald-500/20">
                     <p className="font-mono text-xs text-slate-400 break-all">{selectedCase.transactionId}</p>
                     <p className="font-mono text-xs text-slate-400 break-all mt-1">E2E: {selectedCase.e2e || '-'}</p>
                     <div className="flex justify-between items-center mt-1 sm:mt-2">
@@ -767,7 +767,7 @@ export const MED: React.FC = () => {
 
                 <div>
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Defesa do Usuário</label>
-                  <div className="mt-1 sm:mt-2 p-2 sm:p-3 bg-[#0c1410] rounded-lg border border-emerald-500/20 text-xs sm:text-sm text-slate-200 whitespace-pre-wrap">
+                  <div className="mt-1 sm:mt-2 p-2 sm:p-3 bg-[#090d0a] rounded-lg border border-emerald-500/20 text-xs sm:text-sm text-slate-200 whitespace-pre-wrap">
                     {selectedCase.defenseText || 'Sem defesa enviada até o momento.'}
                   </div>
                 </div>
@@ -819,7 +819,7 @@ export const MED: React.FC = () => {
                                   <a
                                     href={att.url}
                                     download={att.filename || 'anexo-med'}
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/20 bg-[#0f1713] text-xs font-medium text-slate-200 hover:bg-[#0c1410]"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/20 bg-[#0f1713] text-xs font-medium text-slate-200 hover:bg-[#090d0a]"
                                   >
                                     Baixar arquivo
                                   </a>
@@ -862,7 +862,7 @@ export const MED: React.FC = () => {
                                   <a
                                     href={att.url}
                                     download={att.filename || 'anexo-med'}
-                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/20 bg-[#0f1713] text-xs font-medium text-slate-200 hover:bg-[#0c1410]"
+                                    className="inline-flex items-center px-2.5 py-1.5 rounded-md border border-emerald-500/20 bg-[#0f1713] text-xs font-medium text-slate-200 hover:bg-[#090d0a]"
                                   >
                                     Baixar arquivo
                                   </a>
@@ -873,7 +873,7 @@ export const MED: React.FC = () => {
                         </div>
                       ))
                     ) : (
-                      <div className="p-2 sm:p-3 rounded-lg border border-emerald-500/20 bg-[#0c1410] text-xs sm:text-sm text-slate-400">
+                      <div className="p-2 sm:p-3 rounded-lg border border-emerald-500/20 bg-[#090d0a] text-xs sm:text-sm text-slate-400">
                         Nenhum anexo enviado.
                       </div>
                     )}
@@ -882,7 +882,7 @@ export const MED: React.FC = () => {
               </div>
             </div>
 
-            <div className="px-4 sm:px-6 py-3 sm:py-4 bg-[#0c1410] border-t border-emerald-500/20 flex flex-col sm:flex-row justify-end gap-2 sm:gap-3">
+            <div className="px-4 sm:px-6 py-3 sm:py-4 bg-[#090d0a] border-t border-emerald-500/20 flex flex-col sm:flex-row justify-end gap-2 sm:gap-3">
               <button
                 disabled={processingId === selectedCase.id}
                 onClick={() => handleAction(selectedCase.id, 'REJECT_REFUND')}
@@ -915,7 +915,7 @@ export const MED: React.FC = () => {
       {showCreateModal && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-[#0f1713] w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden">
-            <div className="bg-[#0c1410] px-6 py-4 border-b border-emerald-500/20 flex justify-between items-center">
+            <div className="bg-[#090d0a] px-6 py-4 border-b border-emerald-500/20 flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-emerald-950/40 text-emerald-500 rounded-lg">
                   <ShieldAlert className="w-5 h-5" />
@@ -942,7 +942,7 @@ export const MED: React.FC = () => {
                   }}
                 />
                 <input
-                  className="px-3 py-2 border border-emerald-500/20 rounded-lg bg-[#0c1410]"
+                  className="px-3 py-2 border border-emerald-500/20 rounded-lg bg-[#090d0a]"
                   placeholder="E2E da transação"
                   value={selectedTxE2E || '-'}
                   readOnly
@@ -980,7 +980,7 @@ export const MED: React.FC = () => {
               </div>
 
               <div className="border border-emerald-500/20 rounded-xl overflow-hidden">
-                <div className="p-3 bg-[#0c1410] border-b border-emerald-500/20 text-sm font-medium text-slate-200">
+                <div className="p-3 bg-[#090d0a] border-b border-emerald-500/20 text-sm font-medium text-slate-200">
                   Transações em tempo real (clique para preencher)
                 </div>
                 <div className="max-h-64 overflow-auto divide-y divide-emerald-500/10">
@@ -989,7 +989,7 @@ export const MED: React.FC = () => {
                       type="button"
                       key={`${tx.transaction_id}-${tx.user_id}`}
                       onClick={() => handleSelectTransaction(tx)}
-                      className="w-full text-left p-3 hover:bg-[#0c1410] transition-colors"
+                      className="w-full text-left p-3 hover:bg-[#090d0a] transition-colors"
                     >
                       <div className="text-xs text-slate-400">TX {tx.transaction_id} • USER {tx.user_id} • {tx.source_channel || 'WALLET'} • {tx.direction || '-'}</div>
                       <div className="text-xs font-mono text-slate-400 break-all">E2E: {tx.e2e || '-'}</div>
@@ -1004,7 +1004,7 @@ export const MED: React.FC = () => {
               </div>
             </div>
 
-            <div className="px-6 py-4 border-t border-emerald-500/20 bg-[#0c1410] flex justify-end gap-3">
+            <div className="px-6 py-4 border-t border-emerald-500/20 bg-[#090d0a] flex justify-end gap-3">
               <button onClick={() => setShowCreateModal(false)} className="px-4 py-2 bg-[#0f1713] border border-emerald-500/20 rounded-lg">
                 Cancelar
               </button>

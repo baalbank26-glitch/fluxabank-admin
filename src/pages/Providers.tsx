@@ -209,13 +209,13 @@ export const Providers: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-[#0f1713] p-4 rounded-xl border border-emerald-500/20 shadow-sm">
+      <div className="bg-[#0f1713] p-4 rounded-xl border border-emerald-500/20">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
           <input 
             type="text" 
             placeholder="Buscar por nome, código ou URL..." 
-            className="w-full pl-10 pr-4 py-2.5 bg-[#0c1410] border border-emerald-500/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+            className="w-full pl-10 pr-4 py-2.5 bg-[#090d0a] border border-emerald-500/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -230,7 +230,7 @@ export const Providers: React.FC = () => {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
-              <thead className="bg-[#0c1410] border-b border-emerald-500/20">
+              <thead className="bg-[#090d0a] border-b border-emerald-500/20">
                 <tr>
                   <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">ID</th>
                   <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Código</th>
@@ -271,7 +271,7 @@ export const Providers: React.FC = () => {
                     <td className="px-6 py-4">
                       <span className={`px-2 py-1 rounded-full text-xs font-bold ${
                         provider.active 
-                          ? 'bg-green-100 text-green-700' 
+                          ? 'bg-emerald-950/30 text-emerald-300' 
                           : 'bg-slate-100 text-slate-300'
                       }`}>
                         {provider.active ? 'Ativo' : 'Inativo'}
@@ -288,7 +288,7 @@ export const Providers: React.FC = () => {
                           className={`p-2 rounded-lg transition-colors ${
                             provider.active
                               ? 'text-amber-600 hover:bg-amber-50'
-                              : 'text-green-600 hover:bg-green-50'
+                              : 'text-emerald-400 hover:bg-green-50'
                           }`}
                           title={provider.active ? 'Desativar' : 'Ativar'}
                         >
@@ -328,7 +328,7 @@ export const Providers: React.FC = () => {
       {showModal && (
         <div className="fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
           <div className="bg-[#0f1713] rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
-            <div className="p-6 border-b border-emerald-500/20 flex justify-between items-center bg-[#0c1410]">
+            <div className="p-6 border-b border-emerald-500/20 flex justify-between items-center bg-[#090d0a]">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-orange-500 text-white flex items-center justify-center">
                   <Building2 className="w-5 h-5" />
@@ -427,14 +427,14 @@ export const Providers: React.FC = () => {
                     type="button"
                     onClick={closeModal}
                     disabled={actionLoading}
-                    className="flex-1 py-3 bg-[#0f1713] hover:bg-[#0c1410] text-slate-200 border border-slate-300 rounded-xl font-medium transition-colors disabled:opacity-50"
+                    className="flex-1 py-3 bg-[#0f1713] hover:bg-[#090d0a] text-slate-200 border border-slate-300 rounded-xl font-medium transition-colors disabled:opacity-50"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
                     disabled={actionLoading}
-                    className="flex-1 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
+                    className="flex-1 py-3 bg-slate-900 hover:bg-[#0f1713] text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
                   >
                     {actionLoading ? (
                       <Loader2 className="w-5 h-5 animate-spin" />

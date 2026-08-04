@@ -155,7 +155,7 @@ export const Security: React.FC = () => {
                 <div className="relative">
                     <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Tipo de Evento</label>
                     <select
-                        className="w-full bg-[#0c1410] border border-emerald-500/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="w-full bg-[#090d0a] border border-emerald-500/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                         value={filters.type}
                         onChange={(e) => setFilters({ ...filters, type: e.target.value })}
                     >
@@ -173,7 +173,7 @@ export const Security: React.FC = () => {
                     <input
                         type="text"
                         placeholder="Ex: 127.0.0.1"
-                        className="w-full bg-[#0c1410] border border-emerald-500/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="w-full bg-[#090d0a] border border-emerald-500/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                         value={filters.ip}
                         onChange={(e) => setFilters({ ...filters, ip: e.target.value })}
                     />
@@ -182,7 +182,7 @@ export const Security: React.FC = () => {
                     <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Data Início</label>
                     <input
                         type="date"
-                        className="w-full bg-[#0c1410] border border-emerald-500/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="w-full bg-[#090d0a] border border-emerald-500/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                         value={filters.dateFrom}
                         onChange={(e) => setFilters({ ...filters, dateFrom: e.target.value })}
                     />
@@ -191,13 +191,13 @@ export const Security: React.FC = () => {
                     <label className="text-xs font-bold text-slate-400 uppercase mb-1 block">Data Fim</label>
                     <input
                         type="date"
-                        className="w-full bg-[#0c1410] border border-emerald-500/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        className="w-full bg-[#090d0a] border border-emerald-500/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                         value={filters.dateTo}
                         onChange={(e) => setFilters({ ...filters, dateTo: e.target.value })}
                     />
                 </div>
                 <div className="flex items-end">
-                    <button type="submit" className="w-full bg-slate-800 text-white rounded-lg px-4 py-2 text-sm font-bold hover:bg-slate-700 flex items-center justify-center gap-2 transition-colors">
+                    <button type="submit" className="w-full bg-[#0f1713] text-white rounded-lg px-4 py-2 text-sm font-bold hover:bg-slate-700 flex items-center justify-center gap-2 transition-colors">
                         <Search className="w-4 h-4" />
                         Filtrar
                     </button>
@@ -209,7 +209,7 @@ export const Security: React.FC = () => {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-[#0c1410] border-b border-emerald-500/20">
+                            <tr className="bg-[#090d0a] border-b border-emerald-500/20">
                                 <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Data/Hora</th>
                                 <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Tipo</th>
                                 <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase">IP Origem</th>
@@ -233,7 +233,7 @@ export const Security: React.FC = () => {
                                 </tr>
                             ) : (
                                 logs.map((log) => (
-                                    <tr key={log.id} className="hover:bg-[#0c1410] transition-colors group">
+                                    <tr key={log.id} className="hover:bg-[#090d0a] transition-colors group">
                                         <td className="px-6 py-4">
                                             <div className="flex flex-col">
                                                 <span className="text-sm font-medium text-slate-200">
@@ -311,7 +311,7 @@ export const Security: React.FC = () => {
                                     <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
                                         <Info className="w-4 h-4" /> Informações Básicas
                                     </h4>
-                                    <div className="bg-[#0c1410] rounded-2xl p-4 space-y-3">
+                                    <div className="bg-[#090d0a] rounded-2xl p-4 space-y-3">
                                         <div className="flex justify-between items-center py-2 border-b border-emerald-500/20">
                                             <span className="text-sm text-slate-400">Data/Hora</span>
                                             <span className="text-sm font-medium text-slate-100">{new Date(selectedLog.created_at).toLocaleString('pt-BR')}</span>
@@ -335,7 +335,7 @@ export const Security: React.FC = () => {
                                     <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
                                         <Code className="w-4 h-4" /> User Agent (Navegador/Dispositivo)
                                     </h4>
-                                    <div className="bg-[#0c1410] rounded-2xl p-4">
+                                    <div className="bg-[#090d0a] rounded-2xl p-4">
                                         <p className="text-xs text-slate-300 font-mono leading-relaxed break-all">
                                             {selectedLog.user_agent || 'N/A'}
                                         </p>
@@ -371,7 +371,7 @@ export const Security: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="p-6 bg-[#0c1410] border-t border-emerald-500/20 flex justify-end gap-3">
+                        <div className="p-6 bg-[#090d0a] border-t border-emerald-500/20 flex justify-end gap-3">
                             <button
                                 onClick={() => setSelectedLog(null)}
                                 className="px-6 py-2 bg-[#0f1713] border border-emerald-500/20 text-slate-200 rounded-xl font-bold hover:bg-emerald-950/40 transition-colors"

@@ -724,7 +724,7 @@ export const Treasury: React.FC = () => {
                 onClick={() => setViewMode('DAILY')}
                 className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${viewMode === 'DAILY'
                     ? 'bg-emerald-950/40 text-emerald-600'
-                    : 'text-slate-400 hover:bg-[#0c1410]'
+                    : 'text-slate-400 hover:bg-[#090d0a]'
                   }`}
               >
                 Diário
@@ -734,7 +734,7 @@ export const Treasury: React.FC = () => {
                 onClick={() => setViewMode('MONTHLY')}
                 className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${viewMode === 'MONTHLY'
                     ? 'bg-emerald-950/40 text-emerald-600'
-                    : 'text-slate-400 hover:bg-[#0c1410]'
+                    : 'text-slate-400 hover:bg-[#090d0a]'
                   }`}
               >
                 Mensal
@@ -743,7 +743,7 @@ export const Treasury: React.FC = () => {
           <div className="flex gap-2">
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-4 py-2 bg-[#0f1713] border border-emerald-500/20 text-slate-200 rounded-lg hover:bg-[#0c1410] text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-2 bg-[#0f1713] border border-emerald-500/20 text-slate-200 rounded-lg hover:bg-[#090d0a] text-sm font-medium"
             >
               <Filter className="w-4 h-4" />
               Filtros
@@ -766,7 +766,7 @@ export const Treasury: React.FC = () => {
           </p>
 
           {loading ? (
-            <div className="h-10 mt-2 bg-slate-800 rounded animate-pulse w-48"></div>
+            <div className="h-10 mt-2 bg-[#0f1713] rounded animate-pulse w-48"></div>
           ) : (
             <h3 className="text-4xl font-bold mt-2">
               {balance.currency}{' '}
@@ -957,7 +957,7 @@ export const Treasury: React.FC = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="bg-[#0c1410] border-b border-emerald-500/20">
+            <thead className="bg-[#090d0a] border-b border-emerald-500/20">
               <tr>
                 <th className="px-6 py-3">Usuário</th>
                 <th className="px-6 py-3 text-right">Arrecadado</th>
@@ -1055,7 +1055,7 @@ export const Treasury: React.FC = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="bg-[#0c1410] border-b border-emerald-500/20">
+            <thead className="bg-[#090d0a] border-b border-emerald-500/20">
               <tr>
                 <th className="px-6 py-3">ID</th>
                 <th className="px-6 py-3">Data</th>
@@ -1127,7 +1127,7 @@ export const Treasury: React.FC = () => {
                       <td className="px-6 py-4">
                         <span
                           className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${(item.type || '').includes('CREDIT')
-                              ? 'bg-green-100 text-green-700'
+                              ? 'bg-emerald-950/30 text-emerald-300'
                               : 'bg-emerald-950/40 text-emerald-600'
                             }`}
                         >
@@ -1200,7 +1200,7 @@ export const Treasury: React.FC = () => {
 
             <div className="p-4 overflow-auto max-h-[60vh]">
               <table className="w-full text-sm text-left">
-                <thead className="bg-[#0c1410] border-b border-emerald-500/20">
+                <thead className="bg-[#090d0a] border-b border-emerald-500/20">
                   <tr>
                     <th className="px-4 py-3">Data</th>
                     <th className="px-4 py-3">Descrição</th>
@@ -1232,7 +1232,7 @@ export const Treasury: React.FC = () => {
                         <td className="px-4 py-3 font-medium text-slate-100">{tx.description}</td>
                         <td className="px-4 py-3">
                           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${(tx.type || '').includes('CREDIT')
-                            ? 'bg-green-100 text-green-700'
+                            ? 'bg-emerald-950/30 text-emerald-300'
                             : 'bg-emerald-950/40 text-emerald-600'
                             }`}>
                             {tx.type}

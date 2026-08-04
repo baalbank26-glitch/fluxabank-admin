@@ -77,13 +77,13 @@ export const PixArea: React.FC = () => {
             </div>
 
             <div className="bg-[#0f1713] rounded-2xl border border-emerald-500/20 shadow-sm overflow-hidden flex flex-col md:flex-row min-h-[500px]">
-                <div className="w-full md:w-1/3 bg-[#0c1410] border-r border-emerald-500/20 p-2 flex flex-col gap-2">
+                <div className="w-full md:w-1/3 bg-[#090d0a] border-r border-emerald-500/20 p-2 flex flex-col gap-2">
                     <button 
                         onClick={() => { setMode('DEPOSIT'); setDepositCode(''); }}
                         className={`p-4 rounded-xl text-left transition-all ${mode === 'DEPOSIT' ? 'bg-[#0f1713] shadow-md ring-1 ring-slate-200' : 'hover:bg-emerald-950/40'}`}
                     >
                         <div className="flex items-center gap-3 mb-2">
-                            <div className={`p-2 rounded-lg ${mode === 'DEPOSIT' ? 'bg-green-100 text-green-600' : 'bg-slate-200 text-slate-400'}`}>
+                            <div className={`p-2 rounded-lg ${mode === 'DEPOSIT' ? 'bg-emerald-950/30 text-emerald-400' : 'bg-slate-200 text-slate-400'}`}>
                                 <ArrowDownLeft className="w-5 h-5" />
                             </div>
                             <span className={`font-bold ${mode === 'DEPOSIT' ? 'text-slate-100' : 'text-slate-400'}`}>Depósito</span>
@@ -138,7 +138,7 @@ export const PixArea: React.FC = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    <button onClick={() => { setDepositCode(''); setAmount(''); }} className="text-sm text-green-600 hover:underline">
+                                    <button onClick={() => { setDepositCode(''); setAmount(''); }} className="text-sm text-emerald-400 hover:underline">
                                         Gerar novo depósito
                                     </button>
                                 </div>
@@ -149,11 +149,11 @@ export const PixArea: React.FC = () => {
                             <h3 className="text-xl font-bold text-slate-100">Solicitar Saque</h3>
                             {withdrawStatus ? (
                                 <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center animate-in zoom-in">
-                                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+                                    <div className="w-12 h-12 bg-emerald-950/30 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400">
                                         <Check className="w-6 h-6" />
                                     </div>
                                     <p className="text-green-800 font-bold">{withdrawStatus}</p>
-                                    <button onClick={() => setWithdrawStatus('')} className="mt-4 text-sm text-green-600 hover:underline">Novo Saque</button>
+                                    <button onClick={() => setWithdrawStatus('')} className="mt-4 text-sm text-emerald-400 hover:underline">Novo Saque</button>
                                 </div>
                             ) : (
                                 <form onSubmit={handleWithdraw} className="space-y-4">
