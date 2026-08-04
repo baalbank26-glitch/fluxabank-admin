@@ -32,6 +32,50 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #059669;
     }
+
+    /* ============================================================
+       GLOBAL INPUT / SELECT / TEXTAREA DARK THEME
+       Forces all form elements to use the obsidian dark palette.
+       This overrides browser defaults (white bg) site-wide.
+    ============================================================ */
+    input, textarea, select {
+      background-color: #090d0a !important;
+      color: #f1f5f9 !important;
+      border-color: rgba(16, 185, 129, 0.25) !important;
+      color-scheme: dark;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #64748b !important;
+    }
+    /* Keep white bg only for checkbox/radio (tiny elements) */
+    input[type="checkbox"],
+    input[type="radio"] {
+      background-color: transparent !important;
+      color: #10b981 !important;
+      border-color: rgba(16, 185, 129, 0.4) !important;
+    }
+    /* Date & time pickers calendar icon */
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      filter: invert(1) brightness(0.7) sepia(1) hue-rotate(100deg);
+      cursor: pointer;
+    }
+    /* Select arrow */
+    select option {
+      background-color: #0f1713;
+      color: #f1f5f9;
+    }
+    /* Focus ring emerald */
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: rgba(16, 185, 129, 0.6) !important;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2) !important;
+    }
+    /* Disabled state */
+    input:disabled, textarea:disabled, select:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   </style>
   <script>
     tailwind.config = {
