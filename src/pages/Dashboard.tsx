@@ -137,8 +137,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
     <div className="space-y-8 w-full overflow-x-hidden">
       {/* Header */}
       <div className="pt-2">
-        <h1 className="text-4xl font-bold text-slate-900">Visão Geral</h1>
-        <p className="text-slate-600 mt-2">Resumo da operação em tempo real do seu sistema</p>
+        <h1 className="text-4xl font-extrabold text-white">Visão Geral</h1>
+        <p className="text-slate-400 mt-2">Resumo da operação em tempo real do seu sistema</p>
       </div>
 
       {/* Main Stats Grid */}
@@ -186,46 +186,46 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
 
         {/* Usuarios Ativos */}
         <div
-          className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all cursor-pointer min-w-0 group"
+          className="bg-[#0f1713] p-6 sm:p-8 rounded-2xl border border-emerald-500/30 shadow-sm hover:shadow-emerald-500/10 hover:border-emerald-500/50 transition-all cursor-pointer min-w-0 group"
           onClick={() => onViewChange(AppView.CLIENTS)}
         >
           <div className="flex items-start justify-between mb-4">
-            <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Usuários Ativos</p>
-            <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
-              <Users className="w-5 h-5 text-blue-600" />
+            <p className="text-xs font-extrabold text-emerald-400 uppercase tracking-widest">Usuários Ativos</p>
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/20 transition-all">
+              <Users className="w-5 h-5 text-emerald-400" />
             </div>
           </div>
 
           {stats.loading ? (
-            <Loader2 className="w-6 h-6 animate-spin text-slate-300" />
+            <Loader2 className="w-6 h-6 animate-spin text-emerald-500" />
           ) : (
             <>
-              <h3 className="text-3xl font-bold text-slate-900">{stats.activeClients}</h3>
-              <p className="text-xs text-slate-500 mt-3">Contas com acesso completo</p>
+              <h3 className="text-3xl font-extrabold text-white">{stats.activeClients}</h3>
+              <p className="text-xs text-slate-400 mt-3">Contas com acesso completo</p>
             </>
           )}
         </div>
 
         {/* Pendentes */}
         <div
-          className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all cursor-pointer min-w-0 group"
+          className="bg-[#0f1713] p-6 sm:p-8 rounded-2xl border border-emerald-500/30 shadow-sm hover:shadow-emerald-500/10 hover:border-emerald-500/50 transition-all cursor-pointer min-w-0 group"
           onClick={() => onViewChange(AppView.APPROVALS)}
         >
           <div className="flex items-start justify-between mb-4">
-            <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Pendentes</p>
-            <div className={`w-10 h-10 rounded-lg flex items-center justify-center group-hover:shadow-md transition-shadow ${stats.pendingApprovals > 0 ? 'bg-amber-100' : 'bg-green-100'}`}>
-              <AlertCircle className={`w-5 h-5 ${stats.pendingApprovals > 0 ? 'text-amber-600' : 'text-green-600'}`} />
+            <p className="text-xs font-extrabold text-emerald-400 uppercase tracking-widest">Pendentes</p>
+            <div className={`w-10 h-10 rounded-xl border flex items-center justify-center group-hover:opacity-80 transition-all ${stats.pendingApprovals > 0 ? 'bg-amber-500/10 border-amber-500/20' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
+              <AlertCircle className={`w-5 h-5 ${stats.pendingApprovals > 0 ? 'text-amber-400' : 'text-emerald-400'}`} />
             </div>
           </div>
 
           {stats.loading ? (
-            <Loader2 className="w-6 h-6 animate-spin text-slate-300" />
+            <Loader2 className="w-6 h-6 animate-spin text-emerald-500" />
           ) : (
             <>
-              <h3 className={`text-3xl font-bold ${stats.pendingApprovals > 0 ? 'text-amber-600' : 'text-green-600'}`}>
+              <h3 className={`text-3xl font-extrabold ${stats.pendingApprovals > 0 ? 'text-amber-400' : 'text-emerald-400'}`}>
                 {stats.pendingApprovals}
               </h3>
-              <p className={`text-xs mt-3 font-semibold ${stats.pendingApprovals > 0 ? 'text-amber-600' : 'text-green-600'}`}>
+              <p className={`text-xs mt-3 font-bold ${stats.pendingApprovals > 0 ? 'text-amber-400' : 'text-emerald-400'}`}>
                 {stats.pendingApprovals > 0 ? 'Requer atenção' : '✓ Tudo em dia'}
               </p>
             </>
@@ -233,20 +233,20 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
         </div>
 
         {/* Bloqueados */}
-        <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all min-w-0 group">
+        <div className="bg-[#0f1713] p-6 sm:p-8 rounded-2xl border border-emerald-500/30 shadow-sm hover:shadow-emerald-500/10 hover:border-emerald-500/50 transition-all min-w-0 group">
           <div className="flex items-start justify-between mb-4">
-            <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Bloqueados</p>
-            <div className="w-10 h-10 rounded-lg bg-fluxabank-50 flex items-center justify-center group-hover:shadow-md transition-shadow">
-              <Users className="w-5 h-5 text-fluxabank-400" />
+            <p className="text-xs font-extrabold text-emerald-400 uppercase tracking-widest">Bloqueados</p>
+            <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center group-hover:bg-red-500/20 transition-all">
+              <Users className="w-5 h-5 text-red-400" />
             </div>
           </div>
 
           {stats.loading ? (
-            <Loader2 className="w-6 h-6 animate-spin text-slate-300" />
+            <Loader2 className="w-6 h-6 animate-spin text-emerald-500" />
           ) : (
             <>
-              <h3 className="text-3xl font-bold text-fluxabank-500">{stats.blockedClients}</h3>
-              <p className="text-xs text-fluxabank-500 mt-3 font-semibold">Acesso restrito</p>
+              <h3 className="text-3xl font-extrabold text-red-400">{stats.blockedClients}</h3>
+              <p className="text-xs text-red-400 mt-3 font-bold">Acesso restrito</p>
             </>
           )}
         </div>
@@ -256,15 +256,15 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
 
         {/* Chart */}
-        <div className="lg:col-span-2 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow min-w-0 overflow-hidden">
+        <div className="lg:col-span-2 bg-[#0f1713] p-6 sm:p-8 rounded-2xl border border-emerald-500/30 shadow-sm hover:shadow-emerald-500/10 transition-shadow min-w-0 overflow-hidden">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-bold text-slate-900">Faturamento Diário</h2>
-              <p className="text-sm text-slate-500 mt-1">Receita de entradas (últimos 7 dias)</p>
+              <h2 className="text-xl font-extrabold text-white">Faturamento Diário</h2>
+              <p className="text-sm text-slate-400 mt-1">Receita de entradas (últimos 7 dias)</p>
             </div>
-            <div className="flex items-center gap-2 px-3 py-2 bg-slate-50 rounded-lg">
-              <Calendar className="w-4 h-4 text-slate-500" />
-              <span className="text-xs font-medium text-slate-600">7 dias</span>
+            <div className="flex items-center gap-2 px-3 py-2 bg-[#090d0a] border border-emerald-500/20 rounded-xl">
+              <Calendar className="w-4 h-4 text-emerald-400" />
+              <span className="text-xs font-bold text-emerald-400">7 dias</span>
             </div>
           </div>
 
@@ -274,36 +274,36 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                   <defs>
                     <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#f97316" stopOpacity={0.15} />
-                      <stop offset="95%" stopColor="#f97316" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.25} />
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
                     </linearGradient>
                   </defs>
 
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#1a2e22" />
 
                   <XAxis
                     dataKey="name"
                     axisLine={false}
                     tickLine={false}
-                    tick={{ fill: '#64748b', fontSize: 12 }}
+                    tick={{ fill: '#94a3b8', fontSize: 12 }}
                     dy={10}
                   />
 
                   <YAxis
                     axisLine={false}
                     tickLine={false}
-                    tick={{ fill: '#64748b', fontSize: 12 }}
+                    tick={{ fill: '#94a3b8', fontSize: 12 }}
                   />
 
-                  <Tooltip 
-                    contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                  <Tooltip
+                    contentStyle={{ borderRadius: 12, border: '1px solid rgba(16,185,129,0.3)', background: '#0f1713', color: '#fff', boxShadow: '0 4px 24px rgba(0,0,0,0.4)' }}
                     formatter={(value) => `R$ ${Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
                   />
 
                   <Area
                     type="monotone"
                     dataKey="value"
-                    stroke="#f97316"
+                    stroke="#10b981"
                     strokeWidth={2.5}
                     fillOpacity={1}
                     fill="url(#colorValue)"
@@ -311,13 +311,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ onViewChange }) => {
                 </AreaChart>
               </ResponsiveContainer>
             ) : (
-              <div className="h-full flex flex-col items-center justify-center text-slate-400">
+              <div className="h-full flex flex-col items-center justify-center text-slate-500">
                 {stats.loading ? (
-                  <Loader2 className="w-8 h-8 animate-spin text-slate-300 mb-2" />
+                  <Loader2 className="w-8 h-8 animate-spin text-emerald-500 mb-2" />
                 ) : (
                   <>
-                    <p className="font-medium">Sem dados de faturamento</p>
-                    <p className="text-xs mt-2">Novas transações aparecerão aqui</p>
+                    <p className="font-medium text-slate-400">Sem dados de faturamento</p>
+                    <p className="text-xs mt-2 text-slate-500">Novas transações aparecerão aqui</p>
                   </>
                 )}
               </div>
